@@ -176,6 +176,7 @@
     #menu-toggle .icon-close { opacity: 0; }
     .menu-open #menu-toggle .icon-open { opacity: 0; }
     .menu-open #menu-toggle .icon-close { opacity: 1; }
+    [data-theme="light"] .site-logo { filter: invert(1); }
     [data-theme="dark"] .theme-icon-moon, [data-theme="light"] .theme-icon-sun { display: none; }
 
     .lang-select {
@@ -356,12 +357,13 @@
   <header id="header" class="fixed left-0 top-0 z-50 w-full">
     <div class="header-bg absolute inset-0 border-b border-line bg-canvas/80 backdrop-blur-md" aria-hidden="true"></div>
     <div class="relative mx-auto flex h-24 w-full max-w-[1440px] items-center justify-between gap-6 px-5 md:px-12 xl:px-24">
-      <a href="#top" dir="ltr" class="font-display text-2xl font-semibold tracking-tighter" data-i18n-attr="aria-label:aria.home" aria-label="Asteria Soft ana sayfa">
-        <span class="text-fg">asteria.</span><span class="text-accent">soft</span>
+      <a href="#top" dir="ltr" class="flex-none" data-i18n-attr="aria-label:aria.home" aria-label="Asteria Soft ana sayfa">
+        <img src="logo.png" alt="asteria.soft" width="600" height="200" class="site-logo h-12 w-auto rounded-lg md:h-14">
       </a>
 
       <nav class="hidden items-center text-[0.9375rem] lg:flex lg:gap-10 xl:gap-16 2xl:gap-[7.5rem]" data-i18n-attr="aria-label:aria.mainNav" aria-label="Ana menü">
         <a href="#hizmetler" class="nav-link" data-i18n="nav.services">Hizmetler</a>
+        <a href="#demolar" class="nav-link" data-i18n="nav.demos">Demolar</a>
         <a href="#neden-biz" class="nav-link" data-i18n="nav.why">Neden Biz</a>
         <a href="#iletisim" class="nav-link" data-i18n="nav.contact">İletişim</a>
       </nav>
@@ -395,11 +397,12 @@
     <nav class="flex min-h-full flex-col justify-center px-5 pb-32 pt-32 md:px-12" data-i18n-attr="aria-label:aria.mobileNav" aria-label="Mobil menü">
       <ul class="space-y-12">
         <li><a href="#hizmetler" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:0" data-i18n="nav.services">Hizmetler</a></li>
-        <li><a href="#neden-biz" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:1" data-i18n="nav.why">Neden Biz</a></li>
-        <li><a href="#iletisim" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:2" data-i18n="nav.contact">İletişim</a></li>
+        <li><a href="#demolar" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:1" data-i18n="nav.demos">Demolar</a></li>
+        <li><a href="#neden-biz" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:2" data-i18n="nav.why">Neden Biz</a></li>
+        <li><a href="#iletisim" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:3" data-i18n="nav.contact">İletişim</a></li>
       </ul>
-      <a href="#iletisim" class="m-item btn mt-24 w-full" style="--i:3" data-i18n="nav.quote">Teklif Al</a>
-      <div class="m-item relative mt-12" style="--i:4">
+      <a href="#iletisim" class="m-item btn mt-24 w-full" style="--i:4" data-i18n="nav.quote">Teklif Al</a>
+      <div class="m-item relative mt-12" style="--i:5">
         <select data-lang-select class="lang-select h-[3.75rem] w-full" data-i18n-attr="aria-label:aria.lang" aria-label="Dil seçimi">
           <option value="tr">Türkçe</option>
           <option value="en">English</option>
@@ -468,6 +471,44 @@
             <p data-i18n="s4.text" class="max-w-md text-base leading-relaxed text-muted lg:text-lg">Müşterilerinize saniyeler içinde insan doğallığında yanıt veren, satış kapatan akıllı asistanlar.</p>
           </article>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- Demolar -->
+    <section id="demolar" class="py-[var(--section-space)]" aria-labelledby="demos-title">
+      <div class="mx-auto w-full max-w-[1440px] px-5 md:px-12 xl:px-24">
+        <h2 id="demos-title" data-reveal data-i18n="demos.title" class="anchor-heading text-center font-display text-5xl font-semibold leading-[0.95] tracking-tighter text-fg md:text-7xl">Demolar</h2>
+        <p data-reveal data-i18n="demos.sub" class="mx-auto mt-12 max-w-[60ch] text-center text-lg leading-relaxed text-muted">Çalışmalarımızı canlı olarak inceleyin.</p>
+
+        <div class="mt-48 grid grid-cols-1 gap-8 md:mt-60 md:grid-cols-2 lg:grid-cols-3">
+          <!-- DEMO LİNKİ: href="#" yerine demo adresini yazın -->
+          <a data-reveal href="#" target="_blank" rel="noopener noreferrer" class="bento flex min-h-[22rem] flex-col justify-between rounded-3xl bg-surface p-10 md:p-14">
+            <i data-lucide="layout-template" class="h-8 w-8 text-accent"></i>
+            <div class="mt-24">
+              <h3 data-i18n="d1.title" class="font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg">Kurumsal Web Sitesi</h3>
+              <p data-i18n="d1.text" class="mt-6 text-base leading-relaxed text-muted">Hızlı, modern ve mobil uyumlu bir işletme sitesi.</p>
+              <span class="mt-10 inline-flex items-center gap-2 text-sm text-fg"><span data-i18n="demos.cta">Demoyu Aç</span><i data-lucide="arrow-up-right" class="flip-rtl h-4 w-4"></i></span>
+            </div>
+          </a>
+          <!-- DEMO LİNKİ: href="#" yerine demo adresini yazın -->
+          <a data-reveal href="#" target="_blank" rel="noopener noreferrer" class="bento flex min-h-[22rem] flex-col justify-between rounded-3xl bg-surface p-10 md:p-14">
+            <i data-lucide="calendar-clock" class="h-8 w-8 text-accent"></i>
+            <div class="mt-24">
+              <h3 data-i18n="d2.title" class="font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg">Randevu Sistemi</h3>
+              <p data-i18n="d2.text" class="mt-6 text-base leading-relaxed text-muted">Müşterilerin 7/24 kendi randevusunu aldığı sistem.</p>
+              <span class="mt-10 inline-flex items-center gap-2 text-sm text-fg"><span data-i18n="demos.cta">Demoyu Aç</span><i data-lucide="arrow-up-right" class="flip-rtl h-4 w-4"></i></span>
+            </div>
+          </a>
+          <!-- DEMO LİNKİ: href="#" yerine demo adresini yazın -->
+          <a data-reveal href="#" target="_blank" rel="noopener noreferrer" class="bento flex min-h-[22rem] flex-col justify-between rounded-3xl bg-surface p-10 md:col-span-2 md:p-14 lg:col-span-1">
+            <i data-lucide="brain-circuit" class="h-8 w-8 text-accent"></i>
+            <div class="mt-24">
+              <h3 data-i18n="d3.title" class="font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg">AI Chatbot</h3>
+              <p data-i18n="d3.text" class="mt-6 text-base leading-relaxed text-muted">Sorulara anında yanıt veren yapay zeka asistanı.</p>
+              <span class="mt-10 inline-flex items-center gap-2 text-sm text-fg"><span data-i18n="demos.cta">Demoyu Aç</span><i data-lucide="arrow-up-right" class="flip-rtl h-4 w-4"></i></span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
@@ -661,8 +702,8 @@
     </div>
   </footer>
 
-  <!-- WhatsApp -->
-  <a href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="icon-link fixed bottom-5 right-5 z-[999] flex h-14 w-14 items-center justify-center rounded-full bg-surface text-fg" data-i18n-attr="aria-label:aria.whatsapp" aria-label="WhatsApp üzerinden bize yazın">
+  <!-- WhatsApp (Voiceflow sohbet butonunun üstünde durur) -->
+  <a id="wa-float" href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="icon-link fixed bottom-24 right-5 z-[999] flex h-14 w-14 items-center justify-center rounded-full bg-surface text-fg" data-i18n-attr="aria-label:aria.whatsapp" aria-label="WhatsApp üzerinden bize yazın">
     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
   </a>
 
@@ -748,6 +789,16 @@
           's4.title': 'AI Chatbot',
           's4.text': 'Smart assistants that reply to your customers in seconds, as naturally as a human, and close sales.',
           'why.title': 'Why Us?',
+          'nav.demos': 'Demos',
+          'demos.title': 'Demos',
+          'demos.sub': 'Explore our work live.',
+          'demos.cta': 'Open Demo',
+          'd1.title': 'Business Website',
+          'd1.text': 'A fast, modern and mobile-friendly business website.',
+          'd2.title': 'Booking System',
+          'd2.text': 'A system where customers book their own appointments 24/7.',
+          'd3.title': 'AI Chatbot',
+          'd3.text': 'An AI assistant that answers questions instantly.',
           'stat1.value': '99.9%',
           'stat1.label': 'Uptime & Security',
           'stat2.value': '< 1 s',
@@ -834,6 +885,16 @@
           's4.title': 'KI-Chatbot',
           's4.text': 'Intelligente Assistenten, die Ihren Kunden in Sekunden so natürlich wie ein Mensch antworten und Verkäufe abschließen.',
           'why.title': 'Warum wir?',
+          'nav.demos': 'Demos',
+          'demos.title': 'Demos',
+          'demos.sub': 'Sehen Sie sich unsere Arbeiten live an.',
+          'demos.cta': 'Demo öffnen',
+          'd1.title': 'Unternehmenswebsite',
+          'd1.text': 'Eine schnelle, moderne und mobilfreundliche Website.',
+          'd2.title': 'Buchungssystem',
+          'd2.text': 'Ein System, in dem Kunden rund um die Uhr selbst Termine buchen.',
+          'd3.title': 'KI-Chatbot',
+          'd3.text': 'Ein KI-Assistent, der Fragen sofort beantwortet.',
           'stat1.value': '99,9 %',
           'stat1.label': 'Verfügbarkeit & Sicherheit',
           'stat2.value': '< 1 s',
@@ -920,6 +981,16 @@
           's4.title': 'روبوت محادثة بالذكاء الاصطناعي',
           's4.text': 'مساعدون أذكياء يردّون على عملائك خلال ثوانٍ بأسلوب طبيعي كالبشر ويُتمّون عمليات البيع.',
           'why.title': 'لماذا نحن؟',
+          'nav.demos': 'العروض',
+          'demos.title': 'العروض التجريبية',
+          'demos.sub': 'استكشف أعمالنا مباشرة.',
+          'demos.cta': 'فتح العرض',
+          'd1.title': 'موقع شركة',
+          'd1.text': 'موقع سريع وحديث ومتوافق مع الجوال.',
+          'd2.title': 'نظام حجز المواعيد',
+          'd2.text': 'نظام يحجز فيه العملاء مواعيدهم بأنفسهم على مدار الساعة.',
+          'd3.title': 'روبوت دردشة بالذكاء الاصطناعي',
+          'd3.text': 'مساعد ذكي يجيب على الأسئلة فورًا.',
           'stat1.value': '99.9%',
           'stat1.label': 'استقرار وأمان',
           'stat2.value': '< 1 ث',
@@ -1006,6 +1077,16 @@
           's4.title': 'Chatbot con IA',
           's4.text': 'Asistentes inteligentes que responden a sus clientes en segundos, con naturalidad humana, y cierran ventas.',
           'why.title': '¿Por qué nosotros?',
+          'nav.demos': 'Demos',
+          'demos.title': 'Demos',
+          'demos.sub': 'Explore nuestro trabajo en vivo.',
+          'demos.cta': 'Abrir demo',
+          'd1.title': 'Sitio web corporativo',
+          'd1.text': 'Un sitio web rápido, moderno y adaptado a móviles.',
+          'd2.title': 'Sistema de reservas',
+          'd2.text': 'Un sistema donde los clientes reservan sus citas 24/7.',
+          'd3.title': 'Chatbot con IA',
+          'd3.text': 'Un asistente de IA que responde preguntas al instante.',
           'stat1.value': '99,9 %',
           'stat1.label': 'Disponibilidad y seguridad',
           'stat2.value': '< 1 s',
@@ -1465,6 +1546,20 @@
         markReady();
       }
     })();
+  </script>
+
+  <!-- Voiceflow AI Chatbot - asteria.soft -->
+  <script type="text/javascript">
+    (function(d, t) {
+        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        v.onload = function() {
+          window.voiceflow.chat.load({
+            verify: { projectID: '6aaae2ed46371a65a31e4fe2' },
+            url: 'https://general-runtime.voiceflow.com'
+          });
+        }
+        v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+    })(document, 'script');
   </script>
 </body>
 </html>
