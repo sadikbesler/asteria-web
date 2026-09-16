@@ -260,6 +260,143 @@
       .m-item, #mobile-menu, .header-bg, .icon-btn svg { transition-duration: 0.01ms !important; }
       .faq[open] .faq-answer { animation: none; }
     }
+
+    /* AI Chat widget — the panel is always dark, in both site themes */
+    #wa-float { transition: border-color 0.7s ease, opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0s; }
+    body.ai-chat-open #wa-float {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(10px) scale(0.9);
+      transition: border-color 0.7s ease, opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+    }
+
+    .ai-toggle { isolation: isolate; transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .ai-toggle:hover { transform: scale(1.08); }
+    .ai-toggle:active { transform: scale(0.96); }
+    .ai-toggle:focus-visible { outline: 2px solid #DDD6FE; outline-offset: 4px; }
+    /* Glow is a blurred layer, since the site bans box-shadow */
+    .ai-toggle::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      z-index: -1;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #DDD6FE, #8B5CF6);
+      filter: blur(14px);
+      opacity: 0.45;
+      animation: ai-glow 3.2s ease-in-out infinite;
+      transition: opacity 0.35s ease;
+    }
+    .ai-toggle:hover::before { opacity: 0.75; }
+    .ai-toggle-face { background: linear-gradient(135deg, #EDE9FE 0%, #C4B5FD 45%, #8B5CF6 100%); color: #0a0a0c; }
+    .ai-toggle-icon { transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .ai-toggle .ai-icon-close { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+    .ai-chat.is-open .ai-toggle .ai-icon-chat { opacity: 0; transform: rotate(90deg) scale(0.6); }
+    .ai-chat.is-open .ai-toggle .ai-icon-close { opacity: 1; transform: none; }
+    @keyframes ai-glow { 0%, 100% { opacity: 0.35; transform: scale(0.95); } 50% { opacity: 0.6; transform: scale(1.05); } }
+
+    .ai-panel {
+      width: min(380px, calc(100vw - 3rem));
+      height: min(560px, calc(100vh - 13rem));
+      height: min(560px, calc(100dvh - 13rem));
+      background: #0a0a0c;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.86);
+      transform-origin: bottom right;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(16px) scale(0.97);
+      transition: opacity 0.28s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 0.4s;
+    }
+    .ai-chat.is-open .ai-panel {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: none;
+      transition: opacity 0.28s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s;
+    }
+    .ai-line { border-color: rgba(255, 255, 255, 0.08); }
+    .ai-avatar { background: linear-gradient(135deg, #EDE9FE 0%, #C4B5FD 45%, #8B5CF6 100%); color: #0a0a0c; }
+    .ai-online { position: relative; width: 7px; height: 7px; border-radius: 9999px; background: #22C55E; }
+    .ai-online::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: #22C55E;
+      animation: ai-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @keyframes ai-ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }
+    .ai-icon-btn { color: rgba(255, 255, 255, 0.6); transition: color 0.2s ease, background-color 0.2s ease; }
+    .ai-icon-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+    .ai-icon-btn:focus-visible, .ai-send:focus-visible, .ai-pill:focus-visible, .ai-action:focus-visible { outline: 2px solid #DDD6FE; outline-offset: 2px; }
+
+    .ai-messages { overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.12) transparent; }
+    .ai-msg { display: flex; margin-top: 0.75rem; animation: ai-in 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+    .ai-msg:first-child { margin-top: 0; }
+    .ai-msg--user { justify-content: flex-end; }
+    @keyframes ai-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .ai-bubble { max-width: 88%; padding: 0.75rem 0.95rem; font-size: 0.875rem; line-height: 1.55; border-radius: 1.15rem; overflow-wrap: anywhere; }
+    .ai-msg--bot .ai-bubble { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-start-start-radius: 0.4rem; }
+    .ai-msg--user .ai-bubble { max-width: 80%; background: #DDD6FE; color: #0a0a0c; border-start-end-radius: 0.4rem; }
+    .ai-text { white-space: pre-line; }
+    .ai-title { margin-bottom: 0.25rem; font-size: 0.95rem; font-weight: 600; color: #fff; }
+    .ai-rows { margin-top: 0.6rem; }
+    .ai-item { padding-block: 0.6rem; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+    .ai-item:last-child { padding-bottom: 0.1rem; }
+    .ai-item-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 0.75rem; row-gap: 0.1rem; }
+    .ai-item-title { font-weight: 500; color: rgba(255, 255, 255, 0.92); }
+    .ai-item-value { font-weight: 500; color: #C4B5FD; white-space: nowrap; }
+    .ai-item-sub { margin-top: 0.15rem; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); }
+    .ai-note { margin-top: 0.6rem; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); }
+    .ai-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+    .ai-action {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.1rem;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.88);
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+    .ai-action:hover { border-color: rgba(221, 214, 254, 0.5); background: rgba(221, 214, 254, 0.06); }
+    .ai-action--primary { border-color: transparent; background: #DDD6FE; color: #0a0a0c; }
+    .ai-action--primary:hover { border-color: transparent; background: #EDE9FE; }
+    .ai-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; animation: ai-in 0.32s 0.08s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+    .ai-pill {
+      padding: 0.45rem 0.9rem;
+      border: 1px solid rgba(221, 214, 254, 0.25);
+      border-radius: 9999px;
+      background: rgba(221, 214, 254, 0.06);
+      font-size: 0.8125rem;
+      color: #EDE9FE;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+    }
+    .ai-pill:hover { border-color: rgba(221, 214, 254, 0.55); background: rgba(221, 214, 254, 0.14); transform: translateY(-1px); }
+    .ai-dots { display: inline-flex; align-items: center; gap: 4px; height: 1rem; }
+    .ai-dots i { width: 6px; height: 6px; border-radius: 9999px; background: #C4B5FD; animation: ai-wave 1.2s ease-in-out infinite; }
+    .ai-dots i:nth-child(2) { animation-delay: 0.15s; }
+    .ai-dots i:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes ai-wave { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-5px); opacity: 1; } }
+    .ai-typing .ai-bubble { display: inline-flex; align-items: center; gap: 0.6rem; }
+    .ai-typing-label { font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); }
+    .ai-input { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); color: #fff; transition: border-color 0.2s ease; }
+    .ai-input::placeholder { color: rgba(255, 255, 255, 0.35); }
+    .ai-input:focus { outline: none; border-color: rgba(221, 214, 254, 0.5); }
+    .ai-send { background: #DDD6FE; color: #0a0a0c; transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+    .ai-send:not(:disabled):hover { background: #EDE9FE; transform: scale(1.05); }
+    .ai-send:disabled { background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.3); cursor: default; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ai-toggle::before, .ai-online::after, .ai-msg, .ai-pills { animation: none; }
+      .ai-dots i { animation-duration: 2.4s; }
+      .ai-panel, .ai-chat.is-open .ai-panel, .ai-toggle, .ai-toggle-icon { transition-duration: 0.01ms; }
+    }
   </style>
 
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
@@ -709,10 +846,42 @@
     </div>
   </footer>
 
-  <!-- WhatsApp (Voiceflow sohbet butonunun üstünde durur) -->
-  <a id="wa-float" href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="icon-link fixed bottom-24 right-5 z-[999] flex h-14 w-14 items-center justify-center rounded-full bg-surface text-fg" data-i18n-attr="aria-label:aria.whatsapp" aria-label="WhatsApp üzerinden bize yazın">
+  <!-- WhatsApp (sohbet butonunun hemen üstünde durur) -->
+  <a id="wa-float" href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="icon-link fixed bottom-24 right-6 z-[999] flex h-14 w-14 items-center justify-center rounded-full bg-surface text-fg" data-i18n-attr="aria-label:aria.whatsapp" aria-label="WhatsApp üzerinden bize yazın">
     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
   </a>
+
+  <!-- asteria.soft AI Chat -->
+  <div id="ai-chat" class="ai-chat" data-lenis-prevent>
+    <div id="ai-chat-panel" class="ai-panel fixed bottom-24 right-6 z-[1000] flex flex-col overflow-hidden rounded-3xl font-sans" role="dialog" aria-labelledby="ai-chat-title" inert>
+      <div class="ai-line flex items-center gap-3 border-b px-4 py-3.5">
+        <span class="ai-avatar flex h-9 w-9 flex-none items-center justify-center rounded-full" aria-hidden="true">
+          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+        </span>
+        <div class="min-w-0 flex-1">
+          <p id="ai-chat-title" dir="ltr" class="font-display text-[0.95rem] font-semibold leading-tight text-white rtl:text-right">asteria.soft AI</p>
+          <p class="mt-1 flex items-center gap-2 text-xs text-white/55"><span class="ai-online" aria-hidden="true"></span><span data-chat-i18n="online">Çevrimiçi</span></p>
+        </div>
+        <button id="ai-chat-close" type="button" class="ai-icon-btn flex h-9 w-9 flex-none items-center justify-center rounded-full" aria-label="Sohbeti kapat">
+          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div id="ai-chat-messages" class="ai-messages flex-1 overflow-y-auto px-4 py-5" role="log" aria-live="polite" data-lenis-prevent></div>
+      <form id="ai-chat-form" class="ai-line flex items-center gap-2 border-t p-3" autocomplete="off">
+        <input id="ai-chat-input" type="text" maxlength="500" enterkeyhint="send" class="ai-input h-11 min-w-0 flex-1 rounded-full px-4 text-base" placeholder="Mesajınızı yazın..." aria-label="Mesajınızı yazın...">
+        <button id="ai-chat-send" type="submit" class="ai-send flex h-11 w-11 flex-none items-center justify-center rounded-full" aria-label="Gönder" disabled>
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <button id="ai-chat-toggle" type="button" class="ai-toggle fixed bottom-6 right-6 z-[1000] h-14 w-14 rounded-full" aria-expanded="false" aria-controls="ai-chat-panel" aria-label="Sohbeti aç">
+      <span class="ai-toggle-face relative flex h-full w-full items-center justify-center rounded-full">
+        <svg class="ai-toggle-icon ai-icon-chat absolute h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
+        <svg class="ai-toggle-icon ai-icon-close absolute h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </span>
+    </button>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -1620,18 +1789,509 @@
     })();
   </script>
 
-  <!-- Voiceflow AI Chatbot - asteria.soft -->
-  <script type="text/javascript">
-    (function(d, t) {
-        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-        v.onload = function() {
-          window.voiceflow.chat.load({
-            verify: { projectID: '6aaae2ed46371a65a31e4fe2' },
-            url: 'https://general-runtime.voiceflow.com'
-          });
+  <!-- asteria.soft AI Chat Widget -->
+  <script>
+    const API_ENDPOINT = ""; // Backend adresi. Boş kalırsa yerleşik bilgi tabanı kullanılır; doluysa { message } POST edilir.
+
+    (() => {
+      const WHATSAPP_DISPLAY = "05XX XXX XX XX";
+      const PRICES = {
+        web: { min: 15000, max: 45000 },
+        booking: { min: 10000, max: 25000 },
+        chatbot: { min: 12500, max: 30000 },
+        seo: { min: 8000, max: 20000, monthly: true }
+      };
+      const SERVICE_ORDER = ["web", "booking", "chatbot", "seo"];
+      const ALL_PILLS = ["services", "pricing", "contact"];
+
+      const root = document.getElementById("ai-chat");
+      if (!root) return;
+      const panel = document.getElementById("ai-chat-panel");
+      const toggle = document.getElementById("ai-chat-toggle");
+      const closeBtn = document.getElementById("ai-chat-close");
+      const messages = document.getElementById("ai-chat-messages");
+      const form = document.getElementById("ai-chat-form");
+      const input = document.getElementById("ai-chat-input");
+      const sendBtn = document.getElementById("ai-chat-send");
+      const waFloat = document.getElementById("wa-float");
+      const WHATSAPP_URL = waFloat ? waFloat.href : "https://wa.me/";
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+      /* ---------- Texts (5 languages) ---------- */
+      const TEXT = {
+        tr: {
+          online: "Çevrimiçi", typing: "asteria yazıyor...", placeholder: "Mesajınızı yazın...", send: "Gönder",
+          open: "Sohbeti aç", close: "Sohbeti kapat", sep: ".",
+          welcome: "Merhaba! Ben asteria.soft yapay zeka asistanıyım. Web tasarımı, SEO, randevu sistemleri veya chatbot çözümlerimiz hakkında size nasıl yardımcı olabilirim?",
+          pills: { services: "🛠 Hizmetler", pricing: "💰 Fiyatlar & Süre", contact: "📞 İletişim & Teklif" },
+          svc: {
+            web: { name: "Web Tasarım", desc: "Hızlı, mobil uyumlu ve Google'a hazır web siteleri." },
+            booking: { name: "Akıllı Randevu Sistemi", desc: "7/24 online randevu, SMS ve WhatsApp hatırlatmaları." },
+            chatbot: { name: "AI Chatbot", desc: "Müşterilerinize 7/24 anında yanıt veren yapay zeka asistanı." },
+            seo: { name: "SEO", desc: "Google'da üst sıralara çıkmanız için teknik ve içerik optimizasyonu." }
+          },
+          price: "Fiyat", duration: "Süre", perMonth: "/ ay", days: "gün", byScope: "Kapsama göre netleşir",
+          seoResults: "İlk sonuçlar genellikle 3–6 ay içinde",
+          servicesIntro: "4 ana alanda hizmet veriyoruz:",
+          pricingIntro: "Başlangıç fiyat aralıklarımız:",
+          pricingNote: "Kesin fiyat ve süre, projenizin kapsamına göre ücretsiz ön görüşmede netleşir.",
+          contactIntro: "Bize en hızlı ulaşabileceğiniz yollar:",
+          contactNote: "İlk görüşme ücretsizdir ve hiçbir yükümlülük getirmez.",
+          formLabel: "Teklif formu", formValue: "Bu sayfadaki iletişim bölümü",
+          quote: "Teklif Al", whatsapp: "WhatsApp'tan Yaz",
+          greeting: "Merhaba! 👋 Size nasıl yardımcı olabilirim? Aşağıdan bir konu seçebilir ya da sorunuzu yazabilirsiniz.",
+          thanks: "Rica ederim! Başka bir sorunuz olursa buradayım.",
+          unknown: "Bu konuda size net bir bilgi veremiyorum. Hizmetlerimiz, fiyatlarımız veya iletişim hakkında yardımcı olabilirim; dilerseniz ekibimize doğrudan da ulaşabilirsiniz."
+        },
+        en: {
+          online: "Online", typing: "asteria is typing...", placeholder: "Type your message...", send: "Send",
+          open: "Open chat", close: "Close chat", sep: ",",
+          welcome: "Hi! I'm the asteria.soft AI assistant. How can I help you with our web design, SEO, booking systems or chatbot solutions?",
+          pills: { services: "🛠 Services", pricing: "💰 Pricing & Timeline", contact: "📞 Contact & Quote" },
+          svc: {
+            web: { name: "Web Design", desc: "Fast, mobile-friendly websites built for Google." },
+            booking: { name: "Smart Booking System", desc: "24/7 online booking with SMS and WhatsApp reminders." },
+            chatbot: { name: "AI Chatbot", desc: "An AI assistant that answers your customers instantly, 24/7." },
+            seo: { name: "SEO", desc: "Technical and content optimization to rank higher on Google." }
+          },
+          price: "Price", duration: "Timeline", perMonth: "/ month", days: "days", byScope: "Depends on scope",
+          seoResults: "First results usually within 3–6 months",
+          servicesIntro: "We work in 4 core areas:",
+          pricingIntro: "Our starting price ranges:",
+          pricingNote: "Final price and timeline are confirmed in a free initial consultation, based on your project's scope.",
+          contactIntro: "The fastest ways to reach us:",
+          contactNote: "The first consultation is free and comes with no obligation.",
+          formLabel: "Quote form", formValue: "Contact section on this page",
+          quote: "Get a Quote", whatsapp: "Message on WhatsApp",
+          greeting: "Hi! 👋 How can I help? Pick a topic below or type your question.",
+          thanks: "You're welcome! I'm here if you have any other questions.",
+          unknown: "I don't have a clear answer on that. I can help with our services, pricing or contact details, or you can reach our team directly."
+        },
+        de: {
+          online: "Online", typing: "asteria schreibt...", placeholder: "Nachricht eingeben...", send: "Senden",
+          open: "Chat öffnen", close: "Chat schließen", sep: ".",
+          welcome: "Hallo! Ich bin der KI-Assistent von asteria.soft. Wie kann ich Ihnen bei Webdesign, SEO, Buchungssystemen oder Chatbot-Lösungen helfen?",
+          pills: { services: "🛠 Leistungen", pricing: "💰 Preise & Dauer", contact: "📞 Kontakt & Angebot" },
+          svc: {
+            web: { name: "Webdesign", desc: "Schnelle, mobilfreundliche Websites, optimiert für Google." },
+            booking: { name: "Intelligentes Terminsystem", desc: "Online-Terminbuchung rund um die Uhr mit SMS- und WhatsApp-Erinnerungen." },
+            chatbot: { name: "KI-Chatbot", desc: "Ein KI-Assistent, der Ihren Kunden rund um die Uhr sofort antwortet." },
+            seo: { name: "SEO", desc: "Technische und inhaltliche Optimierung für bessere Google-Rankings." }
+          },
+          price: "Preis", duration: "Dauer", perMonth: "/ Monat", days: "Tage", byScope: "Je nach Umfang",
+          seoResults: "Erste Ergebnisse meist nach 3–6 Monaten",
+          servicesIntro: "Wir sind in 4 Kernbereichen tätig:",
+          pricingIntro: "Unsere Preisrahmen:",
+          pricingNote: "Endgültiger Preis und Zeitplan werden je nach Projektumfang im kostenlosen Erstgespräch festgelegt.",
+          contactIntro: "So erreichen Sie uns am schnellsten:",
+          contactNote: "Das Erstgespräch ist kostenlos und unverbindlich.",
+          formLabel: "Angebotsformular", formValue: "Kontaktbereich auf dieser Seite",
+          quote: "Angebot anfordern", whatsapp: "Per WhatsApp schreiben",
+          greeting: "Hallo! 👋 Wie kann ich helfen? Wählen Sie unten ein Thema oder stellen Sie Ihre Frage.",
+          thanks: "Gern geschehen! Bei weiteren Fragen bin ich für Sie da.",
+          unknown: "Dazu kann ich Ihnen leider keine genaue Auskunft geben. Ich helfe gern bei Leistungen, Preisen oder Kontakt – oder Sie wenden sich direkt an unser Team."
+        },
+        ar: {
+          online: "متصل", typing: "asteria يكتب...", placeholder: "اكتب رسالتك...", send: "إرسال",
+          open: "فتح المحادثة", close: "إغلاق المحادثة", sep: ",",
+          welcome: "مرحبًا! أنا مساعد asteria.soft الذكي. كيف يمكنني مساعدتك في تصميم المواقع أو تحسين محركات البحث أو أنظمة حجز المواعيد أو حلول روبوتات الدردشة؟",
+          pills: { services: "🛠 الخدمات", pricing: "💰 الأسعار والمدة", contact: "📞 التواصل وطلب عرض" },
+          svc: {
+            web: { name: "تصميم المواقع", desc: "مواقع سريعة ومتوافقة مع الجوال وجاهزة لجوجل." },
+            booking: { name: "نظام حجز ذكي", desc: "حجز مواعيد عبر الإنترنت على مدار الساعة مع تذكيرات عبر SMS وواتساب." },
+            chatbot: { name: "روبوت محادثة بالذكاء الاصطناعي", desc: "مساعد ذكي يرد على عملائك فورًا على مدار الساعة." },
+            seo: { name: "تحسين محركات البحث (SEO)", desc: "تحسين تقني وتحسين للمحتوى لتتصدر نتائج جوجل." }
+          },
+          price: "السعر", duration: "المدة", perMonth: "/ شهريًا", days: "أيام", byScope: "حسب نطاق المشروع",
+          seoResults: "تظهر النتائج الأولى عادةً خلال 3–6 أشهر",
+          servicesIntro: "نقدم خدماتنا في 4 مجالات رئيسية:",
+          pricingIntro: "نطاقات أسعارنا:",
+          pricingNote: "يتم تحديد السعر والمدة النهائيين في استشارة أولية مجانية حسب نطاق مشروعك.",
+          contactIntro: "أسرع طرق التواصل معنا:",
+          contactNote: "الاستشارة الأولى مجانية ودون أي التزام.",
+          formLabel: "نموذج طلب عرض السعر", formValue: "قسم التواصل في هذه الصفحة",
+          quote: "اطلب عرض سعر", whatsapp: "راسلنا عبر واتساب",
+          greeting: "مرحبًا! 👋 كيف يمكنني مساعدتك؟ اختر موضوعًا أدناه أو اكتب سؤالك.",
+          thanks: "على الرحب والسعة! أنا هنا إذا كان لديك أي سؤال آخر.",
+          unknown: "لا تتوفر لدي إجابة واضحة عن ذلك. يمكنني مساعدتك في خدماتنا أو أسعارنا أو معلومات التواصل، أو يمكنك التواصل مع فريقنا مباشرة."
+        },
+        es: {
+          online: "En línea", typing: "asteria está escribiendo...", placeholder: "Escriba su mensaje...", send: "Enviar",
+          open: "Abrir chat", close: "Cerrar chat", sep: ".",
+          welcome: "¡Hola! Soy el asistente de IA de asteria.soft. ¿Cómo puedo ayudarle con diseño web, SEO, sistemas de reservas o soluciones de chatbot?",
+          pills: { services: "🛠 Servicios", pricing: "💰 Precios y plazos", contact: "📞 Contacto y presupuesto" },
+          svc: {
+            web: { name: "Diseño web", desc: "Sitios web rápidos, adaptados a móviles y preparados para Google." },
+            booking: { name: "Sistema de reservas inteligente", desc: "Reservas online 24/7 con recordatorios por SMS y WhatsApp." },
+            chatbot: { name: "Chatbot con IA", desc: "Un asistente de IA que responde a sus clientes al instante, 24/7." },
+            seo: { name: "SEO", desc: "Optimización técnica y de contenidos para posicionarse mejor en Google." }
+          },
+          price: "Precio", duration: "Plazo", perMonth: "/ mes", days: "días", byScope: "Según el alcance",
+          seoResults: "Primeros resultados en 3–6 meses",
+          servicesIntro: "Trabajamos en 4 áreas principales:",
+          pricingIntro: "Nuestros rangos de precios:",
+          pricingNote: "El precio y el plazo definitivos se concretan en una consulta inicial gratuita, según el alcance de su proyecto.",
+          contactIntro: "Las formas más rápidas de contactarnos:",
+          contactNote: "La primera consulta es gratuita y sin compromiso.",
+          formLabel: "Formulario de presupuesto", formValue: "Sección de contacto de esta página",
+          quote: "Pedir presupuesto", whatsapp: "Escribir por WhatsApp",
+          greeting: "¡Hola! 👋 ¿En qué puedo ayudarle? Elija un tema abajo o escriba su pregunta.",
+          thanks: "¡De nada! Aquí estoy si tiene más preguntas.",
+          unknown: "No tengo una respuesta clara sobre eso. Puedo ayudarle con nuestros servicios, precios o contacto, o puede escribir directamente a nuestro equipo."
         }
-        v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-    })(document, 'script');
+      };
+
+      /* ---------- Keywords (all languages, matched after normalizing) ---------- */
+      const KEYWORDS = {
+        web: ["web", "site", "sitesi", "website", "webseite", "homepage", "sitio", "pagina web", "tasarim", "design", "diseno", "landing", "e ticaret", "eticaret", "e commerce", "موقع", "مواقع"],
+        seo: ["seo", "google", "arama motoru", "siralama", "ranking", "suchmaschine", "posicionamiento", "buscador", "سيو", "محركات البحث", "جوجل"],
+        booking: ["randevu", "rezervasyon", "booking", "appointment", "reservation", "termin", "buchung", "reserva", "cita", "حجز", "موعد", "مواعيد"],
+        chatbot: ["chatbot", "chat bot", "bot", "yapay zeka", "ai", "asistan", "assistant", "assistent", "asistente", "ki", "ia", "روبوت", "دردشة", "محادثة", "ذكاء اصطناعي"],
+        pricing: ["fiyat", "ucret", "kac para", "ne kadar tutar", "maliyet", "butce", "price", "pricing", "cost", "how much", "budget", "preis", "kosten", "kostet", "precio", "coste", "costo", "tarifa", "cuanto cuesta", "سعر", "اسعار", "تكلفة", "كم يكلف", "ميزانية"],
+        duration: ["sure", "kac gun", "gun", "ne zaman", "teslim", "hafta", "zaman", "how long", "duration", "timeline", "deliver", "days", "dauer", "dauert", "wie lange", "lieferzeit", "plazo", "cuanto tiempo", "tiempo", "dias", "entrega", "duracion", "مدة", "كم يوم", "متى", "تسليم"],
+        contact: ["iletisim", "teklif", "whatsapp", "telefon", "numara", "ara", "arayin", "mail", "e posta", "eposta", "gorusme", "ulas", "adres", "contact", "quote", "phone", "call", "email", "reach", "number", "kontakt", "angebot", "anruf", "contacto", "presupuesto", "llamar", "telefono", "correo", "numero", "تواصل", "اتصال", "عرض سعر", "واتساب", "هاتف", "رقم"],
+        services: ["hizmet", "servis", "ne yapiyorsunuz", "neler yapiyorsunuz", "cozum", "service", "what do you do", "what do you offer", "offer", "leistung", "dienstleistung", "was bieten", "servicio", "que hacen", "que ofrecen", "خدمات", "خدمة", "ماذا تقدمون"],
+        greeting: ["merhaba", "selam", "slm", "mrb", "iyi gunler", "gunaydin", "hello", "hi", "hey", "good morning", "hallo", "guten tag", "servus", "hola", "buenas", "buenos dias", "مرحبا", "السلام عليكم", "اهلا"],
+        thanks: ["tesekkur", "sagol", "sag ol", "eyvallah", "thanks", "thank you", "thx", "danke", "gracias", "شكرا"]
+      };
+
+      const normalize = (value) => value
+        .toLocaleLowerCase("tr")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f\u064b-\u065f\u0670]/g, "") // accents and Arabic harakat
+        .replace(/ı/g, "i")
+        .split(/[^\p{L}\p{N}]+/u)
+        .filter(Boolean);
+
+      const MATCHERS = Object.fromEntries(Object.entries(KEYWORDS).map(([intent, words]) => [
+        intent,
+        words.map((word) => {
+          const tokens = normalize(word);
+          return { tokens, phrase: tokens.join(" "), latin: /^[\x00-\x7f]+$/.test(word) };
+        })
+      ]));
+
+      function matches(intent, tokens, joined) {
+        return MATCHERS[intent].some((kw) => {
+          if (kw.tokens.length > 1 || !kw.latin) return joined.includes(kw.phrase);
+          const word = kw.tokens[0];
+          return word.length <= 3 ? tokens.includes(word) : tokens.some((token) => token.startsWith(word));
+        });
+      }
+
+      /* ---------- Answers ---------- */
+      const lang = () => (TEXT[document.documentElement.lang] ? document.documentElement.lang : "tr");
+      const L = () => TEXT[lang()];
+      const formatNumber = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, L().sep);
+      const priceRange = (key) => `${formatNumber(PRICES[key].min)} – ${formatNumber(PRICES[key].max)} TL`;
+      const durationText = (key) => (key === "web" ? `5–10 ${L().days}` : key === "seo" ? L().seoResults : L().byScope);
+
+      const ANSWERS = {
+        services: () => ({
+          text: L().servicesIntro,
+          rows: SERVICE_ORDER.map((key) => ({ title: L().svc[key].name, sub: L().svc[key].desc })),
+          actions: ["quote"],
+          pills: ["pricing", "contact"]
+        }),
+        pricing: (keys = SERVICE_ORDER) => ({
+          text: L().pricingIntro,
+          rows: keys.map((key) => ({
+            title: L().svc[key].name,
+            ltr: priceRange(key),
+            value: PRICES[key].monthly ? L().perMonth : "",
+            sub: `${L().duration}: ${durationText(key)}`
+          })),
+          note: L().pricingNote,
+          actions: ["quote", "whatsapp"],
+          pills: ["services", "contact"]
+        }),
+        contact: () => ({
+          text: L().contactIntro,
+          rows: [
+            { title: "WhatsApp", ltr: WHATSAPP_DISPLAY },
+            { title: L().formLabel, sub: L().formValue }
+          ],
+          note: L().contactNote,
+          actions: ["quote", "whatsapp"],
+          pills: ["services", "pricing"]
+        }),
+        service: (key) => ({
+          title: L().svc[key].name,
+          text: L().svc[key].desc,
+          rows: [
+            { title: L().price, ltr: priceRange(key), value: PRICES[key].monthly ? L().perMonth : "" },
+            { title: L().duration, value: durationText(key) }
+          ],
+          note: L().pricingNote,
+          actions: ["quote", "whatsapp"],
+          pills: ["services", "contact"]
+        }),
+        greeting: () => ({ text: L().greeting, pills: ALL_PILLS }),
+        thanks: () => ({ text: L().thanks, pills: ALL_PILLS }),
+        unknown: () => ({ text: L().unknown, actions: ["quote", "whatsapp"], pills: ALL_PILLS })
+      };
+
+      function answerFor(message) {
+        const tokens = normalize(message);
+        const joined = tokens.join(" ");
+        const has = (intent) => matches(intent, tokens, joined);
+        const services = SERVICE_ORDER.filter(has);
+
+        if (services.length === 1) return ANSWERS.service(services[0]);
+        if (services.length > 1) return ANSWERS.pricing(services);
+        if (has("pricing") || has("duration")) return ANSWERS.pricing();
+        if (has("contact")) return ANSWERS.contact();
+        if (has("services")) return ANSWERS.services();
+        if (has("thanks")) return ANSWERS.thanks();
+        if (has("greeting")) return ANSWERS.greeting();
+        return ANSWERS.unknown();
+      }
+
+      async function askApi(message) {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 20000);
+        try {
+          const res = await fetch(API_ENDPOINT, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message }),
+            signal: controller.signal
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const isJson = (res.headers.get("content-type") || "").includes("application/json");
+          const data = isJson ? await res.json() : await res.text();
+          const reply = typeof data === "string"
+            ? data
+            : data && (data.reply ?? data.message ?? data.answer ?? data.response ?? data.text ?? data.output);
+          if (typeof reply !== "string" || !reply.trim()) throw new Error("Empty reply");
+          return reply.trim();
+        } finally {
+          clearTimeout(timer);
+        }
+      }
+
+      /* ---------- Rendering ---------- */
+      const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+      function el(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text != null) node.textContent = text;
+        return node;
+      }
+
+      function scrollDown() {
+        requestAnimationFrame(() => {
+          messages.scrollTo({ top: messages.scrollHeight, behavior: reduceMotion ? "auto" : "smooth" });
+        });
+      }
+
+      function addUser(text) {
+        const row = el("div", "ai-msg ai-msg--user");
+        row.append(el("div", "ai-bubble", text));
+        messages.append(row);
+        scrollDown();
+      }
+
+      function addBot(reply) {
+        const row = el("div", "ai-msg ai-msg--bot");
+        const bubble = el("div", "ai-bubble");
+        if (reply.title) bubble.append(el("p", "ai-title font-display", reply.title));
+        if (reply.text) bubble.append(el("p", "ai-text", reply.text));
+
+        if (reply.rows) {
+          const list = el("div", "ai-rows");
+          reply.rows.forEach((item) => {
+            const wrap = el("div", "ai-item");
+            const head = el("div", "ai-item-head");
+            head.append(el("span", "ai-item-title", item.title));
+            if (item.ltr || item.value) {
+              const value = el("span", "ai-item-value");
+              if (item.ltr) {
+                const bdi = el("bdi", null, item.ltr);
+                bdi.dir = "ltr";
+                value.append(bdi);
+              }
+              if (item.value) value.append((item.ltr ? " " : "") + item.value);
+              head.append(value);
+            }
+            wrap.append(head);
+            if (item.sub) wrap.append(el("p", "ai-item-sub", item.sub));
+            list.append(wrap);
+          });
+          bubble.append(list);
+        }
+
+        if (reply.note) bubble.append(el("p", "ai-note", reply.note));
+
+        if (reply.actions) {
+          const actions = el("div", "ai-actions");
+          reply.actions.forEach((type) => {
+            const link = el("a", type === "quote" ? "ai-action ai-action--primary" : "ai-action", L()[type]);
+            if (type === "quote") {
+              link.href = "#iletisim";
+            } else {
+              link.href = WHATSAPP_URL;
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+            }
+            actions.append(link);
+          });
+          bubble.append(actions);
+        }
+
+        row.append(bubble);
+        messages.append(row);
+
+        if (reply.pills) {
+          const pills = el("div", "ai-pills");
+          reply.pills.forEach((intent) => {
+            const pill = el("button", "ai-pill", L().pills[intent]);
+            pill.type = "button";
+            pill.dataset.intent = intent;
+            pills.append(pill);
+          });
+          messages.append(pills);
+        }
+        scrollDown();
+      }
+
+      function showTyping() {
+        const row = el("div", "ai-msg ai-msg--bot ai-typing");
+        row.setAttribute("aria-hidden", "true");
+        const bubble = el("div", "ai-bubble");
+        const dots = el("span", "ai-dots");
+        for (let i = 0; i < 3; i++) dots.append(el("i"));
+        bubble.append(dots, el("span", "ai-typing-label", L().typing));
+        row.append(bubble);
+        messages.append(row);
+        scrollDown();
+        return row;
+      }
+
+      /* ---------- Conversation ---------- */
+      let isOpen = false;
+      let greeted = false;
+      let busy = false;
+      let welcomeOnly = true;
+
+      function updateSendState() {
+        sendBtn.disabled = busy || !input.value.trim();
+      }
+
+      function renderWelcome() {
+        addBot({ text: L().welcome, pills: ALL_PILLS });
+      }
+
+      async function greet() {
+        greeted = true;
+        busy = true;
+        updateSendState();
+        const typing = showTyping();
+        await sleep(reduceMotion ? 150 : 750);
+        typing.remove();
+        renderWelcome();
+        busy = false;
+        updateSendState();
+      }
+
+      async function send(text, intent) {
+        const message = text.trim();
+        if (!message || busy) return;
+        busy = true;
+        welcomeOnly = false;
+        messages.querySelectorAll(".ai-pills").forEach((node) => node.remove());
+        addUser(message);
+        input.value = "";
+        updateSendState();
+
+        const typing = showTyping();
+        const startedAt = Date.now();
+        const localAnswer = () => (intent ? ANSWERS[intent]() : answerFor(message));
+        let reply;
+        if (API_ENDPOINT) {
+          try {
+            reply = { text: await askApi(message) };
+          } catch (err) {
+            console.warn("[asteria chat] API yanıt vermedi, yerleşik bilgi tabanı kullanılıyor:", err);
+            reply = localAnswer();
+          }
+        } else {
+          reply = localAnswer();
+        }
+
+        const minDelay = reduceMotion ? 200 : API_ENDPOINT ? 400 : 700 + Math.min(message.length * 12, 600);
+        const remaining = minDelay - (Date.now() - startedAt);
+        if (remaining > 0) await sleep(remaining);
+
+        typing.remove();
+        addBot(reply);
+        busy = false;
+        updateSendState();
+      }
+
+      function applyTexts() {
+        const t = L();
+        root.querySelectorAll("[data-chat-i18n]").forEach((node) => { node.textContent = t[node.dataset.chatI18n]; });
+        input.placeholder = t.placeholder;
+        input.setAttribute("aria-label", t.placeholder);
+        sendBtn.setAttribute("aria-label", t.send);
+        closeBtn.setAttribute("aria-label", t.close);
+        toggle.setAttribute("aria-label", isOpen ? t.close : t.open);
+        messages.querySelectorAll(".ai-typing-label").forEach((node) => { node.textContent = t.typing; });
+        messages.querySelectorAll(".ai-pill").forEach((node) => { node.textContent = t.pills[node.dataset.intent]; });
+        if (greeted && welcomeOnly && !busy) {
+          messages.replaceChildren();
+          renderWelcome();
+        }
+      }
+
+      function setOpen(open) {
+        if (open === isOpen) return;
+        isOpen = open;
+        if (!open && panel.contains(document.activeElement)) toggle.focus({ preventScroll: true });
+        root.classList.toggle("is-open", open);
+        document.body.classList.toggle("ai-chat-open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+        panel.toggleAttribute("inert", !open);
+        toggle.setAttribute("aria-label", open ? L().close : L().open);
+        if (open) {
+          if (!greeted) greet();
+          if (finePointer) setTimeout(() => input.focus({ preventScroll: true }), 300);
+          scrollDown();
+        }
+      }
+
+      toggle.addEventListener("click", () => setOpen(!isOpen));
+      closeBtn.addEventListener("click", () => setOpen(false));
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && isOpen) {
+          setOpen(false);
+          toggle.focus({ preventScroll: true });
+        }
+      });
+
+      input.addEventListener("input", updateSendState);
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        send(input.value);
+      });
+
+      messages.addEventListener("click", (e) => {
+        const pill = e.target.closest("[data-intent]");
+        if (pill) {
+          send(pill.textContent, pill.dataset.intent);
+          return;
+        }
+        /* The site's own anchor handler scrolls to the form; just close the chat. */
+        if (e.target.closest('a[href^="#"]')) setOpen(false);
+      });
+
+      new MutationObserver(applyTexts).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+      applyTexts();
+      updateSendState();
+    })();
   </script>
 </body>
 </html>
