@@ -38,13 +38,13 @@
   <meta name="twitter:description" content="İşletmenizi geleceğe taşıyın. Asteria Soft ile premium web tasarım, veri odaklı SEO, akıllı randevu sistemleri ve AI chatbot çözümleri.">
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80">
 
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23050505'/%3E%3Ctext x='29' y='44' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='40' fill='%23F5F5F7'%3Ea%3C/text%3E%3Ccircle cx='47' cy='41' r='4.5' fill='%23DDD6FE'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='20' fill='%2317181F'/%3E%3Ctext x='29' y='45' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='900' font-size='42' fill='%23F9F8F6'%3Ea%3C/text%3E%3Ccircle cx='48' cy='41' r='6' fill='%23FFD93D'/%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&amp;family=Inter:wght@400;500&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&amp;family=IBM+Plex+Sans+Arabic:wght@400;500;700&amp;display=swap" rel="stylesheet">
 
   <script>
     (function () {
@@ -65,35 +65,43 @@
   </script>
 
   <style>
+    /* ---------- Tokens: Neo-Pop — sticker by day, neon by night ---------- */
+    :root {
+      --ink: 23 24 31;
+      --paper: 249 248 246;
+    }
     :root,
     :root[data-theme="dark"] {
-      --canvas: 5 5 5;
-      --surface: 18 18 18;
-      --fg: 245 245 247;
-      --muted: 161 161 170;
-      --accent: 221 214 254;
-      --placeholder: 82 82 91;
-      --line: rgba(255, 255, 255, 0.1);
-      --line-hover: rgba(221, 214, 254, 0.4);
+      --canvas: 15 16 21;
+      --surface: 24 26 34;
+      --fg: 244 242 236;
+      --muted: 163 164 176;
+      --placeholder: 112 114 126;
+      --line: rgba(244, 242, 236, 0.1);
+      --edge: rgba(244, 242, 236, 0.18);
+      --canary: 255 228 92;
+      --electric: 77 155 255;
+      --bubblegum: 255 92 203;
+      --tangerine: 255 154 61;
+      --danger: 255 122 178;
       color-scheme: dark;
     }
     :root[data-theme="light"] {
-      --canvas: 247 247 248;
+      --canvas: 249 248 246;
       --surface: 255 255 255;
-      --fg: 10 10 10;
-      --muted: 113 113 122;
-      --accent: 109 91 208;
-      --placeholder: 161 161 170;
-      --line: rgba(0, 0, 0, 0.1);
-      --line-hover: rgba(109, 91, 208, 0.45);
+      --fg: 23 24 31;
+      --muted: 94 95 107;
+      --placeholder: 130 131 142;
+      --line: rgba(23, 24, 31, 0.12);
+      --edge: rgb(23, 24, 31);
+      --canary: 255 217 61;
+      --electric: 61 139 255;
+      --bubblegum: 255 79 184;
+      --tangerine: 255 138 42;
+      --danger: 194 31 122;
       color-scheme: light;
     }
-    :root { --section-space: 21rem; }
-    @media (min-width: 768px) {
-      :root { --section-space: 30rem; }
-    }
 
-    *, *::before, *::after { box-shadow: none !important; }
     .theme-switching *, .theme-switching *::before, .theme-switching *::after { transition: none !important; }
 
     html {
@@ -104,7 +112,7 @@
     body {
       background: rgb(var(--canvas));
       color: rgb(var(--muted));
-      font-family: 'Inter', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-family: 'Gabarito', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -113,20 +121,35 @@
     @keyframes reveal-failsafe { to { visibility: visible; } }
 
     h1, h2, h3 {
-      font-family: 'Syne', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+      font-family: 'Gabarito', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
       color: rgb(var(--fg));
       overflow-wrap: break-word;
     }
-    :lang(de) .bento h3 { -webkit-hyphens: auto; hyphens: auto; }
+    :lang(de) h2, :lang(de) h3 { -webkit-hyphens: auto; hyphens: auto; }
     [dir="rtl"] body, [dir="rtl"] body * { letter-spacing: 0 !important; }
     [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 { line-height: 1.35; }
     [dir="rtl"] .flip-rtl { transform: scaleX(-1); }
 
-    ::selection { background: rgb(var(--accent)); color: rgb(var(--canvas)); }
+    ::selection { background: rgb(var(--canary)); color: rgb(var(--ink)); }
     a, button, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
     a, button, summary { touch-action: manipulation; }
-    a:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible { outline: 1px solid rgb(var(--accent)); outline-offset: 4px; }
+    a:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid rgb(var(--electric)); outline-offset: 3px; }
     .anchor-heading { scroll-margin-top: 12rem; }
+    svg.lucide { stroke-width: 2.25; }
+
+    .wrap { width: 100%; max-width: 90rem; margin-inline: auto; padding-inline: 1rem; }
+    @media (min-width: 768px) { .wrap { padding-inline: 2.5rem; } }
+    @media (min-width: 1280px) { .wrap { padding-inline: 4rem; } }
+
+    /* Type */
+    .type-hero {
+      font-weight: 900;
+      font-size: clamp(4rem, 10.4vw, 10.5rem);
+      line-height: 0.96;
+      letter-spacing: -0.045em;
+    }
+    .type-h2 { font-weight: 800; line-height: 0.92; letter-spacing: -0.04em; }
+    .type-h3 { font-weight: 800; line-height: 0.98; letter-spacing: -0.03em; }
 
     /* Lenis */
     html.lenis, html.lenis body { height: auto; }
@@ -135,40 +158,78 @@
     .lenis.lenis-stopped { overflow: hidden; }
     .lenis.lenis-smooth iframe { pointer-events: none; }
 
-    /* Buttons */
+    /* Logo: white-on-transparent mark, turned ink-black in the light theme */
+    .logo img { display: block; }
+    [data-theme="light"] .logo img { filter: brightness(0) saturate(100%); }
+
+    /* Buttons: pills that press in */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.75rem;
-      height: 3.75rem;
-      padding: 0 5.25rem;
-      border: 1px solid var(--line);
+      gap: 0.625rem;
+      height: 3.5rem;
+      padding: 0 1.75rem;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: translate 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), scale 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    a.btn, button.btn { border: 2px solid var(--edge); background: rgb(var(--surface)); color: rgb(var(--fg)); }
+    a.btn--primary, button.btn--primary { background: rgb(var(--canary)); color: rgb(var(--ink)); }
+    a.btn--ink, button.btn--ink { background: rgb(var(--ink)); border-color: rgb(var(--ink)); color: rgb(var(--paper)); }
+    [data-theme="dark"] a.btn--primary, [data-theme="dark"] button.btn--primary { border-color: rgb(var(--canary)); box-shadow: 0 0 28px -6px rgb(var(--canary) / 0.7); }
+    [data-theme="dark"] a.btn--ink, [data-theme="dark"] button.btn--ink { background: rgb(var(--tangerine)); border-color: rgb(var(--tangerine)); color: rgb(var(--ink)); box-shadow: 0 0 28px -6px rgb(var(--tangerine) / 0.7); }
+    .btn--lg { height: 4rem; padding: 0 2.25rem; font-size: 1.0625rem; }
+    .btn:active { scale: 0.94; transition-duration: 0.08s; }
+    .btn[disabled] { cursor: progress; opacity: 0.6; scale: none; }
+    @media (hover: hover) and (pointer: fine) {
+      .btn:not([disabled]):hover { translate: 0 -2px; }
+      .btn:not([disabled]):active { translate: 0 0; }
+    }
+
+    /* Round icon buttons, selects and links */
+    button.icon-btn, a.icon-link, .lang-select {
+      border: 2px solid var(--edge);
       border-radius: 9999px;
       background: rgb(var(--surface));
       color: rgb(var(--fg));
-      font-size: 0.9375rem;
-      font-weight: 500;
-      letter-spacing: -0.005em;
-      white-space: nowrap;
-      cursor: pointer;
-      transition: border-color 0.7s ease;
+      transition: background-color 0.25s ease, color 0.25s ease, scale 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease;
     }
-    .btn--ghost { background: transparent; color: rgb(var(--muted)); }
-    .btn[disabled] { cursor: progress; opacity: 0.6; }
-
-    /* Borders that react on hover */
-    .bento, .icon-link, .icon-btn, .lang-select, .faq-icon { border: 1px solid var(--line); transition: border-color 0.7s ease; }
+    button.icon-btn:active, a.icon-link:active { scale: 0.9; transition-duration: 0.08s; }
     @media (hover: hover) and (pointer: fine) {
-      .btn:hover, .bento:hover, .icon-link:hover, .icon-btn:hover, .lang-select:hover, .faq summary:hover .faq-icon { border-color: var(--line-hover); }
+      button.icon-btn:hover, a.icon-link:hover, .lang-select:hover { background: rgb(var(--canary)); color: rgb(var(--ink)); }
+      button.icon-btn:hover svg, .lang-select:hover + svg { color: rgb(var(--ink)); }
     }
 
     /* Header */
     .header-bg { opacity: 0; transition: opacity 0.6s ease; }
     #header.is-scrolled .header-bg { opacity: 1; }
-    .nav-link { color: rgb(var(--muted)); transition: color 0.5s ease; white-space: nowrap; }
+    .nav-pill { border: 2px solid var(--edge); border-radius: 9999px; background: rgb(var(--surface)); }
+    .nav-link {
+      padding: 0.55rem 1.05rem;
+      border-radius: 9999px;
+      color: rgb(var(--fg));
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
     @media (hover: hover) and (pointer: fine) {
-      .nav-link:hover { color: rgb(var(--fg)); }
+      .nav-link:hover { background: rgb(var(--canary)); color: rgb(var(--ink)); }
+      [data-theme="dark"] .nav-link:hover { background: rgb(var(--canary) / 0.14); color: rgb(var(--canary)); }
+    }
+    .cta-split { align-items: stretch; gap: 0.125rem; height: 3rem; transition: scale 0.18s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .cta-split > span { display: flex; align-items: center; border: 2px solid var(--edge); border-radius: 9999px; background: rgb(var(--canary)); color: rgb(var(--ink)); }
+    .cta-split__label { padding: 0 1.25rem; font-weight: 700; white-space: nowrap; }
+    .cta-split__icon { justify-content: center; width: 3rem; transition: rotate 0.35s cubic-bezier(0.3, 1.6, 0.5, 1); }
+    .cta-split:active { scale: 0.94; transition-duration: 0.08s; }
+    [data-theme="dark"] .cta-split > span { border-color: rgb(var(--canary)); box-shadow: 0 0 24px -8px rgb(var(--canary) / 0.7); }
+    @media (hover: hover) and (pointer: fine) {
+      .cta-split:hover .cta-split__icon { rotate: 45deg; }
+      [dir="rtl"] .cta-split:hover .cta-split__icon { rotate: -45deg; }
     }
 
     /* Toggles */
@@ -176,19 +237,15 @@
     #menu-toggle .icon-close { opacity: 0; }
     .menu-open #menu-toggle .icon-open { opacity: 0; }
     .menu-open #menu-toggle .icon-close { opacity: 1; }
-    [data-theme="light"] .site-logo { filter: invert(1); }
     [data-theme="dark"] .theme-icon-moon, [data-theme="light"] .theme-icon-sun { display: none; }
 
     .lang-select {
       appearance: none;
       -webkit-appearance: none;
       height: 3rem;
-      border-radius: 9999px;
-      background: rgb(var(--surface));
-      color: rgb(var(--fg));
-      padding-inline: 1.25rem 2.75rem;
-      font-size: 0.875rem;
-      font-weight: 500;
+      padding-inline: 1.1rem 2.4rem;
+      font-size: 0.9375rem;
+      font-weight: 700;
       cursor: pointer;
     }
     .lang-select option { background: rgb(var(--surface)); color: rgb(var(--fg)); }
@@ -204,6 +261,15 @@
       visibility: visible;
       transition: opacity 0.6s ease, visibility 0s;
     }
+    .m-link {
+      display: block;
+      padding-block: 0.15rem;
+      color: rgb(var(--fg));
+      font-size: clamp(3rem, 13vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
     .m-item {
       opacity: 0;
       transform: translateY(24px);
@@ -215,31 +281,187 @@
       transition-delay: calc(0.1s * var(--i, 0) + 0.15s);
     }
 
+    /* Service cards: coloured stickers, neon signs in the dark */
+    .card--canary { --c: var(--canary); --cf: var(--electric); }
+    .card--electric { --c: var(--electric); --cf: var(--canary); }
+    .card--bubblegum { --c: var(--bubblegum); --cf: var(--tangerine); }
+    .card--tangerine { --c: var(--tangerine); --cf: var(--bubblegum); }
+    .card {
+      position: relative;
+      border: 2px solid var(--edge);
+      border-radius: 2.5rem;
+      background: rgb(var(--c));
+      color: rgb(var(--ink));
+    }
+    .card h3, .card p { color: rgb(var(--ink)); }
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border: 2px solid rgb(var(--c));
+      border-radius: inherit;
+      box-shadow: 0 0 0 1px rgb(var(--c) / 0.3), 0 0 36px -4px rgb(var(--c) / 0.5), inset 0 0 44px -18px rgb(var(--c) / 0.55);
+      opacity: 0;
+      pointer-events: none;
+    }
+    [data-theme="dark"] .card {
+      border-color: transparent;
+      background: rgb(var(--surface));
+      background: color-mix(in srgb, rgb(var(--c)) 6%, rgb(var(--canvas)));
+    }
+    [data-theme="dark"] .card h3 { color: rgb(var(--fg)); }
+    [data-theme="dark"] .card p { color: rgb(var(--fg) / 0.78); }
+    [data-theme="dark"] .card::after { opacity: 1; animation: neon-on 0.9s steps(1, end) var(--d, 0ms) both; }
+
+    /* Characters */
+    .char { overflow: visible; transition: rotate 0.5s cubic-bezier(0.3, 1.6, 0.5, 1); }
+    .char .ch-shape { fill: rgb(var(--cf)); stroke: rgb(var(--ink)); stroke-width: 7; stroke-linejoin: round; stroke-linecap: round; }
+    .char .ch-line { fill: none; stroke: rgb(var(--ink)); stroke-width: 7; stroke-linejoin: round; stroke-linecap: round; }
+    .char .ch-bold { stroke-width: 13; }
+    .char .ch-dot, .char .ch-eye { fill: rgb(var(--ink)); }
+    .char .ch-eye { transform-box: fill-box; transform-origin: center; }
+    [data-theme="dark"] .char {
+      filter: drop-shadow(0 0 4px rgb(var(--c) / 0.9)) drop-shadow(0 0 16px rgb(var(--c) / 0.45));
+      animation: neon-on 0.9s steps(1, end) var(--d, 0ms) both;
+    }
+    [data-theme="dark"] .char .ch-shape { fill: rgb(var(--c) / 0.07); stroke: rgb(var(--c)); stroke-width: 5; }
+    [data-theme="dark"] .char .ch-line { stroke: rgb(var(--c)); stroke-width: 5; }
+    [data-theme="dark"] .char .ch-bold { stroke-width: 9; }
+    [data-theme="dark"] .char .ch-dot, [data-theme="dark"] .char .ch-eye { fill: rgb(var(--c)); }
+    @media (hover: hover) and (pointer: fine) {
+      .card:hover .char { rotate: -6deg; }
+      .card:hover .ch-eye, .demo:hover .ch-eye { animation: blink 0.45s ease; }
+    }
+    @keyframes blink { 0%, 100% { transform: scaleY(1); } 45% { transform: scaleY(0.12); } }
+    @keyframes neon-on {
+      0% { opacity: 0.08; }
+      10% { opacity: 0.9; }
+      16% { opacity: 0.2; }
+      26% { opacity: 1; }
+      32% { opacity: 0.35; }
+      44%, 100% { opacity: 1; }
+    }
+
+    /* Demo cards: paper notecards pinned slightly askew */
+    .demo {
+      --cf: var(--c);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 24rem;
+      padding: 1.75rem;
+      border: 2px solid var(--edge);
+      border-radius: 2.5rem;
+      background: rgb(var(--surface));
+      color: rgb(var(--fg));
+      transition: rotate 0.45s cubic-bezier(0.3, 1.5, 0.5, 1), translate 0.45s cubic-bezier(0.3, 1.5, 0.5, 1), scale 0.15s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .demo .char .ch-shape, .demo .char .ch-line { stroke-width: 11; }
+    [data-theme="dark"] .demo .char .ch-shape, [data-theme="dark"] .demo .char .ch-line { stroke-width: 8; }
+    [data-theme="dark"] .demo .char { animation: none; }
+    .demo-arrow {
+      display: flex;
+      flex: none;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border: 2px solid var(--edge);
+      border-radius: 9999px;
+      background: rgb(var(--c));
+      color: rgb(var(--ink));
+      transition: rotate 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+    }
+    [data-theme="dark"] .demo-arrow { border-color: rgb(var(--c)); box-shadow: 0 0 20px -6px rgb(var(--c) / 0.8); }
+    .demo:active { scale: 0.97; transition-duration: 0.08s; }
+    @media (min-width: 768px) { .demo { rotate: var(--tilt, 0deg); } }
+    @media (hover: hover) and (pointer: fine) {
+      .demo:hover { rotate: 0deg; translate: 0 -6px; }
+      .demo:hover .char { rotate: 8deg; }
+      .demo:hover .demo-arrow { rotate: 45deg; }
+      [dir="rtl"] .demo:hover .demo-arrow { rotate: -45deg; }
+      [data-theme="dark"] .demo:hover { border-color: rgb(var(--c)); box-shadow: 0 0 36px -10px rgb(var(--c) / 0.7); }
+    }
+
+    /* Why us: an ink block with a staircase of stat pills */
+    .why { border-radius: 2.5rem; background: rgb(var(--ink)); color: rgb(var(--paper) / 0.75); }
+    .why h2 { color: rgb(var(--paper)); }
+    [data-theme="dark"] .why { border: 2px solid var(--line); background: rgb(var(--surface)); color: rgb(var(--muted)); }
+    [data-theme="dark"] .why h2 { color: rgb(var(--fg)); }
+    .stat {
+      display: inline-flex;
+      align-items: center;
+      height: clamp(5rem, 12.5vw, 10.5rem);
+      padding-inline: clamp(1.5rem, 4vw, 3.5rem);
+      border: 2px solid transparent;
+      border-radius: 9999px;
+      background: rgb(var(--c));
+      color: rgb(var(--ink));
+      font-size: clamp(3rem, 8.6vw, 7.75rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.045em;
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .stat {
+      border-color: rgb(var(--c));
+      background: rgb(var(--c) / 0.06);
+      color: rgb(var(--c));
+      box-shadow: 0 0 0 1px rgb(var(--c) / 0.3), 0 0 40px -6px rgb(var(--c) / 0.5), inset 0 0 32px -12px rgb(var(--c) / 0.55);
+      text-shadow: 0 0 20px rgb(var(--c) / 0.55);
+      animation: neon-on 0.9s steps(1, end) var(--d, 0ms) both;
+    }
+
     /* FAQ */
-    .faq summary { list-style: none; cursor: pointer; }
+    .faq {
+      border: 2px solid var(--edge);
+      border-radius: 1.75rem;
+      background: rgb(var(--surface));
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .faq summary { list-style: none; cursor: pointer; border-radius: 1.6rem; }
     .faq summary::-webkit-details-marker { display: none; }
     .faq[open] .faq-plus, .faq:not([open]) .faq-minus { display: none; }
-    .faq[open] .faq-answer { animation: faq-in 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+    .faq-icon {
+      border: 2px solid var(--edge);
+      color: rgb(var(--fg));
+      transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .faq[open] { background: rgb(var(--canary)); }
+    .faq[open] h3, .faq[open] .faq-answer p { color: rgb(var(--ink)); }
+    .faq[open] .faq-icon { border-color: rgb(var(--ink)); background: rgb(var(--ink)); color: rgb(var(--canary)); }
+    [data-theme="dark"] .faq[open] { border-color: rgb(var(--canary)); background: rgb(var(--canary) / 0.06); box-shadow: 0 0 36px -12px rgb(var(--canary) / 0.55); }
+    [data-theme="dark"] .faq[open] h3 { color: rgb(var(--canary)); }
+    [data-theme="dark"] .faq[open] .faq-answer p { color: rgb(var(--fg) / 0.8); }
+    [data-theme="dark"] .faq[open] .faq-icon { border-color: rgb(var(--canary)); background: rgb(var(--canary)); color: rgb(var(--ink)); }
+    @media (hover: hover) and (pointer: fine) {
+      .faq:not([open]) summary:hover .faq-icon { border-color: rgb(var(--ink)); background: rgb(var(--canary)); color: rgb(var(--ink)); }
+    }
+    .faq[open] .faq-answer { animation: faq-in 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
     @keyframes faq-in {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* Form */
+    .form-card { border: 2px solid var(--edge); border-radius: 2.5rem; background: rgb(var(--surface)); }
     .field {
       width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 1rem;
+      border: 2px solid var(--edge);
+      border-radius: 1.25rem;
       background: rgb(var(--canvas));
-      padding: 1.1rem 1.25rem;
+      padding: 0.95rem 1.15rem;
       color: rgb(var(--fg));
       font-size: 1rem;
+      font-weight: 500;
       line-height: 1.5;
-      transition: border-color 0.5s ease;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
     }
     .field::placeholder { color: rgb(var(--placeholder)); }
-    .field:focus { outline: none; border-color: rgb(var(--accent) / 0.6); }
-    .field[aria-invalid="true"] { border-color: rgb(var(--accent) / 0.85); }
+    .field:focus { outline: none; border-color: rgb(var(--electric)); box-shadow: 0 0 0 4px rgb(var(--electric) / 0.28); }
+    .field[aria-invalid="true"] { border-color: rgb(var(--danger)); }
+    .field[aria-invalid="true"]:focus { box-shadow: 0 0 0 4px rgb(var(--danger) / 0.22); }
+    .err { color: rgb(var(--danger)); }
     select.field { appearance: none; -webkit-appearance: none; padding-inline-end: 3rem; cursor: pointer; }
     select.field.is-empty { color: rgb(var(--placeholder)); }
     select.field option { background: rgb(var(--surface)); color: rgb(var(--fg)); }
@@ -259,10 +481,13 @@
     @media (prefers-reduced-motion: reduce) {
       .m-item, #mobile-menu, .header-bg, .icon-btn svg { transition-duration: 0.01ms !important; }
       .faq[open] .faq-answer { animation: none; }
+      .btn, .cta-split, .cta-split__icon, .char, .demo, .demo-arrow { transition-duration: 0.01ms !important; }
+      [data-theme="dark"] .card::after, [data-theme="dark"] .char, [data-theme="dark"] .stat { animation: none; }
+      .card:hover .ch-eye, .demo:hover .ch-eye { animation: none; }
     }
 
-    /* AI Chat widget — the panel is always dark, in both site themes */
-    #wa-float { transition: border-color 0.7s ease, opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0s; }
+    /* AI Chat widget — follows the site theme; orange is the AI colour */
+    #wa-float { transition: border-color 0.7s ease, background-color 0.25s ease, color 0.25s ease, opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0s; }
     body.ai-chat-open #wa-float {
       opacity: 0;
       visibility: hidden;
@@ -271,25 +496,48 @@
       transition: border-color 0.7s ease, opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
     }
 
+    .ai-chat {
+      --ai-bg: 255 255 255;
+      --ai-soft: 249 248 246;
+      --ai-fg: 23 24 31;
+      --ai-muted: 94 95 107;
+      --ai-accent: 255 138 42;
+      --ai-value: 23 24 31;
+      --ai-line: rgba(23, 24, 31, 0.12);
+      --ai-edge: rgb(23, 24, 31);
+    }
+    [data-theme="dark"] .ai-chat {
+      --ai-bg: 20 21 27;
+      --ai-soft: 30 32 41;
+      --ai-fg: 244 242 236;
+      --ai-muted: 163 164 176;
+      --ai-accent: 255 154 61;
+      --ai-value: 255 154 61;
+      --ai-line: rgba(244, 242, 236, 0.1);
+      --ai-edge: rgba(255, 154, 61, 0.6);
+    }
+
     .ai-toggle { isolation: isolate; transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .ai-toggle:hover { transform: scale(1.08); }
-    .ai-toggle:active { transform: scale(0.96); }
-    .ai-toggle:focus-visible { outline: 2px solid #DDD6FE; outline-offset: 4px; }
-    /* Glow is a blurred layer, since the site bans box-shadow */
+    .ai-toggle:active { transform: scale(0.92); }
+    .ai-toggle:focus-visible { outline: 3px solid rgb(var(--electric)); outline-offset: 4px; }
+    /* Glow is a blurred layer behind the button, shown in the dark theme */
     .ai-toggle::before {
       content: '';
       position: absolute;
       inset: -4px;
       z-index: -1;
       border-radius: 9999px;
-      background: linear-gradient(135deg, #DDD6FE, #8B5CF6);
+      background: rgb(var(--ai-accent));
       filter: blur(14px);
       opacity: 0.45;
       animation: ai-glow 3.2s ease-in-out infinite;
       transition: opacity 0.35s ease;
     }
+    [data-theme="light"] .ai-toggle::before { display: none; }
     .ai-toggle:hover::before { opacity: 0.75; }
-    .ai-toggle-face { background: linear-gradient(135deg, #EDE9FE 0%, #C4B5FD 45%, #8B5CF6 100%); color: #0a0a0c; }
+    .ai-toggle-face { border: 2px solid var(--ai-edge); background: rgb(var(--ai-accent)); color: rgb(var(--ink)); }
+    [data-theme="dark"] .ai-toggle-face { border-color: rgb(var(--ai-accent)); }
     .ai-toggle-icon { transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
     .ai-toggle .ai-icon-close { opacity: 0; transform: rotate(-90deg) scale(0.6); }
     .ai-chat.is-open .ai-toggle .ai-icon-chat { opacity: 0; transform: rotate(90deg) scale(0.6); }
@@ -300,9 +548,9 @@
       width: min(380px, calc(100vw - 3rem));
       height: min(560px, calc(100vh - 13rem));
       height: min(560px, calc(100dvh - 13rem));
-      background: #0a0a0c;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: rgba(255, 255, 255, 0.86);
+      background: rgb(var(--ai-bg));
+      border: 2px solid var(--ai-edge);
+      color: rgb(var(--ai-fg) / 0.88);
       transform-origin: bottom right;
       opacity: 0;
       visibility: hidden;
@@ -310,6 +558,7 @@
       transform: translateY(16px) scale(0.97);
       transition: opacity 0.28s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 0.4s;
     }
+    [data-theme="dark"] .ai-panel { box-shadow: 0 0 48px -16px rgb(var(--ai-accent) / 0.55); }
     .ai-chat.is-open .ai-panel {
       opacity: 1;
       visibility: visible;
@@ -317,8 +566,11 @@
       transform: none;
       transition: opacity 0.28s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s;
     }
-    .ai-line { border-color: rgba(255, 255, 255, 0.08); }
-    .ai-avatar { background: linear-gradient(135deg, #EDE9FE 0%, #C4B5FD 45%, #8B5CF6 100%); color: #0a0a0c; }
+    .ai-line { border-color: var(--ai-line); }
+    .ai-strong { color: rgb(var(--ai-fg)); }
+    .ai-sub { color: rgb(var(--ai-muted)); }
+    .ai-avatar { border: 2px solid var(--ai-edge); background: rgb(var(--ai-accent)); color: rgb(var(--ink)); }
+    [data-theme="dark"] .ai-avatar { border-color: rgb(var(--ai-accent)); }
     .ai-online { position: relative; width: 7px; height: 7px; border-radius: 9999px; background: #22C55E; }
     .ai-online::after {
       content: '';
@@ -329,68 +581,75 @@
       animation: ai-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
     }
     @keyframes ai-ping { 75%, 100% { transform: scale(2.6); opacity: 0; } }
-    .ai-icon-btn { color: rgba(255, 255, 255, 0.6); transition: color 0.2s ease, background-color 0.2s ease; }
-    .ai-icon-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
-    .ai-icon-btn:focus-visible, .ai-send:focus-visible, .ai-pill:focus-visible, .ai-action:focus-visible { outline: 2px solid #DDD6FE; outline-offset: 2px; }
+    .ai-chat .ai-icon-btn { color: rgb(var(--ai-fg) / 0.6); transition: color 0.2s ease, background-color 0.2s ease; }
+    .ai-chat .ai-icon-btn:hover { color: rgb(var(--ai-fg)); background: rgb(var(--ai-soft)); }
+    .ai-icon-btn:focus-visible, .ai-send:focus-visible, .ai-pill:focus-visible, .ai-action:focus-visible { outline: 3px solid rgb(var(--electric)); outline-offset: 2px; }
 
-    .ai-messages { overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.12) transparent; }
+    .ai-messages { overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: rgb(var(--ai-fg) / 0.15) transparent; }
     .ai-msg { display: flex; margin-top: 0.75rem; animation: ai-in 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
     .ai-msg:first-child { margin-top: 0; }
     .ai-msg--user { justify-content: flex-end; }
     @keyframes ai-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-    .ai-bubble { max-width: 88%; padding: 0.75rem 0.95rem; font-size: 0.875rem; line-height: 1.55; border-radius: 1.15rem; overflow-wrap: anywhere; }
-    .ai-msg--bot .ai-bubble { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); border-start-start-radius: 0.4rem; }
-    .ai-msg--user .ai-bubble { max-width: 80%; background: #DDD6FE; color: #0a0a0c; border-start-end-radius: 0.4rem; }
+    .ai-bubble { max-width: 88%; padding: 0.75rem 0.95rem; font-size: 0.9rem; line-height: 1.55; border-radius: 1.15rem; overflow-wrap: anywhere; }
+    .ai-msg--bot .ai-bubble { background: rgb(var(--ai-soft)); border: 1.5px solid var(--ai-line); border-start-start-radius: 0.4rem; }
+    .ai-msg--user .ai-bubble { max-width: 80%; background: rgb(var(--ai-accent)); color: rgb(var(--ink)); font-weight: 500; border-start-end-radius: 0.4rem; }
     .ai-text { white-space: pre-line; }
-    .ai-title { margin-bottom: 0.25rem; font-size: 0.95rem; font-weight: 600; color: #fff; }
+    .ai-title { margin-bottom: 0.25rem; font-size: 1rem; font-weight: 800; color: rgb(var(--ai-fg)); }
     .ai-rows { margin-top: 0.6rem; }
-    .ai-item { padding-block: 0.6rem; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+    .ai-item { padding-block: 0.6rem; border-top: 1px solid var(--ai-line); }
     .ai-item:last-child { padding-bottom: 0.1rem; }
     .ai-item-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 0.75rem; row-gap: 0.1rem; }
-    .ai-item-title { font-weight: 500; color: rgba(255, 255, 255, 0.92); }
-    .ai-item-value { font-weight: 500; color: #C4B5FD; white-space: nowrap; }
-    .ai-item-sub { margin-top: 0.15rem; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); }
-    .ai-note { margin-top: 0.6rem; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); }
+    .ai-item-title { font-weight: 600; color: rgb(var(--ai-fg)); }
+    .ai-item-value { font-weight: 800; color: rgb(var(--ai-value)); white-space: nowrap; }
+    .ai-item-sub { margin-top: 0.15rem; font-size: 0.8rem; color: rgb(var(--ai-muted)); }
+    .ai-note { margin-top: 0.6rem; font-size: 0.8rem; color: rgb(var(--ai-muted)); }
     .ai-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
     .ai-action {
       display: inline-flex;
       align-items: center;
-      min-height: 2.1rem;
-      padding: 0.35rem 0.9rem;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      min-height: 2.25rem;
+      padding: 0.35rem 1rem;
+      border: 2px solid var(--ai-edge);
       border-radius: 9999px;
       font-size: 0.8125rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.88);
-      transition: border-color 0.2s ease, background-color 0.2s ease;
+      font-weight: 700;
+      color: rgb(var(--ai-fg));
+      transition: background-color 0.2s ease, color 0.2s ease, scale 0.15s ease;
     }
-    .ai-action:hover { border-color: rgba(221, 214, 254, 0.5); background: rgba(221, 214, 254, 0.06); }
-    .ai-action--primary { border-color: transparent; background: #DDD6FE; color: #0a0a0c; }
-    .ai-action--primary:hover { border-color: transparent; background: #EDE9FE; }
+    .ai-action:hover { background: rgb(var(--canary)); color: rgb(var(--ink)); }
+    .ai-action:active { scale: 0.94; }
+    .ai-action--primary { border-color: var(--ai-edge); background: rgb(var(--ai-accent)); color: rgb(var(--ink)); }
+    [data-theme="dark"] .ai-action--primary { border-color: rgb(var(--ai-accent)); }
+    .ai-action--primary:hover { background: rgb(var(--canary)); }
     .ai-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; animation: ai-in 0.32s 0.08s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-    .ai-pill {
-      padding: 0.45rem 0.9rem;
-      border: 1px solid rgba(221, 214, 254, 0.25);
+    .ai-chat .ai-pill {
+      padding: 0.45rem 0.95rem;
+      border: 2px solid var(--ai-edge);
       border-radius: 9999px;
-      background: rgba(221, 214, 254, 0.06);
+      background: rgb(var(--ai-bg));
       font-size: 0.8125rem;
-      color: #EDE9FE;
-      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+      font-weight: 600;
+      color: rgb(var(--ai-fg));
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
     }
-    .ai-pill:hover { border-color: rgba(221, 214, 254, 0.55); background: rgba(221, 214, 254, 0.14); transform: translateY(-1px); }
+    .ai-chat .ai-pill:hover { background: rgb(var(--canary)); color: rgb(var(--ink)); transform: translateY(-1px); }
+    [data-theme="dark"] .ai-chat .ai-pill { border-color: rgb(var(--ai-accent) / 0.4); background: rgb(var(--ai-accent) / 0.08); }
+    [data-theme="dark"] .ai-chat .ai-pill:hover { border-color: rgb(var(--ai-accent)); background: rgb(var(--ai-accent) / 0.18); color: rgb(var(--ai-fg)); }
     .ai-dots { display: inline-flex; align-items: center; gap: 4px; height: 1rem; }
-    .ai-dots i { width: 6px; height: 6px; border-radius: 9999px; background: #C4B5FD; animation: ai-wave 1.2s ease-in-out infinite; }
+    .ai-dots i { width: 6px; height: 6px; border-radius: 9999px; background: rgb(var(--ai-accent)); animation: ai-wave 1.2s ease-in-out infinite; }
     .ai-dots i:nth-child(2) { animation-delay: 0.15s; }
     .ai-dots i:nth-child(3) { animation-delay: 0.3s; }
     @keyframes ai-wave { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-5px); opacity: 1; } }
     .ai-typing .ai-bubble { display: inline-flex; align-items: center; gap: 0.6rem; }
-    .ai-typing-label { font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); }
-    .ai-input { background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); color: #fff; transition: border-color 0.2s ease; }
-    .ai-input::placeholder { color: rgba(255, 255, 255, 0.35); }
-    .ai-input:focus { outline: none; border-color: rgba(221, 214, 254, 0.5); }
-    .ai-send { background: #DDD6FE; color: #0a0a0c; transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
-    .ai-send:not(:disabled):hover { background: #EDE9FE; transform: scale(1.05); }
-    .ai-send:disabled { background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.3); cursor: default; }
+    .ai-typing-label { font-size: 0.75rem; color: rgb(var(--ai-muted)); }
+    .ai-input { background: rgb(var(--ai-soft)); border: 2px solid var(--ai-line); color: rgb(var(--ai-fg)); transition: border-color 0.2s ease; }
+    .ai-input::placeholder { color: rgb(var(--ai-muted)); }
+    .ai-input:focus { outline: none; border-color: rgb(var(--electric)); }
+    .ai-chat .ai-send { background: rgb(var(--ink)); color: rgb(var(--paper)); transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+    [data-theme="dark"] .ai-chat .ai-send { background: rgb(var(--ai-accent)); color: rgb(var(--ink)); }
+    .ai-chat .ai-send:not(:disabled):hover { transform: scale(1.06); }
+    .ai-chat .ai-send:not(:disabled):active { transform: scale(0.92); }
+    .ai-chat .ai-send:disabled { background: rgb(var(--ai-soft)); color: rgb(var(--ai-muted) / 0.6); cursor: default; }
 
     @media (prefers-reduced-motion: reduce) {
       .ai-toggle::before, .ai-online::after, .ai-msg, .ai-pills { animation: none; }
@@ -402,6 +661,7 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
     tailwind.config = {
+      darkMode: ['selector', '[data-theme="dark"]'],
       future: { hoverOnlyWhenSupported: true },
       theme: {
         extend: {
@@ -410,12 +670,17 @@
             surface: 'rgb(var(--surface) / <alpha-value>)',
             fg: 'rgb(var(--fg) / <alpha-value>)',
             muted: 'rgb(var(--muted) / <alpha-value>)',
-            accent: 'rgb(var(--accent) / <alpha-value>)',
+            ink: 'rgb(var(--ink) / <alpha-value>)',
+            paper: 'rgb(var(--paper) / <alpha-value>)',
+            canary: 'rgb(var(--canary) / <alpha-value>)',
+            electric: 'rgb(var(--electric) / <alpha-value>)',
+            bubblegum: 'rgb(var(--bubblegum) / <alpha-value>)',
+            tangerine: 'rgb(var(--tangerine) / <alpha-value>)',
             line: 'var(--line)'
           },
           fontFamily: {
-            display: ['Syne', '"IBM Plex Sans Arabic"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-            sans: ['Inter', '"IBM Plex Sans Arabic"', 'ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'sans-serif']
+            display: ['Gabarito', '"IBM Plex Sans Arabic"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            sans: ['Gabarito', '"IBM Plex Sans Arabic"', 'ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'sans-serif']
           }
         }
       }
@@ -489,24 +754,24 @@
 </head>
 <body class="overflow-x-hidden bg-canvas font-sans text-muted">
 
-  <a href="#main" data-i18n="aria.skip" class="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[1001] focus:rounded-full focus:border focus:border-line focus:bg-surface focus:px-6 focus:py-3 focus:text-sm focus:text-fg">İçeriğe geç</a>
+  <a href="#main" data-i18n="aria.skip" class="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[1001] focus:rounded-full focus:border-2 focus:border-fg focus:bg-canary focus:px-6 focus:py-3 focus:text-sm focus:font-bold focus:text-ink">İçeriğe geç</a>
 
   <!-- Header -->
   <header id="header" class="fixed left-0 top-0 z-50 w-full">
-    <div class="header-bg absolute inset-0 border-b border-line bg-canvas/80 backdrop-blur-md" aria-hidden="true"></div>
-    <div class="relative mx-auto flex h-24 w-full max-w-[1440px] items-center justify-between gap-6 px-5 md:px-12 xl:px-24">
-      <a href="#top" dir="ltr" class="flex-none" data-i18n-attr="aria-label:aria.home" aria-label="Asteria Soft ana sayfa">
-        <img src="logo.png" alt="asteria.soft" width="600" height="200" class="site-logo h-12 w-auto rounded-lg md:h-14">
+    <div class="header-bg absolute inset-0 border-b border-line bg-canvas/85 backdrop-blur-md" aria-hidden="true"></div>
+    <div class="wrap relative flex h-20 items-center justify-between gap-4 md:h-24">
+      <a href="#top" dir="ltr" class="logo flex-none" data-i18n-attr="aria-label:aria.home" aria-label="Asteria Soft ana sayfa">
+        <img src="logo-transparent.png" alt="asteria.soft" width="344" height="164" class="h-11 w-auto md:h-12">
       </a>
 
-      <nav class="hidden items-center text-[0.9375rem] lg:flex lg:gap-10 xl:gap-16 2xl:gap-[7.5rem]" data-i18n-attr="aria-label:aria.mainNav" aria-label="Ana menü">
+      <nav class="nav-pill hidden items-center gap-0.5 p-1 text-[0.9375rem] lg:flex" data-i18n-attr="aria-label:aria.mainNav" aria-label="Ana menü">
         <a href="#hizmetler" class="nav-link" data-i18n="nav.services">Hizmetler</a>
         <a href="#demolar" class="nav-link" data-i18n="nav.demos">Demolar</a>
         <a href="#neden-biz" class="nav-link" data-i18n="nav.why">Neden Biz</a>
         <a href="#iletisim" class="nav-link" data-i18n="nav.contact">İletişim</a>
       </nav>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-2">
         <div class="relative hidden lg:block">
           <select data-lang-select class="lang-select" data-i18n-attr="aria-label:aria.lang" aria-label="Dil seçimi">
             <option value="tr">TR</option>
@@ -515,40 +780,43 @@
             <option value="ar">AR</option>
             <option value="es">ES</option>
           </select>
-          <i data-lucide="chevron-down" class="pointer-events-none absolute end-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"></i>
+          <i data-lucide="chevron-down" class="pointer-events-none absolute end-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-fg"></i>
         </div>
-        <button type="button" data-theme-toggle class="icon-btn relative h-12 w-12 flex-none rounded-full bg-surface" aria-label="Aydınlık temaya geç">
-          <i data-lucide="sun" class="theme-icon-sun absolute left-1/2 top-1/2 h-[18px] w-[18px] -translate-x-1/2 -translate-y-1/2 text-fg"></i>
-          <i data-lucide="moon" class="theme-icon-moon absolute left-1/2 top-1/2 h-[18px] w-[18px] -translate-x-1/2 -translate-y-1/2 text-fg"></i>
+        <button type="button" data-theme-toggle class="icon-btn relative h-12 w-12 flex-none" aria-label="Aydınlık temaya geç">
+          <i data-lucide="sun" class="theme-icon-sun absolute left-1/2 top-1/2 h-[18px] w-[18px] -translate-x-1/2 -translate-y-1/2"></i>
+          <i data-lucide="moon" class="theme-icon-moon absolute left-1/2 top-1/2 h-[18px] w-[18px] -translate-x-1/2 -translate-y-1/2"></i>
         </button>
-        <a href="#iletisim" class="btn hidden h-12 px-8 text-sm lg:inline-flex xl:px-[4.5rem]" data-i18n="nav.quote">Teklif Al</a>
-        <button id="menu-toggle" type="button" class="icon-btn relative h-12 w-12 flex-none rounded-full bg-surface lg:hidden" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-menu">
-          <i data-lucide="menu" class="icon-open absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 text-fg"></i>
-          <i data-lucide="x" class="icon-close absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 text-fg"></i>
+        <a href="#iletisim" class="cta-split hidden xl:inline-flex">
+          <span class="cta-split__label" data-i18n="nav.quote">Teklif Al</span>
+          <span class="cta-split__icon" aria-hidden="true"><i data-lucide="arrow-up-right" class="flip-rtl h-[18px] w-[18px]"></i></span>
+        </a>
+        <button id="menu-toggle" type="button" class="icon-btn relative h-12 w-12 flex-none lg:hidden" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-menu">
+          <i data-lucide="menu" class="icon-open absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2"></i>
+          <i data-lucide="x" class="icon-close absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2"></i>
         </button>
       </div>
     </div>
   </header>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="fixed inset-0 z-40 overflow-y-auto bg-canvas/95 backdrop-blur-xl lg:hidden" aria-hidden="true" inert data-lenis-prevent>
-    <nav class="flex min-h-full flex-col justify-center px-5 pb-32 pt-32 md:px-12" data-i18n-attr="aria-label:aria.mobileNav" aria-label="Mobil menü">
-      <ul class="space-y-12">
-        <li><a href="#hizmetler" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:0" data-i18n="nav.services">Hizmetler</a></li>
-        <li><a href="#demolar" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:1" data-i18n="nav.demos">Demolar</a></li>
-        <li><a href="#neden-biz" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:2" data-i18n="nav.why">Neden Biz</a></li>
-        <li><a href="#iletisim" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:3" data-i18n="nav.contact">İletişim</a></li>
+  <div id="mobile-menu" class="fixed inset-0 z-40 overflow-y-auto bg-canvas lg:hidden" aria-hidden="true" inert data-lenis-prevent>
+    <nav class="wrap flex min-h-full flex-col justify-center pb-24 pt-28" data-i18n-attr="aria-label:aria.mobileNav" aria-label="Mobil menü">
+      <ul class="space-y-3">
+        <li><a href="#hizmetler" class="m-item m-link" style="--i:0" data-i18n="nav.services">Hizmetler</a></li>
+        <li><a href="#demolar" class="m-item m-link" style="--i:1" data-i18n="nav.demos">Demolar</a></li>
+        <li><a href="#neden-biz" class="m-item m-link" style="--i:2" data-i18n="nav.why">Neden Biz</a></li>
+        <li><a href="#iletisim" class="m-item m-link" style="--i:3" data-i18n="nav.contact">İletişim</a></li>
       </ul>
-      <a href="#iletisim" class="m-item btn mt-24 w-full" style="--i:4" data-i18n="nav.quote">Teklif Al</a>
-      <div class="m-item relative mt-12" style="--i:5">
-        <select data-lang-select class="lang-select h-[3.75rem] w-full" data-i18n-attr="aria-label:aria.lang" aria-label="Dil seçimi">
+      <a href="#iletisim" class="m-item btn btn--primary btn--lg mt-14 w-full" style="--i:4" data-i18n="nav.quote">Teklif Al</a>
+      <div class="m-item relative mt-3" style="--i:5">
+        <select data-lang-select class="lang-select h-16 w-full px-6" data-i18n-attr="aria-label:aria.lang" aria-label="Dil seçimi">
           <option value="tr">Türkçe</option>
           <option value="en">English</option>
           <option value="de">Deutsch</option>
           <option value="ar">العربية</option>
           <option value="es">Español</option>
         </select>
-        <i data-lucide="chevron-down" class="pointer-events-none absolute end-5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"></i>
+        <i data-lucide="chevron-down" class="pointer-events-none absolute end-6 top-1/2 h-4 w-4 -translate-y-1/2 text-fg"></i>
       </div>
     </nav>
   </div>
@@ -556,57 +824,81 @@
   <main id="main">
 
     <!-- Hero -->
-    <section id="top" class="flex min-h-screen items-center py-24" aria-labelledby="hero-title">
-      <div class="mx-auto w-full max-w-[1440px] px-5 text-center md:px-12 xl:px-24">
-        <h1 id="hero-title" data-hero data-i18n="hero.title" class="mx-auto max-w-6xl font-display text-[3.75rem] font-semibold leading-[0.95] tracking-tighter text-fg min-[375px]:text-7xl md:text-8xl xl:text-9xl">İşinizi Geleceğe Taşıyın.</h1>
-        <p data-hero data-i18n="hero.sub" class="mx-auto mt-24 max-w-[60ch] text-lg leading-relaxed text-muted md:text-xl">Web tasarım, SEO ve Yapay Zeka destekli randevu sistemleriyle dijital kimliğinizi A'dan Z'ye yeniden inşa ediyoruz.</p>
-        <div data-hero class="mt-[7.5rem] flex flex-col items-center justify-center gap-12 sm:flex-row">
-          <a href="#iletisim" class="btn w-full max-w-sm sm:w-auto">
-            <span data-i18n="hero.start">Hemen Başlayalım</span>
-            <i data-lucide="arrow-right" class="flip-rtl h-4 w-4"></i>
-          </a>
-          <a href="#hizmetler" class="btn btn--ghost w-full max-w-sm sm:w-auto" data-i18n="hero.explore">Hizmetleri Keşfet</a>
+    <section id="top" class="pb-12 pt-32 md:pb-16 md:pt-40 lg:pt-44" aria-labelledby="hero-title">
+      <div class="wrap">
+        <h1 id="hero-title" data-hero data-i18n="hero.title" class="type-hero">İşinizi Geleceğe Taşıyın.</h1>
+        <div data-hero class="mt-8 flex flex-col gap-8 md:mt-12 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+          <p data-i18n="hero.sub" class="max-w-[46ch] text-lg leading-relaxed md:text-xl">Web tasarım, SEO ve Yapay Zeka destekli randevu sistemleriyle dijital kimliğinizi A'dan Z'ye yeniden inşa ediyoruz.</p>
+          <div class="flex flex-col gap-3 sm:flex-row lg:flex-none">
+            <a href="#iletisim" class="btn btn--primary btn--lg" data-i18n="hero.start">Hemen Başlayalım</a>
+            <a href="#hizmetler" class="btn btn--lg" data-i18n="hero.explore">Hizmetleri Keşfet</a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Hizmetler -->
-    <section id="hizmetler" class="py-[var(--section-space)]" aria-labelledby="services-title">
-      <div class="mx-auto w-full max-w-[1440px] px-5 md:px-12 xl:px-24">
-        <h2 id="services-title" data-reveal data-i18n="services.title" class="anchor-heading text-center font-display text-5xl font-semibold leading-[0.95] tracking-tighter text-fg md:text-7xl">Dijital Evriminizi Başlatın</h2>
+    <section id="hizmetler" class="pb-20 md:pb-32" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-12">
 
-        <div class="mt-48 grid grid-cols-1 gap-8 md:mt-60 md:grid-cols-2 lg:grid-cols-[3fr_2fr]">
+          <div class="flex flex-col justify-end pb-2 pt-10 md:col-span-2 md:pt-14 lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:pb-6 lg:pe-6 lg:pt-6">
+            <h2 id="services-title" data-reveal data-i18n="services.title" class="anchor-heading type-h2 text-[clamp(2.75rem,5.4vw,5.25rem)]">Dijital Evriminizi Başlatın</h2>
+          </div>
 
-          <article data-reveal class="bento flex min-h-[32rem] flex-col justify-between rounded-3xl bg-surface p-10 md:col-span-2 md:p-14 lg:col-span-1 lg:row-span-2 lg:min-h-[52rem] lg:p-20">
-            <i data-lucide="code-xml" class="h-8 w-8 text-accent"></i>
-            <div class="mt-[7.5rem]">
-              <h3 data-i18n="s1.title" class="max-w-xl font-display text-4xl font-semibold leading-[1] tracking-tighter text-fg md:text-5xl lg:text-6xl">Ultra-Hızlı Web Tasarım</h3>
-              <p data-i18n="s1.text" class="mt-12 max-w-md text-lg leading-relaxed text-muted">Ziyaretçileri müşteriye dönüştüren, saniyeler içinde açılan Awwwards standartlarında web siteleri.</p>
+          <article data-reveal class="card card--canary flex min-h-[30rem] flex-col justify-between gap-10 p-7 md:col-span-2 md:p-10 lg:col-span-7 lg:col-start-6 lg:row-span-2 lg:row-start-1 lg:min-h-[44rem]" style="--d:0ms">
+            <svg class="char mx-auto w-[min(100%,21rem)] lg:mt-6 lg:w-[min(100%,25rem)]" viewBox="0 0 240 200" aria-hidden="true" focusable="false">
+              <rect class="ch-shape" x="16" y="22" width="208" height="160" rx="30"/>
+              <path class="ch-line" d="M16 70H224"/>
+              <circle class="ch-dot" cx="46" cy="46" r="7"/>
+              <circle class="ch-dot" cx="70" cy="46" r="7"/>
+              <circle class="ch-dot" cx="94" cy="46" r="7"/>
+              <rect class="ch-eye" x="92" y="100" width="16" height="36" rx="8"/>
+              <rect class="ch-eye" x="132" y="100" width="16" height="36" rx="8"/>
+            </svg>
+            <div>
+              <h3 data-i18n="s1.title" class="type-h3 max-w-xl text-[clamp(2.5rem,4.6vw,4.25rem)]">Ultra-Hızlı Web Tasarım</h3>
+              <p data-i18n="s1.text" class="mt-4 max-w-md text-lg font-medium leading-relaxed">Ziyaretçileri müşteriye dönüştüren, saniyeler içinde açılan Awwwards standartlarında web siteleri.</p>
             </div>
           </article>
 
-          <article data-reveal class="bento flex min-h-[26rem] flex-col justify-between rounded-3xl bg-surface p-10 md:p-14 lg:p-20">
-            <i data-lucide="trending-up" class="h-8 w-8 text-accent"></i>
-            <div class="mt-[7.5rem]">
-              <h3 data-i18n="s2.title" class="font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg lg:text-4xl">Veri Odaklı SEO</h3>
-              <p data-i18n="s2.text" class="mt-12 text-base leading-relaxed text-muted lg:text-lg">Google'ın dilinden anlıyoruz. İşletmenizi organik aramalarda zirveye taşıyan kalıcı optimizasyon.</p>
+          <article data-reveal class="card card--electric flex min-h-[22rem] flex-col justify-between gap-8 p-7 md:p-9 lg:col-span-5 lg:col-start-1 lg:row-start-2" style="--d:130ms">
+            <svg class="char w-28 self-end md:w-32" viewBox="0 0 240 200" aria-hidden="true" focusable="false">
+              <path class="ch-shape" d="M120 14L214 112H160V186H80V112H26Z"/>
+              <rect class="ch-eye" x="98" y="84" width="14" height="32" rx="7"/>
+              <rect class="ch-eye" x="128" y="84" width="14" height="32" rx="7"/>
+            </svg>
+            <div>
+              <h3 data-i18n="s2.title" class="type-h3 text-4xl md:text-[2.75rem]">Veri Odaklı SEO</h3>
+              <p data-i18n="s2.text" class="mt-3 max-w-md text-base font-medium leading-relaxed md:text-lg">Google'ın dilinden anlıyoruz. İşletmenizi organik aramalarda zirveye taşıyan kalıcı optimizasyon.</p>
             </div>
           </article>
 
-          <article data-reveal class="bento flex min-h-[26rem] flex-col justify-between rounded-3xl bg-surface p-10 md:p-14 lg:p-20">
-            <i data-lucide="calendar-clock" class="h-8 w-8 text-accent"></i>
-            <div class="mt-[7.5rem]">
-              <h3 data-i18n="s3.title" class="font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg lg:text-4xl">Akıllı Randevu Sistemleri</h3>
-              <p data-i18n="s3.text" class="mt-12 text-base leading-relaxed text-muted lg:text-lg">7/24 çalışan, SMS ve WhatsApp hatırlatmalı, sıfır hata ile işleyen rezervasyon otomasyonları.</p>
+          <article data-reveal class="card card--bubblegum flex min-h-[22rem] flex-col justify-between gap-8 p-7 md:p-9 lg:col-span-4 lg:col-start-9 lg:row-start-3" style="--d:260ms">
+            <svg class="char w-28 self-end md:w-32" viewBox="0 0 240 200" aria-hidden="true" focusable="false">
+              <rect class="ch-shape" x="26" y="34" width="188" height="152" rx="30"/>
+              <path class="ch-line" d="M26 82H214"/>
+              <path class="ch-line ch-bold" d="M82 16V50M158 16V50"/>
+              <rect class="ch-eye" x="96" y="110" width="16" height="36" rx="8"/>
+              <rect class="ch-eye" x="128" y="110" width="16" height="36" rx="8"/>
+            </svg>
+            <div>
+              <h3 data-i18n="s3.title" class="type-h3 text-4xl md:text-[2.75rem]">Akıllı Randevu Sistemleri</h3>
+              <p data-i18n="s3.text" class="mt-3 max-w-md text-base font-medium leading-relaxed md:text-lg">7/24 çalışan, SMS ve WhatsApp hatırlatmalı, sıfır hata ile işleyen rezervasyon otomasyonları.</p>
             </div>
           </article>
 
-          <article data-reveal class="bento flex min-h-[26rem] flex-col justify-between gap-[7.5rem] rounded-3xl bg-surface p-10 md:col-span-2 md:p-14 lg:flex-row lg:items-end lg:p-20">
-            <div class="flex flex-col justify-between self-stretch">
-              <i data-lucide="brain-circuit" class="h-8 w-8 text-accent"></i>
-              <h3 data-i18n="s4.title" class="mt-[7.5rem] font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg md:text-4xl lg:text-5xl">Yapay Zeka Chatbot</h3>
+          <article data-reveal class="card card--tangerine flex min-h-[22rem] flex-col justify-between gap-8 p-7 md:col-span-2 md:p-9 lg:col-span-8 lg:col-start-1 lg:row-start-3 lg:flex-row lg:items-center lg:gap-10 lg:p-10" style="--d:390ms">
+            <svg class="char w-28 self-end md:w-32 lg:order-last lg:w-44 lg:flex-none lg:self-center" viewBox="0 0 240 200" aria-hidden="true" focusable="false">
+              <path class="ch-shape" d="M64 22H176A44 44 0 0 1 220 66V112A44 44 0 0 1 176 156H108L58 190L68 156H64A44 44 0 0 1 20 112V66A44 44 0 0 1 64 22Z"/>
+              <rect class="ch-eye" x="96" y="66" width="16" height="36" rx="8"/>
+              <rect class="ch-eye" x="128" y="66" width="16" height="36" rx="8"/>
+            </svg>
+            <div class="lg:flex-1">
+              <h3 data-i18n="s4.title" class="type-h3 text-4xl md:text-5xl">Yapay Zeka Chatbot</h3>
+              <p data-i18n="s4.text" class="mt-3 max-w-md text-base font-medium leading-relaxed md:text-lg">Müşterilerinize saniyeler içinde insan doğallığında yanıt veren, satış kapatan akıllı asistanlar.</p>
+              <button type="button" data-chat-open class="btn btn--ink mt-6"><span data-chat-open-label>Sohbeti deneyin</span></button>
             </div>
-            <p data-i18n="s4.text" class="max-w-md text-base leading-relaxed text-muted lg:text-lg">Müşterilerinize saniyeler içinde insan doğallığında yanıt veren, satış kapatan akıllı asistanlar.</p>
           </article>
 
         </div>
@@ -614,152 +906,174 @@
     </section>
 
     <!-- Demolar -->
-    <section id="demolar" class="py-[var(--section-space)]" aria-labelledby="demos-title">
-      <div class="mx-auto w-full max-w-[1440px] px-5 md:px-12 xl:px-24">
-        <h2 id="demos-title" data-reveal data-i18n="demos.title" class="anchor-heading text-center font-display text-5xl font-semibold leading-[0.95] tracking-tighter text-fg md:text-7xl">Demolar</h2>
-        <p data-reveal data-i18n="demos.sub" class="mx-auto mt-12 max-w-[60ch] text-center text-lg leading-relaxed text-muted">Çalışmalarımızı canlı olarak inceleyin.</p>
+    <section id="demolar" class="py-20 md:py-32" aria-labelledby="demos-title">
+      <div class="wrap">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-10">
+          <h2 id="demos-title" data-reveal data-i18n="demos.title" class="anchor-heading type-h2 text-[clamp(2.75rem,7vw,6.5rem)]">Demolar</h2>
+          <p data-reveal data-i18n="demos.sub" class="max-w-sm text-lg leading-relaxed md:pb-3 md:text-end">Çalışmalarımızı canlı olarak inceleyin.</p>
+        </div>
 
-        <div class="mt-48 grid grid-cols-1 gap-8 md:mt-60 md:grid-cols-2 lg:grid-cols-3">
+        <div class="mt-10 grid grid-cols-1 gap-5 md:mt-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           <!-- DEMO LİNKİ: href="#" yerine demo adresini yazın -->
-          <a data-reveal href="#" target="_blank" rel="noopener noreferrer" class="bento flex min-h-[22rem] flex-col justify-between rounded-3xl bg-surface p-10 md:p-14">
-            <i data-lucide="layout-template" class="h-8 w-8 text-accent"></i>
-            <div class="mt-24">
-              <h3 data-i18n="d1.title" class="font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg">Kurumsal Web Sitesi</h3>
-              <p data-i18n="d1.text" class="mt-6 text-base leading-relaxed text-muted">Hızlı, modern ve mobil uyumlu bir işletme sitesi.</p>
-              <span class="mt-10 inline-flex items-center gap-2 text-sm text-fg"><span data-i18n="demos.cta">Demoyu Aç</span><i data-lucide="arrow-up-right" class="flip-rtl h-4 w-4"></i></span>
+          <a data-reveal href="#" target="_blank" rel="noopener noreferrer" class="demo" style="--c: var(--canary); --tilt: -1.5deg">
+            <svg class="char w-24" viewBox="0 0 240 200" aria-hidden="true" focusable="false">
+              <rect class="ch-shape" x="16" y="22" width="208" height="160" rx="30"/>
+              <path class="ch-line" d="M16 70H224"/>
+              <circle class="ch-dot" cx="46" cy="46" r="8"/>
+              <circle class="ch-dot" cx="72" cy="46" r="8"/>
+              <rect class="ch-eye" x="90" y="98" width="20" height="40" rx="10"/>
+              <rect class="ch-eye" x="130" y="98" width="20" height="40" rx="10"/>
+            </svg>
+            <div class="mt-12">
+              <h3 data-i18n="d1.title" class="type-h3 text-3xl md:text-4xl">Kurumsal Web Sitesi</h3>
+              <p data-i18n="d1.text" class="mt-3 text-base leading-relaxed md:text-lg">Hızlı, modern ve mobil uyumlu bir işletme sitesi.</p>
             </div>
+            <span class="mt-auto flex items-center justify-between gap-4 pt-10 font-bold text-fg"><span data-i18n="demos.cta">Demoyu Aç</span><span class="demo-arrow"><i data-lucide="arrow-up-right" class="flip-rtl h-5 w-5"></i></span></span>
           </a>
           <!-- DEMO LİNKİ: href="#" yerine demo adresini yazın -->
-          <a data-reveal href="#" target="_blank" rel="noopener noreferrer" class="bento flex min-h-[22rem] flex-col justify-between rounded-3xl bg-surface p-10 md:p-14">
-            <i data-lucide="calendar-clock" class="h-8 w-8 text-accent"></i>
-            <div class="mt-24">
-              <h3 data-i18n="d2.title" class="font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg">Randevu Sistemi</h3>
-              <p data-i18n="d2.text" class="mt-6 text-base leading-relaxed text-muted">Müşterilerin 7/24 kendi randevusunu aldığı sistem.</p>
-              <span class="mt-10 inline-flex items-center gap-2 text-sm text-fg"><span data-i18n="demos.cta">Demoyu Aç</span><i data-lucide="arrow-up-right" class="flip-rtl h-4 w-4"></i></span>
+          <a data-reveal href="#" target="_blank" rel="noopener noreferrer" class="demo" style="--c: var(--bubblegum); --tilt: 1.25deg">
+            <svg class="char w-24" viewBox="0 0 240 200" aria-hidden="true" focusable="false">
+              <rect class="ch-shape" x="26" y="34" width="188" height="152" rx="30"/>
+              <path class="ch-line" d="M26 82H214"/>
+              <path class="ch-line ch-bold" d="M82 16V50M158 16V50"/>
+              <rect class="ch-eye" x="92" y="106" width="20" height="40" rx="10"/>
+              <rect class="ch-eye" x="128" y="106" width="20" height="40" rx="10"/>
+            </svg>
+            <div class="mt-12">
+              <h3 data-i18n="d2.title" class="type-h3 text-3xl md:text-4xl">Randevu Sistemi</h3>
+              <p data-i18n="d2.text" class="mt-3 text-base leading-relaxed md:text-lg">Müşterilerin 7/24 kendi randevusunu aldığı sistem.</p>
             </div>
+            <span class="mt-auto flex items-center justify-between gap-4 pt-10 font-bold text-fg"><span data-i18n="demos.cta">Demoyu Aç</span><span class="demo-arrow"><i data-lucide="arrow-up-right" class="flip-rtl h-5 w-5"></i></span></span>
           </a>
           <!-- DEMO LİNKİ: href="#" yerine demo adresini yazın -->
-          <a data-reveal href="#" target="_blank" rel="noopener noreferrer" class="bento flex min-h-[22rem] flex-col justify-between rounded-3xl bg-surface p-10 md:col-span-2 md:p-14 lg:col-span-1">
-            <i data-lucide="brain-circuit" class="h-8 w-8 text-accent"></i>
-            <div class="mt-24">
-              <h3 data-i18n="d3.title" class="font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg">AI Chatbot</h3>
-              <p data-i18n="d3.text" class="mt-6 text-base leading-relaxed text-muted">Sorulara anında yanıt veren yapay zeka asistanı.</p>
-              <span class="mt-10 inline-flex items-center gap-2 text-sm text-fg"><span data-i18n="demos.cta">Demoyu Aç</span><i data-lucide="arrow-up-right" class="flip-rtl h-4 w-4"></i></span>
+          <a data-reveal href="#" target="_blank" rel="noopener noreferrer" class="demo md:col-span-2 lg:col-span-1" style="--c: var(--tangerine); --tilt: -0.75deg">
+            <svg class="char w-24" viewBox="0 0 240 200" aria-hidden="true" focusable="false">
+              <path class="ch-shape" d="M64 22H176A44 44 0 0 1 220 66V112A44 44 0 0 1 176 156H108L58 190L68 156H64A44 44 0 0 1 20 112V66A44 44 0 0 1 64 22Z"/>
+              <rect class="ch-eye" x="92" y="62" width="20" height="40" rx="10"/>
+              <rect class="ch-eye" x="128" y="62" width="20" height="40" rx="10"/>
+            </svg>
+            <div class="mt-12">
+              <h3 data-i18n="d3.title" class="type-h3 text-3xl md:text-4xl">AI Chatbot</h3>
+              <p data-i18n="d3.text" class="mt-3 text-base leading-relaxed md:text-lg">Sorulara anında yanıt veren yapay zeka asistanı.</p>
             </div>
+            <span class="mt-auto flex items-center justify-between gap-4 pt-10 font-bold text-fg"><span data-i18n="demos.cta">Demoyu Aç</span><span class="demo-arrow"><i data-lucide="arrow-up-right" class="flip-rtl h-5 w-5"></i></span></span>
           </a>
         </div>
       </div>
     </section>
 
     <!-- Neden Biz -->
-    <section id="neden-biz" class="border-y border-line bg-surface py-[var(--section-space)]" aria-labelledby="why-title">
-      <div class="mx-auto w-full max-w-[1440px] px-5 md:px-12 xl:px-24">
-        <h2 id="why-title" data-reveal data-i18n="why.title" class="anchor-heading text-center font-display text-5xl font-semibold leading-[0.95] tracking-tighter text-fg md:text-7xl">Neden Biz?</h2>
-
-        <div class="mt-48 grid grid-cols-1 gap-y-[7.5rem] md:mt-72 lg:grid-cols-3 lg:gap-y-0 lg:divide-x lg:divide-line rtl:divide-x-reverse">
-          <div data-reveal class="text-center lg:px-6">
-            <p data-i18n="stat1.value" dir="ltr" class="whitespace-nowrap font-display text-7xl font-semibold leading-none tracking-tighter text-fg md:text-8xl lg:text-6xl xl:text-7xl 2xl:text-8xl">%99.9</p>
-            <p data-i18n="stat1.label" class="mt-[4.5rem] text-base text-muted md:text-lg">Uptime ve Güvenlik</p>
-          </div>
-          <div data-reveal class="text-center lg:px-6">
-            <p data-i18n="stat2.value" class="whitespace-nowrap font-display text-7xl font-semibold leading-none tracking-tighter text-fg md:text-8xl lg:text-6xl xl:text-7xl 2xl:text-8xl">&lt; 1 Sn</p>
-            <p data-i18n="stat2.label" class="mt-[4.5rem] text-base text-muted md:text-lg">Sayfa Yüklenme Hızı</p>
-          </div>
-          <div data-reveal class="text-center lg:px-6">
-            <p data-i18n="stat3.value" dir="ltr" class="whitespace-nowrap font-display text-7xl font-semibold leading-none tracking-tighter text-fg md:text-8xl lg:text-6xl xl:text-7xl 2xl:text-8xl">7/24</p>
-            <p data-i18n="stat3.label" class="mt-[4.5rem] text-base text-muted md:text-lg">Otonom Müşteri Hizmeti</p>
-          </div>
+    <section id="neden-biz" aria-labelledby="why-title">
+      <div class="wrap">
+        <div class="why px-6 py-16 md:px-14 md:py-24 xl:px-20">
+          <h2 id="why-title" data-reveal data-i18n="why.title" class="anchor-heading type-h2 text-[clamp(2.75rem,7vw,6.5rem)]">Neden Biz?</h2>
+          <ul class="mt-12 flex flex-col gap-5 md:mt-16 md:gap-6">
+            <li data-reveal class="flex flex-wrap items-center gap-x-7 gap-y-3">
+              <p data-i18n="stat1.value" dir="ltr" class="stat" style="--c: var(--canary); --d: 0ms">%99.9</p>
+              <p data-i18n="stat1.label" class="text-lg font-semibold md:text-2xl">Uptime ve Güvenlik</p>
+            </li>
+            <li data-reveal class="flex flex-wrap items-center gap-x-7 gap-y-3 md:ms-[12%]">
+              <p data-i18n="stat2.value" class="stat" style="--c: var(--electric); --d: 150ms">&lt; 1 Sn</p>
+              <p data-i18n="stat2.label" class="text-lg font-semibold md:text-2xl">Sayfa Yüklenme Hızı</p>
+            </li>
+            <li data-reveal class="flex flex-wrap items-center gap-x-7 gap-y-3 md:ms-[24%]">
+              <p data-i18n="stat3.value" dir="ltr" class="stat" style="--c: var(--bubblegum); --d: 300ms">7/24</p>
+              <p data-i18n="stat3.label" class="text-lg font-semibold md:text-2xl">Otonom Müşteri Hizmeti</p>
+            </li>
+          </ul>
         </div>
       </div>
     </section>
 
     <!-- SSS -->
-    <section id="sss" class="py-[var(--section-space)]" aria-labelledby="faq-title">
-      <div class="mx-auto w-full max-w-[1440px] px-5 md:px-12 xl:px-24">
-        <h2 id="faq-title" data-reveal data-i18n="faq.title" class="anchor-heading text-center font-display text-5xl font-semibold leading-[0.95] tracking-tighter text-fg md:text-7xl">Sıkça Sorulan Sorular</h2>
+    <section id="sss" class="py-20 md:py-32" aria-labelledby="faq-title">
+      <div class="wrap grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
+        <div class="lg:col-span-4">
+          <h2 id="faq-title" data-reveal data-i18n="faq.title" class="anchor-heading type-h2 text-[clamp(2.75rem,6vw,4.5rem)] lg:sticky lg:top-32">Sıkça Sorulan Sorular</h2>
+        </div>
 
-        <div class="mx-auto mt-48 max-w-4xl border-t border-line md:mt-60">
-          <details data-reveal class="faq border-b border-line" open>
-            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
-              <h3 data-i18n="faq.q1" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">Yapay zeka (AI) chatbot nedir?</h3>
-              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+        <div data-reveal class="flex flex-col gap-3 lg:col-span-8">
+          <details class="faq" open>
+            <summary class="flex items-center justify-between gap-6 px-6 py-5 md:px-8 md:py-6">
+              <h3 data-i18n="faq.q1" class="text-xl font-bold leading-snug tracking-[-0.015em] md:text-2xl">Yapay zeka (AI) chatbot nedir?</h3>
+              <span class="faq-icon flex h-11 w-11 flex-none items-center justify-center rounded-full" aria-hidden="true">
                 <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
               </span>
             </summary>
-            <div class="faq-answer pb-12 pe-20 md:pb-16">
-              <p data-i18n="faq.a1" class="max-w-2xl text-lg leading-relaxed text-muted">AI chatbot; web sitenizde, WhatsApp'ta veya Instagram'da müşterilerinizle yapay zeka sayesinde insan gibi yazışan dijital bir asistandır. Hazır kalıp cevaplar yerine soruyu anlar ve işletmenize ait bilgileri kullanarak doğal, doğru yanıtlar üretir.</p>
+            <div class="faq-answer px-6 pb-7 md:px-8 md:pb-8 md:pe-24">
+              <p data-i18n="faq.a1" class="max-w-2xl text-base leading-relaxed md:text-lg">AI chatbot; web sitenizde, WhatsApp'ta veya Instagram'da müşterilerinizle yapay zeka sayesinde insan gibi yazışan dijital bir asistandır. Hazır kalıp cevaplar yerine soruyu anlar ve işletmenize ait bilgileri kullanarak doğal, doğru yanıtlar üretir.</p>
             </div>
           </details>
 
-          <details data-reveal class="faq border-b border-line">
-            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
-              <h3 data-i18n="faq.q2" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">AI chatbot işletmeme ne kazandırır?</h3>
-              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+          <details class="faq">
+            <summary class="flex items-center justify-between gap-6 px-6 py-5 md:px-8 md:py-6">
+              <h3 data-i18n="faq.q2" class="text-xl font-bold leading-snug tracking-[-0.015em] md:text-2xl">AI chatbot işletmeme ne kazandırır?</h3>
+              <span class="faq-icon flex h-11 w-11 flex-none items-center justify-center rounded-full" aria-hidden="true">
                 <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
               </span>
             </summary>
-            <div class="faq-answer pb-12 pe-20 md:pb-16">
-              <p data-i18n="faq.a2" class="max-w-2xl text-lg leading-relaxed text-muted">Müşterilerinize gece gündüz saniyeler içinde yanıt verir, en sık sorulan soruları sizin yerinize cevaplar, potansiyel müşterilerin iletişim bilgilerini toplar ve onları randevuya ya da satışa yönlendirir. Böylece ekibinizin iş yükü azalır, hiçbir mesaj cevapsız kalmaz.</p>
+            <div class="faq-answer px-6 pb-7 md:px-8 md:pb-8 md:pe-24">
+              <p data-i18n="faq.a2" class="max-w-2xl text-base leading-relaxed md:text-lg">Müşterilerinize gece gündüz saniyeler içinde yanıt verir, en sık sorulan soruları sizin yerinize cevaplar, potansiyel müşterilerin iletişim bilgilerini toplar ve onları randevuya ya da satışa yönlendirir. Böylece ekibinizin iş yükü azalır, hiçbir mesaj cevapsız kalmaz.</p>
             </div>
           </details>
 
-          <details data-reveal class="faq border-b border-line">
-            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
-              <h3 data-i18n="faq.q3" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">Web sitesi nedir, işletmem için neden gereklidir?</h3>
-              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+          <details class="faq">
+            <summary class="flex items-center justify-between gap-6 px-6 py-5 md:px-8 md:py-6">
+              <h3 data-i18n="faq.q3" class="text-xl font-bold leading-snug tracking-[-0.015em] md:text-2xl">Web sitesi nedir, işletmem için neden gereklidir?</h3>
+              <span class="faq-icon flex h-11 w-11 flex-none items-center justify-center rounded-full" aria-hidden="true">
                 <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
               </span>
             </summary>
-            <div class="faq-answer pb-12 pe-20 md:pb-16">
-              <p data-i18n="faq.a3" class="max-w-2xl text-lg leading-relaxed text-muted">Web sitesi, işletmenizin internetteki 7/24 açık vitrinidir. Müşteriler bir firmayla iletişime geçmeden önce genellikle internette araştırma yapar. Hızlı, mobil uyumlu ve güven veren bir web sitesi markanızın itibarını güçlendirir ve Google aramalarından düzenli olarak yeni müşteri kazandırır.</p>
+            <div class="faq-answer px-6 pb-7 md:px-8 md:pb-8 md:pe-24">
+              <p data-i18n="faq.a3" class="max-w-2xl text-base leading-relaxed md:text-lg">Web sitesi, işletmenizin internetteki 7/24 açık vitrinidir. Müşteriler bir firmayla iletişime geçmeden önce genellikle internette araştırma yapar. Hızlı, mobil uyumlu ve güven veren bir web sitesi markanızın itibarını güçlendirir ve Google aramalarından düzenli olarak yeni müşteri kazandırır.</p>
             </div>
           </details>
 
-          <details data-reveal class="faq border-b border-line">
-            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
-              <h3 data-i18n="faq.q4" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">Online randevu sistemi nedir?</h3>
-              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+          <details class="faq">
+            <summary class="flex items-center justify-between gap-6 px-6 py-5 md:px-8 md:py-6">
+              <h3 data-i18n="faq.q4" class="text-xl font-bold leading-snug tracking-[-0.015em] md:text-2xl">Online randevu sistemi nedir?</h3>
+              <span class="faq-icon flex h-11 w-11 flex-none items-center justify-center rounded-full" aria-hidden="true">
                 <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
               </span>
             </summary>
-            <div class="faq-answer pb-12 pe-20 md:pb-16">
-              <p data-i18n="faq.a4" class="max-w-2xl text-lg leading-relaxed text-muted">Online randevu sistemi, müşterilerinizin telefon açmadan uygun gün ve saatleri görüp randevusunu 7/24 kendisinin oluşturabildiği bir yazılımdır. Randevular otomatik olarak takviminize işlenir; SMS ve WhatsApp hatırlatmaları sayesinde unutulan randevular ve boş kalan saatler azalır.</p>
+            <div class="faq-answer px-6 pb-7 md:px-8 md:pb-8 md:pe-24">
+              <p data-i18n="faq.a4" class="max-w-2xl text-base leading-relaxed md:text-lg">Online randevu sistemi, müşterilerinizin telefon açmadan uygun gün ve saatleri görüp randevusunu 7/24 kendisinin oluşturabildiği bir yazılımdır. Randevular otomatik olarak takviminize işlenir; SMS ve WhatsApp hatırlatmaları sayesinde unutulan randevular ve boş kalan saatler azalır.</p>
             </div>
           </details>
 
-          <details data-reveal class="faq border-b border-line">
-            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
-              <h3 data-i18n="faq.q5" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">Randevu sistemi hangi işletmeler için uygundur?</h3>
-              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+          <details class="faq">
+            <summary class="flex items-center justify-between gap-6 px-6 py-5 md:px-8 md:py-6">
+              <h3 data-i18n="faq.q5" class="text-xl font-bold leading-snug tracking-[-0.015em] md:text-2xl">Randevu sistemi hangi işletmeler için uygundur?</h3>
+              <span class="faq-icon flex h-11 w-11 flex-none items-center justify-center rounded-full" aria-hidden="true">
                 <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
               </span>
             </summary>
-            <div class="faq-answer pb-12 pe-20 md:pb-16">
-              <p data-i18n="faq.a5" class="max-w-2xl text-lg leading-relaxed text-muted">Klinikler, diş hekimleri, güzellik merkezleri, kuaförler, spor salonları, danışmanlık firmaları, veteriner klinikleri ve restoranlar gibi randevu ya da rezervasyonla çalışan tüm işletmeler için uygundur.</p>
+            <div class="faq-answer px-6 pb-7 md:px-8 md:pb-8 md:pe-24">
+              <p data-i18n="faq.a5" class="max-w-2xl text-base leading-relaxed md:text-lg">Klinikler, diş hekimleri, güzellik merkezleri, kuaförler, spor salonları, danışmanlık firmaları, veteriner klinikleri ve restoranlar gibi randevu ya da rezervasyonla çalışan tüm işletmeler için uygundur.</p>
             </div>
           </details>
 
-          <details data-reveal class="faq border-b border-line">
-            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
-              <h3 data-i18n="faq.q6" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">SEO nedir ve ne kadar sürede sonuç verir?</h3>
-              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+          <details class="faq">
+            <summary class="flex items-center justify-between gap-6 px-6 py-5 md:px-8 md:py-6">
+              <h3 data-i18n="faq.q6" class="text-xl font-bold leading-snug tracking-[-0.015em] md:text-2xl">SEO nedir ve ne kadar sürede sonuç verir?</h3>
+              <span class="faq-icon flex h-11 w-11 flex-none items-center justify-center rounded-full" aria-hidden="true">
                 <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
               </span>
             </summary>
-            <div class="faq-answer pb-12 pe-20 md:pb-16">
-              <p data-i18n="faq.a6" class="max-w-2xl text-lg leading-relaxed text-muted">SEO (arama motoru optimizasyonu), web sitenizin Google'da ilgili aramalarda üst sıralarda görünmesi için yapılan teknik altyapı ve içerik çalışmalarının bütünüdür. Sektördeki rekabete bağlı olarak ilk sonuçlar genellikle 3–6 ay içinde görülmeye başlar ve reklam bütçesi gerektirmeyen kalıcı bir trafik sağlar.</p>
+            <div class="faq-answer px-6 pb-7 md:px-8 md:pb-8 md:pe-24">
+              <p data-i18n="faq.a6" class="max-w-2xl text-base leading-relaxed md:text-lg">SEO (arama motoru optimizasyonu), web sitenizin Google'da ilgili aramalarda üst sıralarda görünmesi için yapılan teknik altyapı ve içerik çalışmalarının bütünüdür. Sektördeki rekabete bağlı olarak ilk sonuçlar genellikle 3–6 ay içinde görülmeye başlar ve reklam bütçesi gerektirmeyen kalıcı bir trafik sağlar.</p>
             </div>
           </details>
 
-          <details data-reveal class="faq border-b border-line">
-            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
-              <h3 data-i18n="faq.q7" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">Web sitem mobil uyumlu ve hızlı olacak mı?</h3>
-              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+          <details class="faq">
+            <summary class="flex items-center justify-between gap-6 px-6 py-5 md:px-8 md:py-6">
+              <h3 data-i18n="faq.q7" class="text-xl font-bold leading-snug tracking-[-0.015em] md:text-2xl">Web sitem mobil uyumlu ve hızlı olacak mı?</h3>
+              <span class="faq-icon flex h-11 w-11 flex-none items-center justify-center rounded-full" aria-hidden="true">
                 <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
               </span>
             </summary>
-            <div class="faq-answer pb-12 pe-20 md:pb-16">
-              <p data-i18n="faq.a7" class="max-w-2xl text-lg leading-relaxed text-muted">Evet. Geliştirdiğimiz tüm web siteleri telefon, tablet ve bilgisayarda kusursuz görünecek şekilde tasarlanır ve Google'ın Core Web Vitals hız ölçütlerine göre optimize edilir.</p>
+            <div class="faq-answer px-6 pb-7 md:px-8 md:pb-8 md:pe-24">
+              <p data-i18n="faq.a7" class="max-w-2xl text-base leading-relaxed md:text-lg">Evet. Geliştirdiğimiz tüm web siteleri telefon, tablet ve bilgisayarda kusursuz görünecek şekilde tasarlanır ve Google'ın Core Web Vitals hız ölçütlerine göre optimize edilir.</p>
             </div>
           </details>
         </div>
@@ -767,32 +1081,32 @@
     </section>
 
     <!-- İletişim -->
-    <section id="iletisim" class="border-t border-line py-[var(--section-space)]" aria-labelledby="contact-title">
-      <div class="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-start gap-y-[10.5rem] px-5 md:px-12 lg:grid-cols-2 lg:gap-x-40 xl:gap-x-60 xl:px-24">
-        <div>
-          <h2 id="contact-title" data-reveal data-i18n="contact.title" class="anchor-heading font-display text-5xl font-semibold leading-[0.95] tracking-tighter text-fg md:text-7xl">Bir Fikriniz mi Var? Gerçeğe Dönüştürelim.</h2>
-          <p data-reveal data-i18n="contact.text" class="mt-[4.5rem] max-w-md text-lg leading-relaxed text-muted">Projenizi dinleyelim, hedeflerinizi birlikte netleştirelim ve işletmenize özel bir yol haritası çıkaralım. İlk görüşme ücretsizdir ve hiçbir yükümlülük getirmez.</p>
+    <section id="iletisim" class="pb-20 pt-4 md:pb-32" aria-labelledby="contact-title">
+      <div class="wrap grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-8">
+        <div class="lg:sticky lg:top-32 lg:col-span-5">
+          <h2 id="contact-title" data-reveal data-i18n="contact.title" class="anchor-heading type-h2 text-[clamp(2.75rem,5.6vw,5.5rem)]">Bir Fikriniz mi Var? Gerçeğe Dönüştürelim.</h2>
+          <p data-reveal data-i18n="contact.text" class="mt-8 max-w-md text-lg leading-relaxed">Projenizi dinleyelim, hedeflerinizi birlikte netleştirelim ve işletmenize özel bir yol haritası çıkaralım. İlk görüşme ücretsizdir ve hiçbir yükümlülük getirmez.</p>
         </div>
 
-        <form id="contact-form" data-reveal data-endpoint="https://script.google.com/macros/s/AKfycbyZbWJmBuAwimK5Nd4O4owvSPlxeqQnxcNCpzeR_S_etzQ19z2pNI7oiOYrcGjEjxVP/exec" class="rounded-3xl border border-line bg-surface p-8 md:p-14" method="post" novalidate aria-labelledby="contact-title">
-          <div class="grid grid-cols-1 gap-y-16">
-            <div>
-              <label for="fullname" data-i18n="form.name" class="mb-6 block text-sm font-medium text-fg">Ad Soyad</label>
+        <form id="contact-form" data-reveal data-endpoint="https://script.google.com/macros/s/AKfycbyZbWJmBuAwimK5Nd4O4owvSPlxeqQnxcNCpzeR_S_etzQ19z2pNI7oiOYrcGjEjxVP/exec" class="form-card p-6 md:p-10 lg:col-span-7 xl:p-12" method="post" novalidate aria-labelledby="contact-title">
+          <div class="grid grid-cols-1 gap-x-5 gap-y-3 md:grid-cols-2">
+            <div class="md:col-span-2">
+              <label for="fullname" data-i18n="form.name" class="mb-2.5 block text-sm font-bold text-fg">Ad Soyad</label>
               <input id="fullname" name="fullname" type="text" class="field" data-i18n-attr="placeholder:form.namePh" placeholder="Adınız ve soyadınız" autocomplete="name" required aria-required="true" aria-describedby="err-fullname">
-              <p id="err-fullname" class="mt-3 min-h-[1.25rem] text-sm text-accent" aria-live="polite"></p>
+              <p id="err-fullname" class="err mt-2 min-h-[1.25rem] text-sm font-semibold" aria-live="polite"></p>
             </div>
             <div>
-              <label for="email" data-i18n="form.email" class="mb-6 block text-sm font-medium text-fg">E-posta</label>
+              <label for="email" data-i18n="form.email" class="mb-2.5 block text-sm font-bold text-fg">E-posta</label>
               <input id="email" name="email" type="email" dir="ltr" class="field rtl:text-right" data-i18n-attr="placeholder:form.emailPh" placeholder="ornek@firma.com" autocomplete="email" inputmode="email" required aria-required="true" aria-describedby="err-email">
-              <p id="err-email" class="mt-3 min-h-[1.25rem] text-sm text-accent" aria-live="polite"></p>
+              <p id="err-email" class="err mt-2 min-h-[1.25rem] text-sm font-semibold" aria-live="polite"></p>
             </div>
             <div>
-              <label for="phone" data-i18n="form.phone" class="mb-6 block text-sm font-medium text-fg">Telefon</label>
+              <label for="phone" data-i18n="form.phone" class="mb-2.5 block text-sm font-bold text-fg">Telefon</label>
               <input id="phone" name="phone" type="tel" dir="ltr" class="field rtl:text-right" data-i18n-attr="placeholder:form.phonePh" placeholder="0532 123 45 67" autocomplete="tel" inputmode="tel" required aria-required="true" aria-describedby="err-phone">
-              <p id="err-phone" class="mt-3 min-h-[1.25rem] text-sm text-accent" aria-live="polite"></p>
+              <p id="err-phone" class="err mt-2 min-h-[1.25rem] text-sm font-semibold" aria-live="polite"></p>
             </div>
-            <div>
-              <label for="service" data-i18n="form.service" class="mb-6 block text-sm font-medium text-fg">İlgilendiğiniz Hizmet</label>
+            <div class="md:col-span-2">
+              <label for="service" data-i18n="form.service" class="mb-2.5 block text-sm font-bold text-fg">İlgilendiğiniz Hizmet</label>
               <div class="relative">
                 <select id="service" name="service" class="field is-empty" required aria-required="true" aria-describedby="err-service">
                   <option value="" selected disabled data-i18n="form.servicePh">Bir hizmet seçin</option>
@@ -801,27 +1115,27 @@
                   <option value="randevu" data-i18n="opt.booking">Akıllı Randevu Sistemi</option>
                   <option value="ai" data-i18n="opt.ai">Yapay Zeka Chatbot</option>
                 </select>
-                <i data-lucide="chevron-down" class="pointer-events-none absolute end-5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"></i>
+                <i data-lucide="chevron-down" class="pointer-events-none absolute end-5 top-1/2 h-4 w-4 -translate-y-1/2 text-fg"></i>
               </div>
-              <p id="err-service" class="mt-3 min-h-[1.25rem] text-sm text-accent" aria-live="polite"></p>
+              <p id="err-service" class="err mt-2 min-h-[1.25rem] text-sm font-semibold" aria-live="polite"></p>
             </div>
-            <div>
-              <label for="message" data-i18n="form.message" class="mb-6 block text-sm font-medium text-fg">Mesajınız</label>
+            <div class="md:col-span-2">
+              <label for="message" data-i18n="form.message" class="mb-2.5 block text-sm font-bold text-fg">Mesajınız</label>
               <textarea id="message" name="message" rows="4" class="field" data-i18n-attr="placeholder:form.messagePh" placeholder="Projenizden kısaca bahsedin" required aria-required="true" aria-describedby="err-message" data-lenis-prevent></textarea>
-              <p id="err-message" class="mt-3 min-h-[1.25rem] text-sm text-accent" aria-live="polite"></p>
+              <p id="err-message" class="err mt-2 min-h-[1.25rem] text-sm font-semibold" aria-live="polite"></p>
             </div>
           </div>
 
           <input type="text" name="honeypot" tabindex="-1" autocomplete="off" style="display: none;" aria-hidden="true">
 
-          <button id="submit-btn" type="submit" class="btn mt-[4.5rem] w-full px-0">
+          <button id="submit-btn" type="submit" class="btn btn--primary btn--lg mt-4 w-full">
             <span class="btn-label" data-i18n="form.submit">Gönder</span>
             <span class="btn-loading" aria-hidden="true" data-i18n="form.sending">Gönderiliyor...</span>
           </button>
 
-          <div class="mt-8 min-h-[1.5rem] text-center text-sm leading-relaxed" role="status" aria-live="polite">
-            <span id="form-status" class="text-accent"></span>
-            <a id="form-wa" href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="mt-3 hidden text-fg underline decoration-line underline-offset-4" data-i18n="status.wa">WhatsApp üzerinden gönderin</a>
+          <div class="mt-6 min-h-[1.5rem] text-center text-sm leading-relaxed" role="status" aria-live="polite">
+            <span id="form-status" class="font-semibold text-fg"></span>
+            <a id="form-wa" href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="mt-3 hidden font-bold text-fg underline decoration-2 underline-offset-4" data-i18n="status.wa">WhatsApp üzerinden gönderin</a>
           </div>
         </form>
       </div>
@@ -829,56 +1143,61 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-line">
-    <div class="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-[4.5rem] px-5 pb-[7.5rem] pt-24 md:flex-row md:px-12 xl:px-24">
-      <p class="text-sm text-muted" data-i18n="footer.copy">© 2026 Asteria Soft. Tüm Hakları Saklıdır.</p>
-      <div class="flex items-center gap-9">
-        <a href="https://instagram.com/asteriasoft" target="_blank" rel="noopener noreferrer" class="icon-link flex h-12 w-12 items-center justify-center rounded-full text-muted/60" data-i18n-attr="aria-label:aria.instagram" aria-label="Asteria Soft Instagram hesabı">
-          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><line x1="17.6" y1="6.4" x2="17.61" y2="6.4"/></svg>
+  <footer class="pb-32 md:pb-10">
+    <div class="wrap">
+      <div class="flex flex-col items-center justify-between gap-6 border-t-2 border-line pt-8 md:flex-row md:pr-24">
+        <a href="#top" dir="ltr" class="logo flex-none" data-i18n-attr="aria-label:aria.home" aria-label="Asteria Soft ana sayfa">
+          <img src="logo-transparent.png" alt="asteria.soft" width="344" height="164" class="h-10 w-auto" loading="lazy">
         </a>
-        <a href="https://www.linkedin.com/company/asteriasoft" target="_blank" rel="noopener noreferrer" class="icon-link flex h-12 w-12 items-center justify-center rounded-full text-muted/60" data-i18n-attr="aria-label:aria.linkedin" aria-label="Asteria Soft LinkedIn sayfası">
-          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="icon-link flex h-12 w-12 items-center justify-center rounded-full text-muted/60" data-i18n-attr="aria-label:aria.whatsapp" aria-label="WhatsApp üzerinden bize yazın">
-          <svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-        </a>
+        <p class="text-sm font-medium" data-i18n="footer.copy">© 2026 Asteria Soft. Tüm Hakları Saklıdır.</p>
+        <div class="flex items-center gap-2">
+          <a href="https://instagram.com/asteriasoft" target="_blank" rel="noopener noreferrer" class="icon-link flex h-12 w-12 items-center justify-center" data-i18n-attr="aria-label:aria.instagram" aria-label="Asteria Soft Instagram hesabı">
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><line x1="17.6" y1="6.4" x2="17.61" y2="6.4"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/asteriasoft" target="_blank" rel="noopener noreferrer" class="icon-link flex h-12 w-12 items-center justify-center" data-i18n-attr="aria-label:aria.linkedin" aria-label="Asteria Soft LinkedIn sayfası">
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="icon-link flex h-12 w-12 items-center justify-center" data-i18n-attr="aria-label:aria.whatsapp" aria-label="WhatsApp üzerinden bize yazın">
+            <svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </footer>
 
   <!-- WhatsApp (sohbet butonunun hemen üstünde durur) -->
-  <a id="wa-float" href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="icon-link fixed bottom-24 right-6 z-[999] flex h-14 w-14 items-center justify-center rounded-full bg-surface text-fg" data-i18n-attr="aria-label:aria.whatsapp" aria-label="WhatsApp üzerinden bize yazın">
+  <a id="wa-float" href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="icon-link fixed bottom-24 right-6 z-[999] flex h-14 w-14 items-center justify-center" data-i18n-attr="aria-label:aria.whatsapp" aria-label="WhatsApp üzerinden bize yazın">
     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
   </a>
 
   <!-- asteria.soft AI Chat -->
   <div id="ai-chat" class="ai-chat" data-lenis-prevent>
-    <div id="ai-chat-panel" class="ai-panel fixed bottom-24 right-6 z-[1000] flex flex-col overflow-hidden rounded-3xl font-sans" role="dialog" aria-labelledby="ai-chat-title" inert>
+    <div id="ai-chat-panel" class="ai-panel fixed bottom-24 right-6 z-[1000] flex flex-col overflow-hidden rounded-[2rem] font-sans" role="dialog" aria-labelledby="ai-chat-title" inert>
       <div class="ai-line flex items-center gap-3 border-b px-4 py-3.5">
-        <span class="ai-avatar flex h-9 w-9 flex-none items-center justify-center rounded-full" aria-hidden="true">
-          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+        <span class="ai-avatar flex h-10 w-10 flex-none items-center justify-center rounded-full" aria-hidden="true">
+          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
         </span>
         <div class="min-w-0 flex-1">
-          <p id="ai-chat-title" dir="ltr" class="font-display text-[0.95rem] font-semibold leading-tight text-white rtl:text-right">asteria.soft AI</p>
-          <p class="mt-1 flex items-center gap-2 text-xs text-white/55"><span class="ai-online" aria-hidden="true"></span><span data-chat-i18n="online">Çevrimiçi</span></p>
+          <p id="ai-chat-title" dir="ltr" class="ai-strong font-display text-base font-extrabold leading-tight rtl:text-right">asteria.soft AI</p>
+          <p class="ai-sub mt-1 flex items-center gap-2 text-xs font-medium"><span class="ai-online" aria-hidden="true"></span><span data-chat-i18n="online">Çevrimiçi</span></p>
         </div>
         <button id="ai-chat-close" type="button" class="ai-icon-btn flex h-9 w-9 flex-none items-center justify-center rounded-full" aria-label="Sohbeti kapat">
-          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
       </div>
       <div id="ai-chat-messages" class="ai-messages flex-1 overflow-y-auto px-4 py-5" role="log" aria-live="polite" data-lenis-prevent></div>
       <form id="ai-chat-form" class="ai-line flex items-center gap-2 border-t p-3" autocomplete="off">
         <input id="ai-chat-input" type="text" maxlength="500" enterkeyhint="send" class="ai-input h-11 min-w-0 flex-1 rounded-full px-4 text-base" placeholder="Mesajınızı yazın..." aria-label="Mesajınızı yazın...">
         <button id="ai-chat-send" type="submit" class="ai-send flex h-11 w-11 flex-none items-center justify-center rounded-full" aria-label="Gönder" disabled>
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
         </button>
       </form>
     </div>
 
     <button id="ai-chat-toggle" type="button" class="ai-toggle fixed bottom-6 right-6 z-[1000] h-14 w-14 rounded-full" aria-expanded="false" aria-controls="ai-chat-panel" aria-label="Sohbeti aç">
       <span class="ai-toggle-face relative flex h-full w-full items-center justify-center rounded-full">
-        <svg class="ai-toggle-icon ai-icon-chat absolute h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
-        <svg class="ai-toggle-icon ai-icon-close absolute h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        <svg class="ai-toggle-icon ai-icon-chat absolute h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg>
+        <svg class="ai-toggle-icon ai-icon-close absolute h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
       </span>
     </button>
   </div>
@@ -2291,6 +2610,30 @@
       new MutationObserver(applyTexts).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
       applyTexts();
       updateSendState();
+    })();
+  </script>
+
+  <!-- AI kartındaki "Sohbeti deneyin" butonu: mevcut sohbet düğmesini tetikler, sohbet koduna dokunmaz -->
+  <script>
+    (function () {
+      var toggle = document.getElementById('ai-chat-toggle');
+      var buttons = document.querySelectorAll('[data-chat-open]');
+      if (!toggle || !buttons.length) return;
+      var LABELS = { tr: 'Sohbeti deneyin', en: 'Try the chat', de: 'Chat ausprobieren', ar: 'جرّب المحادثة', es: 'Prueba el chat' };
+
+      function syncLabels() {
+        var label = LABELS[document.documentElement.lang] || LABELS.tr;
+        buttons.forEach(function (btn) { btn.querySelector('[data-chat-open-label]').textContent = label; });
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (toggle.getAttribute('aria-expanded') !== 'true') toggle.click();
+        });
+      });
+
+      new MutationObserver(syncLabels).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+      syncLabels();
     })();
   </script>
 </body>
