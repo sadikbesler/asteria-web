@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr" class="no-js" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asteria Soft | Web Tasarım, SEO ve Yapay Zeka Ajansı</title>
+  <meta name="description" content="İşletmenizi geleceğe taşıyın. Asteria Soft ile premium web tasarım, veri odaklı SEO, akıllı randevu sistemleri ve AI chatbot çözümleri.">
+  <meta name="keywords" content="web tasarım, seo ajansı, yapay zeka chatbot, randevu sistemi yazılımı, dijital ajans">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Asteria Soft">
+  <meta name="theme-color" content="#050505">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="canonical" href="https://www.asteria.soft">
+  <link rel="alternate" hreflang="tr" href="https://www.asteria.soft">
+  <link rel="alternate" hreflang="en" href="https://www.asteria.soft/?lang=en">
+  <link rel="alternate" hreflang="de" href="https://www.asteria.soft/?lang=de">
+  <link rel="alternate" hreflang="ar" href="https://www.asteria.soft/?lang=ar">
+  <link rel="alternate" hreflang="es" href="https://www.asteria.soft/?lang=es">
+  <link rel="alternate" hreflang="x-default" href="https://www.asteria.soft">
+
+  <meta property="og:title" content="Asteria Soft | Web Tasarım, SEO ve Yapay Zeka Ajansı">
+  <meta property="og:description" content="İşletmenizi geleceğe taşıyın. Asteria Soft ile premium web tasarım, veri odaklı SEO, akıllı randevu sistemleri ve AI chatbot çözümleri.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.asteria.soft">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Dünyayı saran dijital ağ bağlantılarını gösteren görsel">
+  <meta property="og:site_name" content="Asteria Soft">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:locale:alternate" content="ar_AR">
+  <meta property="og:locale:alternate" content="es_ES">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Asteria Soft | Web Tasarım, SEO ve Yapay Zeka Ajansı">
+  <meta name="twitter:description" content="İşletmenizi geleceğe taşıyın. Asteria Soft ile premium web tasarım, veri odaklı SEO, akıllı randevu sistemleri ve AI chatbot çözümleri.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23050505'/%3E%3Ctext x='29' y='44' text-anchor='middle' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='40' fill='%23F5F5F7'%3Ea%3C/text%3E%3Ccircle cx='47' cy='41' r='4.5' fill='%23DDD6FE'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&amp;family=Inter:wght@400;500&amp;family=Syne:wght@500;600;700&amp;display=swap" rel="stylesheet">
+
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.className = d.className.replace('no-js', 'js');
+      var theme = 'dark';
+      var lang = null;
+      try { theme = localStorage.getItem('asteria-theme') === 'light' ? 'light' : 'dark'; } catch (e) {}
+      try { lang = new URLSearchParams(location.search).get('lang') || localStorage.getItem('asteria-lang'); } catch (e) {}
+      d.setAttribute('data-theme', theme);
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute('content', theme === 'light' ? '#F7F7F8' : '#050505');
+      if (lang && /^(en|de|ar|es)$/.test(lang)) {
+        d.lang = lang;
+        d.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      }
+    })();
+  </script>
+
+  <style>
+    :root,
+    :root[data-theme="dark"] {
+      --canvas: 5 5 5;
+      --surface: 18 18 18;
+      --fg: 245 245 247;
+      --muted: 161 161 170;
+      --accent: 221 214 254;
+      --placeholder: 82 82 91;
+      --line: rgba(255, 255, 255, 0.1);
+      --line-hover: rgba(221, 214, 254, 0.4);
+      color-scheme: dark;
+    }
+    :root[data-theme="light"] {
+      --canvas: 247 247 248;
+      --surface: 255 255 255;
+      --fg: 10 10 10;
+      --muted: 113 113 122;
+      --accent: 109 91 208;
+      --placeholder: 161 161 170;
+      --line: rgba(0, 0, 0, 0.1);
+      --line-hover: rgba(109, 91, 208, 0.45);
+      color-scheme: light;
+    }
+    :root { --section-space: 21rem; }
+    @media (min-width: 768px) {
+      :root { --section-space: 30rem; }
+    }
+
+    *, *::before, *::after { box-shadow: none !important; }
+    .theme-switching *, .theme-switching *::before, .theme-switching *::after { transition: none !important; }
+
+    html {
+      background: rgb(var(--canvas));
+      -webkit-text-size-adjust: 100%;
+      scrollbar-gutter: stable;
+    }
+    body {
+      background: rgb(var(--canvas));
+      color: rgb(var(--muted));
+      font-family: 'Inter', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    html.js body { visibility: hidden; animation: reveal-failsafe 0s linear 3s forwards; }
+    html.js.is-ready body { visibility: visible; animation: none; }
+    @keyframes reveal-failsafe { to { visibility: visible; } }
+
+    h1, h2, h3 {
+      font-family: 'Syne', 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, sans-serif;
+      color: rgb(var(--fg));
+      overflow-wrap: break-word;
+    }
+    :lang(de) .bento h3 { -webkit-hyphens: auto; hyphens: auto; }
+    [dir="rtl"] body, [dir="rtl"] body * { letter-spacing: 0 !important; }
+    [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 { line-height: 1.35; }
+    [dir="rtl"] .flip-rtl { transform: scaleX(-1); }
+
+    ::selection { background: rgb(var(--accent)); color: rgb(var(--canvas)); }
+    a, button, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
+    a, button, summary { touch-action: manipulation; }
+    a:focus-visible, button:focus-visible, select:focus-visible, summary:focus-visible { outline: 1px solid rgb(var(--accent)); outline-offset: 4px; }
+    .anchor-heading { scroll-margin-top: 12rem; }
+
+    /* Lenis */
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+    .lenis.lenis-smooth iframe { pointer-events: none; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      height: 3.75rem;
+      padding: 0 5.25rem;
+      border: 1px solid var(--line);
+      border-radius: 9999px;
+      background: rgb(var(--surface));
+      color: rgb(var(--fg));
+      font-size: 0.9375rem;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: border-color 0.7s ease;
+    }
+    .btn--ghost { background: transparent; color: rgb(var(--muted)); }
+    .btn[disabled] { cursor: progress; opacity: 0.6; }
+
+    /* Borders that react on hover */
+    .bento, .icon-link, .icon-btn, .lang-select, .faq-icon { border: 1px solid var(--line); transition: border-color 0.7s ease; }
+    @media (hover: hover) and (pointer: fine) {
+      .btn:hover, .bento:hover, .icon-link:hover, .icon-btn:hover, .lang-select:hover, .faq summary:hover .faq-icon { border-color: var(--line-hover); }
+    }
+
+    /* Header */
+    .header-bg { opacity: 0; transition: opacity 0.6s ease; }
+    #header.is-scrolled .header-bg { opacity: 1; }
+    .nav-link { color: rgb(var(--muted)); transition: color 0.5s ease; white-space: nowrap; }
+    @media (hover: hover) and (pointer: fine) {
+      .nav-link:hover { color: rgb(var(--fg)); }
+    }
+
+    /* Toggles */
+    .icon-btn svg { transition: opacity 0.4s ease; }
+    #menu-toggle .icon-close { opacity: 0; }
+    .menu-open #menu-toggle .icon-open { opacity: 0; }
+    .menu-open #menu-toggle .icon-close { opacity: 1; }
+    [data-theme="dark"] .theme-icon-moon, [data-theme="light"] .theme-icon-sun { display: none; }
+
+    .lang-select {
+      appearance: none;
+      -webkit-appearance: none;
+      height: 3rem;
+      border-radius: 9999px;
+      background: rgb(var(--surface));
+      color: rgb(var(--fg));
+      padding-inline: 1.25rem 2.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .lang-select option { background: rgb(var(--surface)); color: rgb(var(--fg)); }
+
+    /* Mobile menu */
+    #mobile-menu {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+    }
+    .menu-open #mobile-menu {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.6s ease, visibility 0s;
+    }
+    .m-item {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .menu-open .m-item {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: calc(0.1s * var(--i, 0) + 0.15s);
+    }
+
+    /* FAQ */
+    .faq summary { list-style: none; cursor: pointer; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq[open] .faq-plus, .faq:not([open]) .faq-minus { display: none; }
+    .faq[open] .faq-answer { animation: faq-in 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+    @keyframes faq-in {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Form */
+    .field {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: rgb(var(--canvas));
+      padding: 1.1rem 1.25rem;
+      color: rgb(var(--fg));
+      font-size: 1rem;
+      line-height: 1.5;
+      transition: border-color 0.5s ease;
+    }
+    .field::placeholder { color: rgb(var(--placeholder)); }
+    .field:focus { outline: none; border-color: rgb(var(--accent) / 0.6); }
+    .field[aria-invalid="true"] { border-color: rgb(var(--accent) / 0.85); }
+    select.field { appearance: none; -webkit-appearance: none; padding-inline-end: 3rem; cursor: pointer; }
+    select.field.is-empty { color: rgb(var(--placeholder)); }
+    select.field option { background: rgb(var(--surface)); color: rgb(var(--fg)); }
+    textarea.field { resize: vertical; min-height: 9rem; }
+    input.field:-webkit-autofill,
+    textarea.field:-webkit-autofill,
+    select.field:-webkit-autofill {
+      -webkit-text-fill-color: rgb(var(--fg));
+      caret-color: rgb(var(--fg));
+      transition: background-color 600000s 0s, color 600000s 0s;
+    }
+    .btn-loading { display: none; }
+    .btn.is-loading .btn-label { display: none; }
+    .btn.is-loading .btn-loading { display: inline; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .m-item, #mobile-menu, .header-bg, .icon-btn svg { transition-duration: 0.01ms !important; }
+      .faq[open] .faq-answer { animation: none; }
+    }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      future: { hoverOnlyWhenSupported: true },
+      theme: {
+        extend: {
+          colors: {
+            canvas: 'rgb(var(--canvas) / <alpha-value>)',
+            surface: 'rgb(var(--surface) / <alpha-value>)',
+            fg: 'rgb(var(--fg) / <alpha-value>)',
+            muted: 'rgb(var(--muted) / <alpha-value>)',
+            accent: 'rgb(var(--accent) / <alpha-value>)',
+            line: 'var(--line)'
+          },
+          fontFamily: {
+            display: ['Syne', '"IBM Plex Sans Arabic"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            sans: ['Inter', '"IBM Plex Sans Arabic"', 'ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Asteria Soft",
+    "image": "https://www.asteria.soft/logo.png",
+    "description": "Premium web tasarım, SEO, randevu sistemleri ve yapay zeka çözümleri sunan dijital ajans.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "TR"
+    },
+    "url": "https://www.asteria.soft",
+    "telephone": "+905555555555",
+    "priceRange": "$$",
+    "sameAs": [
+      "https://instagram.com/asteriasoft"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json" id="faq-schema">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "tr",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Yapay zeka (AI) chatbot nedir?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AI chatbot; web sitenizde, WhatsApp'ta veya Instagram'da müşterilerinizle yapay zeka sayesinde insan gibi yazışan dijital bir asistandır. Hazır kalıp cevaplar yerine soruyu anlar ve işletmenize ait bilgileri kullanarak doğal, doğru yanıtlar üretir." }
+      },
+      {
+        "@type": "Question",
+        "name": "AI chatbot işletmeme ne kazandırır?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Müşterilerinize gece gündüz saniyeler içinde yanıt verir, en sık sorulan soruları sizin yerinize cevaplar, potansiyel müşterilerin iletişim bilgilerini toplar ve onları randevuya ya da satışa yönlendirir. Böylece ekibinizin iş yükü azalır, hiçbir mesaj cevapsız kalmaz." }
+      },
+      {
+        "@type": "Question",
+        "name": "Web sitesi nedir, işletmem için neden gereklidir?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Web sitesi, işletmenizin internetteki 7/24 açık vitrinidir. Müşteriler bir firmayla iletişime geçmeden önce genellikle internette araştırma yapar. Hızlı, mobil uyumlu ve güven veren bir web sitesi markanızın itibarını güçlendirir ve Google aramalarından düzenli olarak yeni müşteri kazandırır." }
+      },
+      {
+        "@type": "Question",
+        "name": "Online randevu sistemi nedir?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Online randevu sistemi, müşterilerinizin telefon açmadan uygun gün ve saatleri görüp randevusunu 7/24 kendisinin oluşturabildiği bir yazılımdır. Randevular otomatik olarak takviminize işlenir; SMS ve WhatsApp hatırlatmaları sayesinde unutulan randevular ve boş kalan saatler azalır." }
+      },
+      {
+        "@type": "Question",
+        "name": "Randevu sistemi hangi işletmeler için uygundur?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Klinikler, diş hekimleri, güzellik merkezleri, kuaförler, spor salonları, danışmanlık firmaları, veteriner klinikleri ve restoranlar gibi randevu ya da rezervasyonla çalışan tüm işletmeler için uygundur." }
+      },
+      {
+        "@type": "Question",
+        "name": "SEO nedir ve ne kadar sürede sonuç verir?",
+        "acceptedAnswer": { "@type": "Answer", "text": "SEO (arama motoru optimizasyonu), web sitenizin Google'da ilgili aramalarda üst sıralarda görünmesi için yapılan teknik altyapı ve içerik çalışmalarının bütünüdür. Sektördeki rekabete bağlı olarak ilk sonuçlar genellikle 3–6 ay içinde görülmeye başlar ve reklam bütçesi gerektirmeyen kalıcı bir trafik sağlar." }
+      },
+      {
+        "@type": "Question",
+        "name": "Web sitem mobil uyumlu ve hızlı olacak mı?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Evet. Geliştirdiğimiz tüm web siteleri telefon, tablet ve bilgisayarda kusursuz görünecek şekilde tasarlanır ve Google'ın Core Web Vitals hız ölçütlerine göre optimize edilir." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="overflow-x-hidden bg-canvas font-sans text-muted">
+
+  <a href="#main" data-i18n="aria.skip" class="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-[1001] focus:rounded-full focus:border focus:border-line focus:bg-surface focus:px-6 focus:py-3 focus:text-sm focus:text-fg">İçeriğe geç</a>
+
+  <!-- Header -->
+  <header id="header" class="fixed left-0 top-0 z-50 w-full">
+    <div class="header-bg absolute inset-0 border-b border-line bg-canvas/80 backdrop-blur-md" aria-hidden="true"></div>
+    <div class="relative mx-auto flex h-24 w-full max-w-[1440px] items-center justify-between gap-6 px-5 md:px-12 xl:px-24">
+      <a href="#top" dir="ltr" class="font-display text-2xl font-semibold tracking-tighter" data-i18n-attr="aria-label:aria.home" aria-label="Asteria Soft ana sayfa">
+        <span class="text-fg">asteria.</span><span class="text-accent">soft</span>
+      </a>
+
+      <nav class="hidden items-center text-[0.9375rem] lg:flex lg:gap-10 xl:gap-16 2xl:gap-[7.5rem]" data-i18n-attr="aria-label:aria.mainNav" aria-label="Ana menü">
+        <a href="#hizmetler" class="nav-link" data-i18n="nav.services">Hizmetler</a>
+        <a href="#neden-biz" class="nav-link" data-i18n="nav.why">Neden Biz</a>
+        <a href="#iletisim" class="nav-link" data-i18n="nav.contact">İletişim</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="relative hidden lg:block">
+          <select data-lang-select class="lang-select" data-i18n-attr="aria-label:aria.lang" aria-label="Dil seçimi">
+            <option value="tr">TR</option>
+            <option value="en">EN</option>
+            <option value="de">DE</option>
+            <option value="ar">AR</option>
+            <option value="es">ES</option>
+          </select>
+          <i data-lucide="chevron-down" class="pointer-events-none absolute end-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"></i>
+        </div>
+        <button type="button" data-theme-toggle class="icon-btn relative h-12 w-12 flex-none rounded-full bg-surface" aria-label="Aydınlık temaya geç">
+          <i data-lucide="sun" class="theme-icon-sun absolute left-1/2 top-1/2 h-[18px] w-[18px] -translate-x-1/2 -translate-y-1/2 text-fg"></i>
+          <i data-lucide="moon" class="theme-icon-moon absolute left-1/2 top-1/2 h-[18px] w-[18px] -translate-x-1/2 -translate-y-1/2 text-fg"></i>
+        </button>
+        <a href="#iletisim" class="btn hidden h-12 px-8 text-sm lg:inline-flex xl:px-[4.5rem]" data-i18n="nav.quote">Teklif Al</a>
+        <button id="menu-toggle" type="button" class="icon-btn relative h-12 w-12 flex-none rounded-full bg-surface lg:hidden" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mobile-menu">
+          <i data-lucide="menu" class="icon-open absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 text-fg"></i>
+          <i data-lucide="x" class="icon-close absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 text-fg"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed inset-0 z-40 overflow-y-auto bg-canvas/95 backdrop-blur-xl lg:hidden" aria-hidden="true" inert data-lenis-prevent>
+    <nav class="flex min-h-full flex-col justify-center px-5 pb-32 pt-32 md:px-12" data-i18n-attr="aria-label:aria.mobileNav" aria-label="Mobil menü">
+      <ul class="space-y-12">
+        <li><a href="#hizmetler" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:0" data-i18n="nav.services">Hizmetler</a></li>
+        <li><a href="#neden-biz" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:1" data-i18n="nav.why">Neden Biz</a></li>
+        <li><a href="#iletisim" class="m-item block font-display text-5xl font-semibold tracking-tighter text-fg" style="--i:2" data-i18n="nav.contact">İletişim</a></li>
+      </ul>
+      <a href="#iletisim" class="m-item btn mt-24 w-full" style="--i:3" data-i18n="nav.quote">Teklif Al</a>
+      <div class="m-item relative mt-12" style="--i:4">
+        <select data-lang-select class="lang-select h-[3.75rem] w-full" data-i18n-attr="aria-label:aria.lang" aria-label="Dil seçimi">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="ar">العربية</option>
+          <option value="es">Español</option>
+        </select>
+        <i data-lucide="chevron-down" class="pointer-events-none absolute end-5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"></i>
+      </div>
+    </nav>
+  </div>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section id="top" class="flex min-h-screen items-center py-24" aria-labelledby="hero-title">
+      <div class="mx-auto w-full max-w-[1440px] px-5 text-center md:px-12 xl:px-24">
+        <h1 id="hero-title" data-hero data-i18n="hero.title" class="mx-auto max-w-6xl font-display text-[3.75rem] font-semibold leading-[0.95] tracking-tighter text-fg min-[375px]:text-7xl md:text-8xl xl:text-9xl">İşinizi Geleceğe Taşıyın.</h1>
+        <p data-hero data-i18n="hero.sub" class="mx-auto mt-24 max-w-[60ch] text-lg leading-relaxed text-muted md:text-xl">Web tasarım, SEO ve Yapay Zeka destekli randevu sistemleriyle dijital kimliğinizi A'dan Z'ye yeniden inşa ediyoruz.</p>
+        <div data-hero class="mt-[7.5rem] flex flex-col items-center justify-center gap-12 sm:flex-row">
+          <a href="#iletisim" class="btn w-full max-w-sm sm:w-auto">
+            <span data-i18n="hero.start">Hemen Başlayalım</span>
+            <i data-lucide="arrow-right" class="flip-rtl h-4 w-4"></i>
+          </a>
+          <a href="#hizmetler" class="btn btn--ghost w-full max-w-sm sm:w-auto" data-i18n="hero.explore">Hizmetleri Keşfet</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hizmetler -->
+    <section id="hizmetler" class="py-[var(--section-space)]" aria-labelledby="services-title">
+      <div class="mx-auto w-full max-w-[1440px] px-5 md:px-12 xl:px-24">
+        <h2 id="services-title" data-reveal data-i18n="services.title" class="anchor-heading text-center font-display text-5xl font-semibold leading-[0.95] tracking-tighter text-fg md:text-7xl">Dijital Evriminizi Başlatın</h2>
+
+        <div class="mt-48 grid grid-cols-1 gap-8 md:mt-60 md:grid-cols-2 lg:grid-cols-[3fr_2fr]">
+
+          <article data-reveal class="bento flex min-h-[32rem] flex-col justify-between rounded-3xl bg-surface p-10 md:col-span-2 md:p-14 lg:col-span-1 lg:row-span-2 lg:min-h-[52rem] lg:p-20">
+            <i data-lucide="code-xml" class="h-8 w-8 text-accent"></i>
+            <div class="mt-[7.5rem]">
+              <h3 data-i18n="s1.title" class="max-w-xl font-display text-4xl font-semibold leading-[1] tracking-tighter text-fg md:text-5xl lg:text-6xl">Ultra-Hızlı Web Tasarım</h3>
+              <p data-i18n="s1.text" class="mt-12 max-w-md text-lg leading-relaxed text-muted">Ziyaretçileri müşteriye dönüştüren, saniyeler içinde açılan Awwwards standartlarında web siteleri.</p>
+            </div>
+          </article>
+
+          <article data-reveal class="bento flex min-h-[26rem] flex-col justify-between rounded-3xl bg-surface p-10 md:p-14 lg:p-20">
+            <i data-lucide="trending-up" class="h-8 w-8 text-accent"></i>
+            <div class="mt-[7.5rem]">
+              <h3 data-i18n="s2.title" class="font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg lg:text-4xl">Veri Odaklı SEO</h3>
+              <p data-i18n="s2.text" class="mt-12 text-base leading-relaxed text-muted lg:text-lg">Google'ın dilinden anlıyoruz. İşletmenizi organik aramalarda zirveye taşıyan kalıcı optimizasyon.</p>
+            </div>
+          </article>
+
+          <article data-reveal class="bento flex min-h-[26rem] flex-col justify-between rounded-3xl bg-surface p-10 md:p-14 lg:p-20">
+            <i data-lucide="calendar-clock" class="h-8 w-8 text-accent"></i>
+            <div class="mt-[7.5rem]">
+              <h3 data-i18n="s3.title" class="font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg lg:text-4xl">Akıllı Randevu Sistemleri</h3>
+              <p data-i18n="s3.text" class="mt-12 text-base leading-relaxed text-muted lg:text-lg">7/24 çalışan, SMS ve WhatsApp hatırlatmalı, sıfır hata ile işleyen rezervasyon otomasyonları.</p>
+            </div>
+          </article>
+
+          <article data-reveal class="bento flex min-h-[26rem] flex-col justify-between gap-[7.5rem] rounded-3xl bg-surface p-10 md:col-span-2 md:p-14 lg:flex-row lg:items-end lg:p-20">
+            <div class="flex flex-col justify-between self-stretch">
+              <i data-lucide="brain-circuit" class="h-8 w-8 text-accent"></i>
+              <h3 data-i18n="s4.title" class="mt-[7.5rem] font-display text-3xl font-semibold leading-[1.05] tracking-tighter text-fg md:text-4xl lg:text-5xl">Yapay Zeka Chatbot</h3>
+            </div>
+            <p data-i18n="s4.text" class="max-w-md text-base leading-relaxed text-muted lg:text-lg">Müşterilerinize saniyeler içinde insan doğallığında yanıt veren, satış kapatan akıllı asistanlar.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Neden Biz -->
+    <section id="neden-biz" class="border-y border-line bg-surface py-[var(--section-space)]" aria-labelledby="why-title">
+      <div class="mx-auto w-full max-w-[1440px] px-5 md:px-12 xl:px-24">
+        <h2 id="why-title" data-reveal data-i18n="why.title" class="anchor-heading text-center font-display text-5xl font-semibold leading-[0.95] tracking-tighter text-fg md:text-7xl">Neden Biz?</h2>
+
+        <div class="mt-48 grid grid-cols-1 gap-y-[7.5rem] md:mt-72 lg:grid-cols-3 lg:gap-y-0 lg:divide-x lg:divide-line rtl:divide-x-reverse">
+          <div data-reveal class="text-center lg:px-6">
+            <p data-i18n="stat1.value" dir="ltr" class="whitespace-nowrap font-display text-7xl font-semibold leading-none tracking-tighter text-fg md:text-8xl lg:text-6xl xl:text-7xl 2xl:text-8xl">%99.9</p>
+            <p data-i18n="stat1.label" class="mt-[4.5rem] text-base text-muted md:text-lg">Uptime ve Güvenlik</p>
+          </div>
+          <div data-reveal class="text-center lg:px-6">
+            <p data-i18n="stat2.value" class="whitespace-nowrap font-display text-7xl font-semibold leading-none tracking-tighter text-fg md:text-8xl lg:text-6xl xl:text-7xl 2xl:text-8xl">&lt; 1 Sn</p>
+            <p data-i18n="stat2.label" class="mt-[4.5rem] text-base text-muted md:text-lg">Sayfa Yüklenme Hızı</p>
+          </div>
+          <div data-reveal class="text-center lg:px-6">
+            <p data-i18n="stat3.value" dir="ltr" class="whitespace-nowrap font-display text-7xl font-semibold leading-none tracking-tighter text-fg md:text-8xl lg:text-6xl xl:text-7xl 2xl:text-8xl">7/24</p>
+            <p data-i18n="stat3.label" class="mt-[4.5rem] text-base text-muted md:text-lg">Otonom Müşteri Hizmeti</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SSS -->
+    <section id="sss" class="py-[var(--section-space)]" aria-labelledby="faq-title">
+      <div class="mx-auto w-full max-w-[1440px] px-5 md:px-12 xl:px-24">
+        <h2 id="faq-title" data-reveal data-i18n="faq.title" class="anchor-heading text-center font-display text-5xl font-semibold leading-[0.95] tracking-tighter text-fg md:text-7xl">Sıkça Sorulan Sorular</h2>
+
+        <div class="mx-auto mt-48 max-w-4xl border-t border-line md:mt-60">
+          <details data-reveal class="faq border-b border-line" open>
+            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
+              <h3 data-i18n="faq.q1" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">Yapay zeka (AI) chatbot nedir?</h3>
+              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+                <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
+              </span>
+            </summary>
+            <div class="faq-answer pb-12 pe-20 md:pb-16">
+              <p data-i18n="faq.a1" class="max-w-2xl text-lg leading-relaxed text-muted">AI chatbot; web sitenizde, WhatsApp'ta veya Instagram'da müşterilerinizle yapay zeka sayesinde insan gibi yazışan dijital bir asistandır. Hazır kalıp cevaplar yerine soruyu anlar ve işletmenize ait bilgileri kullanarak doğal, doğru yanıtlar üretir.</p>
+            </div>
+          </details>
+
+          <details data-reveal class="faq border-b border-line">
+            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
+              <h3 data-i18n="faq.q2" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">AI chatbot işletmeme ne kazandırır?</h3>
+              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+                <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
+              </span>
+            </summary>
+            <div class="faq-answer pb-12 pe-20 md:pb-16">
+              <p data-i18n="faq.a2" class="max-w-2xl text-lg leading-relaxed text-muted">Müşterilerinize gece gündüz saniyeler içinde yanıt verir, en sık sorulan soruları sizin yerinize cevaplar, potansiyel müşterilerin iletişim bilgilerini toplar ve onları randevuya ya da satışa yönlendirir. Böylece ekibinizin iş yükü azalır, hiçbir mesaj cevapsız kalmaz.</p>
+            </div>
+          </details>
+
+          <details data-reveal class="faq border-b border-line">
+            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
+              <h3 data-i18n="faq.q3" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">Web sitesi nedir, işletmem için neden gereklidir?</h3>
+              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+                <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
+              </span>
+            </summary>
+            <div class="faq-answer pb-12 pe-20 md:pb-16">
+              <p data-i18n="faq.a3" class="max-w-2xl text-lg leading-relaxed text-muted">Web sitesi, işletmenizin internetteki 7/24 açık vitrinidir. Müşteriler bir firmayla iletişime geçmeden önce genellikle internette araştırma yapar. Hızlı, mobil uyumlu ve güven veren bir web sitesi markanızın itibarını güçlendirir ve Google aramalarından düzenli olarak yeni müşteri kazandırır.</p>
+            </div>
+          </details>
+
+          <details data-reveal class="faq border-b border-line">
+            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
+              <h3 data-i18n="faq.q4" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">Online randevu sistemi nedir?</h3>
+              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+                <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
+              </span>
+            </summary>
+            <div class="faq-answer pb-12 pe-20 md:pb-16">
+              <p data-i18n="faq.a4" class="max-w-2xl text-lg leading-relaxed text-muted">Online randevu sistemi, müşterilerinizin telefon açmadan uygun gün ve saatleri görüp randevusunu 7/24 kendisinin oluşturabildiği bir yazılımdır. Randevular otomatik olarak takviminize işlenir; SMS ve WhatsApp hatırlatmaları sayesinde unutulan randevular ve boş kalan saatler azalır.</p>
+            </div>
+          </details>
+
+          <details data-reveal class="faq border-b border-line">
+            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
+              <h3 data-i18n="faq.q5" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">Randevu sistemi hangi işletmeler için uygundur?</h3>
+              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+                <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
+              </span>
+            </summary>
+            <div class="faq-answer pb-12 pe-20 md:pb-16">
+              <p data-i18n="faq.a5" class="max-w-2xl text-lg leading-relaxed text-muted">Klinikler, diş hekimleri, güzellik merkezleri, kuaförler, spor salonları, danışmanlık firmaları, veteriner klinikleri ve restoranlar gibi randevu ya da rezervasyonla çalışan tüm işletmeler için uygundur.</p>
+            </div>
+          </details>
+
+          <details data-reveal class="faq border-b border-line">
+            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
+              <h3 data-i18n="faq.q6" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">SEO nedir ve ne kadar sürede sonuç verir?</h3>
+              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+                <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
+              </span>
+            </summary>
+            <div class="faq-answer pb-12 pe-20 md:pb-16">
+              <p data-i18n="faq.a6" class="max-w-2xl text-lg leading-relaxed text-muted">SEO (arama motoru optimizasyonu), web sitenizin Google'da ilgili aramalarda üst sıralarda görünmesi için yapılan teknik altyapı ve içerik çalışmalarının bütünüdür. Sektördeki rekabete bağlı olarak ilk sonuçlar genellikle 3–6 ay içinde görülmeye başlar ve reklam bütçesi gerektirmeyen kalıcı bir trafik sağlar.</p>
+            </div>
+          </details>
+
+          <details data-reveal class="faq border-b border-line">
+            <summary class="flex items-center justify-between gap-8 py-12 md:gap-12 md:py-16">
+              <h3 data-i18n="faq.q7" class="font-display text-2xl font-semibold leading-tight tracking-tighter text-fg md:text-3xl">Web sitem mobil uyumlu ve hızlı olacak mı?</h3>
+              <span class="faq-icon flex h-12 w-12 flex-none items-center justify-center rounded-full text-fg" aria-hidden="true">
+                <i data-lucide="plus" class="faq-plus h-4 w-4"></i><i data-lucide="minus" class="faq-minus h-4 w-4"></i>
+              </span>
+            </summary>
+            <div class="faq-answer pb-12 pe-20 md:pb-16">
+              <p data-i18n="faq.a7" class="max-w-2xl text-lg leading-relaxed text-muted">Evet. Geliştirdiğimiz tüm web siteleri telefon, tablet ve bilgisayarda kusursuz görünecek şekilde tasarlanır ve Google'ın Core Web Vitals hız ölçütlerine göre optimize edilir.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- İletişim -->
+    <section id="iletisim" class="border-t border-line py-[var(--section-space)]" aria-labelledby="contact-title">
+      <div class="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-start gap-y-[10.5rem] px-5 md:px-12 lg:grid-cols-2 lg:gap-x-40 xl:gap-x-60 xl:px-24">
+        <div>
+          <h2 id="contact-title" data-reveal data-i18n="contact.title" class="anchor-heading font-display text-5xl font-semibold leading-[0.95] tracking-tighter text-fg md:text-7xl">Bir Fikriniz mi Var? Gerçeğe Dönüştürelim.</h2>
+          <p data-reveal data-i18n="contact.text" class="mt-[4.5rem] max-w-md text-lg leading-relaxed text-muted">Projenizi dinleyelim, hedeflerinizi birlikte netleştirelim ve işletmenize özel bir yol haritası çıkaralım. İlk görüşme ücretsizdir ve hiçbir yükümlülük getirmez.</p>
+        </div>
+
+        <form id="contact-form" data-reveal data-endpoint="" class="rounded-3xl border border-line bg-surface p-8 md:p-14" method="post" novalidate aria-labelledby="contact-title">
+          <div class="grid grid-cols-1 gap-y-16">
+            <div>
+              <label for="fullname" data-i18n="form.name" class="mb-6 block text-sm font-medium text-fg">Ad Soyad</label>
+              <input id="fullname" name="fullname" type="text" class="field" data-i18n-attr="placeholder:form.namePh" placeholder="Adınız ve soyadınız" autocomplete="name" required aria-required="true" aria-describedby="err-fullname">
+              <p id="err-fullname" class="mt-3 min-h-[1.25rem] text-sm text-accent" aria-live="polite"></p>
+            </div>
+            <div>
+              <label for="email" data-i18n="form.email" class="mb-6 block text-sm font-medium text-fg">E-posta</label>
+              <input id="email" name="email" type="email" dir="ltr" class="field rtl:text-right" data-i18n-attr="placeholder:form.emailPh" placeholder="ornek@firma.com" autocomplete="email" inputmode="email" required aria-required="true" aria-describedby="err-email">
+              <p id="err-email" class="mt-3 min-h-[1.25rem] text-sm text-accent" aria-live="polite"></p>
+            </div>
+            <div>
+              <label for="service" data-i18n="form.service" class="mb-6 block text-sm font-medium text-fg">İlgilendiğiniz Hizmet</label>
+              <div class="relative">
+                <select id="service" name="service" class="field is-empty">
+                  <option value="" selected disabled data-i18n="form.servicePh">Bir hizmet seçin</option>
+                  <option value="web" data-i18n="opt.web">Web Tasarım</option>
+                  <option value="seo" data-i18n="opt.seo">SEO Optimizasyonu</option>
+                  <option value="randevu" data-i18n="opt.booking">Akıllı Randevu Sistemi</option>
+                  <option value="ai" data-i18n="opt.ai">Yapay Zeka Chatbot</option>
+                </select>
+                <i data-lucide="chevron-down" class="pointer-events-none absolute end-5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"></i>
+              </div>
+            </div>
+            <div>
+              <label for="message" data-i18n="form.message" class="mb-6 block text-sm font-medium text-fg">Mesajınız</label>
+              <textarea id="message" name="message" rows="4" class="field" data-i18n-attr="placeholder:form.messagePh" placeholder="Projenizden kısaca bahsedin" required aria-required="true" aria-describedby="err-message" data-lenis-prevent></textarea>
+              <p id="err-message" class="mt-3 min-h-[1.25rem] text-sm text-accent" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <input type="text" name="honeypot" tabindex="-1" autocomplete="off" style="display: none;" aria-hidden="true">
+
+          <button id="submit-btn" type="submit" class="btn mt-[4.5rem] w-full px-0">
+            <span class="btn-label" data-i18n="form.submit">Gönder</span>
+            <span class="btn-loading" aria-hidden="true" data-i18n="form.sending">Gönderiliyor...</span>
+          </button>
+
+          <div class="mt-8 min-h-[1.5rem] text-center text-sm leading-relaxed" role="status" aria-live="polite">
+            <span id="form-status" class="text-accent"></span>
+            <a id="form-wa" href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="mt-3 hidden text-fg underline decoration-line underline-offset-4" data-i18n="status.wa">WhatsApp üzerinden gönderin</a>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-line">
+    <div class="mx-auto flex w-full max-w-[1440px] flex-col items-center justify-between gap-[4.5rem] px-5 pb-[7.5rem] pt-24 md:flex-row md:px-12 xl:px-24">
+      <p class="text-sm text-muted" data-i18n="footer.copy">© 2026 Asteria Soft. Tüm Hakları Saklıdır.</p>
+      <div class="flex items-center gap-9">
+        <a href="https://instagram.com/asteriasoft" target="_blank" rel="noopener noreferrer" class="icon-link flex h-12 w-12 items-center justify-center rounded-full text-muted/60" data-i18n-attr="aria-label:aria.instagram" aria-label="Asteria Soft Instagram hesabı">
+          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><line x1="17.6" y1="6.4" x2="17.61" y2="6.4"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/asteriasoft" target="_blank" rel="noopener noreferrer" class="icon-link flex h-12 w-12 items-center justify-center rounded-full text-muted/60" data-i18n-attr="aria-label:aria.linkedin" aria-label="Asteria Soft LinkedIn sayfası">
+          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="icon-link flex h-12 w-12 items-center justify-center rounded-full text-muted/60" data-i18n-attr="aria-label:aria.whatsapp" aria-label="WhatsApp üzerinden bize yazın">
+          <svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp -->
+  <a href="https://wa.me/905555555555" target="_blank" rel="noopener noreferrer" class="icon-link fixed bottom-5 right-5 z-[999] flex h-14 w-14 items-center justify-center rounded-full bg-surface text-fg" data-i18n-attr="aria-label:aria.whatsapp" aria-label="WhatsApp üzerinden bize yazın">
+    <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var root = document.documentElement;
+      var header = document.getElementById('header');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasGSAP = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+      var lenis = null;
+      var motionReady = false;
+      var SITE_URL = 'https://www.asteria.soft';
+
+      function markReady() {
+        root.classList.add('is-ready');
+      }
+
+      function store(key, value) {
+        try { localStorage.setItem(key, value); } catch (e) {}
+      }
+
+      /* ---------- Translations ---------- */
+      var I18N = {
+        tr: {
+          'meta.title': 'Asteria Soft | Web Tasarım, SEO ve Yapay Zeka Ajansı',
+          'meta.description': 'İşletmenizi geleceğe taşıyın. Asteria Soft ile premium web tasarım, veri odaklı SEO, akıllı randevu sistemleri ve AI chatbot çözümleri.',
+          'og.locale': 'tr_TR',
+          'aria.menuOpen': 'Menüyü aç',
+          'aria.menuClose': 'Menüyü kapat',
+          'aria.toLight': 'Aydınlık temaya geç',
+          'aria.toDark': 'Koyu temaya geç',
+          'err.name': 'Lütfen adınızı ve soyadınızı yazın.',
+          'err.emailRequired': 'E-posta adresi zorunludur.',
+          'err.emailInvalid': 'Lütfen geçerli bir e-posta adresi girin.',
+          'err.message': 'Lütfen projenizden kısaca bahsedin (en az 10 karakter).',
+          'status.sent': 'Teşekkürler. Mesajınız bize ulaştı; en kısa sürede dönüş yapacağız.',
+          'status.ready': 'Mesajınız hazır. Göndermeyi tamamlamak için:',
+          'status.error': 'Mesajınız gönderilemedi. Lütfen tekrar deneyin.',
+          'wa.greeting': 'Merhaba Asteria Soft,',
+          'wa.name': 'Ad Soyad',
+          'wa.email': 'E-posta',
+          'wa.service': 'Hizmet',
+          'wa.none': 'Belirtilmedi'
+        },
+        en: {
+          'meta.title': 'Asteria Soft | Web Design, SEO & AI Agency',
+          'meta.description': 'Take your business into the future. Premium web design, data-driven SEO, smart booking systems and AI chatbot solutions with Asteria Soft.',
+          'og.locale': 'en_US',
+          'aria.skip': 'Skip to content',
+          'aria.home': 'Asteria Soft home',
+          'aria.mainNav': 'Main menu',
+          'aria.mobileNav': 'Mobile menu',
+          'aria.menuOpen': 'Open menu',
+          'aria.menuClose': 'Close menu',
+          'aria.toLight': 'Switch to light theme',
+          'aria.toDark': 'Switch to dark theme',
+          'aria.lang': 'Language',
+          'aria.whatsapp': 'Message us on WhatsApp',
+          'aria.instagram': 'Asteria Soft on Instagram',
+          'aria.linkedin': 'Asteria Soft on LinkedIn',
+          'nav.services': 'Services',
+          'nav.why': 'Why Us',
+          'nav.contact': 'Contact',
+          'nav.quote': 'Get a Quote',
+          'hero.title': 'Take Your Business Into the Future.',
+          'hero.sub': 'We rebuild your digital identity from A to Z with web design, SEO and AI-powered booking systems.',
+          'hero.start': "Let's Get Started",
+          'hero.explore': 'Explore Services',
+          'services.title': 'Start Your Digital Evolution',
+          's1.title': 'Ultra-Fast Web Design',
+          's1.text': 'Websites built to Awwwards standards that load in seconds and turn visitors into customers.',
+          's2.title': 'Data-Driven SEO',
+          's2.text': "We speak Google's language. Lasting optimization that takes your business to the top of organic search.",
+          's3.title': 'Smart Booking Systems',
+          's3.text': 'Booking automation that runs 24/7 with SMS and WhatsApp reminders and zero errors.',
+          's4.title': 'AI Chatbot',
+          's4.text': 'Smart assistants that reply to your customers in seconds, as naturally as a human, and close sales.',
+          'why.title': 'Why Us?',
+          'stat1.value': '99.9%',
+          'stat1.label': 'Uptime & Security',
+          'stat2.value': '< 1 s',
+          'stat2.label': 'Page Load Time',
+          'stat3.value': '24/7',
+          'stat3.label': 'Autonomous Customer Service',
+          'faq.title': 'Frequently Asked Questions',
+          'faq.q1': 'What is an AI chatbot?',
+          'faq.a1': 'An AI chatbot is a digital assistant that chats with your customers like a human on your website, WhatsApp or Instagram, powered by artificial intelligence. Instead of canned replies, it understands the question and uses your business information to give natural, accurate answers.',
+          'faq.q2': 'How does an AI chatbot benefit my business?',
+          'faq.a2': "It replies to your customers within seconds, day and night, answers the most common questions for you, collects contact details from potential customers and guides them toward a booking or a purchase. Your team's workload drops and no message goes unanswered.",
+          'faq.q3': 'What is a website and why does my business need one?',
+          'faq.a3': "A website is your business's storefront on the internet, open 24/7. Customers usually research a company online before getting in touch. A fast, mobile-friendly and trustworthy website strengthens your brand's reputation and consistently brings in new customers from Google searches.",
+          'faq.q4': 'What is an online booking system?',
+          'faq.a4': 'An online booking system is software that lets your customers see available days and times and book their own appointments 24/7 without calling. Appointments are added to your calendar automatically, and SMS and WhatsApp reminders reduce forgotten appointments and empty slots.',
+          'faq.q5': 'Which businesses is a booking system suitable for?',
+          'faq.a5': 'It suits any business that works with appointments or reservations, such as clinics, dentists, beauty centers, hair salons, gyms, consultancies, veterinary clinics and restaurants.',
+          'faq.q6': 'What is SEO and how long does it take to see results?',
+          'faq.a6': 'SEO (search engine optimization) is the combination of technical and content work that helps your website rank higher in relevant Google searches. Depending on competition in your industry, the first results usually appear within 3–6 months and deliver lasting traffic without an ad budget.',
+          'faq.q7': 'Will my website be mobile-friendly and fast?',
+          'faq.a7': "Yes. Every website we build is designed to look flawless on phones, tablets and desktops, and is optimized for Google's Core Web Vitals speed metrics.",
+          'contact.title': "Have an Idea? Let's Make It Real.",
+          'contact.text': "Let's hear about your project, clarify your goals together and map out a plan tailored to your business. The first meeting is free and comes with no obligation.",
+          'form.name': 'Full Name',
+          'form.namePh': 'Your full name',
+          'form.email': 'Email',
+          'form.emailPh': 'name@company.com',
+          'form.service': 'Service of Interest',
+          'form.servicePh': 'Select a service',
+          'opt.web': 'Web Design',
+          'opt.seo': 'SEO Optimization',
+          'opt.booking': 'Smart Booking System',
+          'opt.ai': 'AI Chatbot',
+          'form.message': 'Your Message',
+          'form.messagePh': 'Tell us briefly about your project',
+          'form.submit': 'Send',
+          'form.sending': 'Sending...',
+          'err.name': 'Please enter your full name.',
+          'err.emailRequired': 'Email address is required.',
+          'err.emailInvalid': 'Please enter a valid email address.',
+          'err.message': 'Please tell us briefly about your project (at least 10 characters).',
+          'status.sent': "Thank you. We've received your message and will get back to you shortly.",
+          'status.ready': 'Your message is ready. To finish sending it:',
+          'status.wa': 'Send via WhatsApp',
+          'status.error': "Your message couldn't be sent. Please try again.",
+          'wa.greeting': 'Hello Asteria Soft,',
+          'wa.name': 'Name',
+          'wa.email': 'Email',
+          'wa.service': 'Service',
+          'wa.none': 'Not specified',
+          'footer.copy': '© 2026 Asteria Soft. All rights reserved.'
+        },
+        de: {
+          'meta.title': 'Asteria Soft | Agentur für Webdesign, SEO & KI',
+          'meta.description': 'Bringen Sie Ihr Unternehmen in die Zukunft. Premium-Webdesign, datenbasiertes SEO, intelligente Terminsysteme und KI-Chatbot-Lösungen von Asteria Soft.',
+          'og.locale': 'de_DE',
+          'aria.skip': 'Zum Inhalt springen',
+          'aria.home': 'Asteria Soft Startseite',
+          'aria.mainNav': 'Hauptmenü',
+          'aria.mobileNav': 'Mobiles Menü',
+          'aria.menuOpen': 'Menü öffnen',
+          'aria.menuClose': 'Menü schließen',
+          'aria.toLight': 'Zum hellen Design wechseln',
+          'aria.toDark': 'Zum dunklen Design wechseln',
+          'aria.lang': 'Sprache',
+          'aria.whatsapp': 'Schreiben Sie uns auf WhatsApp',
+          'aria.instagram': 'Asteria Soft auf Instagram',
+          'aria.linkedin': 'Asteria Soft auf LinkedIn',
+          'nav.services': 'Leistungen',
+          'nav.why': 'Warum wir',
+          'nav.contact': 'Kontakt',
+          'nav.quote': 'Angebot',
+          'hero.title': 'Bringen Sie Ihr Geschäft in die Zukunft.',
+          'hero.sub': 'Mit Webdesign, SEO und KI-gestützten Terminsystemen bauen wir Ihre digitale Identität von A bis Z neu auf.',
+          'hero.start': 'Jetzt starten',
+          'hero.explore': 'Leistungen ansehen',
+          'services.title': 'Starten Sie Ihre digitale Evolution',
+          's1.title': 'Ultra-schnelles Webdesign',
+          's1.text': 'Websites auf Awwwards-Niveau, die in Sekunden laden und Besucher zu Kunden machen.',
+          's2.title': 'SEO auf Datenbasis',
+          's2.text': 'Wir sprechen die Sprache von Google. Nachhaltige Optimierung, die Ihr Unternehmen in der organischen Suche nach oben bringt.',
+          's3.title': 'Intelligente Terminsysteme',
+          's3.text': 'Buchungsautomatisierung rund um die Uhr – mit SMS- und WhatsApp-Erinnerungen und ohne Fehler.',
+          's4.title': 'KI-Chatbot',
+          's4.text': 'Intelligente Assistenten, die Ihren Kunden in Sekunden so natürlich wie ein Mensch antworten und Verkäufe abschließen.',
+          'why.title': 'Warum wir?',
+          'stat1.value': '99,9 %',
+          'stat1.label': 'Verfügbarkeit & Sicherheit',
+          'stat2.value': '< 1 s',
+          'stat2.label': 'Ladezeit',
+          'stat3.value': '24/7',
+          'stat3.label': 'Autonomer Kundenservice',
+          'faq.title': 'Häufig gestellte Fragen',
+          'faq.q1': 'Was ist ein KI-Chatbot?',
+          'faq.a1': 'Ein KI-Chatbot ist ein digitaler Assistent, der mithilfe künstlicher Intelligenz auf Ihrer Website, in WhatsApp oder auf Instagram wie ein Mensch mit Ihren Kunden schreibt. Statt vorgefertigter Antworten versteht er die Frage und nutzt die Informationen Ihres Unternehmens für natürliche, korrekte Antworten.',
+          'faq.q2': 'Welche Vorteile bringt ein KI-Chatbot meinem Unternehmen?',
+          'faq.a2': 'Er antwortet Ihren Kunden rund um die Uhr innerhalb von Sekunden, beantwortet die häufigsten Fragen für Sie, erfasst die Kontaktdaten potenzieller Kunden und führt sie zu einem Termin oder Kauf. So sinkt die Arbeitslast Ihres Teams, und keine Nachricht bleibt unbeantwortet.',
+          'faq.q3': 'Was ist eine Website und warum braucht mein Unternehmen eine?',
+          'faq.a3': 'Eine Website ist das rund um die Uhr geöffnete Schaufenster Ihres Unternehmens im Internet. Kunden informieren sich meist online, bevor sie ein Unternehmen kontaktieren. Eine schnelle, mobilfreundliche und vertrauenswürdige Website stärkt den Ruf Ihrer Marke und bringt über die Google-Suche kontinuierlich neue Kunden.',
+          'faq.q4': 'Was ist ein Online-Buchungssystem für Termine?',
+          'faq.a4': 'Ein Online-Buchungssystem ist eine Software, mit der Ihre Kunden ohne Anruf freie Tage und Uhrzeiten sehen und ihre Termine rund um die Uhr selbst buchen können. Termine werden automatisch in Ihren Kalender eingetragen, und Erinnerungen per SMS und WhatsApp reduzieren vergessene Termine und leere Zeitfenster.',
+          'faq.q5': 'Für welche Unternehmen eignet sich ein Buchungssystem?',
+          'faq.a5': 'Es eignet sich für alle Unternehmen, die mit Terminen oder Reservierungen arbeiten, etwa Kliniken, Zahnarztpraxen, Kosmetikstudios, Friseursalons, Fitnessstudios, Beratungsfirmen, Tierarztpraxen und Restaurants.',
+          'faq.q6': 'Was ist SEO und wann zeigen sich Ergebnisse?',
+          'faq.a6': 'SEO (Suchmaschinenoptimierung) umfasst alle technischen und inhaltlichen Maßnahmen, mit denen Ihre Website bei relevanten Google-Suchen weiter oben erscheint. Je nach Wettbewerb in Ihrer Branche zeigen sich erste Ergebnisse meist innerhalb von 3–6 Monaten – für dauerhaften Traffic ohne Werbebudget.',
+          'faq.q7': 'Wird meine Website mobilfreundlich und schnell sein?',
+          'faq.a7': 'Ja. Jede Website, die wir entwickeln, wird so gestaltet, dass sie auf Smartphones, Tablets und Desktops einwandfrei aussieht, und für die Core Web Vitals von Google optimiert.',
+          'contact.title': 'Haben Sie eine Idee? Machen wir sie wahr.',
+          'contact.text': 'Erzählen Sie uns von Ihrem Projekt: Gemeinsam schärfen wir Ihre Ziele und erstellen einen maßgeschneiderten Fahrplan für Ihr Unternehmen. Das Erstgespräch ist kostenlos und unverbindlich.',
+          'form.name': 'Vor- und Nachname',
+          'form.namePh': 'Ihr vollständiger Name',
+          'form.email': 'E-Mail',
+          'form.emailPh': 'name@firma.de',
+          'form.service': 'Gewünschte Leistung',
+          'form.servicePh': 'Leistung auswählen',
+          'opt.web': 'Webdesign',
+          'opt.seo': 'SEO-Optimierung',
+          'opt.booking': 'Intelligentes Terminsystem',
+          'opt.ai': 'KI-Chatbot',
+          'form.message': 'Ihre Nachricht',
+          'form.messagePh': 'Erzählen Sie kurz von Ihrem Projekt',
+          'form.submit': 'Senden',
+          'form.sending': 'Wird gesendet...',
+          'err.name': 'Bitte geben Sie Ihren Vor- und Nachnamen ein.',
+          'err.emailRequired': 'Die E-Mail-Adresse ist erforderlich.',
+          'err.emailInvalid': 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+          'err.message': 'Bitte beschreiben Sie kurz Ihr Projekt (mindestens 10 Zeichen).',
+          'status.sent': 'Vielen Dank. Ihre Nachricht ist bei uns angekommen – wir melden uns in Kürze.',
+          'status.ready': 'Ihre Nachricht ist bereit. Zum Absenden:',
+          'status.wa': 'Über WhatsApp senden',
+          'status.error': 'Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',
+          'wa.greeting': 'Hallo Asteria Soft,',
+          'wa.name': 'Name',
+          'wa.email': 'E-Mail',
+          'wa.service': 'Leistung',
+          'wa.none': 'Nicht angegeben',
+          'footer.copy': '© 2026 Asteria Soft. Alle Rechte vorbehalten.'
+        },
+        ar: {
+          'meta.title': 'Asteria Soft | وكالة تصميم مواقع وSEO وذكاء اصطناعي',
+          'meta.description': 'انقل أعمالك إلى المستقبل مع Asteria Soft: تصميم مواقع احترافي، وتحسين محركات البحث المبني على البيانات، وأنظمة حجز ذكية، وحلول روبوتات المحادثة بالذكاء الاصطناعي.',
+          'og.locale': 'ar_AR',
+          'aria.skip': 'انتقل إلى المحتوى',
+          'aria.home': 'الصفحة الرئيسية لـ Asteria Soft',
+          'aria.mainNav': 'القائمة الرئيسية',
+          'aria.mobileNav': 'قائمة الجوال',
+          'aria.menuOpen': 'فتح القائمة',
+          'aria.menuClose': 'إغلاق القائمة',
+          'aria.toLight': 'التبديل إلى الوضع الفاتح',
+          'aria.toDark': 'التبديل إلى الوضع الداكن',
+          'aria.lang': 'اللغة',
+          'aria.whatsapp': 'راسلنا عبر واتساب',
+          'aria.instagram': 'Asteria Soft على إنستغرام',
+          'aria.linkedin': 'Asteria Soft على لينكدإن',
+          'nav.services': 'خدماتنا',
+          'nav.why': 'لماذا نحن',
+          'nav.contact': 'تواصل معنا',
+          'nav.quote': 'اطلب عرض سعر',
+          'hero.title': 'انقل أعمالك إلى المستقبل.',
+          'hero.sub': 'نعيد بناء هويتك الرقمية من الألف إلى الياء عبر تصميم المواقع وتحسين محركات البحث وأنظمة الحجز المدعومة بالذكاء الاصطناعي.',
+          'hero.start': 'لنبدأ الآن',
+          'hero.explore': 'اكتشف خدماتنا',
+          'services.title': 'ابدأ تحولك الرقمي',
+          's1.title': 'تصميم مواقع فائق السرعة',
+          's1.text': 'مواقع إلكترونية بمعايير Awwwards تُحمَّل في ثوانٍ وتحوّل الزوار إلى عملاء.',
+          's2.title': 'SEO قائم على البيانات',
+          's2.text': 'نفهم لغة Google جيدًا. تحسين دائم يرفع نشاطك التجاري إلى صدارة نتائج البحث العضوية.',
+          's3.title': 'أنظمة حجز ذكية',
+          's3.text': 'أتمتة حجوزات تعمل على مدار الساعة مع تذكيرات عبر الرسائل النصية وواتساب ودون أي أخطاء.',
+          's4.title': 'روبوت محادثة بالذكاء الاصطناعي',
+          's4.text': 'مساعدون أذكياء يردّون على عملائك خلال ثوانٍ بأسلوب طبيعي كالبشر ويُتمّون عمليات البيع.',
+          'why.title': 'لماذا نحن؟',
+          'stat1.value': '99.9%',
+          'stat1.label': 'استقرار وأمان',
+          'stat2.value': '< 1 ث',
+          'stat2.label': 'سرعة تحميل الصفحة',
+          'stat3.value': '24/7',
+          'stat3.label': 'خدمة عملاء ذاتية',
+          'faq.title': 'الأسئلة الشائعة',
+          'faq.q1': 'ما هو روبوت المحادثة بالذكاء الاصطناعي؟',
+          'faq.a1': 'روبوت المحادثة بالذكاء الاصطناعي هو مساعد رقمي يتحدث مع عملائك كالإنسان عبر موقعك الإلكتروني أو واتساب أو إنستغرام. بدلًا من الردود الجاهزة، يفهم السؤال ويستخدم معلومات نشاطك التجاري لتقديم إجابات طبيعية ودقيقة.',
+          'faq.q2': 'ما الفائدة التي يقدمها روبوت المحادثة لنشاطي التجاري؟',
+          'faq.a2': 'يرد على عملائك خلال ثوانٍ ليلًا ونهارًا، ويجيب عن الأسئلة الأكثر تكرارًا نيابةً عنك، ويجمع بيانات التواصل مع العملاء المحتملين ويوجههم نحو الحجز أو الشراء. وبذلك يقل عبء العمل على فريقك ولا تبقى أي رسالة دون رد.',
+          'faq.q3': 'ما هو الموقع الإلكتروني ولماذا يحتاجه نشاطي التجاري؟',
+          'faq.a3': 'الموقع الإلكتروني هو واجهة نشاطك التجاري على الإنترنت، مفتوحة على مدار الساعة. غالبًا ما يبحث العملاء عن الشركة عبر الإنترنت قبل التواصل معها، والموقع السريع والمتوافق مع الجوال والموثوق يعزز سمعة علامتك التجارية ويجلب لك عملاء جددًا باستمرار من نتائج بحث Google.',
+          'faq.q4': 'ما هو نظام الحجز الإلكتروني؟',
+          'faq.a4': 'نظام الحجز الإلكتروني هو برنامج يتيح لعملائك رؤية الأيام والأوقات المتاحة وحجز مواعيدهم بأنفسهم على مدار الساعة دون الحاجة إلى الاتصال. تُضاف المواعيد إلى تقويمك تلقائيًا، وتقلل التذكيرات عبر الرسائل النصية وواتساب من المواعيد المنسية والأوقات الشاغرة.',
+          'faq.q5': 'ما الأنشطة التجارية التي يناسبها نظام الحجز؟',
+          'faq.a5': 'يناسب جميع الأنشطة التي تعمل بالمواعيد أو الحجوزات، مثل العيادات وأطباء الأسنان ومراكز التجميل وصالونات الحلاقة والصالات الرياضية وشركات الاستشارات والعيادات البيطرية والمطاعم.',
+          'faq.q6': 'ما هو تحسين محركات البحث (SEO) ومتى تظهر نتائجه؟',
+          'faq.a6': 'تحسين محركات البحث (SEO) هو مجموعة الأعمال التقنية وأعمال المحتوى التي تساعد موقعك على الظهور في مراتب متقدمة في عمليات البحث ذات الصلة على Google. وبحسب المنافسة في قطاعك، تبدأ النتائج الأولى عادةً بالظهور خلال 3 إلى 6 أشهر، وتوفر زيارات مستدامة دون الحاجة إلى ميزانية إعلانية.',
+          'faq.q7': 'هل سيكون موقعي سريعًا ومتوافقًا مع الجوال؟',
+          'faq.a7': 'نعم. نصمم جميع مواقعنا لتظهر بشكل مثالي على الهواتف والأجهزة اللوحية وأجهزة الكمبيوتر، ونحسّنها وفق معايير السرعة Core Web Vitals من Google.',
+          'contact.title': 'لديك فكرة؟ دعنا نحوّلها إلى واقع.',
+          'contact.text': 'دعنا نستمع إلى مشروعك، ونحدد أهدافك معًا، ونضع خارطة طريق مصممة خصيصًا لنشاطك التجاري. الاستشارة الأولى مجانية ودون أي التزام.',
+          'form.name': 'الاسم الكامل',
+          'form.namePh': 'اسمك الكامل',
+          'form.email': 'البريد الإلكتروني',
+          'form.emailPh': 'name@company.com',
+          'form.service': 'الخدمة المطلوبة',
+          'form.servicePh': 'اختر خدمة',
+          'opt.web': 'تصميم المواقع',
+          'opt.seo': 'تحسين محركات البحث',
+          'opt.booking': 'نظام حجز ذكي',
+          'opt.ai': 'روبوت محادثة بالذكاء الاصطناعي',
+          'form.message': 'رسالتك',
+          'form.messagePh': 'حدّثنا باختصار عن مشروعك',
+          'form.submit': 'إرسال',
+          'form.sending': 'جارٍ الإرسال...',
+          'err.name': 'يرجى كتابة اسمك الكامل.',
+          'err.emailRequired': 'البريد الإلكتروني مطلوب.',
+          'err.emailInvalid': 'يرجى إدخال بريد إلكتروني صالح.',
+          'err.message': 'يرجى وصف مشروعك باختصار (10 أحرف على الأقل).',
+          'status.sent': 'شكرًا لك. وصلتنا رسالتك وسنتواصل معك قريبًا.',
+          'status.ready': 'رسالتك جاهزة. لإكمال الإرسال:',
+          'status.wa': 'أرسلها عبر واتساب',
+          'status.error': 'تعذّر إرسال رسالتك. يرجى المحاولة مرة أخرى.',
+          'wa.greeting': 'مرحبًا Asteria Soft،',
+          'wa.name': 'الاسم',
+          'wa.email': 'البريد الإلكتروني',
+          'wa.service': 'الخدمة',
+          'wa.none': 'غير محدد',
+          'footer.copy': '© 2026 Asteria Soft. جميع الحقوق محفوظة.'
+        },
+        es: {
+          'meta.title': 'Asteria Soft | Agencia de diseño web, SEO e IA',
+          'meta.description': 'Lleve su negocio hacia el futuro. Diseño web premium, SEO basado en datos, sistemas de reservas inteligentes y soluciones de chatbot con IA con Asteria Soft.',
+          'og.locale': 'es_ES',
+          'aria.skip': 'Saltar al contenido',
+          'aria.home': 'Inicio de Asteria Soft',
+          'aria.mainNav': 'Menú principal',
+          'aria.mobileNav': 'Menú móvil',
+          'aria.menuOpen': 'Abrir menú',
+          'aria.menuClose': 'Cerrar menú',
+          'aria.toLight': 'Cambiar al tema claro',
+          'aria.toDark': 'Cambiar al tema oscuro',
+          'aria.lang': 'Idioma',
+          'aria.whatsapp': 'Escríbanos por WhatsApp',
+          'aria.instagram': 'Asteria Soft en Instagram',
+          'aria.linkedin': 'Asteria Soft en LinkedIn',
+          'nav.services': 'Servicios',
+          'nav.why': 'Por qué nosotros',
+          'nav.contact': 'Contacto',
+          'nav.quote': 'Presupuesto',
+          'hero.title': 'Lleve su negocio hacia el futuro.',
+          'hero.sub': 'Reconstruimos su identidad digital de la A a la Z con diseño web, SEO y sistemas de reservas impulsados por inteligencia artificial.',
+          'hero.start': 'Empecemos',
+          'hero.explore': 'Ver servicios',
+          'services.title': 'Inicie su evolución digital',
+          's1.title': 'Diseño web ultrarrápido',
+          's1.text': 'Sitios web con estándares Awwwards que cargan en segundos y convierten visitantes en clientes.',
+          's2.title': 'SEO basado en datos',
+          's2.text': 'Hablamos el idioma de Google. Optimización duradera que lleva su negocio a lo más alto de las búsquedas orgánicas.',
+          's3.title': 'Reservas inteligentes',
+          's3.text': 'Automatización de reservas que funciona 24/7, con recordatorios por SMS y WhatsApp y cero errores.',
+          's4.title': 'Chatbot con IA',
+          's4.text': 'Asistentes inteligentes que responden a sus clientes en segundos, con naturalidad humana, y cierran ventas.',
+          'why.title': '¿Por qué nosotros?',
+          'stat1.value': '99,9 %',
+          'stat1.label': 'Disponibilidad y seguridad',
+          'stat2.value': '< 1 s',
+          'stat2.label': 'Velocidad de carga',
+          'stat3.value': '24/7',
+          'stat3.label': 'Atención al cliente autónoma',
+          'faq.title': 'Preguntas frecuentes',
+          'faq.q1': '¿Qué es un chatbot con inteligencia artificial?',
+          'faq.a1': 'Un chatbot con IA es un asistente digital que conversa con sus clientes como una persona en su sitio web, WhatsApp o Instagram gracias a la inteligencia artificial. En lugar de respuestas predefinidas, entiende la pregunta y utiliza la información de su negocio para dar respuestas naturales y precisas.',
+          'faq.q2': '¿Qué aporta un chatbot con IA a mi negocio?',
+          'faq.a2': 'Responde a sus clientes en segundos, de día y de noche, contesta por usted las preguntas más frecuentes, recoge los datos de contacto de clientes potenciales y los guía hacia una cita o una compra. Así se reduce la carga de trabajo de su equipo y ningún mensaje queda sin respuesta.',
+          'faq.q3': '¿Qué es un sitio web y por qué lo necesita mi negocio?',
+          'faq.a3': 'Un sitio web es el escaparate de su negocio en internet, abierto 24/7. Los clientes suelen investigar una empresa en línea antes de contactarla. Un sitio rápido, adaptado a móviles y que transmite confianza refuerza la reputación de su marca y le atrae nuevos clientes de forma constante desde las búsquedas de Google.',
+          'faq.q4': '¿Qué es un sistema de reservas online?',
+          'faq.a4': 'Un sistema de reservas online es un software que permite a sus clientes ver los días y horarios disponibles y reservar su cita por sí mismos 24/7, sin llamar. Las citas se añaden automáticamente a su calendario y los recordatorios por SMS y WhatsApp reducen las citas olvidadas y los huecos vacíos.',
+          'faq.q5': '¿Para qué negocios es adecuado un sistema de reservas?',
+          'faq.a5': 'Es adecuado para cualquier negocio que trabaje con citas o reservas, como clínicas, dentistas, centros de estética, peluquerías, gimnasios, consultoras, clínicas veterinarias y restaurantes.',
+          'faq.q6': '¿Qué es el SEO y cuánto tarda en dar resultados?',
+          'faq.a6': 'El SEO (optimización para motores de búsqueda) es el conjunto de trabajos técnicos y de contenido que ayudan a que su sitio web aparezca en las primeras posiciones de las búsquedas relevantes en Google. Según la competencia de su sector, los primeros resultados suelen verse en 3–6 meses y aportan tráfico duradero sin presupuesto publicitario.',
+          'faq.q7': '¿Mi sitio web será rápido y adaptado a móviles?',
+          'faq.a7': 'Sí. Todos los sitios web que desarrollamos se diseñan para verse perfectos en móviles, tabletas y ordenadores, y se optimizan según las métricas Core Web Vitals de Google.',
+          'contact.title': '¿Tiene una idea? Hagámosla realidad.',
+          'contact.text': 'Cuéntenos su proyecto: definiremos juntos sus objetivos y trazaremos una hoja de ruta a medida para su negocio. La primera reunión es gratuita y sin compromiso.',
+          'form.name': 'Nombre y apellidos',
+          'form.namePh': 'Su nombre completo',
+          'form.email': 'Correo electrónico',
+          'form.emailPh': 'nombre@empresa.com',
+          'form.service': 'Servicio de interés',
+          'form.servicePh': 'Seleccione un servicio',
+          'opt.web': 'Diseño web',
+          'opt.seo': 'Optimización SEO',
+          'opt.booking': 'Sistema de reservas inteligente',
+          'opt.ai': 'Chatbot con IA',
+          'form.message': 'Su mensaje',
+          'form.messagePh': 'Cuéntenos brevemente su proyecto',
+          'form.submit': 'Enviar',
+          'form.sending': 'Enviando...',
+          'err.name': 'Introduzca su nombre y apellidos.',
+          'err.emailRequired': 'El correo electrónico es obligatorio.',
+          'err.emailInvalid': 'Introduzca un correo electrónico válido.',
+          'err.message': 'Describa brevemente su proyecto (mínimo 10 caracteres).',
+          'status.sent': 'Gracias. Hemos recibido su mensaje y le responderemos en breve.',
+          'status.ready': 'Su mensaje está listo. Para terminar de enviarlo:',
+          'status.wa': 'Enviar por WhatsApp',
+          'status.error': 'No se pudo enviar su mensaje. Inténtelo de nuevo.',
+          'wa.greeting': 'Hola, Asteria Soft:',
+          'wa.name': 'Nombre',
+          'wa.email': 'Correo',
+          'wa.service': 'Servicio',
+          'wa.none': 'No especificado',
+          'footer.copy': '© 2026 Asteria Soft. Todos los derechos reservados.'
+        }
+      };
+
+      function parseAttrMap(el) {
+        return el.getAttribute('data-i18n-attr').split(';').map(function (pair) {
+          var parts = pair.split(':');
+          return { attr: parts[0].trim(), key: parts[1].trim() };
+        });
+      }
+
+      /* Turkish strings live in the HTML; collect them once as the fallback dictionary. */
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (!(key in I18N.tr)) I18N.tr[key] = el.textContent.trim();
+      });
+      document.querySelectorAll('[data-i18n-attr]').forEach(function (el) {
+        parseAttrMap(el).forEach(function (item) {
+          if (!(item.key in I18N.tr)) I18N.tr[item.key] = el.getAttribute(item.attr);
+        });
+      });
+
+      var currentLang = 'tr';
+      function t(key) {
+        var dict = I18N[currentLang];
+        return dict && dict[key] != null ? dict[key] : I18N.tr[key];
+      }
+
+      /* ---------- Theme ---------- */
+      var themeMeta = document.querySelector('meta[name="theme-color"]');
+      var themeToggles = document.querySelectorAll('[data-theme-toggle]');
+
+      function updateThemeLabels() {
+        var label = root.getAttribute('data-theme') === 'light' ? t('aria.toDark') : t('aria.toLight');
+        themeToggles.forEach(function (btn) { btn.setAttribute('aria-label', label); });
+      }
+
+      function applyTheme(theme) {
+        root.classList.add('theme-switching');
+        root.setAttribute('data-theme', theme);
+        themeMeta.setAttribute('content', theme === 'light' ? '#F7F7F8' : '#050505');
+        updateThemeLabels();
+        store('asteria-theme', theme);
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () { root.classList.remove('theme-switching'); });
+        });
+      }
+
+      themeToggles.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyTheme(root.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+        });
+      });
+
+      /* ---------- Scrolling ---------- */
+      function scrollToTarget(target) {
+        var dest = target === 0 ? 0 : (target.querySelector('.anchor-heading') || target);
+        if (lenis) {
+          lenis.scrollTo(dest, { offset: dest === 0 ? 0 : -192, duration: 1.6, force: true });
+        } else if (dest === 0) {
+          window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+        } else {
+          dest.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        }
+      }
+
+      function lockScroll(lock) {
+        if (lenis) {
+          lock ? lenis.stop() : lenis.start();
+        } else {
+          root.style.overflow = lock ? 'hidden' : '';
+        }
+      }
+
+      var refreshQueued = false;
+      function queueRefresh() {
+        if (!motionReady || refreshQueued) return;
+        refreshQueued = true;
+        requestAnimationFrame(function () {
+          refreshQueued = false;
+          ScrollTrigger.refresh();
+        });
+      }
+
+      /* ---------- Header ---------- */
+      var isScrolled = null;
+      function onScroll() {
+        var next = window.scrollY > 24;
+        if (next !== isScrolled) {
+          isScrolled = next;
+          header.classList.toggle('is-scrolled', next);
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* ---------- Mobile menu ---------- */
+      var menu = document.getElementById('mobile-menu');
+      var menuToggle = document.getElementById('menu-toggle');
+      var menuOpen = false;
+
+      function updateMenuLabel() {
+        menuToggle.setAttribute('aria-label', menuOpen ? t('aria.menuClose') : t('aria.menuOpen'));
+      }
+
+      function setMenu(open) {
+        if (open === menuOpen) return;
+        menuOpen = open;
+        document.body.classList.toggle('menu-open', open);
+        menuToggle.setAttribute('aria-expanded', String(open));
+        updateMenuLabel();
+        menu.setAttribute('aria-hidden', String(!open));
+        if (open) menu.removeAttribute('inert');
+        else menu.setAttribute('inert', '');
+        lockScroll(open);
+      }
+
+      menuToggle.addEventListener('click', function () { setMenu(!menuOpen); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menuOpen) {
+          setMenu(false);
+          menuToggle.focus();
+        }
+      });
+      var desktopQuery = window.matchMedia('(min-width: 1024px)');
+      var onDesktopChange = function (e) { if (e.matches) setMenu(false); };
+      if (desktopQuery.addEventListener) desktopQuery.addEventListener('change', onDesktopChange);
+      else desktopQuery.addListener(onDesktopChange);
+
+      /* ---------- Anchor links ---------- */
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href^="#"]');
+        if (!link) return;
+        var hash = link.getAttribute('href');
+        var target = hash === '#' || hash === '#top' ? 0 : document.getElementById(hash.slice(1));
+        if (target === null) return;
+        e.preventDefault();
+        if (menuOpen) setMenu(false);
+        scrollToTarget(target);
+      });
+
+      /* ---------- FAQ ---------- */
+      document.querySelectorAll('.faq').forEach(function (item) {
+        item.addEventListener('toggle', queueRefresh);
+      });
+
+      /* ---------- Contact form ---------- */
+      var form = document.getElementById('contact-form');
+      var submitBtn = document.getElementById('submit-btn');
+      var serviceSelect = document.getElementById('service');
+      var formStatus = document.getElementById('form-status');
+      var formWa = document.getElementById('form-wa');
+      var EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/;
+      var WA_NUMBER = '905555555555';
+      var submitted = false;
+      var sending = false;
+      var lastStatus = null;
+
+      var rules = {
+        fullname: function (v) {
+          return v.length >= 2 ? '' : 'err.name';
+        },
+        email: function (v) {
+          if (!v) return 'err.emailRequired';
+          return EMAIL_RE.test(v) ? '' : 'err.emailInvalid';
+        },
+        message: function (v) {
+          return v.length >= 10 ? '' : 'err.message';
+        }
+      };
+
+      function syncSelectState() {
+        serviceSelect.classList.toggle('is-empty', !serviceSelect.value);
+      }
+      serviceSelect.addEventListener('change', syncSelectState);
+
+      function validateField(name) {
+        var input = form.elements[name];
+        var errorKey = rules[name](input.value.trim());
+        var text = errorKey ? t(errorKey) : '';
+        var errorEl = document.getElementById('err-' + name);
+        if (errorEl.textContent !== text) errorEl.textContent = text;
+        input.setAttribute('aria-invalid', errorKey ? 'true' : 'false');
+        return !errorKey;
+      }
+
+      Object.keys(rules).forEach(function (name) {
+        var input = form.elements[name];
+        input.addEventListener('input', function () {
+          if (submitted || input.getAttribute('aria-invalid') === 'true') validateField(name);
+        });
+        input.addEventListener('blur', function () {
+          if (submitted) validateField(name);
+        });
+      });
+
+      function setSending(state) {
+        sending = state;
+        submitBtn.disabled = state;
+        submitBtn.classList.toggle('is-loading', state);
+        submitBtn.setAttribute('aria-busy', String(state));
+      }
+
+      function setStatus(key, waLink) {
+        lastStatus = key ? { key: key, waLink: waLink } : null;
+        formStatus.textContent = key ? t(key) : '';
+        if (waLink) {
+          formWa.href = waLink;
+          formWa.classList.remove('hidden');
+          formWa.classList.add('block');
+        } else {
+          formWa.classList.add('hidden');
+          formWa.classList.remove('block');
+        }
+      }
+
+      function buildWhatsAppLink() {
+        var serviceLabel = serviceSelect.value ? serviceSelect.options[serviceSelect.selectedIndex].text : t('wa.none');
+        var text = t('wa.greeting') + '\n\n' +
+          t('wa.name') + ': ' + form.elements.fullname.value.trim() + '\n' +
+          t('wa.email') + ': ' + form.elements.email.value.trim() + '\n' +
+          t('wa.service') + ': ' + serviceLabel + '\n\n' +
+          form.elements.message.value.trim();
+        return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
+      }
+
+      function resetForm() {
+        submitted = false;
+        form.reset();
+        syncSelectState();
+        Object.keys(rules).forEach(function (name) {
+          form.elements[name].removeAttribute('aria-invalid');
+          document.getElementById('err-' + name).textContent = '';
+        });
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (sending) return;
+        submitted = true;
+        setStatus(null);
+
+        var invalid = Object.keys(rules).filter(function (name) { return !validateField(name); });
+        if (invalid.length) {
+          form.elements[invalid[0]].focus();
+          return;
+        }
+
+        if (form.elements.honeypot.value) {
+          resetForm();
+          setStatus('status.sent');
+          return;
+        }
+
+        var endpoint = (form.dataset.endpoint || '').trim();
+        var waLink = buildWhatsAppLink();
+        setSending(true);
+
+        var request = endpoint
+          ? fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+              .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return 'sent'; })
+          : new Promise(function (resolve) { setTimeout(function () { resolve('whatsapp'); }, 1200); });
+
+        request
+          .then(function (type) {
+            resetForm();
+            if (type === 'sent') setStatus('status.sent');
+            else setStatus('status.ready', waLink);
+          })
+          .catch(function () {
+            setStatus('status.error');
+          })
+          .then(function () {
+            setSending(false);
+          });
+      });
+
+      /* ---------- Language ---------- */
+      var langSelects = document.querySelectorAll('[data-lang-select]');
+      var metaDescription = document.querySelector('meta[name="description"]');
+      var canonical = document.querySelector('link[rel="canonical"]');
+      var ogLocale = document.querySelector('meta[property="og:locale"]');
+      var faqSchema = document.getElementById('faq-schema');
+      var faqCount = document.querySelectorAll('.faq').length;
+
+      function buildFaqSchema() {
+        var entities = [];
+        for (var i = 1; i <= faqCount; i++) {
+          entities.push({
+            '@type': 'Question',
+            name: t('faq.q' + i),
+            acceptedAnswer: { '@type': 'Answer', text: t('faq.a' + i) }
+          });
+        }
+        return JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage: currentLang, mainEntity: entities });
+      }
+
+      function applyLang(lang, persist) {
+        if (!I18N[lang]) lang = 'tr';
+        var changed = lang !== currentLang;
+        currentLang = lang;
+        root.lang = lang;
+        root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var value = t(el.getAttribute('data-i18n'));
+          if (value != null && el.textContent !== value) el.textContent = value;
+        });
+        document.querySelectorAll('[data-i18n-attr]').forEach(function (el) {
+          parseAttrMap(el).forEach(function (item) {
+            var value = t(item.key);
+            if (value != null) el.setAttribute(item.attr, value);
+          });
+        });
+
+        document.title = t('meta.title');
+        metaDescription.setAttribute('content', t('meta.description'));
+        ogLocale.setAttribute('content', t('og.locale'));
+        canonical.setAttribute('href', lang === 'tr' ? SITE_URL : SITE_URL + '/?lang=' + lang);
+        if (changed) faqSchema.textContent = buildFaqSchema();
+
+        langSelects.forEach(function (select) { select.value = lang; });
+        updateMenuLabel();
+        updateThemeLabels();
+
+        Object.keys(rules).forEach(function (name) {
+          if (form.elements[name].getAttribute('aria-invalid') === 'true') validateField(name);
+        });
+        if (lastStatus) setStatus(lastStatus.key, lastStatus.waLink);
+
+        if (persist) {
+          store('asteria-lang', lang);
+          try {
+            var url = new URL(window.location.href);
+            if (lang === 'tr') url.searchParams.delete('lang');
+            else url.searchParams.set('lang', lang);
+            history.replaceState(null, '', url);
+          } catch (e) {}
+        }
+        queueRefresh();
+      }
+
+      langSelects.forEach(function (select) {
+        select.addEventListener('change', function () { applyLang(select.value, true); });
+      });
+
+      var initialLang = 'tr';
+      try {
+        initialLang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('asteria-lang') || 'tr';
+      } catch (e) {}
+      applyLang(initialLang, false);
+
+      /* ---------- Icons ---------- */
+      if (window.lucide) {
+        window.lucide.createIcons({ attrs: { 'stroke-width': 1.25, 'aria-hidden': 'true' } });
+      }
+
+      /* ---------- Motion: slow fade-in-up only ---------- */
+      if (!hasGSAP || reduceMotion) {
+        markReady();
+        return;
+      }
+
+      try {
+        gsap.registerPlugin(ScrollTrigger);
+        ScrollTrigger.config({ ignoreMobileResize: true });
+
+        if (typeof window.Lenis !== 'undefined') {
+          lenis = new Lenis({
+            duration: 1.2,
+            easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+            smoothWheel: true
+          });
+          lenis.on('scroll', ScrollTrigger.update);
+          gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+          gsap.ticker.lagSmoothing(0);
+        }
+
+        var FADE = { y: 0, opacity: 1, duration: 2, ease: 'power3.out', stagger: 0.2, clearProps: 'transform,opacity' };
+        gsap.set('[data-hero], [data-reveal]', { y: 50, opacity: 0 });
+
+        var start = function () {
+          requestAnimationFrame(function () {
+            markReady();
+            gsap.to('[data-hero]', Object.assign({ delay: 0.15 }, FADE));
+            ScrollTrigger.batch('[data-reveal]', {
+              start: 'top 90%',
+              once: true,
+              interval: 0.15,
+              onEnter: function (batch) {
+                gsap.to(batch, Object.assign({ overwrite: true }, FADE));
+              }
+            });
+            motionReady = true;
+            ScrollTrigger.refresh();
+          });
+        };
+
+        var fontsReady = document.fonts && document.fonts.ready
+          ? Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 1000); })])
+          : Promise.resolve();
+        fontsReady.then(start, start);
+
+        window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+      } catch (err) {
+        gsap.set('[data-hero], [data-reveal]', { clearProps: 'transform,opacity' });
+        markReady();
+      }
+    })();
+  </script>
+</body>
+</html>
