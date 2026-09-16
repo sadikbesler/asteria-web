@@ -678,24 +678,9 @@
           <input type="text" name="honeypot" tabindex="-1" autocomplete="off" style="display: none;" aria-hidden="true">
 
           <button id="submit-btn" type="submit" class="btn mt-[4.5rem] w-full px-0">
-            <span class="btn-label" data-i18n="form.getCode">Doğrulama Kodu Gönder</span>
+            <span class="btn-label" data-i18n="form.submit">Gönder</span>
             <span class="btn-loading" aria-hidden="true" data-i18n="form.sending">Gönderiliyor...</span>
           </button>
-
-          <div id="verify-step" class="mt-[4.5rem] border-t border-line pt-16" hidden>
-            <label for="code" data-i18n="form.code" class="mb-6 block text-sm font-medium text-fg">Doğrulama Kodu</label>
-            <p id="verify-text" class="mb-8 text-sm leading-relaxed text-muted"></p>
-            <input id="code" name="code" type="text" dir="ltr" class="field text-center font-display text-2xl tracking-[0.5em] indent-[0.5em]" placeholder="••••••" autocomplete="one-time-code" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" aria-describedby="verify-text err-code">
-            <p id="err-code" class="mt-3 min-h-[1.25rem] text-sm text-accent" aria-live="polite"></p>
-            <button id="verify-btn" type="button" class="btn mt-8 w-full px-0">
-              <span class="btn-label" data-i18n="verify.submit">Doğrula ve Gönder</span>
-              <span class="btn-loading" aria-hidden="true" data-i18n="verify.checking">Doğrulanıyor...</span>
-            </button>
-            <div class="mt-8 flex flex-wrap items-center justify-between gap-4 text-sm">
-              <button id="resend-btn" type="button" class="text-fg underline decoration-line underline-offset-4 disabled:cursor-default disabled:text-muted disabled:no-underline"></button>
-              <button id="edit-btn" type="button" class="text-muted underline decoration-line underline-offset-4" data-i18n="verify.edit">Bilgileri düzenle</button>
-            </div>
-          </div>
 
           <div class="mt-8 min-h-[1.5rem] text-center text-sm leading-relaxed" role="status" aria-live="polite">
             <span id="form-status" class="text-accent"></span>
@@ -769,7 +754,7 @@
           'err.emailRequired': 'E-posta adresi zorunludur.',
           'err.emailInvalid': 'Lütfen geçerli bir e-posta adresi girin.',
           'err.message': 'Lütfen projenizden kısaca bahsedin (en az 10 karakter).',
-          'status.sent': 'Teşekkürler. Mesajınız bize ulaştı; en kısa sürede dönüş yapacağız.',
+          'status.sent': 'Teşekkürler. Talebinizi aldık; e-posta adresinize bir onay gönderdik. En kısa sürede dönüş yapacağız.',
           'status.ready': 'Mesajınız hazır. Göndermeyi tamamlamak için:',
           'status.error': 'Mesajınız gönderilemedi. Lütfen tekrar deneyin.',
           'wa.greeting': 'Merhaba Asteria Soft,',
@@ -780,14 +765,7 @@
           'err.phoneRequired': 'Telefon numarası zorunludur.',
           'err.phoneInvalid': 'Lütfen geçerli bir telefon numarası girin. Yurt dışı numaralarında ülke kodunu ekleyin (örn. +49).',
           'err.service': 'Lütfen bir hizmet seçin.',
-          'err.code': 'Lütfen 6 haneli kodu girin.',
-          'err.codeWrong': 'Kod hatalı. Lütfen tekrar deneyin.',
-          'err.codeExpired': 'Kodun süresi doldu veya çok fazla deneme yapıldı. Lütfen yeni kod isteyin.',
-          'verify.text': '{email} adresine 6 haneli bir kod gönderdik. Mesajınızı göndermek için kodu girin. Göremiyorsanız gereksiz (spam) klasörüne bakın.',
-          'verify.resend': 'Kodu tekrar gönder',
-          'verify.resendIn': 'Tekrar göndermek için {s} sn',
-          'status.codeSent': 'Doğrulama kodu e-posta adresinize gönderildi.',
-          'status.tooMany': 'Çok fazla kod istendi. Lütfen biraz sonra tekrar deneyin.',
+          'status.tooMany': 'Kısa sürede çok fazla mesaj gönderildi. Lütfen biraz sonra tekrar deneyin.',
           'wa.phone': 'Telefon'
         },
         en: {
@@ -875,7 +853,7 @@
           'err.emailRequired': 'Email address is required.',
           'err.emailInvalid': 'Please enter a valid email address.',
           'err.message': 'Please tell us briefly about your project (at least 10 characters).',
-          'status.sent': "Thank you. We've received your message and will get back to you shortly.",
+          'status.sent': "Thank you. We've received your request and sent a confirmation to your email. We'll get back to you shortly.",
           'status.ready': 'Your message is ready. To finish sending it:',
           'status.wa': 'Send via WhatsApp',
           'status.error': "Your message couldn't be sent. Please try again.",
@@ -886,22 +864,10 @@
           'wa.none': 'Not specified',
           'form.phone': 'Phone',
           'form.phonePh': '+1 555 123 4567',
-          'form.getCode': 'Send Verification Code',
-          'form.code': 'Verification Code',
-          'verify.submit': 'Verify & Send',
-          'verify.checking': 'Verifying...',
-          'verify.edit': 'Edit details',
           'err.phoneRequired': 'Phone number is required.',
           'err.phoneInvalid': 'Please enter a valid phone number, including the country code (e.g. +44).',
           'err.service': 'Please select a service.',
-          'err.code': 'Please enter the 6-digit code.',
-          'err.codeWrong': 'Incorrect code. Please try again.',
-          'err.codeExpired': 'The code has expired or too many attempts were made. Please request a new code.',
-          'verify.text': 'We sent a 6-digit code to {email}. Enter it to send your message. If you can\'t find it, check your spam folder.',
-          'verify.resend': 'Resend code',
-          'verify.resendIn': 'Resend in {s}s',
-          'status.codeSent': 'A verification code has been sent to your email.',
-          'status.tooMany': 'Too many codes requested. Please try again later.',
+          'status.tooMany': 'Too many messages in a short time. Please try again later.',
           'wa.phone': 'Phone',
           'footer.copy': '© 2026 Asteria Soft. All rights reserved.'
         },
@@ -990,7 +956,7 @@
           'err.emailRequired': 'Die E-Mail-Adresse ist erforderlich.',
           'err.emailInvalid': 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
           'err.message': 'Bitte beschreiben Sie kurz Ihr Projekt (mindestens 10 Zeichen).',
-          'status.sent': 'Vielen Dank. Ihre Nachricht ist bei uns angekommen – wir melden uns in Kürze.',
+          'status.sent': 'Vielen Dank. Wir haben Ihre Anfrage erhalten und Ihnen eine Bestätigung per E-Mail gesendet. Wir melden uns in Kürze.',
           'status.ready': 'Ihre Nachricht ist bereit. Zum Absenden:',
           'status.wa': 'Über WhatsApp senden',
           'status.error': 'Ihre Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.',
@@ -1001,22 +967,10 @@
           'wa.none': 'Nicht angegeben',
           'form.phone': 'Telefon',
           'form.phonePh': '+49 151 23456789',
-          'form.getCode': 'Bestätigungscode senden',
-          'form.code': 'Bestätigungscode',
-          'verify.submit': 'Bestätigen & senden',
-          'verify.checking': 'Wird geprüft...',
-          'verify.edit': 'Angaben bearbeiten',
           'err.phoneRequired': 'Die Telefonnummer ist erforderlich.',
           'err.phoneInvalid': 'Bitte geben Sie eine gültige Telefonnummer mit Ländervorwahl ein (z. B. +49).',
           'err.service': 'Bitte wählen Sie eine Leistung aus.',
-          'err.code': 'Bitte geben Sie den 6-stelligen Code ein.',
-          'err.codeWrong': 'Falscher Code. Bitte versuchen Sie es erneut.',
-          'err.codeExpired': 'Der Code ist abgelaufen oder es gab zu viele Versuche. Bitte fordern Sie einen neuen Code an.',
-          'verify.text': 'Wir haben einen 6-stelligen Code an {email} gesendet. Geben Sie ihn ein, um Ihre Nachricht zu senden. Prüfen Sie ggf. Ihren Spam-Ordner.',
-          'verify.resend': 'Code erneut senden',
-          'verify.resendIn': 'Erneut senden in {s} s',
-          'status.codeSent': 'Ein Bestätigungscode wurde an Ihre E-Mail-Adresse gesendet.',
-          'status.tooMany': 'Zu viele Codes angefordert. Bitte versuchen Sie es später erneut.',
+          'status.tooMany': 'Zu viele Nachrichten in kurzer Zeit. Bitte versuchen Sie es später erneut.',
           'wa.phone': 'Telefon',
           'footer.copy': '© 2026 Asteria Soft. Alle Rechte vorbehalten.'
         },
@@ -1105,7 +1059,7 @@
           'err.emailRequired': 'البريد الإلكتروني مطلوب.',
           'err.emailInvalid': 'يرجى إدخال بريد إلكتروني صالح.',
           'err.message': 'يرجى وصف مشروعك باختصار (10 أحرف على الأقل).',
-          'status.sent': 'شكرًا لك. وصلتنا رسالتك وسنتواصل معك قريبًا.',
+          'status.sent': 'شكرًا لك. استلمنا طلبك وأرسلنا تأكيدًا إلى بريدك الإلكتروني. سنتواصل معك قريبًا.',
           'status.ready': 'رسالتك جاهزة. لإكمال الإرسال:',
           'status.wa': 'أرسلها عبر واتساب',
           'status.error': 'تعذّر إرسال رسالتك. يرجى المحاولة مرة أخرى.',
@@ -1116,22 +1070,10 @@
           'wa.none': 'غير محدد',
           'form.phone': 'الهاتف',
           'form.phonePh': '+966 50 123 4567',
-          'form.getCode': 'إرسال رمز التحقق',
-          'form.code': 'رمز التحقق',
-          'verify.submit': 'تحقق وأرسل',
-          'verify.checking': 'جارٍ التحقق...',
-          'verify.edit': 'تعديل البيانات',
           'err.phoneRequired': 'رقم الهاتف مطلوب.',
           'err.phoneInvalid': 'يرجى إدخال رقم هاتف صالح مع رمز الدولة (مثل +966).',
           'err.service': 'يرجى اختيار خدمة.',
-          'err.code': 'يرجى إدخال الرمز المكوّن من 6 أرقام.',
-          'err.codeWrong': 'الرمز غير صحيح. يرجى المحاولة مرة أخرى.',
-          'err.codeExpired': 'انتهت صلاحية الرمز أو تجاوزت عدد المحاولات. يرجى طلب رمز جديد.',
-          'verify.text': 'أرسلنا رمزًا مكوّنًا من 6 أرقام إلى {email}. أدخله لإرسال رسالتك. إذا لم تجده، تحقق من مجلد الرسائل غير المرغوب فيها.',
-          'verify.resend': 'إعادة إرسال الرمز',
-          'verify.resendIn': 'إعادة الإرسال خلال {s} ث',
-          'status.codeSent': 'تم إرسال رمز التحقق إلى بريدك الإلكتروني.',
-          'status.tooMany': 'تم طلب رموز كثيرة. يرجى المحاولة لاحقًا.',
+          'status.tooMany': 'تم إرسال رسائل كثيرة خلال وقت قصير. يرجى المحاولة لاحقًا.',
           'wa.phone': 'الهاتف',
           'footer.copy': '© 2026 Asteria Soft. جميع الحقوق محفوظة.'
         },
@@ -1220,7 +1162,7 @@
           'err.emailRequired': 'El correo electrónico es obligatorio.',
           'err.emailInvalid': 'Introduzca un correo electrónico válido.',
           'err.message': 'Describa brevemente su proyecto (mínimo 10 caracteres).',
-          'status.sent': 'Gracias. Hemos recibido su mensaje y le responderemos en breve.',
+          'status.sent': 'Gracias. Hemos recibido su solicitud y le hemos enviado una confirmación por correo. Le responderemos en breve.',
           'status.ready': 'Su mensaje está listo. Para terminar de enviarlo:',
           'status.wa': 'Enviar por WhatsApp',
           'status.error': 'No se pudo enviar su mensaje. Inténtelo de nuevo.',
@@ -1231,22 +1173,10 @@
           'wa.none': 'No especificado',
           'form.phone': 'Teléfono',
           'form.phonePh': '+34 612 34 56 78',
-          'form.getCode': 'Enviar código de verificación',
-          'form.code': 'Código de verificación',
-          'verify.submit': 'Verificar y enviar',
-          'verify.checking': 'Verificando...',
-          'verify.edit': 'Editar datos',
           'err.phoneRequired': 'El teléfono es obligatorio.',
           'err.phoneInvalid': 'Introduzca un teléfono válido con el prefijo del país (p. ej. +34).',
           'err.service': 'Seleccione un servicio.',
-          'err.code': 'Introduzca el código de 6 dígitos.',
-          'err.codeWrong': 'Código incorrecto. Inténtelo de nuevo.',
-          'err.codeExpired': 'El código ha caducado o se han hecho demasiados intentos. Solicite un código nuevo.',
-          'verify.text': 'Hemos enviado un código de 6 dígitos a {email}. Introdúzcalo para enviar su mensaje. Si no lo encuentra, revise la carpeta de spam.',
-          'verify.resend': 'Reenviar código',
-          'verify.resendIn': 'Reenviar en {s} s',
-          'status.codeSent': 'Se ha enviado un código de verificación a su correo.',
-          'status.tooMany': 'Se han solicitado demasiados códigos. Inténtelo más tarde.',
+          'status.tooMany': 'Demasiados mensajes en poco tiempo. Inténtelo más tarde.',
           'wa.phone': 'Teléfono',
           'footer.copy': '© 2026 Asteria Soft. Todos los derechos reservados.'
         }
@@ -1400,25 +1330,12 @@
       var serviceSelect = document.getElementById('service');
       var formStatus = document.getElementById('form-status');
       var formWa = document.getElementById('form-wa');
-      var verifyStep = document.getElementById('verify-step');
-      var verifyText = document.getElementById('verify-text');
-      var codeInput = document.getElementById('code');
-      var codeError = document.getElementById('err-code');
-      var verifyBtn = document.getElementById('verify-btn');
-      var resendBtn = document.getElementById('resend-btn');
-      var editBtn = document.getElementById('edit-btn');
       var EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/;
       var WA_NUMBER = '905555555555';
       var PHONE_COUNTRY = 'TR';
-      var RESEND_SECONDS = 60;
-      var TEXT_FIELDS = ['fullname', 'email', 'phone', 'message'];
       var submitted = false;
       var sending = false;
       var lastStatus = null;
-      var verifyToken = null;
-      var codeErrorKey = '';
-      var resendLeft = 0;
-      var resendTimer = null;
 
       function normalizePhone(v) {
         var lib = window.libphonenumber;
@@ -1498,12 +1415,6 @@
         }
       }
 
-      function setCodeError(key) {
-        codeErrorKey = key || '';
-        codeError.textContent = key ? t(key) : '';
-        codeInput.setAttribute('aria-invalid', key ? 'true' : 'false');
-      }
-
       function buildWhatsAppLink() {
         var serviceLabel = serviceSelect.value ? serviceSelect.options[serviceSelect.selectedIndex].text : t('wa.none');
         var text = t('wa.greeting') + '\n\n' +
@@ -1523,54 +1434,8 @@
           .then(function (res) { if (!res.ok) throw new Error('HTTP ' + res.status); return res.json(); });
       }
 
-      function updateVerifyTexts() {
-        verifyText.textContent = t('verify.text').replace('{email}', form.elements.email.value.trim());
-        resendBtn.textContent = resendLeft > 0 ? t('verify.resendIn').replace('{s}', resendLeft) : t('verify.resend');
-        resendBtn.disabled = resendLeft > 0;
-        if (codeErrorKey) codeError.textContent = t(codeErrorKey);
-      }
-
-      function startResendCountdown() {
-        clearInterval(resendTimer);
-        resendLeft = RESEND_SECONDS;
-        updateVerifyTexts();
-        resendTimer = setInterval(function () {
-          resendLeft -= 1;
-          if (resendLeft <= 0) { resendLeft = 0; clearInterval(resendTimer); }
-          updateVerifyTexts();
-        }, 1000);
-      }
-
-      function lockFields(state) {
-        TEXT_FIELDS.forEach(function (name) { form.elements[name].readOnly = state; });
-        serviceSelect.disabled = state;
-        submitBtn.hidden = state;
-      }
-
-      function showVerifyStep() {
-        lockFields(true);
-        verifyStep.hidden = false;
-        codeInput.value = '';
-        setCodeError('');
-        startResendCountdown();
-        queueRefresh();
-        codeInput.focus({ preventScroll: true });
-      }
-
-      function hideVerifyStep() {
-        verifyToken = null;
-        clearInterval(resendTimer);
-        resendLeft = 0;
-        lockFields(false);
-        verifyStep.hidden = true;
-        codeInput.value = '';
-        setCodeError('');
-        queueRefresh();
-      }
-
       function resetForm() {
         submitted = false;
-        hideVerifyStep();
         form.reset();
         syncSelectState();
         Object.keys(rules).forEach(function (name) {
@@ -1579,12 +1444,22 @@
         });
       }
 
-      function requestCode(btn) {
-        var waLink = buildWhatsAppLink();
-        setBusy(btn, true);
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (sending) return;
+        submitted = true;
         setStatus(null);
-        return postJSON({
-          action: 'sendCode',
+
+        var invalid = Object.keys(rules).filter(function (name) { return !validateField(name); });
+        if (invalid.length) {
+          form.elements[invalid[0]].focus();
+          return;
+        }
+
+        var waLink = buildWhatsAppLink();
+        setBusy(submitBtn, true);
+        postJSON({
+          action: 'submit',
           fullname: form.elements.fullname.value.trim(),
           email: form.elements.email.value.trim(),
           phone: normalizePhone(form.elements.phone.value),
@@ -1595,9 +1470,8 @@
         })
           .then(function (res) {
             if (res && res.ok) {
-              verifyToken = res.token;
-              showVerifyStep();
-              setStatus('status.codeSent');
+              resetForm();
+              setStatus('status.sent');
             } else if (res && res.error === 'rate_limited') {
               setStatus('status.tooMany');
             } else {
@@ -1608,81 +1482,8 @@
             setStatus('status.error', waLink);
           })
           .then(function () {
-            setBusy(btn, false);
-            if (!verifyStep.hidden) updateVerifyTexts();
+            setBusy(submitBtn, false);
           });
-      }
-
-      function verifyCode() {
-        if (sending) return;
-        var code = codeInput.value.replace(/\D/g, '');
-        if (code.length !== 6) {
-          setCodeError('err.code');
-          codeInput.focus();
-          return;
-        }
-        setCodeError('');
-        setBusy(verifyBtn, true);
-        postJSON({ action: 'verify', token: verifyToken, code: code })
-          .then(function (res) {
-            if (res && res.ok) {
-              resetForm();
-              setStatus('status.sent');
-            } else if (res && res.error === 'wrong_code') {
-              setCodeError('err.codeWrong');
-              codeInput.select();
-            } else if (res && res.error === 'expired') {
-              setCodeError('err.codeExpired');
-              clearInterval(resendTimer);
-              resendLeft = 0;
-              updateVerifyTexts();
-            } else {
-              setStatus('status.error');
-            }
-          })
-          .catch(function () {
-            setStatus('status.error');
-          })
-          .then(function () {
-            setBusy(verifyBtn, false);
-          });
-      }
-
-      codeInput.addEventListener('input', function () {
-        var digits = codeInput.value.replace(/\D/g, '').slice(0, 6);
-        if (codeInput.value !== digits) codeInput.value = digits;
-        if (codeErrorKey) setCodeError('');
-      });
-      verifyBtn.addEventListener('click', verifyCode);
-      resendBtn.addEventListener('click', function () {
-        if (sending || resendLeft > 0) return;
-        setCodeError('');
-        requestCode(resendBtn);
-      });
-      editBtn.addEventListener('click', function () {
-        if (sending) return;
-        hideVerifyStep();
-        setStatus(null);
-        form.elements.fullname.focus();
-      });
-
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (sending) return;
-        if (!verifyStep.hidden) {
-          verifyCode();
-          return;
-        }
-        submitted = true;
-        setStatus(null);
-
-        var invalid = Object.keys(rules).filter(function (name) { return !validateField(name); });
-        if (invalid.length) {
-          form.elements[invalid[0]].focus();
-          return;
-        }
-
-        requestCode(submitBtn);
       });
 
       /* ---------- Language ---------- */
@@ -1737,7 +1538,6 @@
           if (form.elements[name].getAttribute('aria-invalid') === 'true') validateField(name);
         });
         if (lastStatus) setStatus(lastStatus.key, lastStatus.waLink);
-        if (!verifyStep.hidden) updateVerifyTexts();
 
         if (persist) {
           store('asteria-lang', lang);
