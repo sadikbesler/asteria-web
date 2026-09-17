@@ -77,7 +77,7 @@
       cbBadName: 'Adınızı ve soyadınızı yazar mısınız?',
       cbBadPhone: 'Bu numarayı tanıyamadım. 0532 123 45 67 biçiminde ya da ülke koduyla (+49…) yazabilir misiniz?',
       cbDone: 'Talebinizi aldık. {phone} numarasından en geç bir iş günü içinde aranacaksınız.',
-      cbDemo: 'Demo modu: site henüz Google E-Tablolar’a bağlı olmadığı için talep kaydedilemedi. Aşağıdaki bağlantıyla WhatsApp’tan iletebilirsiniz.',
+      cbDemo: 'Geri arama talebiniz alındı (demo). Bu bir demo olduğu için sizi kimse aramayacak; kliniğinize kurulan sürümde bu talepler doğrudan size iletilir.',
       cbError: 'Talebinizi şu an kaydedemedim. WhatsApp’tan iletebilirsiniz.',
       cbCancelled: 'Tamam, arama talebini iptal ettim.',
       cbWa: 'Merhaba, beni arayabilir misiniz?\nAd soyad: {name}\nTelefon: {phone}',
@@ -142,7 +142,7 @@
       cbBadName: 'Could you type your first and last name?',
       cbBadPhone: 'I couldn’t recognise that number. Please write it like 0532 123 45 67 or with a country code (+44…).',
       cbDone: 'Got it. We’ll call {phone} within one working day.',
-      cbDemo: 'Demo mode: the site isn’t connected to Google Sheets yet, so the request couldn’t be saved. You can send it via WhatsApp below.',
+      cbDemo: 'Call-back request received (demo). As this is a demo, nobody will call you; on the version set up for your practice these requests come straight to you.',
       cbError: 'I couldn’t save your request right now. You can send it via WhatsApp instead.',
       cbCancelled: 'OK, I’ve cancelled the call-back request.',
       cbWa: 'Hello, could you call me back?\nName: {name}\nPhone: {phone}',
@@ -494,7 +494,7 @@
       save();
       var wa = M.waLink(fill(x.cbWa, { name: data.name, phone: M.phone.format(phone) }));
       if (!M.api.enabled()) {
-        return { text: x.cbDemo, actions: [{ label: x.act.wa, kind: 'raw', data: wa, primary: true }] };
+        return { text: x.cbDemo };
       }
       return M.api.post({ action: 'callback', name: data.name, phone: phone, lang: M.lang(), page: location.pathname, website: '', elapsed: 9999 })
         .then(function (res) {

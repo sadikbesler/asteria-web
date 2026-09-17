@@ -58,7 +58,9 @@
       doneRef: 'Referans kodu',
       copy: 'Kodu kopyala', copied: 'Referans kodu kopyalandı',
       ics: 'Takvime ekle (.ics)', google: 'Google Takvim', waShare: 'WhatsApp’tan ilet', again: 'Yeni randevu',
-      demo: 'Demo modu: Google E-Tablolar bağlantısı henüz yapılmadığı için bu randevu yalnızca bu tarayıcıda saklandı.',
+      demoTag: 'Demo',
+      demoTitle: 'Randevu talebiniz gönderildi',
+      demoText: 'Bu bir demo olduğu için gerçek bir randevu oluşturulmadı ve e-posta gönderilmedi. Kliniğinize kurulan sürümde randevu bu adımda takviminize işlenir, danışana da onay e-postası gider.',
       waText: 'Merhaba, {date} saat {time} için {type} randevusu oluşturdum.\nReferans: {ref}\nAd soyad: {name}',
       waFallback: 'Merhaba, randevu almak istiyorum.\nGörüşme: {type}\nUzman: {staff}\nTarih: {date} {time}\nAd soyad: {name}\nTelefon: {phone}\nE-posta: {email}',
       icsSummary: 'Mizan Beslenme · {type}',
@@ -75,7 +77,7 @@
         not_found: 'Bu kod ve e-posta ile eşleşen aktif bir randevu bulunamadı.',
         too_late: 'Randevunuza {h} saatten az kaldığı için online iptal yapılamıyor. Lütfen bizi arayın: {phone}',
         already: 'Bu randevu daha önce iptal edilmiş.',
-        demoOk: 'Demo modu: randevu bu tarayıcıdaki kayıtlardan silindi.',
+        demoOk: 'Randevu iptal edildi (demo). Demo randevular yalnızca bu tarayıcıda tutulduğu için buradan silindi.',
         error: 'İptal işlemi şu an yapılamadı. Lütfen bizi arayın: {phone}'
       }
     },
@@ -128,7 +130,9 @@
       doneRef: 'Reference code',
       copy: 'Copy code', copied: 'Reference code copied',
       ics: 'Add to calendar (.ics)', google: 'Google Calendar', waShare: 'Share on WhatsApp', again: 'New appointment',
-      demo: 'Demo mode: Google Sheets is not connected yet, so this appointment was only stored in this browser.',
+      demoTag: 'Demo',
+      demoTitle: 'Your booking request has been sent',
+      demoText: 'As this is a demo, no real appointment was created and no email was sent. On the version set up for your practice, the booking goes straight into your calendar at this step and the client gets a confirmation email.',
       waText: 'Hello, I booked a {type} on {date} at {time}.\nReference: {ref}\nName: {name}',
       waFallback: 'Hello, I would like to book an appointment.\nType: {type}\nDietitian: {staff}\nDate: {date} {time}\nName: {name}\nPhone: {phone}\nEmail: {email}',
       icsSummary: 'Mizan Nutrition · {type}',
@@ -145,7 +149,7 @@
         not_found: 'No active appointment matches this code and email.',
         too_late: 'Your appointment is less than {h} hours away, so it can’t be cancelled online. Please call us: {phone}',
         already: 'This appointment was already cancelled.',
-        demoOk: 'Demo mode: the appointment was removed from this browser.',
+        demoOk: 'Appointment cancelled (demo). Demo bookings only live in this browser, so it was removed here.',
         error: 'The cancellation could not be completed right now. Please call us: {phone}'
       }
     }
@@ -1072,10 +1076,13 @@
     doneEl.textContent = '';
     var icon = el('div', 'done-icon');
     icon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>';
-    var title = el('h3', 'bstep-title', s.doneTitle);
-    var text = fill(s.doneText, { email: r.email });
-    if (cfg.types[r.type].mode === 'online') text += ' ' + s.doneOnline;
-    if (r.reminder) text += ' ' + s.doneReminder;
+    var title = el('h3', 'bstep-title', r.demo ? s.demoTitle : s.doneTitle);
+    var text = s.demoText;
+    if (!r.demo) {
+      text = fill(s.doneText, { email: r.email });
+      if (cfg.types[r.type].mode === 'online') text += ' ' + s.doneOnline;
+      if (r.reminder) text += ' ' + s.doneReminder;
+    }
     var p = el('p', 'lede', text);
 
     var refWrap = el('div', 'done-ref');
@@ -1120,8 +1127,9 @@
     again.addEventListener('click', function () { resetFlow(); goTo(1); });
     actions.append(ics, gcal, wa, again);
 
-    doneEl.append(icon, title, p, refWrap, dl, actions);
-    if (r.demo) doneEl.appendChild(el('p', 'demo-note', s.demo));
+    doneEl.append(icon);
+    if (r.demo) doneEl.append(el('p', 'label demo-tag', s.demoTag));
+    doneEl.append(title, p, refWrap, dl, actions);
   }
 
   function resetFlow() {

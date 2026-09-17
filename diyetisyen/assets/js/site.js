@@ -475,7 +475,7 @@
       var f = cform.elements;
       var wa = waLink(t('wa.greeting') + '\n\n' + f.message.value.trim() + '\n\n— ' + f.name.value.trim());
       if (f.website.value) { setCStatus('ok', 'status.sent'); cform.reset(); return; }
-      if (!api.enabled()) { setCStatus('err', 'status.demo', wa); return; }
+      if (!api.enabled()) { setCStatus('ok', 'status.demo'); cform.reset(); cSubmitted = false; return; }
       btn.disabled = true; btn.classList.add('is-loading');
       api.post({
         action: 'message',
@@ -527,6 +527,39 @@
     });
   });
 
+  /* ---------- Demo notice: this site is a sample that gets customised per client ---------- */
+  function showDemoNotice() {
+    if (cfg.demo === false) return;
+    try { if (sessionStorage.getItem('mizan-demo-seen')) return; } catch (e) {}
+    var make = function (tag, cls, key) {
+      var node = document.createElement(tag);
+      if (cls) node.className = cls;
+      if (key) { node.setAttribute('data-i18n', key); node.textContent = t(key); }
+      return node;
+    };
+    var bar = make('aside', 'demo-bar');
+    bar.setAttribute('data-i18n-attr', 'aria-label:demo.aria');
+    bar.setAttribute('aria-label', t('demo.aria'));
+    var inner = make('div', 'demo-bar-inner');
+    var ok = make('button', 'btn btn--sm demo-bar-btn', 'demo.close');
+    ok.type = 'button';
+    var syncHeight = function () { root.style.setProperty('--demo-h', bar.offsetHeight + 'px'); };
+    ok.addEventListener('click', function () {
+      try { sessionStorage.setItem('mizan-demo-seen', '1'); } catch (e) {}
+      bar.remove();
+      document.body.classList.remove('demo-open');
+      root.style.removeProperty('--demo-h');
+      window.removeEventListener('resize', syncHeight);
+    });
+    inner.append(make('span', 'demo-bar-label', 'demo.label'), make('p', null, 'demo.text'), ok);
+    bar.appendChild(inner);
+    var skip = $('.skip-link');
+    document.body.insertBefore(bar, skip ? skip.nextSibling : document.body.firstChild);
+    document.body.classList.add('demo-open');
+    syncHeight();
+    window.addEventListener('resize', syncHeight);
+  }
+
   /* ---------- Public API for the other scripts ---------- */
   window.Mizan = {
     cfg: cfg,
@@ -554,6 +587,7 @@
   listeners.push(buildFaqSchema, renderOpenStatus);
   applyLang(initial, false);
   root.classList.remove('lang-pending');
+  showDemoNotice();
   setInterval(renderOpenStatus, 30000);
   fitAll();
 })();

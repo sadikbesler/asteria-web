@@ -13,6 +13,10 @@ window.MIZAN_CONFIG = {
      Boş bırakılırsa site demo modunda çalışır: randevular yalnızca bu tarayıcıda saklanır. */
   endpoint: '',
 
+  /* Demo notu: sayfanın altında "Bu bir demo görünümüdür" şeridi gösterilir.
+     Siteyi gerçek bir kliniğe kurarken false yapın (footer'daki "Demo site" yazısını da silin). */
+  demo: true,
+
   siteUrl: 'https://sadikbesler.github.io/asteria-web/diyetisyen/',
   whatsapp: '905555555555',
   phone: '+905555555555',

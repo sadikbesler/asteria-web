@@ -19,7 +19,11 @@ window.MIZAN_I18N_TR = {
   'status.sent': 'Teşekkürler, mesajınız bize ulaştı. En geç bir iş günü içinde dönüş yapacağız.',
   'status.error': 'Mesajınız gönderilemedi. Tekrar deneyebilir ya da',
   'status.tooMany': 'Kısa sürede çok fazla mesaj gönderildi. Lütfen biraz sonra tekrar deneyin.',
-  'status.demo': 'Demo modu: form henüz Google E-Tablolar’a bağlı değil. Mesajınızı',
+  'status.demo': 'Mesajınız gönderildi (demo). Bu bir demo olduğu için mesaj kimseye iletilmedi; kliniğinize kurulan sürümde bu form doğrudan size ulaşır.',
+  'demo.label': 'Demo',
+  'demo.text': 'Bu bir demo görünümüdür, sizin için özelleştirilecektir. Klinik adı, ekip, fotoğraflar, adres ve fiyatlar örnek olarak kullanıldı.',
+  'demo.close': 'Tamam',
+  'demo.aria': 'Demo hakkında bilgi',
   'status.viaWa': 'WhatsApp’tan gönderebilirsiniz.',
   'open.now': 'Şu an açık',
   'open.closed': 'Şu an kapalı',
@@ -70,10 +74,8 @@ window.MIZAN_I18N_EN = {
 
   /* Hero */
   'hero.kicker': 'Moda, Kadıköy · In person and online',
-  'hero.t1': 'Nourish yourself with',
-  'hero.em': 'balance,',
-  'hero.t2': 'not restrictions.',
-  'hero.lede': 'A plan built around your work schedule, your blood tests and your own kitchen, without crossing out the food you love. We start with a body composition analysis and fine-tune the plan together every week.',
+  'hero.title': 'A nutrition plan that fits your life.',
+  'hero.lede': 'At the first visit we look at your blood tests and do a body composition analysis. Your plan is built around your working hours and the food you like, and we update it together at follow-ups.',
   'hero.cta1': 'Book an appointment',
   'hero.cta2': 'Calculate your BMI',
   'hero.alt': 'Woman cooking with lemons and fresh vegetables in a bright kitchen',
@@ -94,9 +96,7 @@ window.MIZAN_I18N_EN = {
   'facts.4': 'to your first follow-up, then weekly',
 
   /* Services */
-  'services.t1': 'A separate plan',
-  'services.em': 'for every',
-  'services.t2': 'body.',
+  'services.title': 'Areas we work in',
   'services.lede': 'We don’t hand out ready-made diet sheets. We start by talking about your age, how much you move, your test results and what is really in your kitchen.',
   'services.book': 'Book now',
   'services.bookShort': 'Book',
@@ -140,10 +140,8 @@ window.MIZAN_I18N_EN = {
   's6.alt': 'Health professional holding a video consultation on a laptop',
 
   /* Notecards */
-  'notes.eyebrow': 'Notes from the kitchen',
-  'notes.t1': 'Small changes,',
-  'notes.em': 'lasting',
-  'notes.t2': 'habits.',
+  'notes.eyebrow': 'September and October',
+  'notes.title': 'Figs, pomegranates and walnuts are in season.',
   'notes.p1': 'Recipes',
   'notes.p2': 'Sample plan',
   'notes.p3': 'Articles',
@@ -163,31 +161,26 @@ window.MIZAN_I18N_EN = {
   'notes.a7': 'Fresh mint leaves',
 
   /* Approach */
-  'process.label': 'Our approach',
-  'process.t1': 'First we listen,',
-  'process.em': 'then',
-  'process.t2': 'we plan.',
-  'process.lede': 'In the weeks after your first visit, the plan changes with you. Holidays, family feasts, a hectic week at work: all of it is part of the plan.',
-  'process.quote': '“Rather than trying to follow a list, we try to understand which meal is hard and why. That is what ends up lasting.”',
+  'process.title': 'How consultations work',
+  'process.lede': 'The plan doesn’t end at the first visit. When a family feast, a holiday or a busy week at work comes up, we update it together at your follow-up.',
+  'process.quote': '“Most of my clients roughly know what they should eat. The hard part is the hour they leave work hungry. We build the plan around that hour first.”',
   'process.quoteRole': 'founder',
   'process.alt': 'Hands chopping fresh parsley on a cutting board',
-  'step1.meta': '01 · 60 min',
+  'step1.meta': '60 min',
   'step1.title': 'First consultation',
   'step1.text': 'We go through your health history, medication, recent blood tests and a three-day food diary.',
-  'step2.meta': '02 · 10 min',
+  'step2.meta': '10 min',
   'step2.title': 'Body analysis',
   'step2.text': 'A bioimpedance scale measures your fat, muscle and water percentages, so we don’t rely on a single number.',
-  'step3.meta': '03 · within 48 hours',
+  'step3.meta': 'Within 48 hours',
   'step3.title': 'Your plan',
   'step3.text': 'A plan that fits the food you like, your working hours and your budget arrives in your inbox.',
-  'step4.meta': '04 · Weekly',
+  'step4.meta': 'Weekly',
   'step4.title': 'Follow-up',
   'step4.text': 'Short follow-up visits and weekday messaging support let us adjust the plan whenever needed.',
 
   /* Team */
-  'team.t1': 'Three dietitians',
-  'team.em': 'ready',
-  'team.t2': 'to listen.',
+  'team.title': 'Our dietitians',
   'team.lede': 'Each dietitian focuses on a different area. When you choose a topic while booking, the right people are highlighted for you.',
   'team.founder': 'Founder',
   'team.edu': 'Education',
@@ -219,9 +212,7 @@ window.MIZAN_I18N_EN = {
   'team.zeynep.alt': 'Portrait of dietitian Zeynep Tunalı',
 
   /* Tools */
-  'tools.t1': 'Curious about',
-  'tools.em': 'your',
-  'tools.t2': 'numbers?',
+  'tools.title': 'Calculators',
   'tools.lede': 'These calculations give you a general idea. At your appointment we read the same values together with your body analysis and blood tests.',
   'tools.aria': 'Health calculators',
   'tools.tab1': 'Body mass index',
@@ -257,9 +248,7 @@ window.MIZAN_I18N_EN = {
   'tools.nursing': 'Breastfeeding',
 
   /* Program */
-  'program.t1': 'A',
-  'program.em': 'sample',
-  'program.t2': 'week of meals.',
+  'program.title': 'A sample week of meals',
   'program.lede': 'Sample weeks for three different goals. Portions are for an average adult; your personal plan is prepared at your appointment.',
   'program.aria': 'Plan goal',
   'program.days': 'Days of the week',
@@ -277,9 +266,7 @@ window.MIZAN_I18N_EN = {
   'program.disclaimer': 'These menus are general examples and should not be followed as they are during pregnancy, with a chronic illness, while taking medication or under 18. Values are approximate.',
 
   /* Recipes */
-  'recipes.t1': 'Recipes that',
-  'recipes.em': 'fit',
-  'recipes.t2': 'a weeknight.',
+  'recipes.title': 'Recipes that fit a weeknight',
   'recipes.lede': 'Most take under 30 minutes and use ingredients from the corner shop. Every recipe lists nutrition per serving.',
   'recipes.filter': 'Recipe category',
   'recipes.all': 'All',
@@ -290,9 +277,7 @@ window.MIZAN_I18N_EN = {
   'recipes.dessert': 'Desserts',
 
   /* Pricing */
-  'pricing.t1': 'Clear',
-  'pricing.em': 'prices,',
-  'pricing.t2': 'no surprises.',
+  'pricing.title': 'Consultation fees',
   'pricing.lede': 'We share our fees up front. Online consultations cover exactly the same ground as in-person ones.',
   'price.first': '1,800 TL',
   'price.control': '900 TL',
@@ -308,7 +293,6 @@ window.MIZAN_I18N_EN = {
   'plan1.f4': 'A one-week personal meal plan',
   'plan1.btn': 'Plan your first visit',
   'plan2.label': 'Monthly follow-up',
-  'plan2.flag': 'Most popular',
   'plan2.per': 'TL / month',
   'plan2.sub': 'Regular follow-up and a plan updated every week.',
   'plan2.f1': 'First consultation plus 3 follow-ups',
@@ -343,10 +327,8 @@ window.MIZAN_I18N_EN = {
   'incl.n4': '“Detox” or crash diet programmes',
 
   /* Booking */
-  'booking.label': 'Online booking',
-  'booking.t1': 'Choose a time',
-  'booking.em': 'that suits you.',
-  'booking.lede': 'The calendar runs on your computer’s clock: times that have passed, or are less than an hour away, close automatically. Your booking goes straight into the clinic’s calendar.',
+  'booking.title': 'Book online',
+  'booking.lede': 'See the dietitians’ free times and book directly here. Same-day appointments can be made from one hour ahead.',
   'booking.now': 'Now · Türkiye time',
   'booking.formAria': 'Booking form',
   'booking.s1': 'Appointment',
@@ -405,8 +387,7 @@ window.MIZAN_I18N_EN = {
   'cancel.btn': 'Cancel appointment',
 
   /* Blog */
-  'blog.t1': 'Notes from the clinic',
-  'blog.em': 'and the kitchen.',
+  'blog.title': 'Latest articles',
   'blog.lede': 'We write about the questions our clients ask most, based on current scientific evidence.',
   'blog.all': 'All articles',
   'post1.cat': 'Clinical nutrition',
@@ -437,9 +418,7 @@ window.MIZAN_I18N_EN = {
   'post6.alt': 'A bag of oats with a nutrition label in a shop',
 
   /* FAQ */
-  'faq.label': 'FAQ',
-  'faq.t1': 'Questions',
-  'faq.em': 'you might have.',
+  'faq.title': 'Frequently asked questions',
   'faq.help': 'Can’t find your answer? Ask our assistant or message us on WhatsApp; a dietitian replies during opening hours.',
   'faq.chat': 'Ask the assistant',
   'faq.q1': 'What happens at the first consultation?',
@@ -464,12 +443,12 @@ window.MIZAN_I18N_EN = {
   'faq.a10': 'Your information is processed only for appointments and consultations under Turkey’s data protection law (KVKK, Law No. 6698) and is not shared with third parties. See our privacy notice for details.',
 
   /* Sky + contact */
-  'sky.word': 'hello',
-  'sky.title': 'Have a question? We’re only a message away.',
+  'sky.word': 'bon appétit',
+  'sky.title': 'Questions about your plan? Send them on WhatsApp; a dietitian replies during opening hours.',
+  'sky.alt': 'Breakfast on a marble table with porridge, fresh fruit and waffles',
   'sky.call': 'Call us',
   'sky.map': 'Directions',
-  'contact.t1': 'Come and',
-  'contact.em': 'see us.',
+  'contact.title': 'Contact and directions',
   'contact.lede': 'We are on Moda Avenue, about a 10-minute walk from Kadıköy ferry pier. The building has a lift and the nearest car park is 150 metres away.',
   'contact.address': 'Address',
   'contact.transit': 'Kadıköy pier 10 min · Moda tram stop 3 min on foot',
@@ -506,7 +485,11 @@ window.MIZAN_I18N_EN = {
   'status.sent': 'Thank you, your message has reached us. We’ll get back to you within one working day.',
   'status.error': 'Your message could not be sent. Try again, or',
   'status.tooMany': 'Too many messages in a short time. Please try again a little later.',
-  'status.demo': 'Demo mode: the form isn’t connected to Google Sheets yet. You can',
+  'status.demo': 'Message sent (demo). As this is a demo, it wasn’t delivered to anyone; on the version set up for your practice this form comes straight to you.',
+  'demo.label': 'Demo',
+  'demo.text': 'This is a demo preview and will be customised for you. The clinic name, team, photos, address and prices are placeholders.',
+  'demo.close': 'OK',
+  'demo.aria': 'About this demo',
   'status.viaWa': 'send it via WhatsApp.',
 
   /* Footer */
@@ -517,7 +500,7 @@ window.MIZAN_I18N_EN = {
   'footer.bmi': 'BMI & calorie calculators',
   'footer.disclaimer': 'Content on this site is for general information and does not replace diagnosis or treatment. Please consult your doctor about health concerns, and call 112 in an emergency.',
   'footer.kvkk': 'Privacy notice (KVKK)',
-  'footer.credit': 'Design & development:',
+  'footer.credit': 'Demo site · Design & development:',
   'footer.creditAria': 'Asteria Soft website',
   'footer.top': 'Back to top',
 
@@ -538,13 +521,11 @@ window.MIZAN_I18N_EN = {
   'article.reviewed': 'Reviewed by',
   'article.by': 'Written by',
   'article.ctaTitle': 'Would you like a plan made for you?',
-  'article.ctaText': 'General advice is a good start, but the plan that works is the one built around your tests, routine and tastes.',
+  'article.ctaText': 'The advice in this article is general. For a plan based on your own blood tests and routine, book an appointment.',
   'article.ctaBtn': 'Book an appointment',
   'article.related': 'More articles',
   'article.back': 'All articles',
-  'blogpage.label': 'Blog',
-  'blogpage.t1': 'Notes from the clinic',
-  'blogpage.em': 'and the kitchen.',
+  'blogpage.title': 'Articles on nutrition',
   'blogpage.lede': 'Evidence-based articles on the questions our clients ask most, written and reviewed by our dietitians.',
   'kvkk.label': 'Legal'
 };
