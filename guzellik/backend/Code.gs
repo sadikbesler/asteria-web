@@ -18,7 +18,7 @@ var CONFIG = {
   CLINIC_EMAIL: '',                    // Boş bırakılırsa bildirimler betiğin sahibine (sizin hesabınıza) gider
   CLINIC_PHONE: '0555 555 55 55',
   CLINIC_ADDRESS: { tr: 'Teşvikiye Cad. No: 21, Kat 2, Nişantaşı — Şişli / İstanbul', en: 'Teşvikiye Cad. No: 21, Floor 2, Nişantaşı, Şişli, Istanbul' },
-  SITE_URL: 'https://sadikbesler.github.io/neva-guzellik/',
+  SITE_URL: 'https://sadikbesler.github.io/asteria-web/guzellik/',
   TIME_ZONE: 'Europe/Istanbul',
   TZ_OFFSET_MIN: 180,                  // Türkiye UTC+3 (yaz saati yok)
 

@@ -17,7 +17,7 @@ window.NEVA_CONFIG = {
      Siteyi gerçek bir merkeze kurarken false yapın (footer'daki "Demo site" yazısını da silin). */
   demo: true,
 
-  siteUrl: 'https://sadikbesler.github.io/neva-guzellik/',
+  siteUrl: 'https://sadikbesler.github.io/asteria-web/guzellik/',
   whatsapp: '905555555555',
   phone: '+905555555555',
   phoneDisplay: '0555 555 55 55',

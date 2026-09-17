@@ -90,7 +90,7 @@ O saat sitede otomatik olarak dolu görünür.
 Site yayına girdikten sonra [Google Search Console](https://search.google.com/search-console)'a sitenizi ekleyip `sitemap.xml` adresini gönderin:
 
 ```
-https://sadikbesler.github.io/neva-guzellik/sitemap.xml
+https://sadikbesler.github.io/asteria-web/guzellik/sitemap.xml
 ```
 
 Kendi alan adınıza taşıdığınızda HTML dosyalarındaki `canonical`, `og:url` ve `sitemap.xml` içindeki adresleri yeni alan adıyla değiştirin.
