@@ -225,6 +225,7 @@ window.MIZAN_I18N_EN = {
   'tools.lede': 'These calculations give you a general idea. At your appointment we read the same values together with your body analysis and blood tests.',
   'tools.aria': 'Health calculators',
   'tools.tab1': 'Body mass index',
+  'tools.tab1abbr': 'BMI',
   'tools.tab2': 'Daily calories',
   'tools.tab3': 'Water needs',
   'tools.height': 'Height',
