@@ -1,0 +1,709 @@
+/* ==========================================================================
+   Mizan Beslenme — sinematik katman (motion.css)
+
+   site.css'in üzerine biner. Amaç: sayfayı aşağı kaydırdıkça sahne sahne
+   ilerleyen, film izler gibi bir deneyim. Renk kuralı değişmedi: düz renkler,
+   gradyan ve neon yok. Hareketin tamamı `html.film-on` sınıfına bağlıdır;
+   JavaScript çalışmazsa ya da kullanıcı "hareketi azalt" derse sayfa
+   eski hâliyle, eksiksiz görünür.
+   ========================================================================== */
+
+/* ---------- Ek değişkenler ---------- */
+:root {
+  --film-out: cubic-bezier(0.16, 1, 0.3, 1);     /* dışarı çıkan yumuşak eğri */
+  --film-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --film-hud: 0.66rem;
+  --rule: 1px;
+}
+
+/* ---------- Lenis (yumuşak kaydırma) ---------- */
+html.lenis, html.lenis body { height: auto; }
+html.lenis { scroll-behavior: auto !important; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ==========================================================================
+   1. Açılış jeneriği (preloader)
+   ========================================================================== */
+.film-intro { display: none; }
+
+html.film-boot .film-intro,
+html.film-on .film-intro { display: block; }
+
+.film-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  color: var(--paper);
+  overflow: hidden;
+  isolation: isolate;
+}
+html.film-intro-done .film-intro { display: none; }
+
+/* Perde: beş dikey bant, sırayla yukarı kayar */
+.film-curtain { position: absolute; inset: 0; display: flex; }
+.film-curtain i {
+  flex: 1 1 0;
+  background: var(--bezel);
+  will-change: transform;
+}
+
+.film-intro-inner {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 22px var(--pad-x);
+}
+
+.film-intro-top,
+.film-intro-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: var(--film-hud);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 232, 0.58);
+}
+
+.film-intro-mid {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.film-word {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.86;
+  font-size: clamp(4.5rem, 20vw, 16rem);
+  color: var(--paper);
+  display: flex;
+}
+.film-word span {
+  display: block;
+  overflow: hidden;
+}
+.film-word span > i {
+  display: block;
+  font-style: normal;
+  will-change: transform;
+}
+
+.film-intro-sub {
+  font-family: var(--mono);
+  font-size: var(--film-hud);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 232, 0.6);
+  overflow: hidden;
+}
+.film-intro-sub > span { display: block; }
+
+.film-count { font-variant-numeric: tabular-nums; }
+
+.film-intro-bar {
+  position: absolute;
+  z-index: 3;
+  left: var(--pad-x);
+  right: var(--pad-x);
+  bottom: 60px;
+  height: var(--rule);
+  background: rgba(245, 241, 232, 0.16);
+}
+.film-intro-bar i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--paper);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+/* Sayfa açılış jeneriği bitene kadar kilitli */
+html.film-locked, html.film-locked body { overflow: hidden; }
+
+/* ==========================================================================
+   2. Sabit film arayüzü (HUD)
+   ========================================================================== */
+.film-hud { display: none; }
+html.film-on .film-hud { display: block; }
+
+.film-hud {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  font-family: var(--mono);
+  font-size: var(--film-hud);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  mix-blend-mode: normal;
+}
+
+/* Üstteki ilerleme çizgisi */
+.film-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: transparent;
+}
+.film-bar i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--olive);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+/* Sağ kenardaki bölüm cetveli */
+.film-chapters {
+  position: absolute;
+  top: 50%;
+  right: max(14px, env(safe-area-inset-right));
+  transform: translateY(-50%);
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  pointer-events: auto;
+}
+@media (min-width: 1400px) {
+  .film-chapters { display: flex; }
+}
+.film-chapters a {
+  display: grid;
+  grid-template-columns: 22px 18px auto;
+  align-items: center;
+  gap: 0;
+  padding: 5px 0;
+  color: var(--ink-3);
+  transition: color 0.35s var(--film-out);
+}
+.film-chapters a b {
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.film-chapters a i {
+  display: block;
+  justify-self: end;
+  width: 14px;
+  height: var(--rule);
+  background: currentColor;
+  opacity: 0.45;
+  transform-origin: 100% 50%;
+  transition: transform 0.4s var(--film-out), opacity 0.35s var(--film-out);
+}
+.film-chapters a s {
+  text-decoration: none;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  padding-left: 0;
+  transition: max-width 0.45s var(--film-out), opacity 0.35s var(--film-out), padding-left 0.45s var(--film-out);
+}
+.film-chapters a:hover,
+.film-chapters a:focus-visible,
+.film-chapters a.is-on { color: var(--ink); }
+.film-chapters a:hover i,
+.film-chapters a:focus-visible i,
+.film-chapters a.is-on i { transform: scaleX(1.9); opacity: 1; }
+.film-chapters a:hover s,
+.film-chapters a:focus-visible s { max-width: 16ch; opacity: 1; padding-left: 10px; }
+.film-chapters a:focus-visible { outline-offset: 2px; }
+
+/* Sol alt: sahne künyesi ve hareket düğmesi */
+.film-foot {
+  position: absolute;
+  left: max(var(--pad-x), env(safe-area-inset-left));
+  bottom: calc(18px + var(--demo-h, 0px) + env(safe-area-inset-bottom));
+  transition: bottom 0.3s var(--film-out);
+  display: none;
+  align-items: stretch;
+  gap: 8px;
+}
+@media (min-width: 1024px) {
+  .film-foot { display: flex; }
+}
+.film-slate { display: flex; align-items: baseline; gap: 12px; color: var(--ink-3); }
+.film-slate b { font-weight: 400; color: var(--ink); font-variant-numeric: tabular-nums; }
+.film-slate span { position: relative; display: inline-block; overflow: hidden; min-width: 12ch; }
+
+/* Sağ alt: canlı saat */
+.film-clock {
+  position: absolute;
+  right: calc(max(var(--pad-x), env(safe-area-inset-right)) + 84px);
+  bottom: calc(18px + var(--demo-h, 0px) + env(safe-area-inset-bottom));
+  transition: bottom 0.3s var(--film-out);
+  display: none;
+  gap: 10px;
+  align-items: baseline;
+  color: var(--ink-3);
+}
+@media (min-width: 1024px) {
+  .film-clock { display: flex; }
+}
+.film-clock b { font-weight: 400; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* Sürekli dönen hareketi (şeritler, gren dokusu) durdurma düğmesi */
+.film-pause {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  color: var(--ink-3);
+  pointer-events: auto;
+  transition: color 0.25s var(--film-out), background-color 0.25s var(--film-out);
+}
+.film-pause svg { width: 13px; height: 13px; }
+.film-pause .i-play { display: none; }
+.film-pause[aria-pressed="true"] .i-play { display: block; }
+.film-pause[aria-pressed="true"] .i-pause { display: none; }
+.film-pause:hover { color: var(--ink); }
+
+/* İçeriğin üstünde durdukları için hepsi kendi zeminini taşır */
+.film-slate, .film-clock, .film-pause {
+  padding: 5px 11px;
+  border: var(--rule) solid var(--line);
+  border-radius: 3px;
+  background: var(--paper);
+}
+html.film-on .film-hud.is-over-dark .film-slate,
+html.film-on .film-hud.is-over-dark .film-clock,
+html.film-on .film-hud.is-over-dark .film-pause {
+  background: rgba(11, 12, 10, 0.55);
+  border-color: rgba(245, 241, 232, 0.22);
+}
+html.film-on .film-hud.is-over-dark .film-pause:hover { color: #F5F1E8; }
+
+/* Duraklatıldığında kendiliğinden dönen her şey durur */
+html.film-paused .film-grain,
+html.film-paused .film-cue i { animation-play-state: paused; }
+
+/* Görsel çerçeveleri: yakınlaşan fotoğraf taşmasın */
+html.film-on .service-media,
+html.film-on .person-media,
+html.film-on .process-media,
+html.film-on .program-media,
+html.film-on .post-feature figure,
+html.film-on .post-row figure,
+html.film-on .recipe-card figure { overflow: hidden; overflow: clip; }
+
+/* Koyu sahnelerde HUD rengi ters döner */
+html.film-on .film-hud.is-over-dark { color: rgba(245, 241, 232, 0.72); }
+html.film-on .film-hud.is-over-dark .film-slate b,
+html.film-on .film-hud.is-over-dark .film-clock b,
+html.film-on .film-hud.is-over-dark .film-chapters a.is-on { color: #F5F1E8; }
+html.film-on .film-hud.is-over-dark .film-chapters a { color: rgba(245, 241, 232, 0.72); }
+html.film-on .film-hud.is-over-dark .film-bar i { background: #D9E6C4; }
+
+/* Kaydırma daveti */
+.film-cue {
+  position: absolute;
+  left: 50%;
+  bottom: calc(16px + var(--demo-h, 0px) + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  color: rgba(245, 241, 232, 0.75);
+}
+.film-cue i {
+  display: block;
+  width: var(--rule);
+  height: 42px;
+  background: currentColor;
+  transform-origin: 50% 0;
+  animation: film-cue-line 2.4s var(--ease) infinite;
+}
+@keyframes film-cue-line {
+  0% { transform: scaleY(0); opacity: 0; }
+  40% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1) translateY(42px); opacity: 0; }
+}
+
+/* ==========================================================================
+   3. Film grenli doku
+   ========================================================================== */
+.film-grain { display: none; }
+html.film-on .film-grain { display: block; }
+.film-grain {
+  position: fixed;
+  inset: -120px;
+  z-index: 180;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  animation: film-grain-shift 0.9s steps(4) infinite;
+}
+[data-theme="dark"] .film-grain { opacity: 0.22; }
+@keyframes film-grain-shift {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-14px, 9px); }
+  50%  { transform: translate(11px, -12px); }
+  75%  { transform: translate(-7px, -6px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ==========================================================================
+   4. İmleç
+   ========================================================================== */
+.film-cursor { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  html.film-on .film-cursor { display: block; }
+}
+.film-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 220;
+  width: 0; height: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+.film-cursor-ring {
+  position: absolute;
+  left: -22px; top: -22px;
+  width: 44px; height: 44px;
+  border: var(--rule) solid var(--ink);
+  border-radius: 50%;
+  transition: background-color 0.3s var(--film-out), border-color 0.3s var(--film-out), opacity 0.25s var(--film-out);
+}
+.film-cursor-tag {
+  position: absolute;
+  left: 50%; top: 50%;
+  translate: -50% -50%;
+  scale: 0.75;
+  padding: 8px 13px;
+  border-radius: 3px;
+  background: var(--olive);
+  color: var(--on-olive);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.25s var(--film-out), scale 0.25s var(--film-out);
+}
+.film-cursor.is-active .film-cursor-ring { background: var(--olive); border-color: var(--olive); }
+.film-cursor.is-dark .film-cursor-ring { border-color: rgba(245, 241, 232, 0.85); }
+.film-cursor.has-tag .film-cursor-ring { opacity: 0; }
+.film-cursor.has-tag .film-cursor-tag { opacity: 1; scale: 1; }
+.film-cursor.is-hidden { opacity: 0; }
+
+html.film-on.film-cursor-on body,
+html.film-on.film-cursor-on a,
+html.film-on.film-cursor-on button,
+html.film-on.film-cursor-on summary,
+html.film-on.film-cursor-on label,
+html.film-on.film-cursor-on .chip,
+html.film-on.film-cursor-on [data-note] { cursor: none; }
+html.film-on.film-cursor-on input,
+html.film-on.film-cursor-on textarea,
+html.film-on.film-cursor-on select { cursor: auto; }
+
+/* GSAP'in sabitleme (pin) boşluğu, esnek kutu (flex) ebeveyn içinde
+   oluşmuyor: spacer'a sabit yükseklik veriliyor ve alt bölümler yukarı
+   kayıyor. Bölümler zaten alt alta dizildiği için blok akışa çeviriyoruz. */
+html.film-on main { display: block; }
+
+/* ==========================================================================
+   5. Hareket başlangıç durumları
+   Yalnızca html.film-on varken uygulanır; JS yoksa her şey görünür kalır.
+   ========================================================================== */
+html.film-on [data-anim="fade"],
+html.film-on [data-anim="rise"],
+html.film-on [data-anim="stack"] > * { opacity: 0; }
+
+html.film-on [data-anim="mask"] { clip-path: inset(0 0 100% 0); }
+
+html.film-on .anim-img-wrap { overflow: hidden; overflow: clip; }
+html.film-on .anim-img-wrap > img { will-change: transform; }
+
+/* SplitText'in ürettiği satır maskeleri */
+html.film-on .split-line { overflow: hidden; }
+
+
+/* ==========================================================================
+   6. Bölümler arası şerit (sonsuz kayan yazı)
+   ========================================================================== */
+.ribbon {
+  position: relative;
+  overflow: hidden;
+  overflow: clip;
+  padding: 0;
+  background: var(--paper);
+  border-top: var(--rule) solid var(--line);
+  border-bottom: var(--rule) solid var(--line);
+  user-select: none;
+}
+.ribbon--dark { background: var(--bezel); border-color: rgba(245, 241, 232, 0.14); color: #F5F1E8; }
+.ribbon--sage { background: var(--sage); border-color: var(--line); }
+.ribbon-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.ribbon-track > span {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 0;
+}
+.ribbon-track em {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  padding-inline: 28px;
+  font-family: var(--serif);
+  font-style: normal;
+  font-size: clamp(1.6rem, 4.4vw, 3.4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  padding-block: clamp(14px, 2.4vw, 26px);
+  white-space: nowrap;
+}
+.ribbon-track em::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--olive);
+  flex: none;
+}
+.ribbon--dark .ribbon-track em::after { background: #D9E6C4; }
+.ribbon-track em:nth-child(even) { font-style: italic; color: var(--ink-2); }
+.ribbon--dark .ribbon-track em:nth-child(even) { color: rgba(245, 241, 232, 0.7); }
+
+/* ==========================================================================
+   7. Manifesto sahnesi (yeni, sabitlenen bölüm)
+   ========================================================================== */
+.scene {
+  position: relative;
+  background: var(--bezel);
+  color: #F5F1E8;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  padding: calc(var(--pad-y) * 0.9) var(--pad-x);
+  overflow: hidden;
+  overflow: clip;
+  isolation: isolate;
+}
+.scene::before { display: none !important; }
+.scene-inner { width: 100%; max-width: var(--wrap); margin-inline: auto; }
+.scene-label {
+  font-family: var(--mono);
+  font-size: var(--film-hud);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 232, 0.55);
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.scene-label::after {
+  content: "";
+  flex: 1;
+  height: var(--rule);
+  background: rgba(245, 241, 232, 0.2);
+}
+.scene-lines { display: grid; gap: clamp(10px, 1.6vw, 20px); font-weight: 400; text-wrap: balance; }
+.scene-lines > span {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 5.6vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  max-width: 22ch;
+}
+.scene-lines em { font-style: italic; color: #D9E6C4; }
+.scene-foot {
+  margin-top: clamp(36px, 6vw, 72px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 28px;
+  font-family: var(--mono);
+  font-size: var(--film-hud);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 232, 0.6);
+}
+.scene-foot b { color: #F5F1E8; font-weight: 400; }
+
+/* Sahnenin arkasındaki fotoğraf katmanı */
+.scene-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  overflow: clip;
+}
+.scene-media img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  opacity: 0.26;
+  will-change: transform;
+}
+.scene-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 12, 10, 0.5);
+}
+
+/* ==========================================================================
+   8. Küçük premium dokunuşlar
+   ========================================================================== */
+
+/* Bağlantı altı çizgisinin soldan sağa süpürülmesi */
+html.film-on .link-arrow,
+html.film-on .blog-more a { position: relative; }
+
+/* Manyetik düğmeler için dönüşüm alanı */
+html.film-on [data-magnetic] { will-change: transform; }
+
+/* Fotoğraf kartlarında hafif eğim */
+html.film-on .recipe-card,
+html.film-on .plan,
+html.film-on .person { transform-style: preserve-3d; }
+
+/* Hizmet kartı görselinde yakınlaşma */
+html.film-on .service-media { overflow: hidden; overflow: clip; }
+html.film-on .service-media img {
+  transition: transform 0.9s var(--film-out);
+  will-change: transform;
+}
+html.film-on .service:hover .service-media img { transform: scale(1.05); }
+
+/* Kaydırmaya göre kart yığını derinliği (uzmanlar) */
+html.film-on .team { perspective: 1400px; }
+html.film-on .services { perspective: 1600px; }
+
+/* Büyük kelimelerin maskeli açılışı */
+html.film-on .sky-word,
+html.film-on .footer-word { overflow: hidden; overflow: clip; }
+html.film-on .sky-word p,
+html.film-on .footer-word p { will-change: transform; }
+
+/* Hero görselinin yakınlaşarak yerine oturması */
+html.film-on .hero-img { will-change: transform; }
+
+/* Sayı sayacı tabular hizada dursun ki zıplamasın */
+html.film-on .facts-num,
+html.film-on .program-total b,
+html.film-on [data-count] { font-variant-numeric: tabular-nums; }
+
+/* Randevu adımları arasında geçiş */
+html.film-on .bstep { will-change: opacity, transform; }
+
+
+/* ==========================================================================
+   Hizmetler: yatay izleme çekimi (yalnızca geniş ekran + hareket açık)
+   Kartlar dikey ızgaradan çıkıp tek sıra hâline gelir; bölüm sabitlenir ve
+   sayfa aşağı kaydıkça kamera sağa doğru kayar.
+   ========================================================================== */
+@media (min-width: 1200px) {
+  html.film-on #hizmetler.is-tracking {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: calc(var(--pad-y) * 0.55);
+  }
+  html.film-on #hizmetler.is-tracking > .wrap { width: 100%; }
+  html.film-on #hizmetler.is-tracking .sec-head { margin-bottom: 26px; }
+  html.film-on .services.is-track .service-media { aspect-ratio: 16 / 10; }
+  html.film-on .services.is-track .service--lg .service-media { aspect-ratio: 16 / 8.5; }
+  html.film-on .services.is-track .service-body { gap: 10px; padding: 18px 20px 20px; }
+  html.film-on .services.is-track .service-body p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  html.film-on .services.is-track {
+    display: flex;
+    grid-template-columns: none;
+    width: max-content;
+    gap: 20px;
+    align-items: stretch;
+    will-change: transform;
+  }
+  html.film-on .services.is-track .service {
+    grid-column: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: clamp(300px, 23vw, 370px);
+  }
+  html.film-on .services.is-track .service--lg { flex-basis: clamp(430px, 33vw, 528px); }
+  /* Esnek kutuda görselin kendi boyu alt sınır olmasın, oran geçerli olsun */
+  html.film-on .services.is-track .service-media { flex: none; min-height: 0; }
+
+  /* Bölümün ne kadarının geçtiğini gösteren ince cetvel */
+  .track-rail {
+    position: relative;
+    height: var(--rule);
+    margin: 0 0 26px;
+    background: var(--line);
+  }
+  .track-rail i {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 22%;
+    background: var(--olive);
+    transform-origin: 0 50%;
+    will-change: transform;
+  }
+}
+
+/* ==========================================================================
+   Alıntı ve kapanış cümlesi: kaydırdıkça kelime kelime aydınlanır
+   (Codrops OnScrollTextHighlight fikrinden)
+   ========================================================================== */
+html.film-on .quote p .word,
+html.film-on .sky-mid h2 .word { will-change: opacity; }
+
+/* ==========================================================================
+   9. Hareketi azalt / yazdırma / JS yok
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html.film-on [data-anim="fade"],
+  html.film-on [data-anim="rise"],
+  html.film-on [data-anim="stack"] > * { opacity: 1 !important; transform: none !important; }
+  html.film-on [data-anim="mask"] { clip-path: none !important; }
+  .film-grain { animation: none; }
+  .film-cue i { animation: none; }
+  .film-intro { display: none !important; }
+  .ribbon-track { animation: none !important; }
+  html.film-on #hizmetler.is-tracking { display: block; min-height: 0; }
+  html.film-on .services.is-track { display: grid; width: auto; }
+}
+
+@media print {
+  .film-hud, .film-grain, .film-cursor, .film-intro, .ribbon, .scene { display: none !important; }
+  html.film-on [data-anim] { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+}
+
+/* JavaScript kapalıysa sinematik katmanın hiçbir parçası görünmez */
+html.no-js .film-intro,
+html.no-js .film-hud,
+html.no-js .film-grain,
+html.no-js .film-cursor { display: none !important; }
