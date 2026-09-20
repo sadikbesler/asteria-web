@@ -29,6 +29,8 @@
   gsap.registerPlugin(ScrollTrigger);
   var hasSplit = !!window.SplitText;
   if (hasSplit) gsap.registerPlugin(SplitText);
+  var hasFlip = !!window.Flip;
+  if (hasFlip) gsap.registerPlugin(Flip);
   if (window.CustomEase) {
     gsap.registerPlugin(CustomEase);
     CustomEase.create('film', '0.16, 1, 0.3, 1');
@@ -216,59 +218,6 @@
     setInterval(tick, 15000);
   })();
 
-  /* --- İmleç: halka + bağlama göre değişen etiket --- */
-  var cursor = null;
-  var cursorRing = null;
-  var cursorTag = null;
-
-  /* Hangi ögenin üzerinde hangi etiket çıkacak */
-  var CURSOR_TAGS = [
-    { sel: '[data-note]', key: 'cursor.drag', tr: 'Sürükle' },
-    { sel: '.recipe-card', key: 'cursor.recipe', tr: 'Tarifi aç' },
-    { sel: '.service > a', key: 'cursor.book', tr: 'Randevu' },
-    { sel: '.post-feature a, .post-row a, .blog-card a', key: 'cursor.read', tr: 'Oku' }
-  ];
-  function applyCursorTags() {
-    CURSOR_TAGS.forEach(function (c) {
-      $$(c.sel).forEach(function (el) { el.setAttribute('data-cursor', t(c.key, c.tr)); });
-    });
-  }
-
-  if (canHover) {
-    cursor = document.createElement('div');
-    cursor.className = 'film-cursor';
-    cursor.setAttribute('aria-hidden', 'true');
-    cursorRing = document.createElement('i');
-    cursorRing.className = 'film-cursor-ring';
-    cursorTag = document.createElement('span');
-    cursorTag.className = 'film-cursor-tag';
-    cursor.append(cursorRing, cursorTag);
-    document.body.appendChild(cursor);
-    root.classList.add('film-cursor-on');
-
-    var cx = gsap.quickTo(cursor, 'x', { duration: 0.3, ease: 'power3' });
-    var cy = gsap.quickTo(cursor, 'y', { duration: 0.3, ease: 'power3' });
-    var cs = gsap.quickTo(cursorRing, 'scale', { duration: 0.3, ease: 'power3' });
-    gsap.set(cursor, { x: -150, y: -150 });
-
-    var HOT = 'a, button, summary, label.radio-pill, label.choice, label.check, .chip, [data-note], .tab';
-    document.addEventListener('pointermove', function (e) {
-      if (e.pointerType && e.pointerType !== 'mouse') return;
-      cx(e.clientX); cy(e.clientY);
-      var hot = e.target.closest ? e.target.closest(HOT) : null;
-      var tagged = e.target.closest ? e.target.closest('[data-cursor]') : null;
-      var label = tagged ? tagged.getAttribute('data-cursor') : '';
-      if (label && cursorTag.textContent !== label) cursorTag.textContent = label;
-      cursor.classList.toggle('has-tag', !!label);
-      cursor.classList.toggle('is-active', !!hot && !label);
-      cs(hot && !label ? 0.72 : 1);
-    }, { passive: true });
-    document.addEventListener('pointerdown', function () { cs(0.55); });
-    document.addEventListener('pointerup', function () { cs(cursor.classList.contains('is-active') ? 0.72 : 1); });
-    document.addEventListener('mouseleave', function () { cursor.classList.add('is-hidden'); });
-    document.addEventListener('mouseenter', function () { cursor.classList.remove('is-hidden'); });
-  }
-
   /* ======================================================================
      3. Yazı motoru — satır maskeleri ve kelime açılışları
      ====================================================================== */
@@ -303,16 +252,29 @@
         scrollTrigger: opts.noTrigger ? null : { trigger: el, start: 'top 88%', once: true }
       }));
     }
-    gsap.set(s.lines, { yPercent: 108 });
+    /* Codrops KineticTypePageTransition: satırlar yandan savrularak,
+       hafif ölçek değişimiyle ve tok bir eğriyle yerine oturur. */
+    gsap.set(s.lines, { yPercent: 112, xPercent: 14 });
+    gsap.set(el, { transformOrigin: '0% 100%' });
     if (!opts.paused) watchHidden(s.lines);
-    return track(gsap.to(s.lines, {
-      yPercent: 0,
-      duration: 1.05,
-      ease: EASE,
-      stagger: 0.09,
+    var tl = gsap.timeline({
       paused: !!opts.paused,
       scrollTrigger: opts.noTrigger ? null : { trigger: el, start: 'top 88%', once: true }
-    }));
+    });
+    tl.to(s.lines, {
+      yPercent: 0,
+      duration: 1.15,
+      ease: EASE,
+      stagger: 0.085
+    }, 0)
+      .to(s.lines, {
+        xPercent: 0,
+        duration: 1.4,
+        ease: 'power4.out',
+        stagger: 0.085
+      }, 0)
+      .fromTo(el, { scaleY: 1.14 }, { scaleY: 1, duration: 1.3, ease: EASE }, 0);
+    return track(tl);
   }
 
   /* Spot yazılar: kelimeler sırayla belirir (Codrops ScrollBlurTypography) */
@@ -428,13 +390,25 @@
     var cta = $('.hero-cta', hero);
     var slot = $('.next-slot', hero);
 
+    var media = $('[data-hero-media]', hero);
+    var shade = $('.hero-shade', hero);
+
     heroIntro = gsap.timeline({ paused: true });
-    if (img) heroIntro.fromTo(img, { scale: 1.2, yPercent: 2.5 }, { scale: 1, yPercent: 0, duration: 2.4, ease: EASE }, 0);
-    if (kicker) heroIntro.fromTo(kicker, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 0.1);
+
+    /* Codrops FullImageReveal: görsel ortada küçük, köşeleri yuvarlatılmış
+       bir kareden başlayıp ekranı kaplayacak şekilde büyür. */
+    if (media) {
+      heroIntro.fromTo(media,
+        { clipPath: 'inset(30% 34% 30% 34% round 26px)' },
+        { clipPath: 'inset(0% 0% 0% 0% round 0px)', duration: 1.9, ease: EASE }, 0);
+    }
+    if (img) heroIntro.fromTo(img, { scale: 1.55 }, { scale: 1, duration: 2.5, ease: EASE }, 0);
+    if (shade) heroIntro.fromTo(shade, { opacity: 0 }, { opacity: 1, duration: 1.4, ease: 'power2.inOut' }, 0.35);
+    if (kicker) heroIntro.fromTo(kicker, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.8, ease: EASE }, 0.55);
     [lede, cta, slot].forEach(function (el, i) {
-      if (el) heroIntro.fromTo(el, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 0.55 + i * 0.09);
+      if (el) heroIntro.fromTo(el, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.9, ease: EASE }, 0.95 + i * 0.09);
     });
-    if (ui.cue) heroIntro.fromTo(ui.cue, { opacity: 0 }, { opacity: 1, duration: 0.6 }, 1.0);
+    if (ui.cue) heroIntro.fromTo(ui.cue, { opacity: 0 }, { opacity: 1, duration: 0.6 }, 1.5);
 
     /* Kaydırınca: fotoğraf yerinde kalır, içerik yukarı süzülür, sonraki
        bölüm hero'nun üstüne kayar (pinSpacing kapalı) */
@@ -450,7 +424,7 @@
       }
     })
       .to($('.wrap', hero), { yPercent: -16, opacity: 0, ease: 'none' }, 0)
-      .to(img, { scale: 1.1, ease: 'none' }, 0);
+      .fromTo(media || img, { scale: 1 }, { scale: 1.08, ease: 'none' }, 0);
 
   }
 
@@ -476,15 +450,20 @@
   /* --- Genel açılış: başka bir koreografiye girmeyen [data-reveal] --- */
   var CLAIMED = '.hero, .scene, .film-intro, .services, .team, .plans, .faq-list, .road, .notes, .sky';
   var FRAMES = '.service-media, .person-media, .process-media, .program-media, .post-feature figure, .post-row figure, .recipe-card figure';
+  /* Yazı motoru bunları zaten kendi açıyor; iki kez animasyon uygulanmasın */
+  var TEXTS = '.h2, .hero-title, .lede, .quote p, .footer-about h2, .sky-mid h2';
   function reveals() {
     var els = $$('[data-reveal]').filter(function (el) {
-      return !el.closest(CLAIMED) && !el.matches(CLAIMED) && !el.matches(FRAMES);
+      return !el.closest(CLAIMED) && !el.matches(CLAIMED) && !el.matches(FRAMES) && !el.matches(TEXTS);
     });
     if (!els.length) return;
-    gsap.set(els, { opacity: 0, y: 34 });
+    gsap.set(els, { opacity: 0, y: 56, rotateX: 9, transformPerspective: 1000, transformOrigin: '50% 100%' });
     watchHidden(els);
     var show = function (batch) {
-      gsap.to(batch, { opacity: 1, y: 0, duration: 1, ease: EASE, stagger: 0.07, overwrite: 'auto' });
+      gsap.to(batch, {
+        opacity: 1, y: 0, rotateX: 0,
+        duration: 1.15, ease: EASE, stagger: 0.08, overwrite: 'auto'
+      });
     };
     ScrollTrigger.batch(els, { start: 'top 93%', once: true, onEnter: show, onEnterBack: show });
   }
@@ -558,6 +537,8 @@
     if (label) gsap.set(label, { opacity: 0 });
     if (foot) gsap.set(foot, { opacity: 0, y: 24 });
 
+    var layers = sceneLayers();
+
     var tl = gsap.timeline({
       scrollTrigger: {
         trigger: scene,
@@ -572,22 +553,59 @@
     lines.forEach(function (line, i) {
       tl.to(line, { opacity: 1, duration: 0.6, ease: 'power2.out' }, 0.4 + i * 0.7);
     });
+    /* Arka plan katmanları cümlelerle birlikte açılır (LayersAnimation) */
+    if (layers) {
+      layers.forEach(function (layer, i) {
+        tl.to(layer, {
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          duration: 0.9, ease: 'power2.inOut'
+        }, 0.9 + i * 1.2);
+      });
+    }
     if (foot) tl.to(foot, { opacity: 1, y: 0, duration: 0.7 }, 0.4 + lines.length * 0.7);
   }
 
-  /* --- Uzmanlar: 3B derinlikten gelir (Codrops 3DStackMotion'dan) --- */
+  /* --- Uzmanlar: kartlar yığından ızgaraya geçer
+         (Codrops OnScrollViewSwitch — GSAP Flip) --- */
   function teamScene() {
+    var team = $('.team');
     var people = $$('.team .person');
-    if (!people.length) return;
+    if (!team || !people.length) return;
+
+    var wide = window.matchMedia('(min-width: 1100px)');
+    if (!hasFlip || !wide.matches) {
+      /* Dar ekranda ızgara zaten tek sütun: sade bir giriş yeter */
+      gsap.set(people, { opacity: 0, y: 48 });
+      watchHidden(people);
+      gsap.to(people, {
+        opacity: 1, y: 0, duration: 1.1, ease: EASE, stagger: 0.1,
+        scrollTrigger: { trigger: team, start: 'top 84%', once: true }
+      });
+      return;
+    }
+
+    team.classList.add('is-stack');
+    gsap.set(people, { opacity: 0 });
     watchHidden(people);
-    people.forEach(function (p, i) {
-      gsap.fromTo(p,
-        { z: -420, rotateY: i === 0 ? 12 : i === people.length - 1 ? -12 : 0, opacity: 0 },
-        {
-          z: 0, rotateY: 0, opacity: 1,
-          duration: 1.3, ease: EASE, delay: i * 0.12,
-          scrollTrigger: { trigger: '.team', start: 'top 84%', once: true }
+
+    ScrollTrigger.create({
+      trigger: team,
+      start: 'top 88%',
+      once: true,
+      onEnter: function () {
+        gsap.to(people, { opacity: 1, duration: 0.5, ease: 'none', overwrite: 'auto' });
+        /* Yığın hâli bir an görünsün, sonra ızgaraya açılsın */
+        gsap.delayedCall(0.5, function () {
+          var state = Flip.getState(people, { props: 'boxShadow' });
+          team.classList.remove('is-stack');
+          Flip.from(state, {
+            duration: 1.15,
+            ease: 'power3.inOut',
+            scale: true,
+            stagger: 0.07
+          });
         });
+      }
     });
   }
 
@@ -728,6 +746,137 @@
     }
   }
 
+
+  /* --- Tarifler ve blog: kartlar farklı hızda akıp yerine oturur
+         (Codrops TileScroll) --- */
+  var tileTweens = [];
+  function tileScroll(scope) {
+    function line(el, index, amount, trigger) {
+      var tw = gsap.fromTo(el,
+        { y: index % 2 ? -amount : amount },
+        {
+          y: index % 2 ? amount : -amount,
+          ease: 'none',
+          scrollTrigger: { trigger: trigger, start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+        });
+      tileTweens.push(tw);
+    }
+
+    /* Tarif ızgarası: sütunlar birbirinin üzerinden akar */
+    var grid = $('[data-recipes]', scope || document) || $('[data-recipes]');
+    if (grid) {
+      var cards = $$('.recipe-card', grid);
+      if (cards.length > 2) {
+        var firstTop = Math.round(cards[0].offsetTop);
+        var cols = cards.filter(function (c) { return Math.round(c.offsetTop) === firstTop; }).length || 1;
+        cards.forEach(function (card, i) {
+          if (card.dataset.filmTile) return;
+          card.dataset.filmTile = '1';
+          line(card, i % cols, 14 + (i % cols) * 12, grid);
+        });
+      }
+    }
+
+    /* Blog satırları: yatayda hafifçe kayar */
+    $$('.post-list .post-row').forEach(function (row, i) {
+      if (row.dataset.filmTile) return;
+      row.dataset.filmTile = '1';
+      var tw = gsap.fromTo(row,
+        { x: i % 2 ? 26 : -26 },
+        {
+          x: 0, ease: 'none',
+          scrollTrigger: { trigger: row, start: 'top bottom', end: 'top 55%', scrub: 0.6 }
+        });
+      tileTweens.push(tw);
+    });
+  }
+
+  /* --- Yöntem sahnesi arka planı: üst üste açılan katmanlar
+         (Codrops LayersAnimation) --- */
+  function sceneLayers() {
+    var media = $('.scene-media');
+    if (!media) return null;
+    var base = $('img', media);
+    if (!base) return null;
+
+    var extra = ['assets/img/surec-mutfak-1200.webp', 'assets/img/program-tahta-1200.webp'];
+    var layers = [];
+    extra.forEach(function (src) {
+      var layer = document.createElement('div');
+      layer.className = 'scene-layer';
+      var im = document.createElement('img');
+      im.src = src;
+      im.alt = '';
+      im.loading = 'lazy';
+      im.decoding = 'async';
+      im.width = 1200; im.height = 900;
+      layer.appendChild(im);
+      media.appendChild(layer);
+      layers.push(layer);
+    });
+    gsap.set(layers, { clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' });
+    return layers;
+  }
+
+  /* --- Bölümler arası dönerek geçen perde (Codrops RotatedRevealers) --- */
+  var revealer = null;
+  var revealerInner = null;
+  var revealerBusy = false;
+
+  function buildRevealer() {
+    revealer = document.createElement('div');
+    revealer.className = 'revealer';
+    revealer.setAttribute('aria-hidden', 'true');
+    revealerInner = document.createElement('i');
+    revealer.appendChild(revealerInner);
+    document.body.appendChild(revealer);
+    sizeRevealer();
+    window.addEventListener('resize', sizeRevealer, { passive: true });
+  }
+  /* Dönen perde: dış kutu ekranı kırpar, içteki panel açıya göre büyütülüp
+     döndürülür; böylece köşeler de örtülür. */
+  var ANGLE = -13;
+  function sizeRevealer() {
+    if (!revealerInner) return;
+    var a = Math.abs(Math.cos(ANGLE * Math.PI / 180));
+    var b = Math.abs(Math.sin(ANGLE * Math.PI / 180));
+    revealerInner.style.width = 'calc(100vw * ' + a.toFixed(4) + ' + 100vh * ' + b.toFixed(4) + ' + 80px)';
+    revealerInner.style.height = 'calc(100vw * ' + b.toFixed(4) + ' + 100vh * ' + a.toFixed(4) + ' + 80px)';
+    gsap.set(revealerInner, { rotation: ANGLE, yPercent: 110 });
+  }
+
+  /* Perde aşağıdan gelir, ortada hedefe atlanır, yukarıdan çıkar */
+  function revealTo(id) {
+    if (!revealer || revealerBusy) return false;
+    var target = document.getElementById(id);
+    if (!target) return false;
+    revealerBusy = true;
+    revealer.classList.add('is-busy');
+    if (lenis) lenis.stop();
+
+    gsap.timeline({
+      onComplete: function () {
+        revealerBusy = false;
+        revealer.classList.remove('is-busy');
+        gsap.set(revealerInner, { yPercent: 110 });
+      }
+    })
+      .fromTo(revealerInner, { yPercent: 110 }, { yPercent: 0, duration: 0.62, ease: 'power3.inOut' })
+      .add(function () {
+        if (lenis) lenis.start();
+        ScrollTrigger.refresh();
+        var top = target.getBoundingClientRect().top + window.scrollY;
+        var pad = parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
+        var to = Math.max(0, top - pad);
+        if (lenis) lenis.scrollTo(to, { immediate: true });
+        else window.scrollTo(0, to);
+        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+      })
+      .to(revealerInner, { yPercent: -110, duration: 0.72, ease: 'power3.inOut' }, '+=0.1');
+    return true;
+  }
+
   /* ======================================================================
      5. Şeritler — kaydırma hızına tepki veren sonsuz yazı
         (Codrops LoopScrolling fikrinden uyarlandı)
@@ -813,7 +962,6 @@
       var probe = window.scrollY + window.innerHeight - 30;
       var dark = darkZones.some(function (z) { return probe > z.top && probe < z.bottom; });
       hud.classList.toggle('is-over-dark', dark);
-      if (cursor) cursor.classList.toggle('is-dark', dark);
 
       /* Açılış karesi temiz kalsın: künye ve saat ilk kaydırmayla gelir,
          kaydırma daveti ise aynı anda çekilir. */
@@ -872,8 +1020,11 @@
     var id = href.slice(1);
     if (!document.getElementById(id)) return;
     e.preventDefault();
-    smoothAnchor(id);
     try { history.replaceState(history.state, '', href); } catch (err) {}
+    /* Uzak bir bölüme gidiliyorsa perdeyle geç, yakınsa yumuşak kaydır */
+    var target = document.getElementById(id);
+    var far = Math.abs(target.getBoundingClientRect().top) > window.innerHeight * 1.4;
+    if (!(far && revealTo(id))) smoothAnchor(id);
   });
   chapterLinks.forEach(function (a) {
     a.addEventListener('click', function (e) {
@@ -934,11 +1085,10 @@
         pending = setTimeout(function () {
           var cards = $$('.recipe-card', grid);
           if (!cards.length) return;
-          gsap.fromTo(cards, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.7, ease: EASE, stagger: 0.04, overwrite: 'auto' });
+          gsap.fromTo(cards, { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.7, ease: EASE, stagger: 0.04, overwrite: 'auto' });
           imageReveals(grid);
           tilt(grid);
-          applyCursorTags();
-          ScrollTrigger.refresh();
+                ScrollTrigger.refresh();
         }, 40);
       }).observe(grid, { childList: true });
     }
@@ -1045,11 +1195,12 @@
       parallax();
       buildRibbons();
     }
+    buildRevealer();
     reveals();
     imageReveals(document);
+    tileScroll(document);
     tilt(document);
     magnetic();
-    applyCursorTags();
     hudScenes();
     watchDynamic();
     ScrollTrigger.refresh();
@@ -1093,8 +1244,7 @@
       ui.clockCity.textContent = t('film.city', 'İstanbul');
       if (ui.cueText) ui.cueText.textContent = t('film.scroll', 'Kaydırın');
       if (ui.nav) ui.nav.setAttribute('aria-label', t('film.chapters', 'Bölümler'));
-      applyCursorTags();
-      if (ui.refreshChapter) ui.refreshChapter();
+        if (ui.refreshChapter) ui.refreshChapter();
       applyPause();
       requestAnimationFrame(function () {
         buildText();

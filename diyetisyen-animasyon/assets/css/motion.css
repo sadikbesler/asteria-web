@@ -69,7 +69,7 @@ html.film-intro-done .film-intro { display: none; }
   font-size: var(--film-hud);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(245, 241, 232, 0.58);
+  color: rgba(247, 245, 239, 0.58);
 }
 
 .film-intro-mid {
@@ -104,7 +104,7 @@ html.film-intro-done .film-intro { display: none; }
   font-size: var(--film-hud);
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(245, 241, 232, 0.6);
+  color: rgba(247, 245, 239, 0.6);
   overflow: hidden;
 }
 .film-intro-sub > span { display: block; }
@@ -118,7 +118,7 @@ html.film-intro-done .film-intro { display: none; }
   right: var(--pad-x);
   bottom: 60px;
   height: var(--rule);
-  background: rgba(245, 241, 232, 0.16);
+  background: rgba(247, 245, 239, 0.16);
 }
 .film-intro-bar i {
   display: block;
@@ -284,9 +284,9 @@ html.film-on .film-hud.is-over-dark .film-slate,
 html.film-on .film-hud.is-over-dark .film-clock,
 html.film-on .film-hud.is-over-dark .film-pause {
   background: rgba(11, 12, 10, 0.55);
-  border-color: rgba(245, 241, 232, 0.22);
+  border-color: rgba(247, 245, 239, 0.22);
 }
-html.film-on .film-hud.is-over-dark .film-pause:hover { color: #F5F1E8; }
+html.film-on .film-hud.is-over-dark .film-pause:hover { color: #F7F5EF; }
 
 /* Duraklatıldığında kendiliğinden dönen her şey durur */
 html.film-paused .film-grain,
@@ -302,12 +302,12 @@ html.film-on .post-row figure,
 html.film-on .recipe-card figure { overflow: hidden; overflow: clip; }
 
 /* Koyu sahnelerde HUD rengi ters döner */
-html.film-on .film-hud.is-over-dark { color: rgba(245, 241, 232, 0.72); }
+html.film-on .film-hud.is-over-dark { color: rgba(247, 245, 239, 0.72); }
 html.film-on .film-hud.is-over-dark .film-slate b,
 html.film-on .film-hud.is-over-dark .film-clock b,
-html.film-on .film-hud.is-over-dark .film-chapters a.is-on { color: #F5F1E8; }
-html.film-on .film-hud.is-over-dark .film-chapters a { color: rgba(245, 241, 232, 0.72); }
-html.film-on .film-hud.is-over-dark .film-bar i { background: #D9E6C4; }
+html.film-on .film-hud.is-over-dark .film-chapters a.is-on { color: #F7F5EF; }
+html.film-on .film-hud.is-over-dark .film-chapters a { color: rgba(247, 245, 239, 0.72); }
+html.film-on .film-hud.is-over-dark .film-bar i { background: #D3E3B8; }
 
 /* Kaydırma daveti */
 .film-cue {
@@ -318,7 +318,7 @@ html.film-on .film-hud.is-over-dark .film-bar i { background: #D9E6C4; }
   display: grid;
   justify-items: center;
   gap: 8px;
-  color: rgba(245, 241, 232, 0.75);
+  color: rgba(247, 245, 239, 0.75);
 }
 .film-cue i {
   display: block;
@@ -358,67 +358,73 @@ html.film-on .film-grain { display: block; }
   100% { transform: translate(0, 0); }
 }
 
+
 /* ==========================================================================
-   4. İmleç
+   Codrops uyarlamaları
    ========================================================================== */
-.film-cursor { display: none; }
-@media (hover: hover) and (pointer: fine) {
-  html.film-on .film-cursor { display: block; }
-}
-.film-cursor {
+
+/* --- FullImageReveal: hero görseli küçük maskeden büyüyerek açılır --- */
+html.film-on .hero-media { will-change: clip-path; }
+html.film-on .hero-media img { will-change: transform; }
+html.film-on .hero-shade { will-change: opacity; }
+
+/* --- RotatedRevealers: bölümler arası dönerek geçen perde --- */
+.revealer {
   position: fixed;
-  top: 0; left: 0;
-  z-index: 220;
-  width: 0; height: 0;
+  inset: 0;
+  z-index: 240;
   pointer-events: none;
+  display: none;
+  place-items: center;
+  overflow: hidden;
+}
+html.film-on .revealer { display: grid; }
+.revealer i {
+  display: block;
+  background: var(--olive);
   will-change: transform;
 }
-.film-cursor-ring {
-  position: absolute;
-  left: -22px; top: -22px;
-  width: 44px; height: 44px;
-  border: var(--rule) solid var(--ink);
-  border-radius: 50%;
-  transition: background-color 0.3s var(--film-out), border-color 0.3s var(--film-out), opacity 0.25s var(--film-out);
-}
-.film-cursor-tag {
-  position: absolute;
-  left: 50%; top: 50%;
-  translate: -50% -50%;
-  scale: 0.75;
-  padding: 8px 13px;
-  border-radius: 3px;
-  background: var(--olive);
-  color: var(--on-olive);
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.25s var(--film-out), scale 0.25s var(--film-out);
-}
-.film-cursor.is-active .film-cursor-ring { background: var(--olive); border-color: var(--olive); }
-.film-cursor.is-dark .film-cursor-ring { border-color: rgba(245, 241, 232, 0.85); }
-.film-cursor.has-tag .film-cursor-ring { opacity: 0; }
-.film-cursor.has-tag .film-cursor-tag { opacity: 1; scale: 1; }
-.film-cursor.is-hidden { opacity: 0; }
+.revealer.is-busy { pointer-events: auto; }
 
-html.film-on.film-cursor-on body,
-html.film-on.film-cursor-on a,
-html.film-on.film-cursor-on button,
-html.film-on.film-cursor-on summary,
-html.film-on.film-cursor-on label,
-html.film-on.film-cursor-on .chip,
-html.film-on.film-cursor-on [data-note] { cursor: none; }
-html.film-on.film-cursor-on input,
-html.film-on.film-cursor-on textarea,
-html.film-on.film-cursor-on select { cursor: auto; }
+/* --- LayersAnimation: yöntem sahnesinde üst üste açılan katmanlar --- */
+.scene-media .scene-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: clip-path;
+}
+.scene-media .scene-layer img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
 
-/* GSAP'in sabitleme (pin) boşluğu, esnek kutu (flex) ebeveyn içinde
-   oluşmuyor: spacer'a sabit yükseklik veriliyor ve alt bölümler yukarı
-   kayıyor. Bölümler zaten alt alta dizildiği için blok akışa çeviriyoruz. */
-html.film-on main { display: block; }
+/* --- OnScrollViewSwitch: uzman kartları yığından ızgaraya --- */
+/* Yığın hâlinde üç kart da orta sütunda durur; ızgara yüksekliği
+   değişmediği için geçiş sırasında sayfa zıplamaz. */
+@media (min-width: 1100px) {
+  html.film-on .team.is-stack .person { grid-area: 1 / 2; }
+  html.film-on .team.is-stack .person:nth-child(1) {
+    transform: translate(-7%, 20px) rotate(-4.5deg);
+    z-index: 1;
+  }
+  html.film-on .team.is-stack .person:nth-child(2) {
+    transform: translateY(-6px);
+    z-index: 3;
+    box-shadow: var(--lift-hi);
+  }
+  html.film-on .team.is-stack .person:nth-child(3) {
+    transform: translate(7%, 20px) rotate(4.5deg);
+    z-index: 2;
+  }
+}
+
+/* --- TileScroll: kartlar farklı hızda akıp yerine oturur --- */
+html.film-on .recipes .recipe-card,
+html.film-on .post-list .post-row { will-change: transform; }
 
 /* ==========================================================================
    5. Hareket başlangıç durumları
@@ -450,7 +456,7 @@ html.film-on .split-line { overflow: hidden; }
   border-bottom: var(--rule) solid var(--line);
   user-select: none;
 }
-.ribbon--dark { background: var(--bezel); border-color: rgba(245, 241, 232, 0.14); color: #F5F1E8; }
+.ribbon--dark { background: var(--bezel); border-color: rgba(247, 245, 239, 0.14); color: #F7F5EF; }
 .ribbon--sage { background: var(--sage); border-color: var(--line); }
 .ribbon-track {
   display: flex;
@@ -484,9 +490,9 @@ html.film-on .split-line { overflow: hidden; }
   background: var(--olive);
   flex: none;
 }
-.ribbon--dark .ribbon-track em::after { background: #D9E6C4; }
+.ribbon--dark .ribbon-track em::after { background: #D3E3B8; }
 .ribbon-track em:nth-child(even) { font-style: italic; color: var(--ink-2); }
-.ribbon--dark .ribbon-track em:nth-child(even) { color: rgba(245, 241, 232, 0.7); }
+.ribbon--dark .ribbon-track em:nth-child(even) { color: rgba(247, 245, 239, 0.7); }
 
 /* ==========================================================================
    7. Manifesto sahnesi (yeni, sabitlenen bölüm)
@@ -494,7 +500,7 @@ html.film-on .split-line { overflow: hidden; }
 .scene {
   position: relative;
   background: var(--bezel);
-  color: #F5F1E8;
+  color: #F7F5EF;
   min-height: 100svh;
   display: grid;
   align-content: center;
@@ -510,7 +516,7 @@ html.film-on .split-line { overflow: hidden; }
   font-size: var(--film-hud);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(245, 241, 232, 0.55);
+  color: rgba(247, 245, 239, 0.55);
   margin-bottom: 36px;
   display: flex;
   align-items: center;
@@ -520,7 +526,7 @@ html.film-on .split-line { overflow: hidden; }
   content: "";
   flex: 1;
   height: var(--rule);
-  background: rgba(245, 241, 232, 0.2);
+  background: rgba(247, 245, 239, 0.2);
 }
 .scene-lines { display: grid; gap: clamp(10px, 1.6vw, 20px); font-weight: 400; text-wrap: balance; }
 .scene-lines > span {
@@ -532,7 +538,7 @@ html.film-on .split-line { overflow: hidden; }
   letter-spacing: -0.03em;
   max-width: 22ch;
 }
-.scene-lines em { font-style: italic; color: #D9E6C4; }
+.scene-lines em { font-style: italic; color: #D3E3B8; }
 .scene-foot {
   margin-top: clamp(36px, 6vw, 72px);
   display: flex;
@@ -543,9 +549,9 @@ html.film-on .split-line { overflow: hidden; }
   font-size: var(--film-hud);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(245, 241, 232, 0.6);
+  color: rgba(247, 245, 239, 0.6);
 }
-.scene-foot b { color: #F5F1E8; font-weight: 400; }
+.scene-foot b { color: #F7F5EF; font-weight: 400; }
 
 /* Sahnenin arkasındaki fotoğraf katmanı */
 .scene-media {
@@ -698,7 +704,7 @@ html.film-on .sky-mid h2 .word { will-change: opacity; }
 }
 
 @media print {
-  .film-hud, .film-grain, .film-cursor, .film-intro, .ribbon, .scene { display: none !important; }
+  .film-hud, .film-grain, .film-intro, .revealer, .ribbon, .scene { display: none !important; }
   html.film-on [data-anim] { opacity: 1 !important; transform: none !important; clip-path: none !important; }
 }
 
@@ -706,4 +712,4 @@ html.film-on .sky-mid h2 .word { will-change: opacity; }
 html.no-js .film-intro,
 html.no-js .film-hud,
 html.no-js .film-grain,
-html.no-js .film-cursor { display: none !important; }
+html.no-js .revealer { display: none !important; }

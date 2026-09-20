@@ -42,6 +42,7 @@
   <link rel="preload" as="image" href="assets/img/hero-mutfak-1200.webp" imagesrcset="assets/img/hero-mutfak-1200.webp 1200w, assets/img/hero-mutfak-2400.webp 2400w" imagesizes="100vw" fetchpriority="high">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap">
   <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/premium.css">
   <link rel="stylesheet" href="assets/css/motion.css">
 
   <script src="assets/js/boot.js"></script>
@@ -56,6 +57,7 @@
   <!-- Sinematik katman: GSAP (ücretsiz standart lisans) + Lenis (MIT), site içinden sunulur -->
   <script src="assets/vendor/gsap.min.js" defer></script>
   <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/Flip.min.js" defer></script>
   <script src="assets/vendor/SplitText.min.js" defer></script>
   <script src="assets/vendor/CustomEase.min.js" defer></script>
   <script src="assets/vendor/lenis.min.js" defer></script>
@@ -208,7 +210,9 @@
 
     <!-- ================= Hero ================= -->
     <section class="panel hero" id="top" aria-labelledby="hero-title">
-      <img class="hero-img" src="assets/img/hero-mutfak-1200.webp" srcset="assets/img/hero-mutfak-1200.webp 1200w, assets/img/hero-mutfak-2400.webp 2400w" sizes="100vw" width="2400" height="1500" fetchpriority="high" decoding="async" alt="Aydınlık bir mutfakta limonlar ve taze sebzelerle yemek hazırlayan kadın" data-i18n-attr="alt:hero.alt">
+      <div class="hero-media" data-hero-media>
+        <img class="hero-img" src="assets/img/hero-mutfak-1200.webp" srcset="assets/img/hero-mutfak-1200.webp 1200w, assets/img/hero-mutfak-2400.webp 2400w" sizes="100vw" width="2400" height="1500" fetchpriority="high" decoding="async" alt="Aydınlık bir mutfakta limonlar ve taze sebzelerle yemek hazırlayan kadın" data-i18n-attr="alt:hero.alt">
+      </div>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="wrap">
         <p class="hero-kicker"><span data-i18n="hero.kicker">Moda, Kadıköy · Yüz yüze ve online</span></p>
@@ -250,6 +254,7 @@
       <div class="wrap">
         <header class="sec-head sec-head--split">
           <div class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.services">Hizmetler</p>
             <h2 class="h2" id="services-title" data-reveal><span data-i18n="services.title">Çalıştığımız alanlar</span></h2>
           </div>
           <p class="lede" data-reveal="d1" data-i18n="services.lede">Hazır listeler dağıtmıyoruz. Yaşınızı, hareket düzeninizi, tahlil sonuçlarınızı ve mutfağınızda gerçekten ne olduğunu konuşarak başlıyoruz.</p>
@@ -407,6 +412,7 @@
       <div class="wrap process-grid">
         <div>
           <header class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.process">Yöntem</p>
             <h2 class="h2" id="process-title" data-reveal><span data-i18n="process.title">Görüşmeler nasıl ilerliyor?</span></h2>
             <p class="lede" data-reveal="d1" data-i18n="process.lede">Plan ilk görüşmede bitmiyor. Bayram sofrası, tatil ya da yoğun bir iş haftası geldiğinde kontrol görüşmesinde birlikte güncelliyoruz.</p>
           </header>
@@ -420,10 +426,10 @@
         </figure>
       </div>
       <ol class="wrap road">
-        <li class="step" data-reveal><span class="node" aria-hidden="true"></span><span class="label" data-i18n="step1.meta">60 dk</span><h3 data-i18n="step1.title">Ön görüşme</h3><p data-i18n="step1.text">Sağlık geçmişiniz, kullandığınız ilaçlar, son tahlilleriniz ve üç günlük besin kaydınız üzerinden konuşuyoruz.</p></li>
-        <li class="step" data-reveal="d1"><span class="node" aria-hidden="true"></span><span class="label" data-i18n="step2.meta">10 dk</span><h3 data-i18n="step2.title">Vücut analizi</h3><p data-i18n="step2.text">Biyoempedans cihazıyla yağ, kas ve su oranınızı ölçüyoruz. Tartıdaki tek bir sayıya bakmıyoruz.</p></li>
-        <li class="step" data-reveal="d2"><span class="node" aria-hidden="true"></span><span class="label" data-i18n="step3.meta">48 saat içinde</span><h3 data-i18n="step3.title">Kişisel plan</h3><p data-i18n="step3.text">Sevdiğiniz yemekler, mesai saatleriniz ve bütçenizle uyumlu plan e-postanıza gelir.</p></li>
-        <li class="step" data-reveal="d3"><span class="node" aria-hidden="true"></span><span class="label" data-i18n="step4.meta">Haftalık</span><h3 data-i18n="step4.title">Takip</h3><p data-i18n="step4.text">Kısa kontrol görüşmeleri ve hafta içi mesaj desteğiyle planı gerektiğinde güncelliyoruz.</p></li>
+        <li class="step" data-reveal><span class="node" data-num="1" aria-hidden="true"></span><span class="label" data-i18n="step1.meta">60 dk</span><h3 data-i18n="step1.title">Ön görüşme</h3><p data-i18n="step1.text">Sağlık geçmişiniz, kullandığınız ilaçlar, son tahlilleriniz ve üç günlük besin kaydınız üzerinden konuşuyoruz.</p></li>
+        <li class="step" data-reveal="d1"><span class="node" data-num="2" aria-hidden="true"></span><span class="label" data-i18n="step2.meta">10 dk</span><h3 data-i18n="step2.title">Vücut analizi</h3><p data-i18n="step2.text">Biyoempedans cihazıyla yağ, kas ve su oranınızı ölçüyoruz. Tartıdaki tek bir sayıya bakmıyoruz.</p></li>
+        <li class="step" data-reveal="d2"><span class="node" data-num="3" aria-hidden="true"></span><span class="label" data-i18n="step3.meta">48 saat içinde</span><h3 data-i18n="step3.title">Kişisel plan</h3><p data-i18n="step3.text">Sevdiğiniz yemekler, mesai saatleriniz ve bütçenizle uyumlu plan e-postanıza gelir.</p></li>
+        <li class="step" data-reveal="d3"><span class="node" data-num="4" aria-hidden="true"></span><span class="label" data-i18n="step4.meta">Haftalık</span><h3 data-i18n="step4.title">Takip</h3><p data-i18n="step4.text">Kısa kontrol görüşmeleri ve hafta içi mesaj desteğiyle planı gerektiğinde güncelliyoruz.</p></li>
       </ol>
     </section>
 
@@ -454,6 +460,7 @@
       <div class="wrap">
         <header class="sec-head sec-head--split">
           <div class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.team">Ekip</p>
             <h2 class="h2" id="team-title" data-reveal><span data-i18n="team.title">Diyetisyenlerimiz</span></h2>
           </div>
           <p class="lede" data-reveal="d1" data-i18n="team.lede">Her uzmanın ağırlıklı çalıştığı alan farklı. Randevu alırken konunuzu seçtiğinizde size uygun uzmanlar öne çıkar.</p>
@@ -520,6 +527,7 @@
       <div class="wrap">
         <header class="sec-head sec-head--split">
           <div class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.tools">Araçlar</p>
             <h2 class="h2" id="tools-title" data-reveal><span data-i18n="tools.title">Hesaplama araçları</span></h2>
           </div>
           <p class="lede" data-reveal="d1" data-i18n="tools.lede">Bu hesaplamalar genel bir fikir verir. Görüşmede aynı değerleri vücut analizi ve tahlillerinizle birlikte yorumluyoruz.</p>
@@ -647,6 +655,7 @@
       <div class="wrap print-scope">
         <header class="sec-head sec-head--split">
           <div class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.program">Örnek menü</p>
             <h2 class="h2" id="program-title" data-reveal><span data-i18n="program.title">Bir haftalık örnek menü</span></h2>
           </div>
           <p class="lede" data-reveal="d1" data-i18n="program.lede">Üç farklı hedef için hazırladığımız örnek haftalar. Porsiyonlar ortalama bir yetişkine göredir; size özel plan görüşmede hazırlanır.</p>
@@ -694,6 +703,7 @@
       <div class="wrap">
         <header class="sec-head sec-head--split">
           <div class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.recipes">Tarifler</p>
             <h2 class="h2" id="recipes-title" data-reveal><span data-i18n="recipes.title">Hafta içi akşamlarına sığan tarifler</span></h2>
           </div>
           <p class="lede" data-reveal="d1" data-i18n="recipes.lede">Çoğu 30 dakikadan kısa sürüyor ve malzemeleri mahalle marketinde bulunuyor. Her tarifte porsiyon başına besin değerleri var.</p>
@@ -731,6 +741,7 @@
       <div class="wrap">
         <header class="sec-head sec-head--split">
           <div class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.pricing">Ücretler</p>
             <h2 class="h2" id="pricing-title" data-reveal><span data-i18n="pricing.title">Görüşme ücretleri</span></h2>
           </div>
           <p class="lede" data-reveal="d1" data-i18n="pricing.lede">Görüşme ücretlerini baştan paylaşıyoruz. Online görüşmeler, yüz yüze görüşmelerle aynı içeriktedir.</p>
@@ -819,6 +830,7 @@
       <div class="wrap">
         <header class="sec-head sec-head--split">
           <div class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.booking">Randevu</p>
             <h2 class="h2" id="booking-title" data-reveal><span data-i18n="booking.title">Online randevu</span></h2>
             <p class="lede" data-reveal="d1" data-i18n="booking.lede">Uzmanların boş saatlerini görüp randevunuzu buradan ayırabilirsiniz. Aynı gün için en erken bir saat sonrasına randevu verilebiliyor.</p>
           </div>
@@ -1001,6 +1013,7 @@
       <div class="wrap">
         <header class="sec-head sec-head--split">
           <div class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.blog">Yazılar</p>
             <h2 class="h2" id="blog-title" data-reveal><span data-i18n="blog.title">Son yazılar</span></h2>
           </div>
           <p class="lede" data-reveal="d1" data-i18n="blog.lede">Danışanlarımızın en sık sorduğu konuları, güncel bilimsel kaynaklara dayanarak yazıyoruz.</p>
@@ -1057,6 +1070,7 @@
       <div class="wrap faq-grid">
         <div class="faq-side">
           <header class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.faq">Sorular</p>
             <h2 class="h2" id="faq-title" data-reveal><span data-i18n="faq.title">Sık sorulan sorular</span></h2>
           </header>
           <div class="faq-help" data-reveal="d1">
@@ -1136,6 +1150,7 @@
       <div class="wrap">
         <header class="sec-head sec-head--split">
           <div class="sec-head">
+            <p class="eyebrow-tag" data-reveal data-i18n="tag.contact">İletişim</p>
             <h2 class="h2" id="contact-title" data-reveal><span data-i18n="contact.title">İletişim ve ulaşım</span></h2>
           </div>
           <p class="lede" data-reveal="d1" data-i18n="contact.lede">Moda Caddesi üzerindeyiz; Kadıköy iskelesinden yaklaşık 10 dakika yürüme mesafesi. Binada asansör var, en yakın otopark 150 metre ileride.</p>

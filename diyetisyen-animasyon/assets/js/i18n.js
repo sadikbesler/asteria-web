@@ -579,5 +579,17 @@ window.MIZAN_I18N_EN = {
   'scene.f2': 'to your personal plan',
   'scene.f3n': 'Weekly',
   'scene.f3': 'check-ins and message support',
+  /* Bölüm rozetleri */
+  'tag.services': 'Services',
+  'tag.process': 'Method',
+  'tag.team': 'Team',
+  'tag.tools': 'Tools',
+  'tag.program': 'Sample menu',
+  'tag.recipes': 'Recipes',
+  'tag.pricing': 'Pricing',
+  'tag.booking': 'Booking',
+  'tag.blog': 'Writing',
+  'tag.faq': 'Questions',
+  'tag.contact': 'Contact',
   'kvkk.label': 'Legal'
 };
