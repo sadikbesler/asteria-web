@@ -43,7 +43,7 @@ Canvas yerine dizinin son karesi (diyetisyen ve elma) sabit afiş olarak görün
 
 1. **Sabitleme boşluğu silinmişti (2. turdaki commit'te).** `html.film-on main { display: block; }` kuralı kaybolmuş. Bu yüzden eski sitede masaüstünde (1200 px+) **hizmetler şeridi hiç kaymıyor, 4.–6. kartlara (Gebelik, Çocuk, Online diyet) ulaşılamıyor**. Yöntem sahnesinin cümleleri de aydınlanmıyor; sonraki bölümler sabitlenen bölümün üstüne biniyor. v2'de kural geri kondu. Ölçüm: hizmetler pin boşluğu 900 → 2236 px, yöntem 900 → 2430 px.
 2. **Derin bağlantıda sinematik katman yarıda kalıyordu.** `#randevu`, `#tarifler`, `#iletisim` gibi bir adresle girilince ScrollTrigger kurulum sırasında hata veriyordu (`Cannot read properties of undefined (reading 'end')`). Sonuçta 141 tetikleyiciden yalnızca 3–10'u kuruluyordu. Eski rapordaki "derin bağlantıda görünmeyen öge yok" sonucu bu yüzden yanıltıcıydı: animasyonlar hiç kurulmadığı için gizlenen öge de olmuyordu. Aynı hata sayfanın ortasında dil ya da pencere boyu değişince de çıkıyordu. Çözüm: tetikleyiciler her zaman sayfa başındayken kuruluyor, sonra aynı karede hedefe dönülüyor. Ekranda sıçrama görünmüyor.
-3. **Alttaki bölümlere derin bağlantı yanlış yere iniyordu.** Lenis sayfa boyunu pin boşlukları eklenmeden önceki hâliyle hatırlıyor ve kaydırmayı eski sınırda kesiyordu. Artık önce yeniden ölçtürülüyor; yedi bölümün hepsinde hedef, ekranın üst kenarından 88 px aşağıda (başlık çubuğunun hemen altında) duruyor.
+3. **Alttaki bölümlere derin bağlantı yanlış yere iniyordu.** Lenis sayfa boyunu pin boşlukları eklenmeden önceki hâliyle hatırlıyor ve kaydırmayı eski sınırda kesiyordu. Artık önce yeniden ölçtürülüyor. Ayrıca canlı sitede görseller geç inince ScrollTrigger kendini yeniden ölçüyor ve hedef 16 px kayıyordu; kullanıcı sayfaya dokunana kadar hedefte kalınıyor. Yedi bölümün hepsinde hedef, ekranın üst kenarından 88 px aşağıda (başlık çubuğunun hemen altında) duruyor.
 4. **(yeni kodda yakalandı)** Hero ortasındayken pencere boyu değişip başa dönülünce 1 yerine 2. kare kalıyordu. ScrollTrigger kaydırma dururken son adımı olay tetiklemeden atıyor. Çizim artık GSAP'in kare saatinde yapılıyor.
 5. **(yeni kodda yakalandı)** Açık temada hero paragrafı, ilk karenin en açık yerlerinde 3,7:1 kontrasta düşüyordu (AA sınırı 4,5). Açık temada perde 0,54 → 0,60 yapıldı ve paragraf tam opak krem oldu. Artık her ekran boyunda, iki temada ve afiş karede en kötü piksel bile ≥ 4,68:1.
 
@@ -67,6 +67,8 @@ Eski rapordaki testler yeniden koşuldu, yeni hero için ekler yapıldı.
 - **Uzman kartları:** yığından ızgaraya geçişte sayfa kayması 0 px.
 - **axe-core:** açık/koyu tema, ana sayfa (3 kaydırma noktası), blog listesi ve makalede ihlal yok.
 - **Konsol:** ana sayfa, blog, makale ve KVKK'da hata yok.
+
+**Canlı sitede (GitHub Pages) de koşuldu:** yükleyici (240 karenin hepsi iniyor), hero, derin bağlantı, randevu, tarifler, araçlar, sohbet, hareket azaltma ve blog sayfaları.
 
 **Test edilmedi:** Safari / iPhone (bu ortamda yalnızca Chrome var). Kullanılan her özellik Safari 16+'da destekleniyor, yine de gerçek bir iPhone'da bir kez bakmak iyi olur.
 

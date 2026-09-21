@@ -1359,13 +1359,25 @@
     if (!id || id === 'top' || id === 'main') return null;
     return document.getElementById(id);
   }
+  var holdingHash = false;
   function landOnHash() {
-    if (userMoved) return;
+    if (userMoved) {
+      ScrollTrigger.removeEventListener('refresh', landOnHash);
+      return;
+    }
     var target = hashTarget();
     if (!target) return;
     var pad = parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
     var host = target.closest('.pin-spacer') || target;
-    jumpTo(Math.max(0, host.getBoundingClientRect().top + window.scrollY - pad));
+    var y = Math.max(0, host.getBoundingClientRect().top + window.scrollY - pad);
+    if (Math.abs(window.scrollY - y) > 1) jumpTo(y);
+    /* Görseller geç inince ScrollTrigger kendini yeniden ölçüyor (window
+       load) ve pin boşlukları birkaç piksel değişip hedef kayıyor. Kullanıcı
+       sayfaya dokunana kadar her yenilemeden sonra hedefe yeniden oturulur. */
+    if (!holdingHash) {
+      holdingHash = true;
+      ScrollTrigger.addEventListener('refresh', landOnHash);
+    }
   }
 
   var stageOpen = false;
