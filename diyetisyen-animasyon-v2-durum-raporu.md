@@ -26,7 +26,7 @@ Tarih: 21 Eylül 2026 · Klasör: `diyetisyen-animasyon-v2/` · Canlı: https://
 - `<body>`'nin hemen altında `#planet-loader`. Zemin `var(--paper)`, metin `var(--serif)` italik, yavaşça nabız atıyor. Altında kaç karenin indiğini gösteren ince çizgi ve 000–100 sayacı var.
 - Kareler inerken kaydırma kilitli (`lenis.stop()` + `overflow: hidden`); hepsi inince perde 0,8 sn'de soluyor ve `lenis.start()`.
 - Kareler önce kaba sonra ince sırayla yükleniyor (1, 240, sonra her 32., 16., 8. … kare). Yavaş bağlantıda perde en geç 12 sn sonra kalkıyor; yükleme arkada sürüyor, henüz inmemiş kare yerine en yakın inmiş kare çiziliyor.
-- Perde şu durumlarda **hiç çıkmıyor**: aynı oturumda ikinci ziyaret (kareler önbellekte), derin bağlantı (`#randevu` gibi, kullanıcı içeriği beklemesin), "hareketi azalt" açık, JavaScript kapalı.
+- Perde şu durumlarda **hiç çıkmıyor**: aynı oturumda ikinci ziyaret (kareler önbellekte), derin bağlantı (`#randevu` gibi, kullanıcı içeriği beklemesin), "hareketi azalt" açık, JavaScript kapalı. Perdesiz açılışta ilk kare hemen, kalan kareler sayfanın kendi görselleri indikten sonra iniyor.
 - İngilizcede "Landing on the planet…".
 
 ### Kaldırılanlar

@@ -135,16 +135,25 @@
       if (settled === FRAME_COUNT) finish(loaded);
     }
 
+    function fetchFrame(i) {
+      var img = new Image();
+      img.decoding = 'async';
+      if (i === 1) img.fetchPriority = 'high';
+      img.onload = function () { settle(i, true); };
+      img.onerror = function () { settle(i, false); };
+      img.src = framePath(i);
+      images[i] = img;
+    }
+
+    /* Perde varken her şey hemen iner. Perdesiz açılışta (derin bağlantı,
+       ikinci ziyaret) ilk kare hemen, kalanı sayfanın kendi görselleri
+       indikten sonra iner: #randevu ile gelen kişi 11 MB'ı beklemesin. */
     function load() {
-      loadOrder().forEach(function (i) {
-        var img = new Image();
-        img.decoding = 'async';
-        if (i === 1) img.fetchPriority = 'high';
-        img.onload = function () { settle(i, true); };
-        img.onerror = function () { settle(i, false); };
-        img.src = framePath(i);
-        images[i] = img;
-      });
+      var order = loadOrder();
+      fetchFrame(order[0]);
+      var rest = function () { order.slice(1).forEach(fetchFrame); };
+      if (root.classList.contains('planet-boot') || document.readyState === 'complete') rest();
+      else window.addEventListener('load', rest, { once: true });
     }
 
     /* Kare henüz inmediyse en yakın inmiş kare çizilir */
