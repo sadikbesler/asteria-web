@@ -257,6 +257,59 @@ html.film-on #hero-video { display: block; }
   text-transform: none;
 }
 
+/* Alt satır ortada iki satır: üstte "Designed by asteria.soft" imzası
+   (asteriasoft.co), altta telif satırı. Sağ altta yüzen WhatsApp/sohbet
+   düğmeleri durduğu için içerik iki yandan eşit payla onlardan uzak tutulur;
+   başa dön düğmesi geniş ekranda sağda, telefonda en altta ortadadır. */
+.footer-bottom {
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding-inline: 56px;
+  text-align: center;
+  opacity: 1;
+  color: color-mix(in srgb, var(--f-ink) 85%, transparent);
+}
+@media (min-width: 768px) {
+  .footer-bottom { padding-inline: 136px; }
+  .footer-bottom .icon-btn { position: absolute; right: 72px; top: calc(50% + 10px); translate: 0 -50%; }
+}
+
+/* Asteria Soft logosu, Asteria.soft tasarım sisteminin kurallarıyla: koyu
+   zeminde işaret ve ".soft" lila #D9CCF7, "asteria" beyaz; açık zeminde
+   hepsi #0A0A0A, ".soft" %55. Ayak iki temada da koyu yeşil (#2F4429 /
+   #1D261B) olduğundan iki temada da koyu zemin renkleri geçerli; ayak bir
+   gün açık zemine geçerse yalnızca bu üç jeton değişir. Arka plan yok. */
+.footer-credit {
+  --as-mark: #D9CCF7;
+  --as-word: #FFFFFF;
+  --as-dot: #D9CCF7;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px 12px;
+  color: inherit;
+}
+.footer-bottom .footer-credit { text-decoration: none; }
+/* Dar ekranda etiket bölünmez; sığmazsa logo alt satıra geçer */
+.footer-copy a,
+.footer-credit-by { white-space: nowrap; }
+.footer-credit-by {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+.footer-credit:hover .footer-credit-by { color: var(--f-ink); }
+/* Logo en az 120 px genişlikte kullanılır (marka kuralı) */
+.asteria-logo { display: block; width: 141px; height: 22px; flex: none; }
+.asteria-logo-mark { stroke: var(--as-mark); }
+.asteria-logo-word { fill: var(--as-word); }
+.asteria-logo-dot { fill: var(--as-dot); }
+
 /* ==========================================================================
    8. Koyu tema ince ayarları (titan / krepling)
    ========================================================================== */

@@ -513,8 +513,6 @@ window.MIZAN_I18N_EN = {
   'footer.bmi': 'BMI & calorie calculators',
   'footer.disclaimer': 'Content on this site is for general information and does not replace diagnosis or treatment. Please consult your doctor about health concerns, and call 112 in an emergency.',
   'footer.kvkk': 'Privacy notice (KVKK)',
-  'footer.credit': 'Demo site · Design & development:',
-  'footer.creditAria': 'Asteria Soft website',
   'footer.top': 'Back to top',
 
   /* Chat */
