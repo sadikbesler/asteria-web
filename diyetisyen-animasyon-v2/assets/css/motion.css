@@ -33,9 +33,10 @@ html.film-on main { display: block; }
 
 /* ==========================================================================
    1. Gezegen yükleyicisi (preloader)
-   Hero'daki 240 kare inene kadar sayfayı örter. Yalnızca boot.js
-   `planet-boot` sınıfını koyduysa görünür: JavaScript kapalıysa, hareket
-   azaltılmışsa ya da kareler bu oturumda zaten indiyse hiç çıkmaz.
+   Hero videosu (assets/video/hero.mp4) sarılmaya hazır olana kadar sayfayı
+   örter. Yalnızca boot.js `planet-boot` sınıfını koyduysa görünür:
+   JavaScript kapalıysa, hareket azaltılmışsa ya da video bu oturumda zaten
+   indiyse hiç çıkmaz.
    ========================================================================== */
 #planet-loader {
   position: fixed;
@@ -66,7 +67,7 @@ html:not(.planet-boot) #planet-loader { display: none; }
   50% { opacity: 0.35; }
 }
 
-/* Gerçek ilerleme: kaç karenin indiği */
+/* Gerçek ilerleme: videonun ne kadarının indiği */
 #planet-loader .loader-bar {
   display: block;
   width: 148px;
@@ -99,7 +100,7 @@ html:not(.planet-boot) #planet-loader { display: none; }
   transition: opacity 0.8s ease, visibility 0s linear 0.8s;
 }
 
-/* Kareler inene kadar sayfa kaydırılmaz */
+/* Video hazır olana kadar sayfa kaydırılmaz */
 html.film-locked, html.film-locked body { overflow: hidden; }
 
 /* ==========================================================================
@@ -332,11 +333,11 @@ html.film-on .film-grain { display: block; }
    Codrops uyarlamaları
    ========================================================================== */
 
-/* --- Hero: kaydırmaya bağlı kare dizisi (canvas) --- */
+/* --- Hero: kaydırmaya bağlı video --- */
 html.film-on .hero-shade { will-change: opacity; }
 /* Açılışta künye satırı kendi içinde yükselir; dışı kaydırmayla solar */
 html.film-on .hero-kicker > span { display: inline-block; }
-/* Yazılar çekilip kare dizisi tam parlaklıkta oynarken bölüm cetveli
+/* Yazılar çekilip video tam parlaklıkta oynarken bölüm cetveli
    görüntünün önünden çekilir; künye ve saat kendi zeminleriyle kalır. */
 html.film-on .film-chapters { transition: opacity 0.45s var(--film-out), visibility 0s linear 0s; }
 html.film-on .film-hud.is-over-media .film-chapters {

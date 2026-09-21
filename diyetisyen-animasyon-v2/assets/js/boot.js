@@ -14,9 +14,9 @@
   var meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute('content', theme === 'dark' ? '#0B0C0A' : '#1E231D');
 
-  /* Gezegen yükleyicisi: ana sayfada, hero'daki 240 kare inene kadar sayfayı
-     örter. Hareket azaltma açıksa, derin bağlantıyla (#randevu gibi)
-     gelindiyse ya da bu oturumda kareler zaten indiyse çıkmaz. Sınıfları
+  /* Gezegen yükleyicisi: ana sayfada, hero videosu sarılmaya hazır olana
+     kadar sayfayı örter. Hareket azaltma açıksa, derin bağlantıyla
+     (#randevu gibi) gelindiyse ya da bu oturumda video zaten indiyse çıkmaz. Sınıfları
      burada ekliyoruz ki perde ilk boyamada yerinde olsun. motion.js herhangi
      bir sebeple devralmazsa 5 saniye sonra kendi kendine kalkar. */
   var wantsMotion = !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);

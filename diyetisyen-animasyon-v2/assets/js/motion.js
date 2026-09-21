@@ -19,9 +19,16 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* Film katmanı devreye giremezse yükleme perdesi ve kaydırma kilidi
-     kalkar; hero, CSS'teki afiş kareyle durur. */
+     kalkar; hero, CSS'teki afiş kareyle durur. Video o zaman gizli
+     kaldığı için inmesi de durdurulur. */
   function standDown() {
     root.classList.remove('planet', 'planet-boot', 'film-locked');
+    var video = document.getElementById('hero-video');
+    if (video) {
+      video.preload = 'none';
+      video.removeAttribute('src');
+      video.load();
+    }
   }
 
   if (reduce || !window.gsap || !window.ScrollTrigger) { standDown(); return; }
@@ -61,23 +68,22 @@
   }
 
   /* ======================================================================
-     0. Gezegen — hero'daki kaydırmaya bağlı 240 karelik görüntü dizisi
-        (Apple ürün sayfalarındaki gibi). Kareler önceden yüklenir ve
-        canvas'a "cover" hesabıyla çizilir. İlk ziyarette #planet-loader
-        yükleme bitene kadar sayfayı örter, kaydırma kilitli kalır.
+     0. Gezegen — hero'da kaydırmaya bağlı video (Apple ürün sayfalarındaki
+        gibi). assets/video/hero.mp4 "All-Intra" şifrelidir: 240 karenin
+        her biri anahtar karedir. Herhangi bir kareye atlamak önceki
+        kareleri çözmeyi gerektirmez; tarayıcının donanım çözücüsü kareyi
+        doğrudan açar. Kaydırma ilerlemesi videonun currentTime değerine
+        çevrilir. İlk ziyarette #planet-loader video hazır olana kadar
+        sayfayı örter, kaydırma kilitli kalır.
      ====================================================================== */
-  var FRAME_COUNT = 240;
+  var VIDEO_FPS = 24;       /* hero.mp4: 240 kare, 24 fps, 10 sn */
   var LOADER_MAX = 12000;   /* yavaş bağlantıda perde en fazla bu kadar bekler */
 
-  function framePath(i) {
-    return 'assets/frames/frame_' + i.toString().padStart(4, '0') + '.jpg';
-  }
-
-  /* Dikey ekranda karenin yalnızca dar bir şeridi görünür. Kamera dizi
+  /* Dikey ekranda videonun yalnızca dar bir şeridi görünür. Kamera video
      boyunca önce sağa (diyetisyen kadraja girer), sonra sola kaydığı için
-     yatay kırpma konumu diyetisyeni ve elmayı izler. Değerler CSS
-     object-position gibidir: 0 sol kenar, 1 sağ kenar. Geniş ekranda
-     kırpılacak pay az olduğundan etkisi de azdır. */
+     yatay kırpma konumu (object-position) diyetisyeni ve elmayı izler.
+     Kare numaraları 1–240; değerler 0 sol kenar, 1 sağ kenar. Geniş
+     ekranda kırpılacak pay az olduğundan etkisi de azdır. */
   var FOCUS = [[1, 0.36], [28, 0.39], [58, 0.88], [80, 0.74], [100, 0.61], [120, 0.53],
     [140, 0.45], [160, 0.38], [180, 0.34], [200, 0.30], [220, 0.27], [240, 0.24]];
   function focusAt(f) {
@@ -92,147 +98,110 @@
   }
 
   function createPlanet() {
-    var canvas = $('#hero-canvas');
-    var ctx = canvas && canvas.getContext ? canvas.getContext('2d') : null;
-    if (!ctx) return null;
+    var video = $('#hero-video');
+    if (!video || !video.canPlayType) return null;
     var loader = $('#planet-loader');
     var bar = loader ? $('[data-loader-bar]', loader) : null;
     var count = loader ? $('[data-loader-count]', loader) : null;
 
-    var images = [];        /* images[i] → frame_000i.jpg; dizin 1'den başlar */
-    var ready = [];
-    var settled = 0;
-    var loaded = 0;
-    var current = 1;        /* kaydırmanın istediği kare */
-    var drawn = 0;          /* canvas'ta şu an duran kare */
-    var dirty = true;
+    var wanted = 0;         /* kaydırmanın istediği kare (0 tabanlı) */
+    var shown = -1;         /* videonun en son sarıldığı kare */
+    var framed = -1;        /* object-position'ı yazılmış kare */
+    var settled = false;
     var finish;
     var done = new Promise(function (res) { finish = res; });
 
-    /* Önce ilk ve son kare, sonra her 32., 16., 8. … kare: yükleme yarıda
-       kalsa bile dizi baştan sona eşit aralıklarla dolmuş olur. */
-    function loadOrder() {
-      var seen = {};
-      var list = [];
-      function add(i) { if (!seen[i]) { seen[i] = true; list.push(i); } }
-      add(1);
-      add(FRAME_COUNT);
-      for (var step = 32; step >= 1; step /= 2) {
-        for (var i = 1; i <= FRAME_COUNT; i += step) add(i);
-      }
-      return list;
-    }
+    /* iOS yalnızca sessiz videoyu kullanıcı dokunmadan oynatır */
+    video.muted = true;
 
-    function settle(i, ok) {
-      ready[i] = ok;
-      settled++;
-      if (ok) loaded++;
-      var p = settled / FRAME_COUNT;
+    function meter(p) {
       if (bar) bar.style.transform = 'scaleX(' + p.toFixed(3) + ')';
       if (count) count.textContent = ('00' + Math.round(p * 100)).slice(-3);
-      /* İstenen kareye daha yakın bir kare indiyse hemen onu çiz */
-      if (ok && drawn !== current) render(current);
-      if (settled === FRAME_COUNT) finish(loaded);
     }
 
-    function fetchFrame(i) {
-      var img = new Image();
-      img.decoding = 'async';
-      if (i === 1) img.fetchPriority = 'high';
-      img.onload = function () { settle(i, true); };
-      img.onerror = function () { settle(i, false); };
-      img.src = framePath(i);
-      images[i] = img;
+    /* Perdedeki çubuk: videonun ne kadarının indiği */
+    function progress() {
+      var d = video.duration;
+      var b = video.buffered;
+      if (settled || !d || !b || !b.length) return;
+      meter(Math.min(1, b.end(b.length - 1) / d));
     }
 
-    /* Perde varken her şey hemen iner. Perdesiz açılışta (derin bağlantı,
-       ikinci ziyaret) ilk kare hemen, kalanı sayfanın kendi görselleri
-       indikten sonra iner: #randevu ile gelen kişi 11 MB'ı beklemesin. */
-    function load() {
-      var order = loadOrder();
-      fetchFrame(order[0]);
-      var rest = function () { order.slice(1).forEach(fetchFrame); };
-      if (root.classList.contains('planet-boot') || document.readyState === 'complete') rest();
-      else window.addEventListener('load', rest, { once: true });
+    function settle(loaded) {
+      if (settled) return;
+      settled = true;
+      if (loaded) meter(1);
+      finish(loaded);
     }
 
-    /* Kare henüz inmediyse en yakın inmiş kare çizilir */
-    function nearest(i) {
-      if (ready[i]) return i;
-      for (var d = 1; d < FRAME_COUNT; d++) {
-        if (ready[i - d]) return i - d;
-        if (ready[i + d]) return i + d;
+    /* Perde, video takılmadan sarılabilecek kadar inince (canplaythrough)
+       kalkar. Video bu dosyadan önce yüklenmeye başladığı için olay çoktan
+       gelmiş olabilir; readyState ona bakar. Video açılamazsa perde yine
+       kalkar, hero'da CSS'teki ilk kare afişi durur. */
+    if (video.readyState >= 4) settle(true);
+    else {
+      video.addEventListener('canplaythrough', function () { settle(true); }, { once: true });
+      video.addEventListener('progress', progress);
+    }
+    video.addEventListener('error', function () { settle(false); }, { once: true });
+
+    /* iOS Safari hiç oynatılmamış videoda preload="auto"yu yok sayıp
+       yalnızca üst veriyi indirir; canplaythrough da gelmez. Sessiz video
+       bir an oynatılıp durdurulunca veri inmeye başlar. Oynatma sırasında
+       ilerleyen kare, sonraki tick'te kaydırmanın istediği kareye geri
+       sarılır. */
+    var kick = video.play ? video.play() : null;
+    if (kick && kick.then) {
+      kick.then(function () { video.pause(); shown = -1; }, function () {});
+    }
+
+    /* Kaydırmanın istediği kareye sarar (p: 0–1). Kare değişmediyse ya da
+       önceki atlama sürüyorsa hemen döner: atlamalar üst üste binip
+       çözücüyü tıkamaz, en son istenen kare bir sonraki tick'te yazılır.
+       Karenin ortasına atlanır; tam kare sınırında yuvarlama bir önceki
+       kareyi gösterebiliyor. */
+    function seek(p) {
+      var d = video.duration;
+      if (!d || !isFinite(d)) return;
+      var total = Math.max(1, Math.round(d * VIDEO_FPS));
+      wanted = Math.round(clamp(0, 1, p) * (total - 1));
+      if (wanted !== framed) {
+        framed = wanted;
+        video.style.objectPosition = (focusAt(wanted + 1) * 100).toFixed(2) + '% 50%';
       }
-      return 0;
+      if (wanted === shown || video.seeking) return;
+      shown = wanted;
+      video.currentTime = Math.min(d, (wanted + 0.5) / VIDEO_FPS);
     }
-
-    /* "cover": kare, canvas'ı boşluk bırakmadan kaplayacak kadar büyütülür;
-       taşan pay yatayda odak izine, dikeyde ortaya göre kırpılır. */
-    function render(index) {
-      current = Math.min(FRAME_COUNT, Math.max(1, Math.round(index)));
-      var n = nearest(current);
-      if (!n || (n === drawn && !dirty)) return;
-      var img = images[n];
-      var cw = canvas.width;
-      var ch = canvas.height;
-      var iw = img.naturalWidth;
-      var ih = img.naturalHeight;
-      if (!cw || !ch || !iw || !ih) return;
-      var scale = Math.max(cw / iw, ch / ih);
-      var dw = Math.ceil(iw * scale);
-      var dh = Math.ceil(ih * scale);
-      var dx = Math.round((cw - dw) * focusAt(n));
-      var dy = Math.round((ch - dh) / 2);
-      ctx.drawImage(img, dx, dy, dw, dh);
-      drawn = n;
-      dirty = false;
-    }
-
-    /* Canvas çözünürlüğü ekrana eşitlenir (retina için en fazla 2x). Kaynak
-       kareler 1280 px olduğundan 4 megapikselin üstü yalnızca yük getirir. */
-    var MAX_PIXELS = 2560 * 1600;
-    function size() {
-      var w = canvas.clientWidth || window.innerWidth;
-      var h = canvas.clientHeight || window.innerHeight;
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      dpr = Math.max(0.5, Math.min(dpr, Math.sqrt(MAX_PIXELS / (w * h))));
-      var bw = Math.round(w * dpr);
-      var bh = Math.round(h * dpr);
-      if (bw === canvas.width && bh === canvas.height) return;
-      canvas.width = bw;          /* boyut değişince canvas temizlenir */
-      canvas.height = bh;
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      dirty = true;
-      render(current);
-    }
-    window.addEventListener('resize', size, { passive: true });
-    /* Demo şeridi kapanınca hero'nun boyu da değişir */
-    if ('ResizeObserver' in window) new ResizeObserver(function () { size(); }).observe(canvas);
-
-    size();
-    load();
 
     return {
-      render: render,
+      seek: seek,
       done: done,
-      loader: loader,
       status: function () {
-        return { settled: settled, loaded: loaded, current: current, drawn: drawn, width: canvas.width, height: canvas.height };
+        return {
+          ready: settled,
+          readyState: video.readyState,
+          wanted: wanted,
+          shown: shown,
+          currentTime: video.currentTime,
+          duration: video.duration,
+          seeking: video.seeking,
+          paused: video.paused
+        };
       }
     };
   }
 
   var planet = isHome ? createPlanet() : null;
-  /* Perde yalnızca boot.js koyduysa bekler; tüm kareler inince ya da en geç
-     LOADER_MAX sonra kalkar (yükleme arkada sürer, eksik kare yerine en
-     yakını çizilir). */
+  /* Perde yalnızca boot.js koyduysa bekler; video hazır olunca ya da en geç
+     LOADER_MAX sonra kalkar (video arkada inmeye devam eder, henüz inmemiş
+     bir kareye sarılırsa tarayıcı o parçayı ister). */
   var stageReady = planet && root.classList.contains('planet-boot')
     ? Promise.race([planet.done, new Promise(function (res) { setTimeout(res, LOADER_MAX); })])
     : Promise.resolve();
   if (planet) {
-    planet.done.then(function (n) {
-      if (n === FRAME_COUNT) { try { sessionStorage.setItem('mizan-planet-seen', '1'); } catch (e) {} }
+    planet.done.then(function (loaded) {
+      if (loaded) { try { sessionStorage.setItem('mizan-planet-seen', '1'); } catch (e) {} }
     });
   }
 
@@ -251,7 +220,7 @@
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
-    /* Kareler inene kadar kaydırma durur; openStage() yeniden başlatır */
+    /* Video hazır olana kadar kaydırma durur; openStage() yeniden başlatır */
     if (root.classList.contains('film-locked')) lenis.stop();
   }
 
@@ -573,7 +542,7 @@
      ====================================================================== */
   var heroIntro = null;
   var heroEl = null;
-  var heroLit = false;     /* yazılar çekildi, kare dizisi tam parlaklıkta */
+  var heroLit = false;     /* yazılar çekildi, video tam parlaklıkta */
 
   function heroScene() {
     var hero = $('.hero');
@@ -607,10 +576,10 @@
     if (ui.cue) heroIntro.fromTo(ui.cue, { opacity: 0 }, { opacity: 1, duration: 0.6 }, 1.3);
     if (introDone) heroIntro.play();
 
-    /* Kaydırma: hero ekrana sabitlenir, ilerleme 1–240 arası bir kare
-       numarasına çevrilip canvas'a çizilir. Son %8'lik dilimde son kare
-       ekranda dinlenir, sonra sayfa akmaya devam eder. */
-    var seq = { frame: 1 };
+    /* Kaydırma: hero ekrana sabitlenir, ilerleme (0–1) videonun
+       currentTime değerine çevrilir. Son %8'lik dilimde son kare ekranda
+       dinlenir, sonra sayfa akmaya devam eder. */
+    var seq = { p: 0 };
     var tl = gsap.timeline({
       defaults: { ease: 'none' },
       scrollTrigger: {
@@ -625,15 +594,17 @@
         onUpdate: function (self) { heroLit = self.progress > 0.42; }
       }
     });
-    /* fromTo: sayfa ortasında yenilense bile dizi hep 1. kareden başlar */
-    tl.fromTo(seq, { frame: 1 }, { frame: FRAME_COUNT, duration: 0.92 }, 0)
+    /* fromTo: sayfa ortasında yenilense bile video hep ilk kareden başlar */
+    tl.fromTo(seq, { p: 0 }, { p: 1, duration: 0.92 }, 0)
       .to({}, { duration: 0.08 });
-    /* Çizim GSAP'in kare saatinde: kaydırma yavaşlayıp dururken ScrollTrigger
-       son adımı olay tetiklemeden attığı için onUpdate'e bağlı çizim bir
-       önceki karede kalabiliyordu. render() kare değişmediyse hemen döner. */
-    if (planet) gsap.ticker.add(function () { planet.render(seq.frame); });
+    /* Sarma GSAP'in kare saatinde (ticker, requestAnimationFrame ile
+       çalışır): kaydırma yavaşlayıp dururken ScrollTrigger son adımı olay
+       tetiklemeden attığı için onUpdate'e bağlı sarma bir önceki karede
+       kalabiliyordu. scrub: 0.5 ilerlemeyi yumuşattığı için video da
+       yumuşak akar; seek() kare değişmediyse hemen döner. */
+    if (planet) gsap.ticker.add(function () { planet.seek(seq.p); });
 
-    /* Yazılar, kare dizisi arkada akarken çok yavaşça saydamlaşıp yukarı
+    /* Yazılar, video arkada akarken çok yavaşça saydamlaşıp yukarı
        süzülür; koyu perde de kalkar ve dizi tam parlaklığa çıkar.
        Metinler yalnızca opaklıkla solar: sayfanın tek h1'i ekran
        okuyucudan kaybolmasın. Düğmeler ve randevu kartı ise autoAlpha ile
@@ -1533,6 +1504,6 @@
     lenis: lenis,
     scrollTo: scrollTo,
     refresh: function () { ScrollTrigger.refresh(); },
-    frames: planet ? planet.status : null
+    video: planet ? planet.status : null
   };
 })();

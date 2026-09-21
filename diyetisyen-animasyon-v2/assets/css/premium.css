@@ -145,7 +145,7 @@
 .lang-switch button { border-radius: 999px; }
 
 /* ==========================================================================
-   4. Hero — kaydırmaya bağlı 240 karelik görüntü dizisi (canvas)
+   4. Hero — kaydırmaya bağlı video (All-Intra, 240 kare, scroll ile sarılır)
    ========================================================================== */
 .hero { overflow: hidden; overflow: clip; }
 .hero-media {
@@ -155,13 +155,13 @@
   overflow: hidden;
   overflow: clip;
   border-radius: 0;
-  /* Canvas hiç çizilmezse (JavaScript kapalı, hareket azaltılmış) duran
-     afiş: dizinin son karesi, elmayı sulayan diyetisyen. */
-  background: var(--bezel) url("../frames/frame_0240.jpg") 24% 50% / cover no-repeat;
+  /* Video hiç gösterilmezse (JavaScript kapalı, hareket azaltılmış) duran
+     afiş: videonun son karesi, elmayı sulayan diyetisyen. */
+  background: var(--bezel) url("../img/hero-gezegen-son.jpg") 24% 50% / cover no-repeat;
 }
-/* Film açıkken afiş dizinin ilk karesi; canvas devralınca görüntü atlamaz */
+/* Film açıkken afiş videonun ilk karesi; video devralınca görüntü atlamaz */
 html.planet .hero-media,
-html.film-on .hero-media { background-image: url("../frames/frame_0001.jpg"); background-position: 36% 50%; }
+html.film-on .hero-media { background-image: url("../img/hero-gezegen-ilk.jpg"); background-position: 36% 50%; }
 
 /* İlk kare eski fotoğraftan daha aydınlık: paragraf metni en açık zeminde
    de 4.5:1 kalsın diye açık temada perde koyu temadaki kadar (0.60) ve
@@ -169,18 +169,31 @@ html.film-on .hero-media { background-image: url("../frames/frame_0001.jpg"); ba
 [data-theme="light"] .hero-shade { background: rgba(14, 18, 11, 0.6); }
 .hero-lede { color: #F7F5EF; }
 
-#hero-canvas {
+/* Video yalnızca film katmanı açıkken görünür; katman devreye girmezse
+   (hareket azaltılmış, GSAP yüklenemedi) yukarıdaki son kare afişi kalır.
+   object-position'ı motion.js kare kare günceller: dikey ekranda kırpma
+   diyetisyeni ve elmayı izler. */
+#hero-video {
   position: absolute;
   inset: 0;
+  display: none;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 36% 50%;
+  background: transparent;
+  pointer-events: none;
 }
+html.planet #hero-video,
+html.film-on #hero-video { display: block; }
+/* iOS, oynatılmayan videonun üstüne kendi oynat düğmesini koyabiliyor */
+#hero-video::-webkit-media-controls,
+#hero-video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
 /* Küçük ya da yan çevrilmiş telefonda hero ekrandan uzun kalabiliyor.
-   O zaman canvas ekran boyunda yapışık durur: yazılar üstünden akarken
+   O zaman video ekran boyunda yapışık durur: yazılar üstünden akarken
    görüntü hep ekranı doldurur. Normal ekranda bu kural bir şey değiştirmez. */
 @supports (overflow: clip) {
-  html.film-on #hero-canvas {
+  html.film-on #hero-video {
     position: sticky;
     inset: auto;
     top: 0;
