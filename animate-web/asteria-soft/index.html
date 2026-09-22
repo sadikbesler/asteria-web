@@ -45,16 +45,21 @@
   .asteria-logo-word { fill: var(--white); }
   .asteria-logo-dot { fill: var(--l200); }
 
-  /* ---------- Hero: Spline (Hana) sahnesi ---------- */
-  .hero { position: relative; height: 100vh; height: 100svh; min-height: 620px; overflow: hidden; background: #000; }
-  .spline { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
-  .hero-copy { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 0 16px; pointer-events: none; z-index: 5; }
-  .eyebrow { display: inline-block; margin: 0 auto 22px; padding: 6px 14px; border-radius: 999px; background: var(--ink-3); color: var(--l200); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
-  .hero h1 { font-size: clamp(44px, 8.4vw, 124px); line-height: .92; font-weight: 800; letter-spacing: -.035em; color: var(--white); }
+  /* ---------- Hero: Spline "Googly Eyes" panosu (sahne verisinden birebir) ---------- */
+  .hero { min-height: 100vh; min-height: 100svh; padding: 96px 0 40px; display: flex; align-items: center; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 4vw, 64px); align-items: center; }
+  .board { justify-self: end; width: 100%; max-width: calc((100svh - 150px) * 0.8005); aspect-ratio: 2110.66 / 2636.83; background: var(--l200); border-radius: 28px; overflow: hidden; }
+  .board svg { display: block; width: 100%; height: 100%; }
+  .eyebrow { display: inline-block; margin-bottom: 22px; padding: 6px 14px; border-radius: 999px; background: var(--ink-3); color: var(--l200); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+  .hero h1 { font-size: clamp(44px, 6.6vw, 104px); line-height: .92; font-weight: 800; letter-spacing: -.035em; color: var(--white); }
   .hero h1 em { display: inline-block; padding: 0 .18em .04em; margin-top: .06em; background: var(--l200); color: var(--ink); border-radius: .14em; letter-spacing: -.01em; }
-  .hero p.lead { max-width: 560px; margin: 26px auto 0; color: var(--l100); font-size: clamp(16px, 1.6vw, 19px); }
-  .hero-cta { display: flex; gap: 12px; justify-content: center; margin-top: 30px; pointer-events: auto; flex-wrap: wrap; }
-  .hint { position: absolute; bottom: 24px; white-space: nowrap; left: 50%; transform: translateX(-50%); font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; z-index: 5; pointer-events: none; }
+  .hero p.lead { max-width: 480px; margin-top: 26px; color: var(--l100); font-size: clamp(16px, 1.5vw, 19px); }
+  .hero-cta { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+  @media (max-width: 860px) {
+    .hero { padding-top: 104px; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .board { justify-self: center; max-width: 520px; border-radius: 22px; }
+  }
 
   /* ---------- Bölümler ---------- */
   section.block { padding: 110px 0; }
@@ -133,17 +138,18 @@
 
 <main id="top">
   <section class="hero" aria-label="Giriş">
-    <iframe class="spline" src="https://my.spline.design/googlyeyes-as6lmfiHi7rieEkuYqCEhoWZ-yJl/" title="Gözleri imleci takip eden şekiller" loading="eager" allow="autoplay; fullscreen" tabindex="-1"></iframe>
-    <div class="hero-copy">
-      <span class="eyebrow">Web · Randevu · Yapay zeka</span>
-      <h1>Markanızın<br><em class="serif">dijital zekası</em></h1>
-      <p class="lead">Web siteleri, randevu sistemleri ve yapay zeka asistanları. Şablon değil — her satırı sizin için sıfırdan yazılır.</p>
-      <div class="hero-cta">
-        <a class="btn" href="#teklif">Teklif alın →</a>
-        <a class="btn btn--ghost" href="#demolar">Demoları gör</a>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Web · Randevu · Yapay zeka</span>
+        <h1>Markanızın<br><em class="serif">dijital zekası</em></h1>
+        <p class="lead">Web siteleri, randevu sistemleri ve yapay zeka asistanları. Şablon değil — her satırı sizin için sıfırdan yazılır.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#teklif">Teklif alın →</a>
+          <a class="btn btn--ghost" href="#demolar">Demoları gör</a>
+        </div>
       </div>
+      <div class="board" aria-hidden="true"><svg id="board" viewBox="0 0 2110.66 2636.83" xmlns="http://www.w3.org/2000/svg"></svg></div>
     </div>
-    <div class="hint">İmleci gezdirin</div>
   </section>
 
   <div class="wrap">
@@ -250,6 +256,108 @@
   const nav = document.querySelector('.nav');
   const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // ---- Googly Eyes panosu: Spline/Hana sahnesindeki konum, boyut ve takip ayarları ----
+  const svg = document.getElementById('board');
+  const NS = 'http://www.w3.org/2000/svg';
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; };
+  const defs = mk('defs', {}, svg);
+  let clipN = 0;
+  const eyes = [];
+
+  // Yuvarlak göz: beyaz daire, içinde daireye kırpılmış siyah bebek (follow, sınır 40)
+  function roundEye(x, y, size, pw, ph) {
+    const g = mk('g', { transform: `translate(${x} ${y})` }, svg);
+    mk('circle', { r: size / 2, fill: '#fff' }, g);
+    const id = 'c' + clipN++;
+    mk('circle', { r: size / 2 }, mk('clipPath', { id }, defs));
+    const pupil = mk('ellipse', { rx: pw / 2, ry: ph / 2, fill: '#000' }, mk('g', { 'clip-path': `url(#${id})` }, g));
+    eyes.push({ kind: 'follow', g, pupil, limit: 40, k: 7, reset: false, x: 0, y: 0, oy: 0 });
+  }
+  // Hap göz: beyaz hap, içinde kırpılmış bebek (follow, sınır 20, imleç çıkınca sıfırlanır)
+  function pillEye(x, y) {
+    const w = 202.55, hgt = 88.22;
+    const g = mk('g', { transform: `translate(${x} ${y})` }, svg);
+    mk('rect', { x: -w / 2, y: -hgt / 2, width: w, height: hgt, rx: hgt / 2, fill: '#fff' }, g);
+    const id = 'c' + clipN++;
+    mk('rect', { x: -w / 2, y: -hgt / 2, width: w, height: hgt, rx: hgt / 2 }, mk('clipPath', { id }, defs));
+    const pupil = mk('ellipse', { rx: 165.23 / 2, ry: 167.5 / 2, fill: '#000' }, mk('g', { 'clip-path': `url(#${id})` }, g));
+    eyes.push({ kind: 'follow', g, pupil, limit: 20, k: 14, reset: true, x: 0, y: 0, oy: 3.37 });
+  }
+  // Dönen göz: bebek merkezin 43.77 birim uzağında, imlece döner (lookAt); dinlenirken yukarı bakar
+  function lookEye(g, px, py) {
+    const pupil = mk('ellipse', { rx: 151.25 / 2, ry: 154.4 / 2, fill: '#000' }, g);
+    eyes.push({ kind: 'look', g, pupil, px, py, r: 43.77, a: Math.PI, k: 7 });
+  }
+  function whites(x, y, rot, list) {
+    const g = mk('g', { transform: `translate(${x} ${y}) rotate(${rot})` }, svg);
+    list.forEach(([cx, cy, w, hh]) => mk('ellipse', { cx, cy, rx: w / 2, ry: hh / 2, fill: '#fff' }, g));
+    return g;
+  }
+  function mouth(x, y, rot) {
+    const g = mk('g', { transform: `translate(${x} ${y}) rotate(${rot})` }, svg);
+    mk('path', { d: 'M-129.44 -17.08C-129.44 -17.08 -10.72 59.79 129.44 -17.08', fill: 'none', stroke: '#000', 'stroke-width': 20, 'stroke-linecap': 'round' }, g);
+  }
+
+  // Yüzler (konumlar sahne dosyasından)
+  [[222.57, 155.23], [480.57, 155.23], [319.27, 1362.23], [577.27, 1362.23]].forEach(([x, y]) => pillEye(x, y));
+  mouth(452.44, 1459.08, 180);
+  mouth(1777.03, 578.08, 0);
+  roundEye(866.95, 408.46, 248, 114, 114);
+  roundEye(1162.57, 411.01, 248, 114, 114);
+  roundEye(1566.07, 408.46, 248, 224, 224);
+  roundEye(1951.83, 411.44, 248, 224, 224);
+  roundEye(595.95, 857.01, 248, 224, 224);
+  roundEye(293.95, 1000.01, 248, 224, 224);
+  roundEye(1327.57, 919.01, 372, 336, 93);
+  roundEye(1835.66, 919.01, 372, 336, 93);
+  // Beş gözlü sıra
+  const row = whites(1214.95, 1566.55, 0, [[0.59, -0.45, 244, 249], [-214.41, -0.45, 244, 249], [229.59, -0.45, 244, 249], [427.59, -0.45, 244, 249], [638.59, -0.45, 244, 249]]);
+  [[0, 0], [-220.08, 0.42], [428.92, 0.42], [641.92, 0.42], [228.92, -0.55]].forEach(([px, py]) => lookEye(row, px, py));
+  // Alttaki iki göz
+  const pair = whites(270.01, 2293.55, 0, [[0, 0, 244, 249], [229.16, 0, 244, 249]]);
+  lookEye(pair, 0, 0); lookEye(pair, 228.91, -0.13);
+  // İri, eğik iki göz
+  [[1400.8, 2252.45], [1760.8, 2252.45]].forEach(([x, y]) => { const g = whites(x, y, -5.47, [[-73.52, 0, 400.57, 408.91]]); lookEye(g, -73.52, 0); });
+
+  // İmleç (sayfanın her yerinde); dokunmatikte gözler kendi kendine gezinir
+  const cur = { x: 0, y: 0, on: false, moved: false };
+  addEventListener('pointermove', e => { cur.x = e.clientX; cur.y = e.clientY; cur.on = cur.moved = true; });
+  document.documentElement.addEventListener('pointerleave', () => { cur.on = false; });
+  const pt = svg.createSVGPoint();
+  let last = performance.now(), wander = 0;
+  function frame(now) {
+    const dt = Math.min(.05, (now - last) / 1000); last = now;
+    const br = svg.getBoundingClientRect();
+    if (br.bottom > 0 && br.top < innerHeight) {
+      let sx = cur.x, sy = cur.y, active = cur.on;
+      if (!cur.moved) { wander += dt * .6; sx = br.left + br.width * (.5 + .45 * Math.cos(wander)); sy = br.top + br.height * (.5 + .4 * Math.sin(wander * 1.3)); active = true; }
+      pt.x = sx; pt.y = sy;
+      for (const e of eyes) {
+        const m = e.g.getScreenCTM(); if (!m) continue;
+        const p = pt.matrixTransform(m.inverse());
+        const f = 1 - Math.exp(-dt * e.k);
+        if (e.kind === 'follow') {
+          let tx = 0, ty = 0;
+          if (active || !e.reset) {
+            if (!active && !e.reset) { tx = e.x; ty = e.y; }
+            else { tx = p.x; ty = p.y - e.oy; const d = Math.hypot(tx, ty); if (d > e.limit) { tx *= e.limit / d; ty *= e.limit / d; } }
+          }
+          e.x += (tx - e.x) * f; e.y += (ty - e.y) * f;
+          e.pupil.setAttribute('cx', e.x.toFixed(2)); e.pupil.setAttribute('cy', (e.y + e.oy).toFixed(2));
+        } else {
+          let target = Math.PI; // dinlenme: yukarı
+          if (active) target = Math.atan2(p.x - e.px, p.y - e.py);
+          let da = target - e.a; da = Math.atan2(Math.sin(da), Math.cos(da));
+          e.a += da * f;
+          e.pupil.setAttribute('cx', (e.px + Math.sin(e.a) * e.r).toFixed(2));
+          e.pupil.setAttribute('cy', (e.py + Math.cos(e.a) * e.r).toFixed(2));
+        }
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
 })();
 </script>
 </body>
