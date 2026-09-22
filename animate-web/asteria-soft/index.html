@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asteria Soft — Markanızın dijital zekası</title>
+<meta name="description" content="Web siteleri, randevu sistemleri ve yapay zeka asistanları. Şablon değil, sıfırdan kod. 5–10 günde teslim.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --l50: #F6F2FE;
+    --l100: #ECE5FC;
+    --l200: #D9CCF7;
+    --l300: #C3B0F1;
+    --l400: #A68DE6;
+    --l500: #8468D6;
+    --l700: #4E3A99;
+    --ink: #110D1F;
+    --ink-2: #1B1530;
+    --ink-3: #2A2247;
+    --white: #FFFFFF;
+    --muted: #A69DC2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body { overflow-x: clip; }
+  body { background: var(--ink); color: var(--l50); font-family: "Archivo", system-ui, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(1160px, 100% - 32px); margin-inline: auto; }
+  em.serif { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; }
+
+  /* ---------- Üst çubuk ---------- */
+  .nav { position: fixed; inset: 0 0 auto; z-index: 20; transition: background .25s; }
+  .nav.scrolled { background: var(--ink); border-bottom: 1px solid var(--ink-3); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--l100); }
+  .nav-links a:hover { color: var(--l200); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px; border-radius: 999px; background: var(--l200); color: var(--ink); font-weight: 600; font-size: 15px; transition: transform .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn--ghost { background: transparent; color: var(--l50); box-shadow: inset 0 0 0 1.5px var(--ink-3); }
+  .asteria-logo { display: block; height: 24px; width: auto; }
+  .asteria-logo-mark { stroke: var(--l200); }
+  .asteria-logo-word { fill: var(--white); }
+  .asteria-logo-dot { fill: var(--l200); }
+
+  /* ---------- Hero: gözlü şekiller ---------- */
+  .hero { position: relative; height: 100vh; height: 100svh; min-height: 620px; overflow: hidden; background: var(--ink-2); cursor: default; }
+  .stage { position: absolute; inset: 0; }
+  .star { position: absolute; width: 14px; height: 14px; fill: var(--l400); opacity: .8; animation: twinkle 3s ease-in-out infinite; }
+  @keyframes twinkle { 50% { transform: scale(.55) rotate(30deg); opacity: .4; } }
+
+  .buddy { position: absolute; left: 0; top: 0; will-change: transform; touch-action: none; cursor: grab; }
+  .buddy:active { cursor: grabbing; }
+  .buddy .body { position: absolute; inset: 0; }
+  .buddy .body svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .eye { position: absolute; background: var(--white); border-radius: 50%; overflow: hidden; }
+  .eye::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--ink); transform: translateY(-101%); transition: transform .08s; }
+  .buddy.blink .eye::after { transform: translateY(0); }
+  .pupil { position: absolute; left: 50%; top: 50%; width: 46%; height: 46%; margin: -23% 0 0 -23%; border-radius: 50%; background: var(--ink); will-change: transform; }
+  .pupil::after { content: ""; position: absolute; width: 30%; height: 30%; left: 20%; top: 18%; border-radius: 50%; background: var(--white); }
+  .mouth { position: absolute; left: 50%; transform: translateX(-50%); border: 3px solid var(--ink); border-top: 0; border-radius: 0 0 40px 40px; }
+
+  .hero-copy { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 0 16px; pointer-events: none; z-index: 5; }
+  .eyebrow { display: inline-block; margin: 0 auto 22px; padding: 6px 14px; border-radius: 999px; background: var(--ink-3); color: var(--l200); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+  .hero h1 { font-size: clamp(44px, 8.4vw, 124px); line-height: .92; font-weight: 800; letter-spacing: -.035em; color: var(--white); }
+  .hero h1 em { display: inline-block; padding: 0 .18em .04em; margin-top: .06em; background: var(--l200); color: var(--ink); border-radius: .14em; letter-spacing: -.01em; }
+  .hero p.lead { max-width: 560px; margin: 26px auto 0; color: var(--l100); font-size: clamp(16px, 1.6vw, 19px); }
+  .hero-cta { display: flex; gap: 12px; justify-content: center; margin-top: 30px; pointer-events: auto; flex-wrap: wrap; }
+  .hint { position: absolute; bottom: 24px; white-space: nowrap; left: 50%; transform: translateX(-50%); font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; z-index: 5; pointer-events: none; }
+
+  /* ---------- Bölümler ---------- */
+  section.block { padding: 110px 0; }
+  .kicker { color: var(--l300); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 14px; }
+  h2 { font-size: clamp(32px, 4.6vw, 58px); line-height: 1; letter-spacing: -.03em; font-weight: 800; color: var(--white); max-width: 14em; }
+  h2 em.serif { color: var(--l200); }
+  .sub { color: var(--muted); max-width: 560px; margin-top: 16px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-block: 1px solid var(--ink-3); }
+  .stats div { padding: 34px 20px; border-left: 1px solid var(--ink-3); }
+  .stats div:first-child { border-left: 0; }
+  .stats b { display: block; font-size: clamp(30px, 3.6vw, 46px); font-weight: 800; color: var(--l200); letter-spacing: -.03em; line-height: 1; }
+  .stats span { color: var(--muted); font-size: 14px; }
+
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+  .card { background: var(--ink-2); border-radius: 22px; padding: 30px; border: 1px solid var(--ink-3); }
+  .card h3 { font-size: 20px; color: var(--white); margin: 14px 0 8px; letter-spacing: -.01em; }
+  .card p { color: var(--muted); font-size: 15px; }
+  .card .num { font-family: "Instrument Serif", serif; font-style: italic; font-size: 40px; line-height: 1; color: var(--l200); }
+  .card--lila { background: var(--l200); color: var(--ink); border-color: var(--l200); }
+  .card--lila h3, .card--lila .num { color: var(--ink); }
+  .card--lila p { color: var(--l700); }
+  .tag { display: inline-block; font-size: 12px; padding: 4px 10px; border-radius: 999px; background: var(--ink-3); color: var(--l200); }
+  .card--lila .tag { background: var(--ink); color: var(--l200); }
+
+  .price { font-size: 34px; font-weight: 800; color: var(--white); letter-spacing: -.02em; margin: 18px 0 4px; }
+  .card--lila .price { color: var(--ink); }
+  .card ul { list-style: none; margin-top: 18px; display: grid; gap: 8px; font-size: 14px; color: var(--l100); }
+  .card--lila ul { color: var(--ink); }
+  .card ul li::before { content: "✦ "; color: var(--l400); }
+  .card--lila ul li::before { color: var(--l700); }
+
+  .faq { margin-top: 40px; border-top: 1px solid var(--ink-3); }
+  .faq details { border-bottom: 1px solid var(--ink-3); padding: 22px 0; }
+  .faq summary { cursor: pointer; font-size: 18px; font-weight: 600; color: var(--white); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  .faq summary::after { content: "+"; color: var(--l200); font-size: 24px; line-height: 1; }
+  .faq details[open] summary::after { content: "–"; }
+  .faq p { color: var(--muted); margin-top: 12px; max-width: 720px; }
+
+  .cta { background: var(--l200); color: var(--ink); border-radius: 32px; padding: clamp(40px, 6vw, 80px); display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+  .cta h2 { color: var(--ink); }
+  .cta h2 em.serif { color: var(--l700); }
+  .cta p { color: var(--l700); margin-top: 14px; }
+  .cta form { display: grid; gap: 10px; }
+  .cta input, .cta select, .cta textarea { width: 100%; font: inherit; font-size: 15px; padding: 14px 16px; border-radius: 14px; border: 1.5px solid var(--l400); background: var(--l50); color: var(--ink); }
+  .cta textarea { min-height: 96px; resize: vertical; }
+  .cta .btn { background: var(--ink); color: var(--l200); justify-content: center; border: 0; cursor: pointer; }
+
+  footer { padding: 60px 0 40px; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--ink-3); padding-top: 32px; }
+  footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+  footer a:hover { color: var(--l200); }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .stats div:nth-child(3) { border-left: 0; }
+    .stats div:nth-child(-n+2) { border-bottom: 1px solid var(--ink-3); }
+    .grid3, .grid4, .cta { grid-template-columns: 1fr; }
+    section.block { padding: 80px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .star { animation: none; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" aria-label="Asteria Soft ana sayfa"><svg class="asteria-logo" viewBox="0 0 358.4 56" role="img" aria-label="Asteria Soft"><g class="asteria-logo-mark" transform="scale(0.875)" fill="none" stroke-width="6" stroke-linecap="round"><line x1="32" y1="8" x2="32" y2="56"/><line x1="10" y1="20" x2="54" y2="44"/><line x1="54" y1="20" x2="10" y2="44"/></g><path class="asteria-logo-word" d="M89.3 43.6Q86.45 43.6 84.35 42.65Q82.25 41.7 81.1 39.92Q79.95 38.15 79.95 35.8Q79.95 33.55 80.95 31.77Q81.95 30 84.05 28.8Q86.15 27.6 89.35 27.1L97.45 25.8V24.9Q97.45 23.15 96.08 21.97Q94.7 20.8 92.45 20.8Q90.35 20.8 88.72 21.92Q87.1 23.05 86.35 24.9L81 22.3Q81.8 20.15 83.53 18.57Q85.25 17 87.6 16.1Q89.95 15.2 92.7 15.2Q96.05 15.2 98.6 16.42Q101.15 17.65 102.58 19.82Q104 22 104 24.9V43H97.8V40.15Q97.3 40.7 96.7 41.15Q95.25 42.35 93.4 42.98Q91.55 43.6 89.3 43.6ZM97.45 30.8 90.6 31.95Q88.65 32.3 87.7 33.2Q86.75 34.1 86.75 35.55Q86.75 36.95 87.83 37.78Q88.9 38.6 90.5 38.6Q92.55 38.6 94.12 37.73Q95.7 36.85 96.58 35.3Q97.45 33.75 97.45 31.9ZM119.9 43.6Q115.55 43.6 112.32 41.53Q109.1 39.45 107.9 35.9L112.8 33.55Q113.85 35.85 115.72 37.15Q117.6 38.45 119.9 38.45Q121.7 38.45 122.75 37.65Q123.8 36.85 123.8 35.55Q123.8 34.75 123.38 34.23Q122.95 33.7 122.22 33.33Q121.5 32.95 120.65 32.7L116.2 31.45Q112.75 30.45 110.97 28.4Q109.2 26.35 109.2 23.55Q109.2 21.05 110.47 19.17Q111.75 17.3 114.03 16.25Q116.3 15.2 119.25 15.2Q123.1 15.2 126.05 17.05Q129 18.9 130.25 22.25L125.25 24.6Q124.55 22.75 122.9 21.65Q121.25 20.55 119.2 20.55Q117.55 20.55 116.6 21.3Q115.65 22.05 115.65 23.25Q115.65 24 116.05 24.55Q116.45 25.1 117.18 25.45Q117.9 25.8 118.85 26.1L123.2 27.4Q126.55 28.4 128.38 30.4Q130.2 32.4 130.2 35.3Q130.2 37.75 128.9 39.62Q127.6 41.5 125.3 42.55Q123 43.6 119.9 43.6ZM147.15 43.3Q142.55 43.3 140.02 40.77Q137.5 38.25 137.5 33.65V21.65H132.8V15.8H133.3Q135.3 15.8 136.4 14.75Q137.5 13.7 137.5 11.7V9.6H144.05V15.8H150.3V21.65H144.05V33.3Q144.05 34.65 144.52 35.6Q145 36.55 146.02 37.05Q147.05 37.55 148.65 37.55Q149 37.55 149.47 37.5Q149.95 37.45 150.4 37.4V43Q149.7 43.1 148.8 43.2Q147.9 43.3 147.15 43.3ZM167.8 43.6Q163.6 43.6 160.45 41.7Q157.3 39.8 155.55 36.55Q153.8 33.3 153.8 29.35Q153.8 25.25 155.57 22.07Q157.35 18.9 160.43 17.05Q163.5 15.2 167.3 15.2Q170.5 15.2 172.93 16.25Q175.35 17.3 177.05 19.15Q178.75 21 179.65 23.38Q180.55 25.75 180.55 28.5Q180.55 29.2 180.48 29.95Q180.4 30.7 180.2 31.25H160.6Q160.75 32.65 161.3 33.8Q162.15 35.75 163.88 36.8Q165.6 37.85 167.85 37.85Q170.1 37.85 171.68 36.9Q173.25 35.95 174.15 34.35L179.45 36.95Q178.65 38.9 176.95 40.4Q175.25 41.9 172.93 42.75Q170.6 43.6 167.8 43.6ZM160.75 26.25H173.55Q173.5 25.3 173.2 24.5Q172.5 22.7 170.97 21.65Q169.45 20.6 167.3 20.6Q165.25 20.6 163.65 21.62Q162.05 22.65 161.25 24.6Q160.9 25.4 160.75 26.25ZM185 43V15.8H191.15V19.65Q192.05 17.6 193.65 16.7Q195.65 15.5 198.5 15.5H200.1V21.3H197.75Q194.95 21.3 193.25 23.02Q191.55 24.75 191.55 27.85V43ZM203.2 43V15.8H209.75V43ZM203.2 12.75V5.75H209.75V12.75ZM223.55 43.6Q220.7 43.6 218.6 42.65Q216.5 41.7 215.35 39.92Q214.2 38.15 214.2 35.8Q214.2 33.55 215.2 31.77Q216.2 30 218.3 28.8Q220.4 27.6 223.6 27.1L231.7 25.8V24.9Q231.7 23.15 230.32 21.97Q228.95 20.8 226.7 20.8Q224.6 20.8 222.97 21.92Q221.35 23.05 220.6 24.9L215.25 22.3Q216.05 20.15 217.77 18.57Q219.5 17 221.85 16.1Q224.2 15.2 226.95 15.2Q230.3 15.2 232.85 16.42Q235.4 17.65 236.82 19.82Q238.25 22 238.25 24.9V43H232.05V40.15Q231.55 40.7 230.95 41.15Q229.5 42.35 227.65 42.98Q225.8 43.6 223.55 43.6ZM231.7 30.8 224.85 31.95Q222.9 32.3 221.95 33.2Q221 34.1 221 35.55Q221 36.95 222.07 37.78Q223.15 38.6 224.75 38.6Q226.8 38.6 228.37 37.73Q229.95 36.85 230.82 35.3Q231.7 33.75 231.7 31.9Z"/><path class="asteria-logo-dot" d="M246.9 43V36H253.5V43ZM272.55 43.6Q268.2 43.6 264.98 41.53Q261.75 39.45 260.55 35.9L265.45 33.55Q266.5 35.85 268.38 37.15Q270.25 38.45 272.55 38.45Q274.35 38.45 275.4 37.65Q276.45 36.85 276.45 35.55Q276.45 34.75 276.02 34.23Q275.6 33.7 274.88 33.33Q274.15 32.95 273.3 32.7L268.85 31.45Q265.4 30.45 263.62 28.4Q261.85 26.35 261.85 23.55Q261.85 21.05 263.12 19.17Q264.4 17.3 266.67 16.25Q268.95 15.2 271.9 15.2Q275.75 15.2 278.7 17.05Q281.65 18.9 282.9 22.25L277.9 24.6Q277.2 22.75 275.55 21.65Q273.9 20.55 271.85 20.55Q270.2 20.55 269.25 21.3Q268.3 22.05 268.3 23.25Q268.3 24 268.7 24.55Q269.1 25.1 269.82 25.45Q270.55 25.8 271.5 26.1L275.85 27.4Q279.2 28.4 281.02 30.4Q282.85 32.4 282.85 35.3Q282.85 37.75 281.55 39.62Q280.25 41.5 277.95 42.55Q275.65 43.6 272.55 43.6ZM300.7 43.6Q296.7 43.6 293.42 41.75Q290.15 39.9 288.22 36.7Q286.3 33.5 286.3 29.4Q286.3 25.3 288.22 22.1Q290.15 18.9 293.4 17.05Q296.65 15.2 300.7 15.2Q304.7 15.2 307.95 17.05Q311.2 18.9 313.12 22.07Q315.05 25.25 315.05 29.4Q315.05 33.5 313.1 36.7Q311.15 39.9 307.9 41.75Q304.65 43.6 300.7 43.6ZM300.7 37.6Q302.9 37.6 304.57 36.55Q306.25 35.5 307.22 33.62Q308.2 31.75 308.2 29.4Q308.2 27 307.22 25.17Q306.25 23.35 304.57 22.27Q302.9 21.2 300.7 21.2Q298.45 21.2 296.75 22.27Q295.05 23.35 294.07 25.17Q293.1 27 293.1 29.4Q293.1 31.75 294.07 33.62Q295.05 35.5 296.75 36.55Q298.45 37.6 300.7 37.6ZM322.65 43V21.65H317.85V15.8H322.65V14.9Q322.65 11.8 323.92 9.62Q325.2 7.45 327.5 6.3Q329.8 5.15 332.95 5.15Q333.55 5.15 334.27 5.22Q335 5.3 335.5 5.4V11.05Q335 10.95 334.57 10.92Q334.15 10.9 333.8 10.9Q331.6 10.9 330.4 11.87Q329.2 12.85 329.2 14.9V15.8H335.25V21.65H329.2V43ZM351.7 43.3Q347.1 43.3 344.58 40.77Q342.05 38.25 342.05 33.65V21.65H337.35V15.8H337.85Q339.85 15.8 340.95 14.75Q342.05 13.7 342.05 11.7V9.6H348.6V15.8H354.85V21.65H348.6V33.3Q348.6 34.65 349.08 35.6Q349.55 36.55 350.58 37.05Q351.6 37.55 353.2 37.55Q353.55 37.55 354.02 37.5Q354.5 37.45 354.95 37.4V43Q354.25 43.1 353.35 43.2Q352.45 43.3 351.7 43.3Z"/></svg></a>
+    <nav class="nav-links">
+      <a href="#neden">Neden biz</a><a href="#surec">Süreç</a><a href="#demolar">Demolar</a><a href="#paketler">Paketler</a><a href="#sss">SSS</a>
+    </nav>
+    <a class="btn" href="#teklif">Teklif alın</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Giriş">
+    <div class="stage" id="stage" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <span class="eyebrow">Web · Randevu · Yapay zeka</span>
+      <h1>Markanızın<br><em class="serif">dijital zekası</em></h1>
+      <p class="lead">Web siteleri, randevu sistemleri ve yapay zeka asistanları. Şablon değil — her satırı sizin için sıfırdan yazılır.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#teklif">Teklif alın →</a>
+        <a class="btn btn--ghost" href="#demolar">Demoları gör</a>
+      </div>
+    </div>
+    <div class="hint">İmleci gezdirin · şekilleri sürükleyin</div>
+  </section>
+
+  <div class="wrap">
+    <div class="stats">
+      <div><b>5–10</b><span>günde teslim</span></div>
+      <div><b>2</b><span>tur revizyon</span></div>
+      <div><b>%100</b><span>özel tasarım</span></div>
+      <div><b>7/24</b><span>destek</span></div>
+    </div>
+  </div>
+
+  <section class="block" id="neden">
+    <div class="wrap">
+      <p class="kicker">Neden biz</p>
+      <h2>Şablon siteler <em class="serif">yavaş</em>, sizi müşteri kaybettirir.</h2>
+      <p class="sub">Hazır temalar yüzlerce gereksiz eklentiyle gelir; mobilde ağır açılır, Google'da geride kalır. Biz yalnızca ihtiyacınız olanı yazarız.</p>
+      <div class="grid3">
+        <div class="card"><span class="tag">Hız</span><h3>Bir saniyenin altında</h3><p>Hafif, sıfırdan kod. Mobilde bile anında açılan sayfalar.</p></div>
+        <div class="card card--lila"><span class="tag">Tasarım</span><h3>Size özel kimlik</h3><p>Rakiplerinizle aynı temayı kullanmazsınız; marka dilinize göre çizilir.</p></div>
+        <div class="card"><span class="tag">SEO</span><h3>Bulunur olun</h3><p>Teknik SEO, hızlı altyapı ve doğru içerik yapısı baştan kurulur.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="surec" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker">Süreç</p>
+      <h2>Dört adımda <em class="serif">yayında</em>.</h2>
+      <div class="grid4">
+        <div class="card"><span class="num">01</span><h3>Görüşme</h3><p>İşinizi, hedefinizi ve müşterinizi dinleriz.</p></div>
+        <div class="card"><span class="num">02</span><h3>Tasarım</h3><p>Onayınıza sunulan özel tasarım, 2 tur revizyon.</p></div>
+        <div class="card"><span class="num">03</span><h3>Geliştirme</h3><p>Hızlı, mobil uyumlu, SEO'ya hazır kod.</p></div>
+        <div class="card card--lila"><span class="num">04</span><h3>Yayın &amp; destek</h3><p>Canlıya alırız, sonrasında da yanınızdayız.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="demolar" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker">Demolar</p>
+      <h2>Canlı sistemleri <em class="serif">deneyin</em>.</h2>
+      <div class="grid3">
+        <a class="card" href="../../diyetisyen/"><span class="tag">Kurumsal site</span><h3>Mizan Beslenme →</h3><p>Hesaplama araçları, tarifler, blog ve iki dil.</p></a>
+        <a class="card card--lila" href="../../guzellik/"><span class="tag">Randevu sistemi</span><h3>Neva Güzellik →</h3><p>Saat seçimli online randevu ve e-posta onayı.</p></a>
+        <a class="card" href="../../diyetisyen-animasyon-v2/"><span class="tag">AI asistan · sinematik</span><h3>Mizan v2 →</h3><p>Kaydırmaya bağlı video ve sohbet asistanı.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="paketler" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker">Paketler</p>
+      <h2>İhtiyacınız kadar, <em class="serif">fazlası değil</em>.</h2>
+      <div class="grid3">
+        <div class="card"><span class="tag">Başlangıç</span><div class="price">10.000 ₺'den</div><p>Tanıtım sitesi</p><ul><li>Tek sayfa, özel tasarım</li><li>Mobil uyum &amp; temel SEO</li><li>İletişim formu</li></ul></div>
+        <div class="card card--lila"><span class="tag">En çok tercih edilen</span><div class="price">Randevu</div><p>Site + akıllı randevu</p><ul><li>Online randevu takvimi</li><li>E-posta onay &amp; iptal</li><li>Çok sayfalı yapı</li></ul></div>
+        <div class="card"><span class="tag">Pro</span><div class="price">AI asistan</div><p>Site + randevu + chatbot</p><ul><li>İşinize özel eğitilmiş asistan</li><li>7/24 müşteri yanıtı</li><li>Aylık bakım seçeneği</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="sss" style="padding-top:0">
+    <div class="wrap">
+      <p class="kicker">SSS</p>
+      <h2>Sık sorulanlar</h2>
+      <div class="faq">
+        <details><summary>Ödeme nasıl yapılıyor?</summary><p>Başlangıçta yarısı, teslimde kalanı. Tasarımı onaylamadan geliştirmeye geçmeyiz.</p></details>
+        <details><summary>Sonradan değişiklik yapabilir miyim?</summary><p>Teslimde 2 tur revizyon dahildir. Sonrası için küçük güncellemeler ya da aylık bakım paketi seçebilirsiniz.</p></details>
+        <details><summary>Aylık bakım neleri kapsıyor?</summary><p>Barındırma takibi, güvenlik güncellemeleri, içerik değişiklikleri ve öncelikli destek.</p></details>
+        <details><summary>Site ne kadar sürede hazır olur?</summary><p>Kapsama göre 5–10 iş günü.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="teklif" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta">
+        <div>
+          <h2>Projenizi <em class="serif">konuşalım</em>.</h2>
+          <p>Formu doldurun ya da WhatsApp'tan yazın; 24 saat içinde dönüş yapalım.</p>
+        </div>
+        <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Teşekkürler — size döneceğiz';">
+          <input name="ad" placeholder="Adınız" required>
+          <input name="eposta" type="email" placeholder="E-posta" required>
+          <select name="hizmet"><option>Web sitesi</option><option>Randevu sistemi</option><option>AI chatbot</option><option>Hepsi</option></select>
+          <textarea name="mesaj" placeholder="Kısaca projeniz"></textarea>
+          <button class="btn" type="submit">Teklif iste →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <svg class="asteria-logo" viewBox="0 0 358.4 56" role="img" aria-label="Asteria Soft"><g class="asteria-logo-mark" transform="scale(0.875)" fill="none" stroke-width="6" stroke-linecap="round"><line x1="32" y1="8" x2="32" y2="56"/><line x1="10" y1="20" x2="54" y2="44"/><line x1="54" y1="20" x2="10" y2="44"/></g><path class="asteria-logo-word" d="M89.3 43.6Q86.45 43.6 84.35 42.65Q82.25 41.7 81.1 39.92Q79.95 38.15 79.95 35.8Q79.95 33.55 80.95 31.77Q81.95 30 84.05 28.8Q86.15 27.6 89.35 27.1L97.45 25.8V24.9Q97.45 23.15 96.08 21.97Q94.7 20.8 92.45 20.8Q90.35 20.8 88.72 21.92Q87.1 23.05 86.35 24.9L81 22.3Q81.8 20.15 83.53 18.57Q85.25 17 87.6 16.1Q89.95 15.2 92.7 15.2Q96.05 15.2 98.6 16.42Q101.15 17.65 102.58 19.82Q104 22 104 24.9V43H97.8V40.15Q97.3 40.7 96.7 41.15Q95.25 42.35 93.4 42.98Q91.55 43.6 89.3 43.6ZM97.45 30.8 90.6 31.95Q88.65 32.3 87.7 33.2Q86.75 34.1 86.75 35.55Q86.75 36.95 87.83 37.78Q88.9 38.6 90.5 38.6Q92.55 38.6 94.12 37.73Q95.7 36.85 96.58 35.3Q97.45 33.75 97.45 31.9ZM119.9 43.6Q115.55 43.6 112.32 41.53Q109.1 39.45 107.9 35.9L112.8 33.55Q113.85 35.85 115.72 37.15Q117.6 38.45 119.9 38.45Q121.7 38.45 122.75 37.65Q123.8 36.85 123.8 35.55Q123.8 34.75 123.38 34.23Q122.95 33.7 122.22 33.33Q121.5 32.95 120.65 32.7L116.2 31.45Q112.75 30.45 110.97 28.4Q109.2 26.35 109.2 23.55Q109.2 21.05 110.47 19.17Q111.75 17.3 114.03 16.25Q116.3 15.2 119.25 15.2Q123.1 15.2 126.05 17.05Q129 18.9 130.25 22.25L125.25 24.6Q124.55 22.75 122.9 21.65Q121.25 20.55 119.2 20.55Q117.55 20.55 116.6 21.3Q115.65 22.05 115.65 23.25Q115.65 24 116.05 24.55Q116.45 25.1 117.18 25.45Q117.9 25.8 118.85 26.1L123.2 27.4Q126.55 28.4 128.38 30.4Q130.2 32.4 130.2 35.3Q130.2 37.75 128.9 39.62Q127.6 41.5 125.3 42.55Q123 43.6 119.9 43.6ZM147.15 43.3Q142.55 43.3 140.02 40.77Q137.5 38.25 137.5 33.65V21.65H132.8V15.8H133.3Q135.3 15.8 136.4 14.75Q137.5 13.7 137.5 11.7V9.6H144.05V15.8H150.3V21.65H144.05V33.3Q144.05 34.65 144.52 35.6Q145 36.55 146.02 37.05Q147.05 37.55 148.65 37.55Q149 37.55 149.47 37.5Q149.95 37.45 150.4 37.4V43Q149.7 43.1 148.8 43.2Q147.9 43.3 147.15 43.3ZM167.8 43.6Q163.6 43.6 160.45 41.7Q157.3 39.8 155.55 36.55Q153.8 33.3 153.8 29.35Q153.8 25.25 155.57 22.07Q157.35 18.9 160.43 17.05Q163.5 15.2 167.3 15.2Q170.5 15.2 172.93 16.25Q175.35 17.3 177.05 19.15Q178.75 21 179.65 23.38Q180.55 25.75 180.55 28.5Q180.55 29.2 180.48 29.95Q180.4 30.7 180.2 31.25H160.6Q160.75 32.65 161.3 33.8Q162.15 35.75 163.88 36.8Q165.6 37.85 167.85 37.85Q170.1 37.85 171.68 36.9Q173.25 35.95 174.15 34.35L179.45 36.95Q178.65 38.9 176.95 40.4Q175.25 41.9 172.93 42.75Q170.6 43.6 167.8 43.6ZM160.75 26.25H173.55Q173.5 25.3 173.2 24.5Q172.5 22.7 170.97 21.65Q169.45 20.6 167.3 20.6Q165.25 20.6 163.65 21.62Q162.05 22.65 161.25 24.6Q160.9 25.4 160.75 26.25ZM185 43V15.8H191.15V19.65Q192.05 17.6 193.65 16.7Q195.65 15.5 198.5 15.5H200.1V21.3H197.75Q194.95 21.3 193.25 23.02Q191.55 24.75 191.55 27.85V43ZM203.2 43V15.8H209.75V43ZM203.2 12.75V5.75H209.75V12.75ZM223.55 43.6Q220.7 43.6 218.6 42.65Q216.5 41.7 215.35 39.92Q214.2 38.15 214.2 35.8Q214.2 33.55 215.2 31.77Q216.2 30 218.3 28.8Q220.4 27.6 223.6 27.1L231.7 25.8V24.9Q231.7 23.15 230.32 21.97Q228.95 20.8 226.7 20.8Q224.6 20.8 222.97 21.92Q221.35 23.05 220.6 24.9L215.25 22.3Q216.05 20.15 217.77 18.57Q219.5 17 221.85 16.1Q224.2 15.2 226.95 15.2Q230.3 15.2 232.85 16.42Q235.4 17.65 236.82 19.82Q238.25 22 238.25 24.9V43H232.05V40.15Q231.55 40.7 230.95 41.15Q229.5 42.35 227.65 42.98Q225.8 43.6 223.55 43.6ZM231.7 30.8 224.85 31.95Q222.9 32.3 221.95 33.2Q221 34.1 221 35.55Q221 36.95 222.07 37.78Q223.15 38.6 224.75 38.6Q226.8 38.6 228.37 37.73Q229.95 36.85 230.82 35.3Q231.7 33.75 231.7 31.9Z"/><path class="asteria-logo-dot" d="M246.9 43V36H253.5V43ZM272.55 43.6Q268.2 43.6 264.98 41.53Q261.75 39.45 260.55 35.9L265.45 33.55Q266.5 35.85 268.38 37.15Q270.25 38.45 272.55 38.45Q274.35 38.45 275.4 37.65Q276.45 36.85 276.45 35.55Q276.45 34.75 276.02 34.23Q275.6 33.7 274.88 33.33Q274.15 32.95 273.3 32.7L268.85 31.45Q265.4 30.45 263.62 28.4Q261.85 26.35 261.85 23.55Q261.85 21.05 263.12 19.17Q264.4 17.3 266.67 16.25Q268.95 15.2 271.9 15.2Q275.75 15.2 278.7 17.05Q281.65 18.9 282.9 22.25L277.9 24.6Q277.2 22.75 275.55 21.65Q273.9 20.55 271.85 20.55Q270.2 20.55 269.25 21.3Q268.3 22.05 268.3 23.25Q268.3 24 268.7 24.55Q269.1 25.1 269.82 25.45Q270.55 25.8 271.5 26.1L275.85 27.4Q279.2 28.4 281.02 30.4Q282.85 32.4 282.85 35.3Q282.85 37.75 281.55 39.62Q280.25 41.5 277.95 42.55Q275.65 43.6 272.55 43.6ZM300.7 43.6Q296.7 43.6 293.42 41.75Q290.15 39.9 288.22 36.7Q286.3 33.5 286.3 29.4Q286.3 25.3 288.22 22.1Q290.15 18.9 293.4 17.05Q296.65 15.2 300.7 15.2Q304.7 15.2 307.95 17.05Q311.2 18.9 313.12 22.07Q315.05 25.25 315.05 29.4Q315.05 33.5 313.1 36.7Q311.15 39.9 307.9 41.75Q304.65 43.6 300.7 43.6ZM300.7 37.6Q302.9 37.6 304.57 36.55Q306.25 35.5 307.22 33.62Q308.2 31.75 308.2 29.4Q308.2 27 307.22 25.17Q306.25 23.35 304.57 22.27Q302.9 21.2 300.7 21.2Q298.45 21.2 296.75 22.27Q295.05 23.35 294.07 25.17Q293.1 27 293.1 29.4Q293.1 31.75 294.07 33.62Q295.05 35.5 296.75 36.55Q298.45 37.6 300.7 37.6ZM322.65 43V21.65H317.85V15.8H322.65V14.9Q322.65 11.8 323.92 9.62Q325.2 7.45 327.5 6.3Q329.8 5.15 332.95 5.15Q333.55 5.15 334.27 5.22Q335 5.3 335.5 5.4V11.05Q335 10.95 334.57 10.92Q334.15 10.9 333.8 10.9Q331.6 10.9 330.4 11.87Q329.2 12.85 329.2 14.9V15.8H335.25V21.65H329.2V43ZM351.7 43.3Q347.1 43.3 344.58 40.77Q342.05 38.25 342.05 33.65V21.65H337.35V15.8H337.85Q339.85 15.8 340.95 14.75Q342.05 13.7 342.05 11.7V9.6H348.6V15.8H354.85V21.65H348.6V33.3Q348.6 34.65 349.08 35.6Q349.55 36.55 350.58 37.05Q351.6 37.55 353.2 37.55Q353.55 37.55 354.02 37.5Q354.5 37.45 354.95 37.4V43Q354.25 43.1 353.35 43.2Q352.45 43.3 351.7 43.3Z"/></svg>
+    <nav><a href="#demolar">Demolar</a><a href="#surec">Süreç</a><a href="#paketler">Paketler</a><a href="#sss">SSS</a><a href="mailto:desktop@asteriasoft.co">desktop@asteriasoft.co</a></nav>
+    <span>© 2026 Asteria Soft</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const nav = document.querySelector('.nav');
+  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  const stage = document.getElementById('stage');
+  const hero = stage.parentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const C = { l100:'#ECE5FC', l200:'#D9CCF7', l300:'#C3B0F1', l400:'#A68DE6', l500:'#8468D6', l700:'#4E3A99' };
+
+  // Şekiller (viewBox 0 0 100 100). Gözler: [x%, y%, çap%]
+  const shapes = {
+    circle:  { d: '<circle cx="50" cy="50" r="50"/>', eyes: [[36,42,22],[64,42,22]], mouth: [50,64,20] },
+    square:  { d: '<rect width="100" height="100" rx="22"/>', eyes: [[34,40,24],[66,40,24]], mouth: [50,66,18] },
+    flower:  { d: '<path d="M50 0a22 22 0 0 1 21 29 22 22 0 0 1 29 21 22 22 0 0 1-29 21 22 22 0 0 1-21 29 22 22 0 0 1-21-29A22 22 0 0 1 0 50a22 22 0 0 1 29-21A22 22 0 0 1 50 0z"/>', eyes: [[38,46,20],[62,46,20]] },
+    tri:     { d: '<path d="M50 4Q56 4 60 11L97 80Q101 92 88 94H12Q-1 92 3 80L40 11Q44 4 50 4z"/>', eyes: [[40,60,18],[60,60,18]] },
+    pill:    { d: '<rect width="100" height="100" rx="50"/>', eyes: [[50,40,34]], ratio: 1.6 },
+    blob:    { d: '<path d="M55 2c24 3 44 22 43 46s-18 50-46 50S0 78 2 50 31-1 55 2z"/>', eyes: [[34,44,22],[62,40,26]], mouth: [48,68,16] },
+    arch:    { d: '<path d="M0 100V50a50 50 0 0 1 100 0v50z"/>', eyes: [[34,52,24],[66,52,24]] },
+  };
+
+  const layout = [
+    { s:'circle', c:C.l200, x:.12, y:.24, w:150 },
+    { s:'square', c:C.l400, x:.84, y:.20, w:120, r:-12 },
+    { s:'flower', c:C.l300, x:.78, y:.74, w:170, r:10 },
+    { s:'tri',    c:C.l500, x:.18, y:.76, w:140, r:8 },
+    { s:'pill',   c:C.l100, x:.93, y:.50, w:70,  r:18 },
+    { s:'blob',   c:C.l200, x:.60, y:.86, w:110 },
+    { s:'arch',   c:C.l700, x:.05, y:.52, w:90,  r:-8 },
+    { s:'circle', c:C.l500, x:.38, y:.16, w:62 },
+    { s:'square', c:C.l300, x:.66, y:.16, w:74,  r:14 },
+  ];
+
+  // Yıldızlar
+  const starPath = '<path d="M7 0l1.8 5.2L14 7l-5.2 1.8L7 14l-1.8-5.2L0 7l5.2-1.8z"/>';
+  for (let i = 0; i < 22; i++) {
+    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    s.setAttribute('viewBox', '0 0 14 14'); s.classList.add('star'); s.innerHTML = starPath;
+    s.style.left = Math.random()*100 + '%'; s.style.top = Math.random()*100 + '%';
+    const k = .5 + Math.random(); s.style.width = s.style.height = (10*k) + 'px';
+    s.style.animationDelay = (-Math.random()*3) + 's';
+    if (i % 3 === 0) s.style.fill = C.l200;
+    stage.appendChild(s);
+  }
+
+  const buddies = [];
+  const scaleFor = () => Math.min(1, Math.max(.45, innerWidth / 1300));
+
+  layout.forEach((b, i) => {
+    const def = shapes[b.s];
+    const el = document.createElement('div');
+    el.className = 'buddy';
+    const body = document.createElement('div');
+    body.className = 'body';
+    body.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none" fill="${b.c}">${def.d}</svg>`;
+    el.appendChild(body);
+    const pupils = [];
+    def.eyes.forEach(([ex, ey, d]) => {
+      const eye = document.createElement('div');
+      eye.className = 'eye';
+      eye.style.cssText = `left:${ex - d/2}%;top:${ey - d/2 * (def.ratio ? 1/def.ratio : 1)}%;width:${d}%;aspect-ratio:1`;
+      const p = document.createElement('div'); p.className = 'pupil';
+      eye.appendChild(p); el.appendChild(eye);
+      pupils.push({ el: p, eye, px: 0, py: 0, vx: 0, vy: 0 });
+    });
+    if (def.mouth) {
+      const [mx, my, mw] = def.mouth;
+      const m = document.createElement('div'); m.className = 'mouth';
+      m.style.cssText = `left:${mx}%;top:${my}%;width:${mw}%;height:${mw/2}%`;
+      el.appendChild(m);
+    }
+    stage.appendChild(el);
+    buddies.push({ el, b, def, pupils, x: 0, y: 0, vx: 0, vy: 0, t: Math.random()*6.28, drag: null, rot: b.r || 0 });
+  });
+
+  function place() {
+    const W = hero.clientWidth, H = hero.clientHeight, k = scaleFor();
+    buddies.forEach(o => {
+      o.w = o.b.w * k; o.h = o.w * (o.def.ratio || 1);
+      o.el.style.width = o.w + 'px'; o.el.style.height = o.h + 'px';
+      o.hx = o.b.x * W - o.w/2; o.hy = o.b.y * H - o.h/2;
+      if (!o.placed) { o.x = o.hx; o.y = o.hy; o.placed = true; }
+    });
+  }
+  place();
+  addEventListener('resize', place);
+
+  // İmleç
+  const mouse = { x: innerWidth/2, y: innerHeight/3, moved: false };
+  addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.moved = true; });
+
+  // Sürükle-bırak
+  buddies.forEach(o => {
+    o.el.addEventListener('pointerdown', e => {
+      o.el.setPointerCapture(e.pointerId);
+      const r = hero.getBoundingClientRect();
+      o.drag = { dx: e.clientX - r.left - o.x, dy: e.clientY - r.top - o.y, lx: e.clientX, ly: e.clientY };
+    });
+    o.el.addEventListener('pointermove', e => {
+      if (!o.drag) return;
+      const r = hero.getBoundingClientRect();
+      o.vx = e.clientX - o.drag.lx; o.vy = e.clientY - o.drag.ly;
+      o.drag.lx = e.clientX; o.drag.ly = e.clientY;
+      o.x = e.clientX - r.left - o.drag.dx; o.y = e.clientY - r.top - o.drag.dy;
+    });
+    const end = () => { o.drag = null; o.pupils.forEach(p => { p.vx += o.vx * 1.5; p.vy += o.vy * 1.5; }); };
+    o.el.addEventListener('pointerup', end); o.el.addEventListener('pointercancel', end);
+  });
+
+  // Göz kırpma
+  setInterval(() => {
+    const o = buddies[Math.floor(Math.random()*buddies.length)];
+    o.el.classList.add('blink'); setTimeout(() => o.el.classList.remove('blink'), 140);
+  }, 900);
+
+  let idle = 0;
+  function tick() {
+    const r = hero.getBoundingClientRect();
+    if (r.bottom > 0) {
+      idle += .01;
+      // İmleç hiç oynamadıysa (dokunmatik) gözler yavaşça gezinsin
+      const tx = mouse.moved ? mouse.x : r.left + r.width/2 + Math.cos(idle) * r.width * .35;
+      const ty = mouse.moved ? mouse.y : r.top + r.height/2 + Math.sin(idle*1.3) * r.height * .3;
+      buddies.forEach(o => {
+        if (!o.drag) {
+          // yay ile evine dön + hafif süzülme
+          o.t += .012;
+          const fx = o.hx + (reduce ? 0 : Math.cos(o.t) * 8), fy = o.hy + (reduce ? 0 : Math.sin(o.t*1.2) * 10);
+          o.vx = (o.vx + (fx - o.x) * .02) * .9; o.vy = (o.vy + (fy - o.y) * .02) * .9;
+          o.x += o.vx; o.y += o.vy;
+        }
+        const tilt = o.rot + Math.max(-14, Math.min(14, o.vx * 1.2));
+        o.el.style.transform = `translate3d(${o.x}px,${o.y}px,0) rotate(${tilt}deg)`;
+
+        o.pupils.forEach(p => {
+          const er = p.eye.getBoundingClientRect();
+          const cx = er.left + er.width/2, cy = er.top + er.height/2;
+          const max = er.width * .27;
+          let dx = tx - cx, dy = ty - cy;
+          const d = Math.hypot(dx, dy) || 1;
+          const reach = Math.min(max, d * .08);
+          const gx = dx / d * reach, gy = dy / d * reach;
+          // googly: yaylı, sönümlü
+          p.vx = (p.vx + (gx - p.px) * .18) * .78;
+          p.vy = (p.vy + (gy - p.py) * .18) * .78;
+          p.px += p.vx; p.py += p.vy;
+          const m = Math.hypot(p.px, p.py);
+          if (m > max) { p.px *= max/m; p.py *= max/m; p.vx *= -.5; p.vy *= -.5; }
+          p.el.style.transform = `translate(${p.px}px,${p.py}px)`;
+        });
+      });
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
