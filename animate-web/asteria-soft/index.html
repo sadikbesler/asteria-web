@@ -45,23 +45,9 @@
   .asteria-logo-word { fill: var(--white); }
   .asteria-logo-dot { fill: var(--l200); }
 
-  /* ---------- Hero: gözlü şekiller ---------- */
-  .hero { position: relative; height: 100vh; height: 100svh; min-height: 620px; overflow: hidden; background: var(--ink-2); cursor: default; }
-  .stage { position: absolute; inset: 0; }
-  .star { position: absolute; width: 14px; height: 14px; fill: var(--l400); opacity: .8; animation: twinkle 3s ease-in-out infinite; }
-  @keyframes twinkle { 50% { transform: scale(.55) rotate(30deg); opacity: .4; } }
-
-  .buddy { position: absolute; left: 0; top: 0; will-change: transform; touch-action: none; cursor: grab; }
-  .buddy:active { cursor: grabbing; }
-  .buddy .body { position: absolute; inset: 0; }
-  .buddy .body svg { width: 100%; height: 100%; display: block; overflow: visible; }
-  .eye { position: absolute; background: var(--white); border-radius: 50%; overflow: hidden; }
-  .eye::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--ink); transform: translateY(-101%); transition: transform .08s; }
-  .buddy.blink .eye::after { transform: translateY(0); }
-  .pupil { position: absolute; left: 50%; top: 50%; width: 46%; height: 46%; margin: -23% 0 0 -23%; border-radius: 50%; background: var(--ink); will-change: transform; }
-  .pupil::after { content: ""; position: absolute; width: 30%; height: 30%; left: 20%; top: 18%; border-radius: 50%; background: var(--white); }
-  .mouth { position: absolute; left: 50%; transform: translateX(-50%); border: 3px solid var(--ink); border-top: 0; border-radius: 0 0 40px 40px; }
-
+  /* ---------- Hero: Spline (Hana) sahnesi ---------- */
+  .hero { position: relative; height: 100vh; height: 100svh; min-height: 620px; overflow: hidden; background: #000; }
+  .spline { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
   .hero-copy { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 0 16px; pointer-events: none; z-index: 5; }
   .eyebrow { display: inline-block; margin: 0 auto 22px; padding: 6px 14px; border-radius: 999px; background: var(--ink-3); color: var(--l200); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
   .hero h1 { font-size: clamp(44px, 8.4vw, 124px); line-height: .92; font-weight: 800; letter-spacing: -.035em; color: var(--white); }
@@ -131,7 +117,6 @@
     .grid3, .grid4, .cta { grid-template-columns: 1fr; }
     section.block { padding: 80px 0; }
   }
-  @media (prefers-reduced-motion: reduce) { .star { animation: none; } }
 </style>
 </head>
 <body>
@@ -148,7 +133,7 @@
 
 <main id="top">
   <section class="hero" aria-label="Giriş">
-    <div class="stage" id="stage" aria-hidden="true"></div>
+    <iframe class="spline" src="https://my.spline.design/googlyeyes-as6lmfiHi7rieEkuYqCEhoWZ-yJl/" title="Gözleri imleci takip eden şekiller" loading="eager" allow="autoplay; fullscreen" tabindex="-1"></iframe>
     <div class="hero-copy">
       <span class="eyebrow">Web · Randevu · Yapay zeka</span>
       <h1>Markanızın<br><em class="serif">dijital zekası</em></h1>
@@ -158,7 +143,7 @@
         <a class="btn btn--ghost" href="#demolar">Demoları gör</a>
       </div>
     </div>
-    <div class="hint">İmleci gezdirin · şekilleri sürükleyin</div>
+    <div class="hint">İmleci gezdirin</div>
   </section>
 
   <div class="wrap">
@@ -265,157 +250,6 @@
   const nav = document.querySelector('.nav');
   const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  const stage = document.getElementById('stage');
-  const hero = stage.parentElement;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const C = { l100:'#ECE5FC', l200:'#D9CCF7', l300:'#C3B0F1', l400:'#A68DE6', l500:'#8468D6', l700:'#4E3A99' };
-
-  // Şekiller (viewBox 0 0 100 100). Gözler: [x%, y%, çap%]
-  const shapes = {
-    circle:  { d: '<circle cx="50" cy="50" r="50"/>', eyes: [[36,42,22],[64,42,22]], mouth: [50,64,20] },
-    square:  { d: '<rect width="100" height="100" rx="22"/>', eyes: [[34,40,24],[66,40,24]], mouth: [50,66,18] },
-    flower:  { d: '<path d="M50 0a22 22 0 0 1 21 29 22 22 0 0 1 29 21 22 22 0 0 1-29 21 22 22 0 0 1-21 29 22 22 0 0 1-21-29A22 22 0 0 1 0 50a22 22 0 0 1 29-21A22 22 0 0 1 50 0z"/>', eyes: [[38,46,20],[62,46,20]] },
-    tri:     { d: '<path d="M50 4Q56 4 60 11L97 80Q101 92 88 94H12Q-1 92 3 80L40 11Q44 4 50 4z"/>', eyes: [[40,60,18],[60,60,18]] },
-    pill:    { d: '<rect width="100" height="100" rx="50"/>', eyes: [[50,40,34]], ratio: 1.6 },
-    blob:    { d: '<path d="M55 2c24 3 44 22 43 46s-18 50-46 50S0 78 2 50 31-1 55 2z"/>', eyes: [[34,44,22],[62,40,26]], mouth: [48,68,16] },
-    arch:    { d: '<path d="M0 100V50a50 50 0 0 1 100 0v50z"/>', eyes: [[34,52,24],[66,52,24]] },
-  };
-
-  const layout = [
-    { s:'circle', c:C.l200, x:.12, y:.24, w:150 },
-    { s:'square', c:C.l400, x:.84, y:.20, w:120, r:-12 },
-    { s:'flower', c:C.l300, x:.78, y:.74, w:170, r:10 },
-    { s:'tri',    c:C.l500, x:.18, y:.76, w:140, r:8 },
-    { s:'pill',   c:C.l100, x:.93, y:.50, w:70,  r:18 },
-    { s:'blob',   c:C.l200, x:.60, y:.86, w:110 },
-    { s:'arch',   c:C.l700, x:.05, y:.52, w:90,  r:-8 },
-    { s:'circle', c:C.l500, x:.38, y:.16, w:62 },
-    { s:'square', c:C.l300, x:.66, y:.16, w:74,  r:14 },
-  ];
-
-  // Yıldızlar
-  const starPath = '<path d="M7 0l1.8 5.2L14 7l-5.2 1.8L7 14l-1.8-5.2L0 7l5.2-1.8z"/>';
-  for (let i = 0; i < 22; i++) {
-    const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    s.setAttribute('viewBox', '0 0 14 14'); s.classList.add('star'); s.innerHTML = starPath;
-    s.style.left = Math.random()*100 + '%'; s.style.top = Math.random()*100 + '%';
-    const k = .5 + Math.random(); s.style.width = s.style.height = (10*k) + 'px';
-    s.style.animationDelay = (-Math.random()*3) + 's';
-    if (i % 3 === 0) s.style.fill = C.l200;
-    stage.appendChild(s);
-  }
-
-  const buddies = [];
-  const scaleFor = () => Math.min(1, Math.max(.45, innerWidth / 1300));
-
-  layout.forEach((b, i) => {
-    const def = shapes[b.s];
-    const el = document.createElement('div');
-    el.className = 'buddy';
-    const body = document.createElement('div');
-    body.className = 'body';
-    body.innerHTML = `<svg viewBox="0 0 100 100" preserveAspectRatio="none" fill="${b.c}">${def.d}</svg>`;
-    el.appendChild(body);
-    const pupils = [];
-    def.eyes.forEach(([ex, ey, d]) => {
-      const eye = document.createElement('div');
-      eye.className = 'eye';
-      eye.style.cssText = `left:${ex - d/2}%;top:${ey - d/2 * (def.ratio ? 1/def.ratio : 1)}%;width:${d}%;aspect-ratio:1`;
-      const p = document.createElement('div'); p.className = 'pupil';
-      eye.appendChild(p); el.appendChild(eye);
-      pupils.push({ el: p, eye, px: 0, py: 0, vx: 0, vy: 0 });
-    });
-    if (def.mouth) {
-      const [mx, my, mw] = def.mouth;
-      const m = document.createElement('div'); m.className = 'mouth';
-      m.style.cssText = `left:${mx}%;top:${my}%;width:${mw}%;height:${mw/2}%`;
-      el.appendChild(m);
-    }
-    stage.appendChild(el);
-    buddies.push({ el, b, def, pupils, x: 0, y: 0, vx: 0, vy: 0, t: Math.random()*6.28, drag: null, rot: b.r || 0 });
-  });
-
-  function place() {
-    const W = hero.clientWidth, H = hero.clientHeight, k = scaleFor();
-    buddies.forEach(o => {
-      o.w = o.b.w * k; o.h = o.w * (o.def.ratio || 1);
-      o.el.style.width = o.w + 'px'; o.el.style.height = o.h + 'px';
-      o.hx = o.b.x * W - o.w/2; o.hy = o.b.y * H - o.h/2;
-      if (!o.placed) { o.x = o.hx; o.y = o.hy; o.placed = true; }
-    });
-  }
-  place();
-  addEventListener('resize', place);
-
-  // İmleç
-  const mouse = { x: innerWidth/2, y: innerHeight/3, moved: false };
-  addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.moved = true; });
-
-  // Sürükle-bırak
-  buddies.forEach(o => {
-    o.el.addEventListener('pointerdown', e => {
-      o.el.setPointerCapture(e.pointerId);
-      const r = hero.getBoundingClientRect();
-      o.drag = { dx: e.clientX - r.left - o.x, dy: e.clientY - r.top - o.y, lx: e.clientX, ly: e.clientY };
-    });
-    o.el.addEventListener('pointermove', e => {
-      if (!o.drag) return;
-      const r = hero.getBoundingClientRect();
-      o.vx = e.clientX - o.drag.lx; o.vy = e.clientY - o.drag.ly;
-      o.drag.lx = e.clientX; o.drag.ly = e.clientY;
-      o.x = e.clientX - r.left - o.drag.dx; o.y = e.clientY - r.top - o.drag.dy;
-    });
-    const end = () => { o.drag = null; o.pupils.forEach(p => { p.vx += o.vx * 1.5; p.vy += o.vy * 1.5; }); };
-    o.el.addEventListener('pointerup', end); o.el.addEventListener('pointercancel', end);
-  });
-
-  // Göz kırpma
-  setInterval(() => {
-    const o = buddies[Math.floor(Math.random()*buddies.length)];
-    o.el.classList.add('blink'); setTimeout(() => o.el.classList.remove('blink'), 140);
-  }, 900);
-
-  let idle = 0;
-  function tick() {
-    const r = hero.getBoundingClientRect();
-    if (r.bottom > 0) {
-      idle += .01;
-      // İmleç hiç oynamadıysa (dokunmatik) gözler yavaşça gezinsin
-      const tx = mouse.moved ? mouse.x : r.left + r.width/2 + Math.cos(idle) * r.width * .35;
-      const ty = mouse.moved ? mouse.y : r.top + r.height/2 + Math.sin(idle*1.3) * r.height * .3;
-      buddies.forEach(o => {
-        if (!o.drag) {
-          // yay ile evine dön + hafif süzülme
-          o.t += .012;
-          const fx = o.hx + (reduce ? 0 : Math.cos(o.t) * 8), fy = o.hy + (reduce ? 0 : Math.sin(o.t*1.2) * 10);
-          o.vx = (o.vx + (fx - o.x) * .02) * .9; o.vy = (o.vy + (fy - o.y) * .02) * .9;
-          o.x += o.vx; o.y += o.vy;
-        }
-        const tilt = o.rot + Math.max(-14, Math.min(14, o.vx * 1.2));
-        o.el.style.transform = `translate3d(${o.x}px,${o.y}px,0) rotate(${tilt}deg)`;
-
-        o.pupils.forEach(p => {
-          const er = p.eye.getBoundingClientRect();
-          const cx = er.left + er.width/2, cy = er.top + er.height/2;
-          const max = er.width * .27;
-          let dx = tx - cx, dy = ty - cy;
-          const d = Math.hypot(dx, dy) || 1;
-          const reach = Math.min(max, d * .08);
-          const gx = dx / d * reach, gy = dy / d * reach;
-          // googly: yaylı, sönümlü
-          p.vx = (p.vx + (gx - p.px) * .18) * .78;
-          p.vy = (p.vy + (gy - p.py) * .18) * .78;
-          p.px += p.vx; p.py += p.vy;
-          const m = Math.hypot(p.px, p.py);
-          if (m > max) { p.px *= max/m; p.py *= max/m; p.vx *= -.5; p.vy *= -.5; }
-          p.el.style.transform = `translate(${p.px}px,${p.py}px)`;
-        });
-      });
-    }
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
 })();
 </script>
 </body>
