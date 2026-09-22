@@ -7,7 +7,7 @@
 <meta name="description" content="Web siteleri, randevu sistemleri ve yapay zeka asistanları. Şablon değil, sıfırdan kod. 5–10 günde teslim.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800&family=Instrument+Serif:ital@0;1&family=Inter:wght@600&display=swap" rel="stylesheet">
 <style>
   :root {
     --l50: #F6F2FE;
@@ -45,21 +45,18 @@
   .asteria-logo-word { fill: var(--white); }
   .asteria-logo-dot { fill: var(--l200); }
 
-  /* ---------- Hero: Spline "Googly Eyes" panosu (sahne verisinden birebir) ---------- */
-  .hero { min-height: 100vh; min-height: 100svh; padding: 96px 0 40px; display: flex; align-items: center; }
-  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 4vw, 64px); align-items: center; }
-  .board { justify-self: end; width: 100%; max-width: calc((100svh - 150px) * 0.8005); aspect-ratio: 2110.66 / 2636.83; background: var(--l200); border-radius: 28px; overflow: hidden; }
-  .board svg { display: block; width: 100%; height: 100%; }
-  .eyebrow { display: inline-block; margin-bottom: 22px; padding: 6px 14px; border-radius: 999px; background: var(--ink-3); color: var(--l200); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
-  .hero h1 { font-size: clamp(44px, 6.6vw, 104px); line-height: .92; font-weight: 800; letter-spacing: -.035em; color: var(--white); }
-  .hero h1 em { display: inline-block; padding: 0 .18em .04em; margin-top: .06em; background: var(--l200); color: var(--ink); border-radius: .14em; letter-spacing: -.01em; }
-  .hero p.lead { max-width: 480px; margin-top: 26px; color: var(--l100); font-size: clamp(16px, 1.5vw, 19px); }
-  .hero-cta { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
-  @media (max-width: 860px) {
-    .hero { padding-top: 104px; }
-    .hero-grid { grid-template-columns: 1fr; }
-    .board { justify-self: center; max-width: 520px; border-radius: 22px; }
-  }
+  /* ---------- Hero: Spline "Googly Eyes" sahnesi (sahne dosyasından birebir, yazılar Türkçe) ---------- */
+  /* Sahne 4300×2636 birim, girişin yüksekliğine oturur: dar ekranda yanları kırpılır (ortası kalır),
+     geniş ekranda yanlarda Spline'da çerçeve dışında duran yıldızlar görünür */
+  .hero { position: relative; height: 100vh; height: clamp(320px, 100svh, 150vw); overflow: hidden; background: #282543; container-type: size; }
+  .stage { position: absolute; left: 50%; top: 0; width: 163.13cqh; height: 100%; transform: translateX(-50%); container-type: inline-size; --u: calc(100cqw / 4300); }
+  .stage > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  /* Yazının arkasındaki parlama: üstü daha bulanık (Spline'daki kademeli bulanıklık) */
+  .glow { position: absolute; left: calc(1706 * var(--u)); top: calc(805 * var(--u)); width: calc(1026 * var(--u)); aspect-ratio: 1; }
+  .glow i { position: absolute; inset: 0; border-radius: 50%; background: rgb(79 72 141 / .2); }
+  .glow i:first-child { filter: blur(calc(50 * var(--u))); -webkit-mask-image: linear-gradient(#000 25%, transparent 80%); mask-image: linear-gradient(#000 25%, transparent 80%); }
+  .glow i:last-child { filter: blur(calc(17 * var(--u))); -webkit-mask-image: linear-gradient(transparent 25%, #000 80%); mask-image: linear-gradient(transparent 25%, #000 80%); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   /* ---------- Bölümler ---------- */
   section.block { padding: 110px 0; }
@@ -137,18 +134,11 @@
 </header>
 
 <main id="top">
-  <section class="hero" aria-label="Giriş">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Web · Randevu · Yapay zeka</span>
-        <h1>Markanızın<br><em class="serif">dijital zekası</em></h1>
-        <p class="lead">Web siteleri, randevu sistemleri ve yapay zeka asistanları. Şablon değil — her satırı sizin için sıfırdan yazılır.</p>
-        <div class="hero-cta">
-          <a class="btn" href="#teklif">Teklif alın →</a>
-          <a class="btn btn--ghost" href="#demolar">Demoları gör</a>
-        </div>
-      </div>
-      <div class="board" aria-hidden="true"><svg id="board" viewBox="0 0 2110.66 2636.83" xmlns="http://www.w3.org/2000/svg"></svg></div>
+  <section class="hero" aria-labelledby="hero-title">
+    <h1 class="sr-only" id="hero-title">Asteria Soft ile dijital zekâ markanız için — sıfırdan kod!</h1>
+    <div class="stage" aria-hidden="true">
+      <div class="glow"><i></i><i></i></div>
+      <svg id="scene" viewBox="0 0 4300 2636" xmlns="http://www.w3.org/2000/svg"></svg>
     </div>
   </section>
 
@@ -257,107 +247,221 @@
   const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-  // ---- Googly Eyes panosu: Spline/Hana sahnesindeki konum, boyut ve takip ayarları ----
-  const svg = document.getElementById('board');
+  // ---- Googly Eyes sahnesi: Spline/Hana dosyasındaki konum, boyut, renk ve takip ayarları ----
+  // T tür (g grup, e elips, r dikdörtgen, s yıldız, p çokgen, v vektör yol, b boolean), p konum, r açı, z boyut,
+  // f dolgu, k çizgi, ev olaylar (f imleci izle / l imlece dön; d sönüm, L sınır, rp imleç çıkınca sıfırla),
+  // ch çocuklar — Spline'daki gibi ilk çocuk en üstte çizilir. "title" yazı görselinin katmanı.
+  const STARS = [{"T":"s","p":[891.63,47.57],"r":-69.388,"z":[211,211],"sp":4,"ir":21,"c":5.8,"f":"#4806e1","ev":[{"t":"f","d":70,"L":30,"rp":false}]},{"T":"s","p":[237,-1205.52],"z":[296,290.95],"sp":5,"ir":38.19,"c":11.9,"f":"#f53932","ev":[{"t":"l","d":700,"rp":false}]},{"T":"s","p":[-936,-36.3],"z":[296,290.95],"sp":5,"ir":38.19,"c":11.9,"f":"#4806e1","ev":[{"t":"f","d":20,"L":30,"rp":false}]},{"T":"s","p":[682.02,577.55],"z":[296,290.95],"sp":5,"ir":38.19,"c":11.9,"f":"#f24a50","ev":[{"t":"l","d":400,"rp":false}]},{"T":"s","p":[-416.85,482.43],"r":-69.388,"z":[211,211],"sp":4,"ir":21,"c":5.8,"f":"#4806e1","ev":[{"t":"f","d":20,"L":30,"rp":false}]},{"T":"s","p":[-890.5,-528.5],"r":-69.388,"z":[211,211],"sp":4,"ir":21,"c":5.8,"f":"#fca02c","ev":[{"t":"f","d":20,"L":30,"rp":false}]},{"T":"s","p":[-711.85,-1124.43],"z":[211,211],"sp":4,"ir":38.19,"c":12.6,"f":"#823634","ev":[{"t":"f","d":20,"L":30,"rp":false}]}];
+  const SCENE = [{"T":"g","p":[4623.83,1659.53],"ch":STARS},{"T":"g","p":[75.95,1825.57],"ch":STARS},{"T":"title"},{"T":"g","p":[2968.57,474.57],"r":-1.955,"ch":[{"T":"e","p":[-146,0],"z":[79.57,79.57],"f":"#000000","ev":[{"t":"f","d":5,"L":60,"rp":false}]},{"T":"e","p":[146,0],"z":[79.57,79.57],"f":"#000000","ev":[{"t":"f","d":5,"L":60,"rp":false}]},{"T":"e","p":[-146,0],"z":[190.4,190.4],"f":"#ffffff"},{"T":"e","p":[146,0],"z":[190.4,190.4],"f":"#ffffff"},{"T":"e","p":[-146,0],"z":[213.14,213.14],"f":"#000000"},{"T":"e","p":[146,0],"z":[213.14,213.14],"f":"#000000"},{"T":"v","p":[-7.53,-16.98],"d":"M-58.33 22.81C-58.29 22.44 -45.14 -22.81 0.98 -22.81C47.1 -22.81 58.33 22.81 58.33 22.81","k":{"w":15,"c":"#000000"}}]},{"T":"g","p":[3217.12,1787.98],"r":-78.19,"ch":[{"T":"g","p":[112.52,-18.06],"ch":[{"T":"r","p":[0,0.41],"z":[164.52,28.16],"ev":[{"t":"l","d":10,"rp":true}],"ch":[{"T":"e","p":[-0.16,-43.77],"z":[151.25,154.4],"f":"#000000"}]}]},{"T":"g","p":[-114.57,-18.5],"ch":[{"T":"r","p":[0,0],"z":[164.52,28.16],"ev":[{"t":"l","d":10,"rp":true}],"ch":[{"T":"e","p":[-0.16,-43.77],"z":[151.25,154.4],"f":"#000000"}]},{"T":"b","p":[113.67,0],"op":"OR","c":16.8,"f":"#ffffff","ch":[{"T":"e","p":[-113.67,0],"z":[242.06,243.17],"f":"#ffffff"},{"T":"e","p":[113.67,0],"z":[242.06,243.17],"f":"#ffffff"}]}]},{"T":"r","p":[0,0],"z":[590.25,535.95],"cr":[300,300,100,100],"f":{"t":"R","a":[0.6,0.01],"b":[0.14,1],"s":[[0.47,"#00af4e"],[1,"#05e1ff"]]}}]},{"T":"g","p":[1286.99,2214.01],"r":37.664,"ch":[{"T":"b","p":[0,0],"op":"AND","c":0,"f":"#000000","ch":[{"T":"e","p":[0,0],"z":[182.71,182.71],"f":"#000000","ev":[{"t":"f","d":20,"L":20,"rp":false}]},{"T":"v","p":[0,0],"d":"M-166.99 -1.04C-166.99 -1.04 -99.68 -84.01 -0.76 -84.01C98.16 -84.01 166.99 -1.04 166.99 -1.04C166.99 -1.04 135.75 84.01 -0.76 84.01C-137.27 84.01 -166.99 -1.04 -166.99 -1.04Z","f":"#ffffff"}]},{"T":"v","p":[0,0],"d":"M-166.99 -1.04C-166.99 -1.04 -99.68 -84.01 -0.76 -84.01C98.16 -84.01 166.99 -1.04 166.99 -1.04C166.99 -1.04 135.75 84.01 -0.76 84.01C-137.27 84.01 -166.99 -1.04 -166.99 -1.04Z","f":"#ffffff"}]},{"T":"g","p":[2443.35,795],"ch":[{"T":"g","p":[-339.33,-0.9],"r":-1.411,"ch":[{"T":"r","p":[228.92,6.05],"z":[165.84,28.84],"ev":[{"t":"l","d":10,"rp":true}],"ch":[{"T":"e","p":[-0.16,-43.77],"z":[151.25,154.4],"f":"#000000"}]},{"T":"r","p":[0,0.42],"z":[165.84,28.84],"ev":[{"t":"l","d":10,"rp":true}],"ch":[{"T":"e","p":[-0.16,-43.77],"z":[151.25,154.4],"f":"#000000"}]}]},{"T":"g","p":[-565.41,5.65],"r":-1.411,"ch":[{"T":"b","p":[114.58,0],"op":"OR","c":16.8,"f":"#ffffff","ch":[{"T":"e","p":[338.01,5.49],"z":[244.01,249.09],"f":"#ffffff"},{"T":"e","p":[114.58,0],"z":[244.01,249.09],"f":"#ffffff"}]}]}]},{"T":"g","p":[1367.5,1738.5],"r":33.799,"ev":[{"t":"f","d":15,"L":20,"rp":false}],"ch":[{"T":"g","p":[113.42,-18.5],"ch":[{"T":"r","p":[0,0.42],"z":[165.84,28.84],"ev":[{"t":"l","d":10,"rp":true}],"ch":[{"T":"e","p":[-0.16,-43.77],"z":[151.25,154.4],"f":"#000000"}]}]},{"T":"g","p":[-115.49,-18.95],"ch":[{"T":"r","p":[0,0],"z":[165.84,28.84],"ev":[{"t":"l","d":10,"rp":true}],"ch":[{"T":"e","p":[-0.16,-43.77],"z":[151.25,154.4],"f":"#000000"}]},{"T":"b","p":[114.58,0],"op":"OR","c":16.8,"f":"#ffffff","ch":[{"T":"e","p":[-114.58,0],"z":[244.01,249.09],"f":"#ffffff"},{"T":"e","p":[114.58,0],"z":[244.01,249.09],"f":"#ffffff"}]}]},{"T":"r","p":[0,0],"z":[595,549],"cr":[300,300,100,100],"f":{"t":"R","a":[0.6,0.01],"b":[0.54,0.88],"s":[[0,"#3773ff"],[1,"#4605ff"]]}}]},{"T":"g","p":[1349.1,45.63],"r":127.312,"ev":[{"t":"f","d":10,"L":20,"rp":false}],"ch":[{"T":"g","p":[-5.04,-0.09],"r":18.953,"ch":[{"T":"e","p":[27.16,-376.28],"r":86.422,"z":[17,17],"f":"#000000"},{"T":"e","p":[-30.97,-377.02],"r":86.422,"z":[17,17],"f":"#000000"},{"T":"g","p":[1.55,-500.55],"r":0.604,"ch":[{"T":"b","p":[-18.64,152.33],"op":"AND","c":0,"f":"#000000","ch":[{"T":"e","p":[-90.26,-151.66],"z":[111.34,111.34],"f":"#000000","ev":[{"t":"f","d":8,"L":40,"rp":false}]},{"T":"e","p":[-90.93,-152.33],"z":[198,198],"f":"#ffffff"}]},{"T":"b","p":[80.67,152.33],"op":"AND","c":0,"f":"#000000","ch":[{"T":"e","p":[28.9,-151.66],"z":[111.34,111.34],"f":"#000000","ev":[{"t":"f","d":8,"L":40,"rp":false}]},{"T":"e","p":[28.23,-152.33],"z":[198,198],"f":"#ffffff"}]},{"T":"e","p":[-108.9,0],"z":[198,198],"f":"#ffffff"},{"T":"e","p":[108.9,0],"z":[198,198],"f":"#ffffff"}]},{"T":"v","p":[-0.11,-332.57],"d":"M-51.89 -8.88C-52.23 -8.53 -1.69 30.9 51.89 -8.88","k":{"w":20,"c":"#000000"}},{"T":"e","p":[0.27,-379.91],"z":[262.72,262.72],"f":"#ffb9c3"},{"T":"r","p":[1.55,-500.55],"r":90,"z":[269.6,519.04],"cr":[2001,2001,2001,2001],"f":"#ffb9c3"},{"T":"r","p":[0.27,0],"z":[780.79,1780.17],"cr":[2001,2001,2001,2001],"f":{"t":"L","a":[0.52,0.04],"b":[0.58,0.69],"s":[[0,"#e879c6"],[1,"#ee4d27"]]}},{"T":"e","p":[-390.3,-562.5],"z":[183.06,183.06],"f":"#ffb9c3"},{"T":"e","p":[390.3,-562.5],"z":[183.06,183.06],"f":"#ffb9c3"}]}]},{"T":"g","p":[2219.65,2813.21],"ev":[{"t":"f","d":10,"L":20,"rp":false}],"ch":[{"T":"v","p":[-0.58,-272.14],"d":"M-166.08 -37.43C-166.08 -37.43 9.52 131.02 166.08 -37.43","k":{"w":30,"c":"#000000"}},{"T":"g","p":[-224.14,-527.07],"ch":[{"T":"b","p":[-0.05,0.01],"op":"AND","c":0,"f":"#000000","ch":[{"T":"e","p":[0.12,-0.03],"z":[287.82,287.82],"f":"#000000","ev":[{"t":"f","d":10,"L":130,"rp":false}]},{"T":"e","p":[0.12,-0.03],"z":[351.85,351.85],"f":"#ffffff"}]},{"T":"e","p":[0.07,-0.02],"z":[351.85,351.85],"f":"#ffffff"}]},{"T":"g","p":[210.86,-527.07],"ch":[{"T":"b","p":[-0.05,0.01],"op":"AND","c":0,"f":"#000000","ch":[{"T":"e","p":[0.12,-0.03],"z":[287.82,287.82],"f":"#000000","ev":[{"t":"f","d":10,"L":130,"rp":false}]},{"T":"e","p":[0.12,-0.03],"z":[351.85,351.85],"f":"#ffffff"}]},{"T":"e","p":[0.07,-0.02],"z":[351.85,351.85],"f":"#ffffff"}]},{"T":"e","p":[-527.58,-373.92],"z":[342.17,342.17],"f":{"t":"L","a":[0.37,-0],"b":[0.5,1.26],"s":[[0,"#fe940f"],[1,"#f77f0c"]]}},{"T":"e","p":[526.42,-373.92],"z":[342.17,342.17],"f":{"t":"L","a":[0.37,-0],"b":[0.5,1.26],"s":[[0,"#fe940f"],[1,"#f77f0c"]]}},{"T":"e","p":[-0.58,-3.14],"z":[1712.14,1712.14],"f":"#fac400"}]},{"T":"v","p":[2959.77,605],"d":"M-107.77 0L107.77 0","k":{"w":20,"c":"#000000"}},{"T":"g","p":[3109.66,718.7],"ch":[{"T":"b","p":[-147.12,-205.39],"r":-105.012,"op":"OR","c":40.2,"f":{"t":"L","a":[0,0.5],"b":[1,0.5],"s":[[0,"#ee6b2b"],[1,"#ee4c2b"]]},"ev":[{"t":"f","d":15,"L":20,"rp":false}],"ch":[{"T":"e","p":[137.26,133.34],"z":[392.18,392.18],"f":"#333333"},{"T":"e","p":[137.26,-133.34],"z":[392.18,392.18],"f":"#333333"},{"T":"e","p":[-137.26,133.34],"z":[392.18,392.18],"f":"#333333"},{"T":"e","p":[-137.26,-133.34],"z":[392.18,392.18],"f":"#333333"}]},{"T":"v","p":[104.3,273.43],"r":-50.07,"d":"M56.61 -290.17C56.61 -290.17 -172.85 8.42 21.57 290.17","k":{"w":61,"c":"#00b14e"}}]},{"T":"g","p":[1272.78,2249.63],"ev":[{"t":"f","d":50,"L":20,"rp":false}],"ch":[{"T":"p","p":[0,0],"r":-78.971,"z":[1062.51,1057.83],"sp":3,"c":38.7,"f":"#060712"}]},{"T":"g","p":[2247,1351],"ch":STARS}];
+  const svg = document.getElementById('scene');
   const NS = 'http://www.w3.org/2000/svg';
   const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent && parent.appendChild(e); return e; };
   const defs = mk('defs', {}, svg);
-  let clipN = 0;
-  const eyes = [];
+  const tf = (p, r) => `translate(${p[0]} ${p[1]})` + (r ? ` rotate(${r})` : '');
+  let uid = 0;
 
-  // Yuvarlak göz: beyaz daire, içinde daireye kırpılmış siyah bebek (follow, sınır 40)
-  function roundEye(x, y, size, pw, ph) {
-    const g = mk('g', { transform: `translate(${x} ${y})` }, svg);
-    mk('circle', { r: size / 2, fill: '#fff' }, g);
-    const id = 'c' + clipN++;
-    mk('circle', { r: size / 2 }, mk('clipPath', { id }, defs));
-    const pupil = mk('ellipse', { rx: pw / 2, ry: ph / 2, fill: '#000' }, mk('g', { 'clip-path': `url(#${id})` }, g));
-    eyes.push({ kind: 'follow', g, pupil, limit: 40, k: 7, reset: false, x: 0, y: 0, oy: 0 });
+  // Dolgu: renk, [renk, opaklık] ya da şeklin kutusuna göre yerleşen gradyan
+  function paintOf(f, x, y, w, h) {
+    if (!f) return ['none'];
+    if (typeof f === 'string') return [f];
+    if (Array.isArray(f)) return f;
+    const id = 'q' + uid++, ax = x + f.a[0] * w, ay = y + f.a[1] * h, bx = x + f.b[0] * w, by = y + f.b[1] * h;
+    const g = f.t === 'L'
+      ? mk('linearGradient', { id, gradientUnits: 'userSpaceOnUse', x1: ax, y1: ay, x2: bx, y2: by }, defs)
+      : mk('radialGradient', { id, gradientUnits: 'userSpaceOnUse', cx: ax, cy: ay, r: Math.hypot(bx - ax, by - ay) }, defs);
+    f.s.forEach(([o, c]) => mk('stop', { offset: o, 'stop-color': c }, g));
+    return [`url(#${id})`];
   }
-  // Hap göz: beyaz hap, içinde kırpılmış bebek (follow, sınır 20, imleç çıkınca sıfırlanır)
-  function pillEye(x, y) {
-    const w = 202.55, hgt = 88.22;
-    const g = mk('g', { transform: `translate(${x} ${y})` }, svg);
-    mk('rect', { x: -w / 2, y: -hgt / 2, width: w, height: hgt, rx: hgt / 2, fill: '#fff' }, g);
-    const id = 'c' + clipN++;
-    mk('rect', { x: -w / 2, y: -hgt / 2, width: w, height: hgt, rx: hgt / 2 }, mk('clipPath', { id }, defs));
-    const pupil = mk('ellipse', { rx: 165.23 / 2, ry: 167.5 / 2, fill: '#000' }, mk('g', { 'clip-path': `url(#${id})` }, g));
-    eyes.push({ kind: 'follow', g, pupil, limit: 20, k: 14, reset: true, x: 0, y: 0, oy: 3.37 });
+  // Yıldız ve çokgen köşeleri kutuya çizilen elipsin üzerinde, ilki tepede
+  function ring({ z: [w, h], sp, ir }, star) {
+    const n = star ? sp * 2 : sp, pts = [];
+    for (let i = 0; i < n; i++) {
+      const a = -Math.PI / 2 + i * 2 * Math.PI / n, k = star && i % 2 ? ir / 100 : 1;
+      pts.push([Math.cos(a) * w / 2 * k, Math.sin(a) * h / 2 * k]);
+    }
+    return pts;
   }
-  // Dönen göz: bebek merkezin 43.77 birim uzağında, imlece döner (lookAt); dinlenirken yukarı bakar
-  function lookEye(g, px, py) {
-    const pupil = mk('ellipse', { rx: 151.25 / 2, ry: 154.4 / 2, fill: '#000' }, g);
-    eyes.push({ kind: 'look', g, pupil, px, py, r: 43.77, a: Math.PI, k: 7 });
+  // Köşeleri r yarıçapıyla yuvarlatılmış kapalı çokgen
+  function roundPoly(pts, r) {
+    let d = '';
+    pts.forEach((p, i) => {
+      const a = pts[(i + pts.length - 1) % pts.length], b = pts[(i + 1) % pts.length];
+      let ux = a[0] - p[0], uy = a[1] - p[1], vx = b[0] - p[0], vy = b[1] - p[1];
+      const lu = Math.hypot(ux, uy), lv = Math.hypot(vx, vy);
+      ux /= lu; uy /= lu; vx /= lv; vy /= lv;
+      const half = Math.acos(Math.max(-1, Math.min(1, ux * vx + uy * vy))) / 2;
+      const t = Math.min(r / Math.tan(half), lu / 2, lv / 2), rr = t * Math.tan(half);
+      d += `${i ? 'L' : 'M'}${p[0] + ux * t} ${p[1] + uy * t}A${rr} ${rr} 0 0 ${ux * vy - uy * vx < 0 ? 1 : 0} ${p[0] + vx * t} ${p[1] + vy * t}`;
+    });
+    return d + 'Z';
   }
-  function whites(x, y, rot, list) {
-    const g = mk('g', { transform: `translate(${x} ${y}) rotate(${rot})` }, svg);
-    list.forEach(([cx, cy, w, hh]) => mk('ellipse', { cx, cy, rx: w / 2, ry: hh / 2, fill: '#fff' }, g));
-    return g;
+  // Köşe yarıçapları [sol üst, sağ üst, sağ alt, sol alt]; sığmazsa orantılı küçülür
+  function rectPath(w, h, [a, b, c, d]) {
+    const s = Math.min(1, w / (a + b), w / (c + d), h / (a + d), h / (b + c));
+    a *= s; b *= s; c *= s; d *= s;
+    const x = -w / 2, y = -h / 2;
+    return `M${x + a} ${y}H${x + w - b}A${b} ${b} 0 0 1 ${x + w} ${y + b}V${y + h - c}A${c} ${c} 0 0 1 ${x + w - c} ${y + h}H${x + d}A${d} ${d} 0 0 1 ${x} ${y + h - d}V${y + a}A${a} ${a} 0 0 1 ${x + a} ${y}Z`;
   }
-  function mouth(x, y, rot) {
-    const g = mk('g', { transform: `translate(${x} ${y}) rotate(${rot})` }, svg);
-    mk('path', { d: 'M-129.44 -17.08C-129.44 -17.08 -10.72 59.79 129.44 -17.08', fill: 'none', stroke: '#000', 'stroke-width': 20, 'stroke-linecap': 'round' }, g);
+  // Birleşimde iki elipsin buluştuğu içbükey köşeyi r yarıçaplı yayla doldurur (Spline'daki boolean "corner")
+  function fillets(list, r) {
+    const E = list.map(n => ({ x: n.p[0], y: n.p[1], a: n.z[0] / 2, b: n.z[1] / 2 }));
+    const inE = (e, x, y) => ((x - e.x) / e.a) ** 2 + ((y - e.y) / e.b) ** 2 - 1;
+    const out = [];
+    E.forEach((e1, i) => E.forEach((e2, j) => {
+      if (j <= i) return;
+      const at = t => [e1.x + e1.a * Math.cos(t), e1.y + e1.b * Math.sin(t)], N = 720;
+      for (let s = 0; s < N; s++) {
+        let t0 = s / N * 2 * Math.PI, t1 = (s + 1) / N * 2 * Math.PI;
+        if (inE(e2, ...at(t0)) * inE(e2, ...at(t1)) > 0) continue;
+        for (let m = 0; m < 30; m++) { const tm = (t0 + t1) / 2; if (inE(e2, ...at(t0)) * inE(e2, ...at(tm)) <= 0) t1 = tm; else t0 = tm; }
+        const V = at(t0);
+        if (E.some((e, k) => k !== i && k !== j && inE(e, ...V) < 0)) continue; // başka şeklin içinde kalan köşe
+        out.push(fillet(e1, e2, V, r));
+      }
+    }));
+    return out;
+  }
+  function fillet(e1, e2, V, r) {
+    // V noktasındaki eğrilik çemberlerine dıştan teğet r yarıçaplı çember
+    const osc = e => {
+      const dx = V[0] - e.x, dy = V[1] - e.y, c = dx / e.a, s = dy / e.b;
+      let nx = dx / e.a ** 2, ny = dy / e.b ** 2; const l = Math.hypot(nx, ny);
+      const rho = (e.a ** 2 * s * s + e.b ** 2 * c * c) ** 1.5 / (e.a * e.b);
+      return { x: V[0] - nx / l * rho, y: V[1] - ny / l * rho, r: rho };
+    };
+    const c1 = osc(e1), c2 = osc(e2), R1 = c1.r + r, R2 = c2.r + r;
+    const dx = c2.x - c1.x, dy = c2.y - c1.y, D = Math.hypot(dx, dy);
+    const a = (R1 * R1 - R2 * R2 + D * D) / (2 * D), h = Math.sqrt(Math.max(0, R1 * R1 - a * a));
+    const mx = c1.x + dx * a / D, my = c1.y + dy * a / D;
+    const F = [[mx - dy * h / D, my + dx * h / D], [mx + dy * h / D, my - dx * h / D]]
+      .sort((p, q) => Math.hypot(p[0] - V[0], p[1] - V[1]) - Math.hypot(q[0] - V[0], q[1] - V[1]))[0];
+    const T1 = [c1.x + (F[0] - c1.x) * c1.r / R1, c1.y + (F[1] - c1.y) * c1.r / R1];
+    const T2 = [c2.x + (F[0] - c2.x) * c2.r / R2, c2.y + (F[1] - c2.y) * c2.r / R2];
+    const sweep = (T1[0] - F[0]) * (T2[1] - F[1]) - (T1[1] - F[1]) * (T2[0] - F[0]) > 0 ? 1 : 0;
+    return `M${T1[0]} ${T1[1]}A${r} ${r} 0 0 ${sweep} ${T2[0]} ${T2[1]}L${V[0]} ${V[1]}Z`;
   }
 
-  // Yüzler (konumlar sahne dosyasından)
-  [[222.57, 155.23], [480.57, 155.23], [319.27, 1362.23], [577.27, 1362.23]].forEach(([x, y]) => pillEye(x, y));
-  mouth(452.44, 1459.08, 180);
-  mouth(1777.03, 578.08, 0);
-  roundEye(866.95, 408.46, 248, 114, 114);
-  roundEye(1162.57, 411.01, 248, 114, 114);
-  roundEye(1566.07, 408.46, 248, 224, 224);
-  roundEye(1951.83, 411.44, 248, 224, 224);
-  roundEye(595.95, 857.01, 248, 224, 224);
-  roundEye(293.95, 1000.01, 248, 224, 224);
-  roundEye(1327.57, 919.01, 372, 336, 93);
-  roundEye(1835.66, 919.01, 372, 336, 93);
-  // Beş gözlü sıra
-  const row = whites(1214.95, 1566.55, 0, [[0.59, -0.45, 244, 249], [-214.41, -0.45, 244, 249], [229.59, -0.45, 244, 249], [427.59, -0.45, 244, 249], [638.59, -0.45, 244, 249]]);
-  [[0, 0], [-220.08, 0.42], [428.92, 0.42], [641.92, 0.42], [228.92, -0.55]].forEach(([px, py]) => lookEye(row, px, py));
-  // Alttaki iki göz
-  const pair = whites(270.01, 2293.55, 0, [[0, 0, 244, 249], [229.16, 0, 244, 249]]);
-  lookEye(pair, 0, 0); lookEye(pair, 228.91, -0.13);
-  // İri, eğik iki göz
-  [[1400.8, 2252.45], [1760.8, 2252.45]].forEach(([x, y]) => { const g = whites(x, y, -5.47, [[-73.52, 0, 400.57, 408.91]]); lookEye(g, -73.52, 0); });
+  // Tek şeklin geometrisi (merkez 0,0)
+  function shape(n, parent, paint) {
+    const [w, h] = n.z || [0, 0];
+    const el = n.T === 'e' ? mk('ellipse', { rx: w / 2, ry: h / 2 }, parent)
+      : mk('path', { d: n.T === 'r' ? rectPath(w, h, n.cr || [0, 0, 0, 0]) : n.T === 's' || n.T === 'p' ? roundPoly(ring(n, n.T === 's'), n.c) : n.d }, parent);
+    const [c, o] = paint || paintOf(n.f, -w / 2, -h / 2, w, h);
+    el.setAttribute('fill', c);
+    if (o != null) el.setAttribute('fill-opacity', o);
+    if (n.k) { el.setAttribute('stroke', n.k.c); el.setAttribute('stroke-width', n.k.w); el.setAttribute('stroke-linecap', 'round'); }
+    return el;
+  }
+  // Düğümü ve çocuklarını kurar; hareket eden (ya da hareketli çocuğu olan) düğümleri döndürür
+  function build(n, parent, paint) {
+    if (n.T === 'title') return title(parent);
+    const g = mk('g', { transform: tf(n.p, n.r) }, parent);
+    const node = { n, g, ox: 0, oy: 0, a: n.r || 0, kids: [], tr: '' };
+    const add = k => k && k.live && node.kids.push(k);
+    if (n.T === 'b' && n.op === 'AND') {
+      // Kesişim: son çocuk kırpma şekli; diğerleri (göz bebekleri) onun içinde, boolean rengiyle
+      const id = 'k' + uid++, base = n.ch[n.ch.length - 1];
+      shape(base, mk('clipPath', { id }, defs), ['#000']).setAttribute('transform', tf(base.p, base.r));
+      const inner = mk('g', { 'clip-path': `url(#${id})` }, g), p = paintOf(n.f);
+      for (let i = n.ch.length - 2; i >= 0; i--) add(build(n.ch[i], inner, p));
+    } else if (n.T === 'b') {
+      // Birleşim: çocuklar tek dolguyla (gradyan birleşik kutuya göre) + köşe yuvarlatma
+      const xs = n.ch.flatMap(c => [c.p[0] - c.z[0] / 2, c.p[0] + c.z[0] / 2]), ys = n.ch.flatMap(c => [c.p[1] - c.z[1] / 2, c.p[1] + c.z[1] / 2]);
+      const x = Math.min(...xs), y = Math.min(...ys), p = paintOf(n.f, x, y, Math.max(...xs) - x, Math.max(...ys) - y);
+      for (let i = n.ch.length - 1; i >= 0; i--) shape(n.ch[i], g, p).setAttribute('transform', tf(n.ch[i].p, n.ch[i].r));
+      if (n.c) fillets(n.ch, n.c).forEach(d => mk('path', { d, fill: p[0] }, g));
+    } else {
+      if (n.T !== 'g' && (n.f || n.k)) shape(n, g, paint);
+      for (let i = (n.ch || []).length - 1; i >= 0; i--) add(build(n.ch[i], g));
+    }
+    node.live = !!n.ev || node.kids.length > 0;
+    return node;
+  }
+  // Başlık: Spline'daki yazı görselinin yerinde Türkçe metin; satır genişlikleri orijinaldekine yakın
+  function title(parent) {
+    const t = mk('g', { fill: '#fff', 'font-family': 'Inter, Archivo, system-ui, sans-serif', 'font-weight': 600, 'text-anchor': 'middle' }, parent);
+    const lines = [['Asteria Soft ile', 165, 1056], ['Dijital zekâ', 232, 1301.5], ['markanız için', 150, 1472]]
+      .map(([s, size, y]) => { const e = mk('text', { x: 2180, y, 'font-size': size }, t); e.textContent = s; return [e, size]; });
+    const badge = mk('g', {}, t), rect = mk('rect', { y: -59.5, height: 119, rx: 21 }, badge);
+    const label = mk('text', { y: 29.5, 'font-size': 103, fill: '#231212' }, badge);
+    label.textContent = 'sıfırdan kod!';
+    const A = -8.3 * Math.PI / 180;
+    const fit = () => {
+      // Satırlar karakterlerin arasına sığsın; etiketin sağ ucu orijinaldeki yerinde kalsın
+      lines.forEach(([e, size]) => { e.setAttribute('font-size', size); const w = e.getComputedTextLength(); if (w > 1480) e.setAttribute('font-size', size * 1480 / w); });
+      const w = label.getComputedTextLength() + 74;
+      rect.setAttribute('x', -w / 2); rect.setAttribute('width', w);
+      badge.setAttribute('transform', `translate(${2870.5 - Math.cos(A) * w / 2} ${1566.2 - Math.sin(A) * w / 2}) rotate(-8.3)`);
+    };
+    fit();
+    document.fonts && document.fonts.ready.then(fit);
+    return null;
+  }
+  const roots = [];
+  for (let i = SCENE.length - 1; i >= 0; i--) { const k = build(SCENE[i], svg); k && k.live && roots.push(k); }
 
-  // İmleç (sayfanın her yerinde); dokunmatikte gözler kendi kendine gezinir
-  const cur = { x: 0, y: 0, on: false, moved: false };
-  addEventListener('pointermove', e => { cur.x = e.clientX; cur.y = e.clientY; cur.on = cur.moved = true; });
-  document.documentElement.addEventListener('pointerleave', () => { cur.on = false; });
-  const pt = svg.createSVGPoint();
-  let last = performance.now(), wander = 0;
-  function frame(now) {
-    const dt = Math.min(.05, (now - last) / 1000); last = now;
-    const br = svg.getBoundingClientRect();
-    if (br.bottom > 0 && br.top < innerHeight) {
-      let sx = cur.x, sy = cur.y, active = cur.on;
-      if (!cur.moved) { wander += dt * .6; sx = br.left + br.width * (.5 + .45 * Math.cos(wander)); sy = br.top + br.height * (.5 + .4 * Math.sin(wander * 1.3)); active = true; }
-      pt.x = sx; pt.y = sy;
-      for (const e of eyes) {
-        const m = e.g.getScreenCTM(); if (!m) continue;
-        const p = pt.matrixTransform(m.inverse());
-        const f = 1 - Math.exp(-dt * e.k);
-        if (e.kind === 'follow') {
-          let tx = 0, ty = 0;
-          if (active || !e.reset) {
-            if (!active && !e.reset) { tx = e.x; ty = e.y; }
-            else { tx = p.x; ty = p.y - e.oy; const d = Math.hypot(tx, ty); if (d > e.limit) { tx *= e.limit / d; ty *= e.limit / d; } }
-          }
-          e.x += (tx - e.x) * f; e.y += (ty - e.y) * f;
-          e.pupil.setAttribute('cx', e.x.toFixed(2)); e.pupil.setAttribute('cy', (e.y + e.oy).toFixed(2));
+  // ---- İmleç takibi (Spline'daki follow / lookAt); dokunmatikte gözler kendi kendine gezinir ----
+  const hero = document.querySelector('.hero'), stage = document.querySelector('.stage'), glow = document.querySelector('.glow');
+  const still = matchMedia('(prefers-reduced-motion: reduce)');
+  const rate = d => d <= 1 ? 14 : -60 * Math.log(1 - 1 / d); // sönüm → hız: büyük sönüm yavaş izler
+  const cur = { x: 0, y: 0, on: false, mouse: false, touch: -1e9 };
+  addEventListener('pointermove', e => { if (e.pointerType !== 'touch') { cur.x = e.clientX; cur.y = e.clientY; cur.on = cur.mouse = true; } }, { passive: true });
+  document.documentElement.addEventListener('pointerleave', e => { if (e.pointerType !== 'touch') cur.on = false; });
+  const onTouch = e => { const p = e.touches[0]; if (p) { cur.x = p.clientX; cur.y = p.clientY; cur.touch = performance.now(); } };
+  addEventListener('touchstart', onTouch, { passive: true });
+  addEventListener('touchmove', onTouch, { passive: true });
+
+  let cx = 0, cy = 0, active = false, dt = 0, last = 0, wander = 0, gx = 0, gy = 0, raf = 0;
+  function tick(node, M) {
+    const n = node.n;
+    if (n.ev) {
+      // İmleç, düğümün üst katmanının koordinatlarında; hedef dinlenme konumuna göre
+      const det = M[0] * M[3] - M[1] * M[2], X = cx - M[4], Y = cy - M[5];
+      const dx = (M[3] * X - M[2] * Y) / det - n.p[0], dy = (M[0] * Y - M[1] * X) / det - n.p[1], dist = Math.hypot(dx, dy);
+      for (const e of n.ev) {
+        const f = 1 - Math.exp(-dt * rate(e.d));
+        if (e.t === 'f') {
+          let tx = node.ox, ty = node.oy;
+          if (active) { const m = e.L != null && dist > e.L ? e.L / dist : 1; tx = dx * m; ty = dy * m; } else if (e.rp) tx = ty = 0;
+          node.ox += (tx - node.ox) * f; node.oy += (ty - node.oy) * f;
         } else {
-          let target = Math.PI; // dinlenme: yukarı
-          if (active) target = Math.atan2(p.x - e.px, p.y - e.py);
-          let da = target - e.a; da = Math.atan2(Math.sin(da), Math.cos(da));
-          e.a += da * f;
-          e.pupil.setAttribute('cx', (e.px + Math.sin(e.a) * e.r).toFixed(2));
-          e.pupil.setAttribute('cy', (e.py + Math.cos(e.a) * e.r).toFixed(2));
+          const ta = active ? Math.atan2(dx, -dy) * 180 / Math.PI : e.rp ? n.r || 0 : node.a;
+          node.a += (((ta - node.a) % 360 + 540) % 360 - 180) * f;
         }
       }
+      const tr = `translate(${(n.p[0] + node.ox).toFixed(2)} ${(n.p[1] + node.oy).toFixed(2)}) rotate(${node.a.toFixed(2)})`;
+      if (tr !== node.tr) node.g.setAttribute('transform', node.tr = tr);
     }
-    requestAnimationFrame(frame);
+    if (node.kids.length) {
+      const r = node.a * Math.PI / 180, c = Math.cos(r), s = Math.sin(r), px = n.p[0] + node.ox, py = n.p[1] + node.oy;
+      const W = [M[0] * c + M[2] * s, M[1] * c + M[3] * s, M[2] * c - M[0] * s, M[3] * c - M[1] * s, M[0] * px + M[2] * py + M[4], M[1] * px + M[3] * py + M[5]];
+      for (const k of node.kids) tick(k, W);
+    }
   }
-  requestAnimationFrame(frame);
+  function frame(now) {
+    raf = requestAnimationFrame(frame);
+    dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
+    const S = stage.getBoundingClientRect(), H = hero.getBoundingClientRect(), u = 4300 / S.width; // ekran pikseli → sahne birimi
+    const real = cur.mouse && cur.on;
+    active = true;
+    if (real || now - cur.touch < 2500) { cx = (cur.x - S.left) * u; cy = (cur.y - S.top) * u; }
+    else if (!cur.mouse && !still.matches) {
+      // Fare yokken görünen alanın içinde yavaş bir döngü
+      wander += dt * .45;
+      cx = (H.left - S.left + H.width * (.5 + .4 * Math.cos(wander))) * u;
+      cy = (H.top - S.top + H.height * (.5 + .36 * Math.sin(wander * 1.3))) * u;
+    } else active = false;
+    // Parlama imlecin kendisine gider; imleç çıkınca yerine döner
+    const f = 1 - Math.exp(-dt * 14);
+    gx += ((real ? cx - 2219 : 0) - gx) * f; gy += ((real ? cy - 1318 : 0) - gy) * f;
+    glow.style.transform = `translate(${(gx / u).toFixed(1)}px, ${(gy / u).toFixed(1)}px)`;
+    for (const k of roots) tick(k, [1, 0, 0, 1, 0, 0]);
+  }
+  // Yalnızca giriş ekranda görünürken çalışır
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting && !raf) { last = 0; raf = requestAnimationFrame(frame); }
+    else if (!e.isIntersecting && raf) { cancelAnimationFrame(raf); raf = 0; }
+  }).observe(hero);
 })();
 </script>
 </body>
